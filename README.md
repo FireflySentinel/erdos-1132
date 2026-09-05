@@ -1,11 +1,10 @@
 # Erdős Problem #1132 — sharp pointwise lower bounds for Lebesgue functions
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22322282.svg)](https://doi.org/10.5281/zenodo.22322282)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22322281.svg)](https://doi.org/10.5281/zenodo.22322281)
 
-Preprint claiming answers to **both** questions in
-[Erdős Problem #1132](https://www.erdosproblems.com/1132): a fixed point at which the
-Lebesgue function exceeds $(2/\pi)\log n$ by a bounded additive loss infinitely often,
-and the sharp normalized lower bound almost everywhere.
+Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): a fixed point at
+which the Lebesgue function exceeds $(2/\pi)\log n$ by a bounded additive loss infinitely
+often, and the sharp normalized lower bound almost everywhere.
 
 **Qiyuan Gu**, University of Chicago — <phoenix1203@uchicago.edu>
 
@@ -13,8 +12,8 @@ and the sharp normalized lower bound almost everywhere.
 
 | | |
 |---|---|
-| Manuscript | 11 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
-| DOI | [10.5281/zenodo.22322282](https://doi.org/10.5281/zenodo.22322282) |
+| Manuscript | revised v2, 11 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
+| DOI | [10.5281/zenodo.22322281](https://doi.org/10.5281/zenodo.22322281) (always the latest version; v2 is [10.5281/zenodo.22324932](https://doi.org/10.5281/zenodo.22324932)) |
 | erdosproblems.com | listed **open** as of 5 September 2026, no proof claims submitted |
 | Refereeing | not yet refereed |
 
@@ -30,10 +29,12 @@ arbitrary set of $n$ distinct nodes in $[-1,1]$. We prove that there are a fixed
 $x \in (-1,1)$ and a constant $C$ such that $\lambda_n(x) > (2/\pi)\log n - C$ for
 infinitely many $n$. We also prove that
 $\limsup_{n\to\infty} \lambda_n(x)/\log n \ge 2/\pi$ for almost every $x \in (-1,1)$.
-These conclusions answer both questions in Erdős Problem 1132. The first proof combines
-Tao's local potential estimates with a local Riesz differentiation formula, an energy
-estimate for nodal derivative jumps, and a second moment argument. The second proof uses
-positive Cauchy transforms and harmonic measure.
+The first conclusion answers the bounded-loss question in the interpretation that the
+constant may depend on the array and the point; the second answers the almost-everywhere
+question in Erdős Problem 1132. The first proof combines Tao's local potential estimates
+with a local Riesz differentiation formula, an energy estimate for nodal derivative jumps,
+and a second moment argument. The second proof uses positive Cauchy transforms and
+harmonic measure, and is independent of Tao's local Bernstein theory.
 
 ## Main theorem
 
@@ -86,10 +87,11 @@ measure transfers a hypothetical upper bound on a fixed measurable set to an ine
 a positive convolution operator; symmetry and the approximate identity property contradict
 it.
 
-## AI tool disclosure
+## Declaration of generative AI and AI-assisted technologies
 
-The proofs and manuscript were developed using GPT-6 Astra (OpenAI). The author is solely
-responsible for the mathematical content of the paper.
+GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
+GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition. The author
+reviewed the final manuscript and takes full responsibility for its content.
 
 ## Citation
 
@@ -98,7 +100,7 @@ responsible for the mathematical content of the paper.
   author       = {Qiyuan Gu},
   title        = {Sharp pointwise lower bounds for Lebesgue functions},
   year         = {2026},
-  doi          = {10.5281/zenodo.22322282},
+  doi          = {10.5281/zenodo.22322281},
   howpublished = {Preprint, Zenodo},
   note         = {Erd\H{o}s Problem 1132}
 }
