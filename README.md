@@ -12,8 +12,8 @@ often, and the sharp normalized lower bound almost everywhere.
 
 | | |
 |---|---|
-| Manuscript | revised v2, 11 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
-| DOI | [10.5281/zenodo.22322281](https://doi.org/10.5281/zenodo.22322281) (always the latest version; v2 is [10.5281/zenodo.22324932](https://doi.org/10.5281/zenodo.22324932)) |
+| Manuscript | v4, 11 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
+| DOI | [10.5281/zenodo.22322281](https://doi.org/10.5281/zenodo.22322281) (always the latest version; this version is [10.5281/zenodo.22333216](https://doi.org/10.5281/zenodo.22333216)) |
 | erdosproblems.com | listed **open** as of 5 September 2026, no proof claims submitted |
 | Refereeing | not yet refereed |
 
@@ -61,6 +61,7 @@ the problem is stated on erdosproblems.com.
 
 | | |
 |---|---|
+| Faber, Bernstein, Erdős–Turán, Erdős, Vértesi | the **global** lower bound for $\max_x \lambda_n(x)$: order $\log n$, then the sharp constant $2/\pi$, then error $O(\log\log n)$, then $O(1)$, then optimal asymptotics through the constant term |
 | Bernstein (1931) | the set where $\limsup \lambda_n(x)/\log n \ge 2/\pi$ is everywhere **dense** |
 | Erdős (1961) | $\max_{x\in[-1,1]} \lambda_n(x) > \frac{2}{\pi}\log n - O(1)$ — the **global maximum** |
 | Erdős–Vértesi (1980) | $\limsup_n \lambda_n(x) = \infty$ a.e. — unboundedness, **without a rate** |
