@@ -88,6 +88,26 @@ Erd\H{o}s posed both questions for triangular arrays in
 \cite{Bloom}. The constant in \eqref{eq:main-fixed} is independent of
 \(n\); it may depend on the array and the point \(x\).
 
+The global lower bound for Lebesgue constants has a classical history.
+Faber proved the order \(\log n\), Bernstein obtained the asymptotically
+sharp leading constant \(2/\pi\), Erd\H{o}s and Tur\'an improved the error to
+\(O(\log\log n)\), Erd\H{o}s to \(O(1)\), and V\'ertesi determined the
+optimal asymptotics through the constant term. See
+\cite[Section~1.3]{Tao} and \cite{Brutman} for references and further
+historical discussion.
+
+For triangular arrays, Bernstein's result already implies that the set of
+points \(x\) satisfying
+\[
+ \limsup_{n\to\infty}\frac{\lambda_n(x)}{\log n}\ge\frac2\pi
+\]
+is everywhere dense; Erd\H{o}s explicitly asked whether this holds for
+almost every \(x\) \cite[p.~68]{Erdos}. Erd\H{o}s and V\'ertesi later proved
+the weaker almost-everywhere conclusion
+\(\limsup_{n\to\infty}\lambda_n(x)=\infty\) for arbitrary triangular
+arrays \cite{ErdosVertesi}. Thus Theorem~\ref{thm:main}(ii) gives the sharp
+logarithmic rate almost everywhere.
+
 Tao \cite[Theorem 1.10(i)]{Tao} proved that every fixed nondegenerate
 interval \(I\subset[-1,1]\) satisfies
 \[
@@ -751,12 +771,23 @@ T.~F. Bloom,
 \url{https://www.erdosproblems.com/1132}.
 Accessed 5 September 2026.
 
+\bibitem{Brutman}
+L.~Brutman,
+Lebesgue functions for polynomial interpolation---a survey,
+\emph{Ann. Numer. Math.} \textbf{4} (1997), 111--127.
+
 \bibitem{Erdos}
 P.~Erd\H{o}s,
 Problems and results on the convergence and divergence properties of
 the Lagrange interpolation polynomials and some extremal problems,
 \emph{Mathematica (Cluj)} \textbf{10} (1968), 65--73.
 \href{https://combinatorica.hu/~p_erdos/1967-20.pdf}{Original paper}.
+
+\bibitem{ErdosVertesi}
+P.~Erd\H{o}s and P.~V\'ertesi,
+On the almost everywhere divergence of Lagrange interpolation polynomials
+for arbitrary systems of nodes,
+\emph{Acta Math. Acad. Sci. Hungar.} \textbf{36} (1980), 71--89.
 
 \bibitem{Tao}
 T.~Tao,
