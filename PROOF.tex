@@ -1,0 +1,770 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Sharp pointwise lower bounds for Lebesgue functions},
+  pdfauthor={Qiyuan Gu},
+  pdfkeywords={Erdos Problem 1132, Lebesgue functions, polynomial
+interpolation, almost everywhere, pointwise lower bounds}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\numberwithin{equation}{section}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\one}{\mathbf 1}
+
+\title{Sharp pointwise lower bounds for Lebesgue functions}
+\author{Qiyuan Gu\\
+University of Chicago\\
+\href{mailto:phoenix1203@uchicago.edu}{\texttt{phoenix1203@uchicago.edu}}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For each \(n\), let \(\lambda_n\) be the Lebesgue function for
+polynomial interpolation at an arbitrary set of \(n\) distinct nodes
+in \([-1,1]\). We prove that there are a fixed point \(x\in(-1,1)\)
+and a constant \(C\) such that
+\(\lambda_n(x)>(2/\pi)\log n-C\) for infinitely many \(n\).
+We also prove that
+\(\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi\)
+for almost every \(x\in(-1,1)\).
+These conclusions answer both questions in Erd\H{o}s Problem 1132.
+The first proof combines Tao's local potential estimates with a local
+Riesz differentiation formula, an energy estimate for nodal derivative
+jumps, and a second moment argument. The second proof uses positive
+Cauchy transforms and harmonic measure.
+\end{abstract}
+
+\section{Introduction}
+
+For each \(n\ge1\), let
+\[
+ -1\le x_{1,n}<\cdots<x_{n,n}\le1.
+\]
+Define the node polynomial, the cardinal polynomials, and the Lebesgue
+function by
+\begin{align*}
+ P_n(x)&=\prod_{k=1}^n(x-x_{k,n}),\\
+ \ell_{k,n}(x)&=\frac{P_n(x)}{(x-x_{k,n})P_n'(x_{k,n})},
+ &\lambda_n(x)&=\sum_{k=1}^n|\ell_{k,n}(x)|.
+\end{align*}
+The cardinal polynomials are interpreted by continuity at the nodes.
+The rows of the array need not be nested.
+
+\begin{theorem}\label{thm:main}
+For every triangular array of distinct nodes as above, the following
+statements hold.
+\begin{enumerate}
+\item[(i)] There exist \(x\in(-1,1)\) and a finite constant \(C\) such that
+\begin{equation}\label{eq:main-fixed}
+ \lambda_n(x)>\frac2\pi\log n-C
+\end{equation}
+for infinitely many \(n\).
+\item[(ii)] For Lebesgue almost every \(x\in(-1,1)\),
+\begin{equation}\label{eq:main-ae}
+ \limsup_{n\to\infty}\frac{\lambda_n(x)}{\log n}\ge\frac2\pi.
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+Erd\H{o}s posed both questions for triangular arrays in
+\cite[p.~68]{Erdos}, and they are recorded as Problem 1132 in
+\cite{Bloom}. The constant in \eqref{eq:main-fixed} is independent of
+\(n\); it may depend on the array and the point \(x\).
+
+Tao \cite[Theorem 1.10(i)]{Tao} proved that every fixed nondegenerate
+interval \(I\subset[-1,1]\) satisfies
+\[
+ \sup_{x\in I}\lambda_n(x)\ge\frac2\pi\log n-O_I(1).
+\]
+His Corollary 1.11 and Remark 1.12 give, for every prescribed
+\(\omega(n)\to\infty\), a dense, indeed comeager, set of points
+\(x\) for which
+\[
+ \lambda_n(x)\ge\frac2\pi\log n-\omega(n)
+\]
+infinitely often. Theorem~\ref{thm:main}(i) gives a fixed additive
+constant at a fixed point. Theorem~\ref{thm:main}(ii) establishes the
+sharp normalized lower bound on a set of full measure.
+
+For the first assertion, a Baire category reduction gives an interval
+on which \(\lambda_n\le(2/\pi)\log n+O(1)\), if the assertion is
+false. On that interval, Tao's potential estimates and a local Riesz
+formula control derivatives of all interpolants with bounded nodal
+data. A positive definite kernel then gives a sharp lower average for
+the derivative jumps of \(\lambda_n\) at the nodes. This produces
+linearly many separated points with values at least
+\((2/\pi)\log n-O(1)\). A second moment argument yields a set of
+positive measure on which this lower bound recurs infinitely often.
+
+The proof of the almost-everywhere assertion is separate. Normalized
+barycentric weights define two positive Cauchy transforms whose
+difference is small above the real line. Harmonic measure transfers a
+hypothetical upper bound on a fixed measurable set to an inequality
+for a positive convolution operator. Symmetry and the approximate
+identity property contradict that inequality.
+
+Throughout the paper, all logarithms are natural and \(|E|\) denotes
+Lebesgue measure. We write \(c_0=2/\pi\), and suppress the row index
+when discussing a single row. Constants in local estimates may depend
+on the fixed intervals and test functions, but not on \(n\) or on
+interpolation data bounded by one. The notation \(J\Subset U\) means
+that \(J\) is a compact subset of the open set \(U\).
+
+\section{A local differentiation formula}
+\label{sec:local}
+
+
+We first record a local form of Riesz's differentiation formula, including the
+consequence of near equality that will be needed below.
+
+\begin{lemma}\label{lem:riesz}
+Suppose that \(F\) is holomorphic in a neighborhood of the square \(\{|\Re
+z|,|\Im z|\le T\}\), is real on its real diameter, and satisfies
+\[
+ |F(u+iv)|\le e^{|v|}.
+\]
+For sufficiently large \(T\),
+\begin{equation}\label{eq:riesz-derivative}
+ |F'(0)|\le 1+O(T^{-1}).
+\end{equation}
+If \(F'(0)\ge 1-\delta\), where \(\delta\ge0\), then
+\begin{equation}\label{eq:riesz-stability}
+ F(\pi/2)\ge 1-\frac{\pi^2}{4}\delta-O(T^{-1}).
+\end{equation}
+The constants are absolute.
+
+\end{lemma}
+
+\begin{proof}
+Choose \(R=m\pi\) with \(T/2\le R<T\), and integrate
+\[
+ \frac{F(z)}{z^2\cos z}
+\]
+around the square of radius \(R\). On its vertical sides, \(|\cos z|=\cosh(\Im
+z)\); on its horizontal sides, \(|\cos z|\ge\sinh R\). The contour integral,
+divided by \(2\pi i\), is consequently \(O(R^{-1})\). Taking residues at zero
+and at \(t_j=(j+\tfrac12)\pi\) gives
+\begin{equation}\label{eq:riesz-formula}
+ F'(0)=\sum_{|t_j|<R}\frac{(-1)^jF(t_j)}{t_j^2}+O(T^{-1}).
+\end{equation}
+Since \(|F(t_j)|\le1\) and
+\[
+ \sum_{j\in\mathbb Z}\frac1{t_j^2}=1,
+\]
+equation \eqref{eq:riesz-derivative} follows. Isolating the term \(t_0=\pi/2\)
+in \eqref{eq:riesz-formula} gives
+\[
+ 1-\delta\le \frac4{\pi^2}F(\pi/2)+1-\frac4{\pi^2}+O(T^{-1}),
+\]
+which proves \eqref{eq:riesz-stability}.
+\end{proof}
+
+We next apply this formula to interpolants with bounded nodal data.
+
+\begin{lemma}\label{lem:local}
+Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval. Suppose that,
+for all sufficiently large \(n\),
+\begin{equation}\label{eq:local-upper}
+ \lambda_n(x)\le \Lambda_n:=c_0\log n+C\qquad(x\in I),
+\end{equation}
+where \(C\) is fixed. There are functions \(\rho_n\) on
+\(\operatorname{int}I\) whose restrictions to each fixed compact interval are
+bounded above and below by positive constants and have uniformly bounded
+Lipschitz norms. They have the following properties on every fixed interval
+\(J\Subset\operatorname{int}I\).
+
+For every real polynomial
+\[
+ q(x)=\sum_{k=1}^n a_k\ell_{k,n}(x),\qquad |a_k|\le1,
+\]
+uniformly for \(x\in J\),
+\begin{equation}\label{eq:derivative-bounds}
+ |q'(x)|\le \pi n\rho_n(x)(\Lambda_n+o(1)),\qquad
+ |q''(x)|\le C_Jn^2\log n.
+\end{equation}
+Moreover, for every fixed \(D\), if
+\begin{equation}\label{eq:large-derivative}
+ \frac{|q'(x)|}{\pi n\rho_n(x)}\ge c_0\log n-D,
+\end{equation}
+then there is \(y=x+O_J(n^{-1})\) such that
+\begin{equation}\label{eq:nearby-peak}
+ \lambda_n(y)\ge c_0\log n-D',
+\end{equation}
+where \(D'\) depends on \(I,J,C,D\), but not on \(n,x,q\). The point \(y\)
+lies in any fixed compact interior interval containing \(J\) in its interior,
+for all sufficiently large \(n\).
+
+Finally, if \(h_n\) have support in a fixed compact subset of
+\(\operatorname{int}I\) and have uniformly bounded Lipschitz norms, then
+\begin{equation}\label{eq:quadrature}
+ \frac1n\sum_k h_n(x_{k,n})
+ =\int h_n(x)\rho_n(x)\,dx+O(n^{-1/10}).
+\end{equation}
+
+\end{lemma}
+
+\begin{proof}
+We apply Tao \cite[Theorem 4.1]{Tao} to the interval \(I\) in
+\eqref{eq:local-upper}, and use its conclusions on fixed compact subintervals
+of \(\operatorname{int}I\). For the derivative estimates, choose such an
+interval containing \(J\) in its interior; for \eqref{eq:quadrature}, choose
+one containing the supports of the functions \(h_n\). Put
+\[
+ S_n=\sum_k\frac1{|P_n'(x_{k,n})|},\qquad
+ \alpha_n=\frac1n\log S_n,\qquad
+ U_n(z)=\frac1n\log\frac1{|P_n(z)|}.
+\]
+That theorem supplies the asserted bounds on \(\rho_n\), together with
+\begin{equation}\label{eq:potential}
+ U_n(x+i\eta)=\alpha_n-\pi\eta\rho_n(x)
+              +O\!\left(\frac{\log n}{n}+\eta^3\right)
+\end{equation}
+for \(\eta\ge\log n/n\), uniformly on fixed compact interior intervals. It
+also gives, for every subinterval \(K\) of such an interval,
+\begin{equation}\label{eq:discrepancy}
+ \frac1n\#\{k:x_{k,n}\in K\}
+ =\int_K\rho_n(x)\,dx
+   +O\!\left(\frac{|K|}{A}+\frac{A^2\log n}{n}\right)
+ \qquad(A\ge1).
+\end{equation}
+Taking \(A=n^{1/10}\) and integrating by parts proves \eqref{eq:quadrature}.
+The bounds are uniform for the stated class of \(h_n\).
+
+For complex \(z\) with \(\Re z\) in a fixed compact subinterval of
+\(\operatorname{int}I\) and \(\Im z=\eta\ge\log n/n\), the
+interpolation formula and \eqref{eq:potential} imply
+\begin{equation}\label{eq:complex-interpolant}
+ |q(z)|\le \frac{S_n|P_n(z)|}{\eta}
+ \le \frac1\eta
+       \exp\!\left(\pi n\eta\rho_n(\Re z)
+                       +O(\log n+n\eta^3)\right).
+\end{equation}
+Fix \(x\in J\), and set
+\[
+ L=n^{-1/5},\qquad H=n^{-2/5},\qquad
+ \omega=\pi n\rho_n(x)(1+D_0n^{-1/10}),
+\]
+where \(D_0>0\) is fixed and sufficiently large. On the upper edge of the
+rectangle
+\[
+ |\Re z-x|\le L,\qquad 0\le\Im z\le H,
+\]
+the Lipschitz bound for \(\rho_n\) and \eqref{eq:complex-interpolant} give
+\[
+ |q(z)|\le\Lambda_n e^{\omega H}
+\]
+for all sufficiently large \(n\). Indeed, the allowance in \(\omega H\) has
+order \(n^{1/2}\), whereas the density variation contributes \(O(n^{2/5})\),
+and the remaining terms contribute \(O(\log n)\).
+
+On the lower edge, \(|q|\le\lambda_n\le\Lambda_n\). Expanding \(q\) in
+Chebyshev polynomials on \(I\) also gives the bound
+\(|q(z)|\le\Lambda_n\exp(O_I(n))\) on the vertical sides. Apply the local
+Phragm\'en--Lindel\"of estimate \cite[Lemma 2.5]{Tao} to
+\[
+ \Lambda_n^{-1}q(z)e^{i\omega(z-x)}.
+\]
+For \(|u|\le L/2\) and \(0\le v\le H\), it yields
+\begin{equation}\label{eq:local-growth}
+ |q(x+u+iv)|\le\Lambda_n(1+n^{-10})e^{\omega|v|}.
+\end{equation}
+Here the error from the vertical sides is \(\exp(O(n e^{-c n^{1/5}}))\);
+reflection supplies the estimate for negative \(v\).
+
+After the change of variable \(t=\omega(z-x)\), the function
+\[
+ F(t)=\frac{q(x+t/\omega)}{\Lambda_n(1+n^{-10})}
+\]
+satisfies Lemma~\ref{lem:riesz} on a square of radius \(T\asymp_J n^{3/5}\).
+Equation \eqref{eq:riesz-derivative}, and the fact that \(\Lambda_n
+n^{-1/10}=o(1)\), give the first estimate in \eqref{eq:derivative-bounds}.
+Cauchy's estimate on a disk of radius comparable to \(n^{-1}\) in
+\eqref{eq:local-growth} gives the second estimate.
+
+Under \eqref{eq:large-derivative}, replacing \(q\) by \(-q\) if necessary, we have
+\[
+ F'(0)\ge1-\frac{C_1}{\Lambda_n}
+\]
+with \(C_1\) independent of \(n,x,q\). Equation \eqref{eq:riesz-stability} now
+shows that
+\[
+ |q(x+\pi/(2\omega))|\ge\Lambda_n-C_2.
+\]
+Since \(|q(y)|\le\lambda_n(y)\) for real \(y\), this proves
+\eqref{eq:nearby-peak}.
+\end{proof}
+
+\section{Derivative jumps and a Riesz energy}\label{sec:energy}
+
+At each internal interpolation node, write
+\[
+ J_k=\lambda_n'(x_{k,n}+)-\lambda_n'(x_{k,n}-).
+\]
+For convenience, the same expression may be defined at the first and last
+nodes by using the exterior polynomial pieces. Set
+\[
+ \nu_k=\frac1{S_n|P_n'(x_{k,n})|}.
+\]
+The absolute values of all cardinal polynomials other than \(\ell_{k,n}\) have
+a cusp at \(x_{k,n}\), whereas \(\ell_{k,n}\) is positive near that node.
+Consequently
+\begin{equation}\label{eq:jump}
+ J_k=2\sum_{j\ne k}|\ell_{j,n}'(x_{k,n})|
+     =2\sum_{j\ne k}\frac{\nu_j}{\nu_k|x_{k,n}-x_{j,n}|}.
+\end{equation}
+
+\begin{lemma}\label{lem:energy}
+Under the hypotheses of Lemma~\ref{lem:local}, choose a nonzero nonnegative
+smooth function \(f\) compactly supported in \(\operatorname{int}I\). Then
+\begin{equation}\label{eq:jump-average}
+ \sum_k\frac{f(x_{k,n})^2}{n\rho_n(x_{k,n})}
+       \frac{J_k}{2\pi n\rho_n(x_{k,n})}
+ \ge c_0\log n\int f(x)^2\,dx-O(1).
+\end{equation}
+Terms with \(f(x_{k,n})=0\) are taken to be zero; \(\rho_n\) is only needed on
+a fixed interior neighborhood of the support of \(f\).
+
+\end{lemma}
+
+\begin{proof}
+Put \(a_k=f(x_{k,n})/\rho_n(x_{k,n})\), with \(a_k=0\) outside the support of
+\(f\), and define
+\[
+ \mu_n=\frac1n\sum_k a_k\delta_{x_{k,n}},\qquad
+ K_\varepsilon(t)=\frac1{\sqrt{t^2+\varepsilon^2}}.
+\]
+The kernel \(K_\varepsilon\) is positive definite. For example, its representation
+\[
+ K_\varepsilon(t)=\frac1{\sqrt\pi}
+       \int_0^\infty s^{-1/2}e^{-s\varepsilon^2}e^{-st^2}\,ds
+\]
+expresses it as a positive mixture of Gaussian kernels. Write
+\[
+ \mathcal E_\varepsilon(\sigma,\tau)
+ =\iint K_\varepsilon(x-y)\,d\sigma(x)\,d\tau(y)
+\]
+for its bilinear energy. Positivity applied to
+\(\mu_n-f(x)\,dx\) gives
+\begin{equation}\label{eq:energy-positivity}
+ \mathcal E_\varepsilon(\mu_n,\mu_n)
+ \ge2\mathcal E_\varepsilon(\mu_n,f\,dx)
+       -\mathcal E_\varepsilon(f\,dx,f\,dx).
+\end{equation}
+Take \(\varepsilon=1/n\). Subtracting \(f(x)\) in the integral over
+\(|t|\le1\), and using the Lipschitz bound for \(f\), gives the uniform
+estimate
+\begin{equation}\label{eq:kernel-asymptotic}
+ (K_{1/n}*f)(x)=2\log n\,f(x)+O_f(1).
+\end{equation}
+The mass of \(\mu_n\) is bounded. Also, by \eqref{eq:quadrature},
+\begin{equation}\label{eq:weighted-quadrature}
+ \int f\,d\mu_n
+ =\frac1n\sum_k\frac{f(x_{k,n})^2}{\rho_n(x_{k,n})}
+ =\int f^2+O(n^{-1/10}).
+\end{equation}
+Equations \eqref{eq:energy-positivity}--\eqref{eq:weighted-quadrature}
+therefore yield
+\begin{equation}\label{eq:energy-lower}
+ \mathcal E_{1/n}(\mu_n,\mu_n)
+ \ge2\log n\int f^2-O(1).
+\end{equation}
+The diagonal part of this energy is \(n^{-1}\sum_k a_k^2=O(1)\). Since
+\(K_{1/n}(t)\le1/|t|\) for \(t\ne0\),
+\begin{equation}\label{eq:off-diagonal}
+ \frac1{n^2}\sum_{k\ne j}\frac{a_ka_j}{|x_{k,n}-x_{j,n}|}
+ \ge2\log n\int f^2-O(1).
+\end{equation}
+Finally,
+\[
+ a_k^2\frac{\nu_j}{\nu_k}+a_j^2\frac{\nu_k}{\nu_j}
+ \ge2a_ka_j.
+\]
+By \eqref{eq:jump}, the left side of \eqref{eq:jump-average} is
+\[
+ \frac1{\pi n^2}\sum_{k\ne j}
+       \frac{a_k^2\nu_j}{\nu_k|x_{k,n}-x_{j,n}|}.
+\]
+Pairing the terms indexed by \((k,j)\) and \((j,k)\), and then applying
+\eqref{eq:off-diagonal}, bounds this expression below by
+\[
+ \frac1{\pi n^2}\sum_{k\ne j}
+       \frac{a_ka_j}{|x_{k,n}-x_{j,n}|}
+ \ge\frac2\pi\log n\int f^2-O(1).
+\]
+This proves \eqref{eq:jump-average}.
+\end{proof}
+
+\section{A fixed point with bounded additive loss}\label{sec:fixed}
+
+\begin{proposition}\label{prop:recurrence}
+Assume the local upper bound \eqref{eq:local-upper} on a fixed
+nondegenerate interval \(I\Subset(-1,1)\). There are a constant \(D\)
+and a measurable set \(G\subset\operatorname{int}I\), with \(|G|>0\),
+such that every \(x\in G\) satisfies
+\[
+ \lambda_n(x)\ge c_0\log n-D
+\]
+for infinitely many \(n\).
+\end{proposition}
+
+\begin{proof}
+Fix nested compact interior intervals and a function \(f\) as in
+Lemma~\ref{lem:energy}. Let
+\[
+ w_k=\frac{f(x_{k,n})^2}{n\rho_n(x_{k,n})},\qquad
+ T_k=\frac{J_k}{2\pi n\rho_n(x_{k,n})},\qquad W=\int f^2>0.
+\]
+By \eqref{eq:quadrature},
+\begin{equation}\label{eq:weights}
+ \sum_kw_k=W+O(n^{-1/10}),\qquad 0\le w_k\le C_f/n.
+\end{equation}
+On each interval between successive nodes, \(\lambda_n\) equals an interpolant
+with nodal data in \(\{-1,1\}\). Both one-sided derivatives at a node
+therefore satisfy \eqref{eq:derivative-bounds}, so
+\begin{equation}\label{eq:jump-upper}
+ 0\le T_k\le\Lambda_n+o(1)
+\end{equation}
+uniformly on the support of \(f\). Lemma~\ref{lem:energy}, \eqref{eq:weights},
+and \eqref{eq:jump-upper} show that
+\begin{equation}\label{eq:weighted-deficit}
+ \sum_kw_k(\Lambda_n+1-T_k)=O(1),
+\end{equation}
+with nonnegative summands for all sufficiently large \(n\). It follows that
+there is a fixed \(D\) for which the nodes in the support of \(f\) satisfying
+\begin{equation}\label{eq:large-jump}
+ T_k\ge c_0\log n-D
+\end{equation}
+carry at least \(W/2\) of the weights in \eqref{eq:weights}. In particular,
+there are at least \(\kappa n\) such nodes, with \(\kappa>0\) independent of
+\(n\). Discarding the first and last nodes does not change this conclusion
+after reducing \(\kappa\).
+
+At a node satisfying \eqref{eq:large-jump}, at least one adjacent polynomial
+piece \(q\) has
+\[
+ |q'(x_{k,n})|\ge\pi n\rho_n(x_{k,n})(c_0\log n-D).
+\]
+Lemma~\ref{lem:local} gives a point
+\begin{equation}\label{eq:high-points}
+ y_k=x_{k,n}+O(n^{-1}),\qquad
+ \lambda_n(y_k)\ge c_0\log n-D_1.
+\end{equation}
+
+These points cannot all concentrate in a small number of node gaps. To see
+this, use the adjacent piece with the large derivative. Its values at the two
+endpoints of that gap are both 1. Rolle's theorem and the second derivative
+bound in \eqref{eq:derivative-bounds} imply that the gap has length at least
+\(d/n\), for a fixed \(d>0\). If the gap leaves the fixed interior
+neighborhood, its length is already bounded below by a positive constant, so
+the same conclusion holds.
+
+Any interval of length less than \(d/n\) contains at most two nodes having an
+adjacent gap of length at least \(d/n\). Otherwise a middle node would have
+both neighboring gaps shorter than \(d/n\). Thus every interval of length
+\(O(n^{-1})\) contains only a bounded number of the nodes in
+\eqref{eq:large-jump}. The displacement bound in \eqref{eq:high-points} gives
+the same bound, with multiplicities, for the points \(y_k\). A greedy
+selection supplies at least \(\kappa_1n\) points satisfying
+\eqref{eq:high-points} and separated by \(d_1/n\), for fixed positive
+\(\kappa_1,d_1\).
+
+Equation \eqref{eq:derivative-bounds}, applied to every polynomial piece, also
+shows that \(\lambda_n\) is \(C_In\log n\)-Lipschitz on a fixed compact
+interior interval containing these points. Choose a fixed sufficiently small
+\(b>0\), and let \(A_n\) be the union of the intervals of radius
+\[
+ r_n=\frac{b}{n\log n}
+\]
+centered at the selected points. For all sufficiently large \(n\), these
+intervals are disjoint, lie in a fixed compact interior interval, and satisfy
+\begin{equation}\label{eq:high-sets}
+ \lambda_n(x)\ge c_0\log n-D_2\quad(x\in A_n),\qquad
+ \frac{c}{\log n}\le |A_n|\le\frac{C_2}{\log n}.
+\end{equation}
+The separation of the centers in the \(m\)-th row implies, for every interval
+\(B\),
+\[
+ |A_m\cap B|\le C_3\left(\frac{|B|}{\log m}
+                              +\frac1{m\log m}\right).
+\]
+Since \(A_n\) has at most \(n\) components, for \(m>n\),
+\begin{equation}\label{eq:intersection}
+ |A_n\cap A_m|
+ \le C_3\left(\frac{|A_n|}{\log m}
+                              +\frac{n}{m\log m}\right).
+\end{equation}
+Put \(B_j=A_{2^j}\). Equations \eqref{eq:high-sets} and
+\eqref{eq:intersection} give
+\begin{equation}\label{eq:dyadic-intersection}
+ |B_j|\asymp j^{-1},\qquad
+ |B_j\cap B_k|\le C_4\left(\frac1{jk}+\frac{2^{j-k}}k\right)
+ \quad(j<k).
+\end{equation}
+For every fixed \(j_0\), the sum of the measures of \(B_j\), \(j_0\le j\le
+N\), grows at least as a positive constant times \(\log N\). By
+\eqref{eq:dyadic-intersection}, the integral of the square of the sum of their
+indicators is \(O((\log N)^2)\). Cauchy--Schwarz consequently gives a positive
+lower bound, independent of \(j_0\), for
+\[
+ \left|\bigcup_{j\ge j_0}B_j\right|.
+\]
+Continuity of measure along these decreasing tail unions shows that
+\begin{equation}\label{eq:recurrence}
+ |\limsup_{j\to\infty}B_j|>0.
+\end{equation}
+Together with \eqref{eq:high-sets}, this proves the proposition.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(i)]
+Suppose the assertion were false. Then
+\begin{equation}\label{eq:additive-failure}
+ \lambda_n(x)-c_0\log n\longrightarrow-\infty
+ \qquad\text{for every }x\in(-1,1).
+\end{equation}
+Fix a nondegenerate compact interval \(K_0\subset(-1,1)\). The closed sets
+\[
+ F_M=\{x\in K_0:\lambda_n(x)\le c_0\log n+M
+                   \text{ for every }n\ge2\},
+ \qquad M=1,2,\ldots,
+\]
+cover \(K_0\), by \eqref{eq:additive-failure}. Baire's theorem supplies
+a nondegenerate closed subinterval \(I\subset K_0\) on which
+\eqref{eq:local-upper} holds with a fixed \(C\).
+Proposition~\ref{prop:recurrence} contradicts
+\eqref{eq:additive-failure}. Increasing the final additive constant by
+one gives the strict inequality in the statement.
+\end{proof}
+
+\section{Positive Cauchy transforms}\label{sec:cauchy}
+
+We now prove the almost-everywhere assertion. Again suppress the row index,
+and put
+\[
+ S=\sum_k\frac1{|P'(x_k)|},\qquad
+ \nu_k=\frac1{S|P'(x_k)|},\qquad
+ \epsilon_k=\operatorname{sgn}P'(x_k).
+\]
+Define
+\begin{equation}\label{eq:transforms}
+ m(z)=\sum_k\frac{\nu_k}{z-x_k},\qquad
+ g(z)=\sum_k\frac{\epsilon_k\nu_k}{z-x_k}
+     =\frac1{SP(z)}.
+\end{equation}
+The last identity is the partial fraction formula for \(1/P\). Its expansion
+at infinity also gives
+\begin{equation}\label{eq:moments}
+ \sum_k\epsilon_k\nu_kx_k^j=0\qquad(0\le j\le n-2).
+\end{equation}
+For \(n\ge2\), both \(m+g\) and \(m-g\) are Cauchy transforms of positive
+probability measures: their masses at \(x_k\) are \((1\pm\epsilon_k)\nu_k\).
+
+For real \(x\) away from the nodes, write
+\[
+ H(x)=\sum_k\frac{\nu_k}{|x-x_k|},\qquad
+ \gamma_s(x)=-\Im m(x+is),\qquad
+ p_s(t)=\frac{s}{\pi(t^2+s^2)}.
+\]
+Then
+\begin{equation}\label{eq:lebesgue-transform}
+ \lambda_n(x)=\frac{H(x)}{|g(x)|},\qquad
+ H(x)=\frac2\pi\int_0^\infty\gamma_s(x)\,\frac{ds}{s},
+\end{equation}
+and the Poisson semigroup gives
+\begin{equation}\label{eq:semigroup}
+ \gamma_s=p_{s-h}*\gamma_h\qquad(s>h).
+\end{equation}
+
+\begin{lemma}\label{lem:cancellation}
+If \(0<a<1\) and \(h=n^{-a}\), then
+\begin{equation}\label{eq:cancellation}
+ \sup_{x\in[-1,1]}\frac{|g(x+ih)|}{\gamma_h(x)}\longrightarrow0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The function \(t\mapsto(x+ih-t)^{-1}\) is analytic on the Bernstein ellipse of
+parameter \(R=1+h/4\), where its modulus is \(O(h^{-1})\). Truncating its
+Chebyshev expansion at degree \(n-2\) gives a polynomial \(p\) satisfying
+\begin{equation}\label{eq:chebyshev-tail}
+ \sup_{t\in[-1,1]}\left|\frac1{x+ih-t}-p(t)\right|
+ \le C h^{-2}e^{-cnh}.
+\end{equation}
+Indeed, the Chebyshev coefficients are \(O(h^{-1}R^{-j})\), and their tail is
+a geometric series. The signed measure in \eqref{eq:transforms} has total
+variation one and annihilates \(p\), by \eqref{eq:moments}. Thus
+\eqref{eq:chebyshev-tail} bounds \(|g(x+ih)|\). On the other hand,
+\[
+ \gamma_h(x)=\sum_k\frac{\nu_kh}{(x-x_k)^2+h^2}
+ \ge\frac{h}{4+h^2}\qquad(x\in[-1,1]).
+\]
+This proves \eqref{eq:cancellation}.
+\end{proof}
+
+\begin{lemma}\label{lem:boundary}
+Let \(F\) be the Cauchy transform of a positive probability measure with
+finite support. For every bounded real interval \(S_0\), every \(x\in\R\), and
+every \(h>0\),
+\begin{equation}\label{eq:harmonic-measure}
+ \int_{\mathbb R}p_h(x-y)\,
+            \mathbf1_{\{F(y)\in S_0\}}\,dy
+ =\frac1\pi\int_{S_0}
+       \frac{-\Im F(x+ih)}{(t-\Re F(x+ih))^2+(\Im F(x+ih))^2}\,dt.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Compose harmonic measure of \(S_0\) in the lower half-plane with \(F\). The
+resulting bounded harmonic function on the upper half-plane has the indicated
+boundary values almost everywhere. The exceptional boundary points are poles
+of \(F\) and preimages of the endpoints of \(S_0\), a finite set. Its Poisson
+representation is \eqref{eq:harmonic-measure}.
+\end{proof}
+
+\section{The almost-everywhere bound}\label{sec:ae}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(ii)]
+Suppose that the assertion fails. By a countable-union argument, there are a
+measurable set \(E\subset(-1,1)\) of positive measure, a constant \(0<c<c_0\),
+and an integer \(N\) such that
+\begin{equation}\label{eq:common-low-set}
+ \lambda_n(y)\le c\log n\qquad(y\in E,\ n\ge N).
+\end{equation}
+Choose constants
+\[
+ K>1,\qquad 0<b<a<1,\qquad \frac{2b}{\pi cK}>1,
+\]
+which is possible because \(c<2/\pi\). Set
+\[
+ h=n^{-a},\qquad\eta=n^{-b},\qquad
+ H^\eta(x)=\frac2\pi\int_\eta^1\gamma_s(x)\,\frac{ds}{s}.
+\]
+By \eqref{eq:lebesgue-transform}, \(H^\eta\le H\). Direct differentiation
+gives \(|\gamma_s'|\le\gamma_s/s\), and consequently
+\begin{equation}\label{eq:log-derivative}
+ |(\log H^\eta)'|\le\eta^{-1}.
+\end{equation}
+
+Fix \(x\in E\), and write
+\[
+ u=\Re m(x+ih),\qquad\gamma=\gamma_h(x),\qquad
+ S_x=[u-K\gamma,u+K\gamma].
+\]
+By \eqref{eq:cancellation} and \eqref{eq:harmonic-measure}, each of the two events
+\[
+ m(y)+g(y)\in S_x,\qquad m(y)-g(y)\in S_x
+\]
+has probability
+\[
+ p_K+o(1),\qquad p_K=\frac2\pi\arctan K>\frac12,
+\]
+under the Poisson probability \(p_h(x-y)\,dy\). The error is uniform in \(x\in
+E\). Their intersection therefore has probability at least
+\begin{equation}\label{eq:event-intersection}
+ q_K+o(1),\qquad q_K=2p_K-1>0.
+\end{equation}
+Choose \(R\) so that the Poisson mass of \(|y-x|>Rh\) is less than \(q_K/8\),
+and let
+\[
+ E_n=\{x\in E:(p_h*\mathbf1_{\mathbb R\setminus E})(x)<q_K/8\}.
+\]
+The approximate identity theorem gives \(|E\setminus E_n|\to0\). For all
+sufficiently large \(n\), \eqref{eq:event-intersection} implies that, for
+every \(x\in E_n\), there exists \(y\in E\) with \(|y-x|\le Rh\) and both
+events true. We may take \(y\) away from the nodes. At this point,
+\[
+ |g(y)|\le K\gamma_h(x).
+\]
+Using \eqref{eq:lebesgue-transform}, \eqref{eq:common-low-set}, and
+\eqref{eq:log-derivative}, we obtain
+\begin{equation}\label{eq:local-comparison}
+ H^\eta(x)\le e^{Rh/\eta}H^\eta(y)
+ \le cK e^{Rh/\eta}(\log n)\gamma_h(x)
+ \qquad(x\in E_n).
+\end{equation}
+
+Let \(T_n\) be convolution with the symmetric probability kernel
+\[
+ k_n(t)=\frac1{b\log n}\int_\eta^1p_{s-h}(t)\,\frac{ds}{s}.
+\]
+Equation \eqref{eq:semigroup} shows that
+\[
+ H^\eta=\frac{2b}{\pi}(\log n)T_n\gamma_h.
+\]
+Thus \eqref{eq:local-comparison} becomes
+\begin{equation}\label{eq:kernel-ratio}
+ \frac{T_n\gamma_h(x)}{\gamma_h(x)}\le\frac1{A_n}
+ \quad(x\in E_n),\qquad
+ A_n=\frac{2b}{\pi cK}e^{-Rh/\eta}\longrightarrow A>1.
+\end{equation}
+Integrate \eqref{eq:kernel-ratio} over \(E_n\), discard the contribution from
+\(y\notin E_n\), and symmetrize. Positivity of \(\gamma_h\), symmetry of
+\(k_n\), and \((r+r^{-1})/2\ge1\) give
+\begin{equation}\label{eq:symmetric-energy}
+ \frac{|E_n|}{A_n}
+ \ge\iint_{E_n\times E_n}k_n(x-y)
+                  \frac{\gamma_h(y)}{\gamma_h(x)}\,dy\,dx
+ \ge\iint_{E_n\times E_n}k_n(x-y)\,dy\,dx.
+\end{equation}
+The kernels \(k_n\) form an approximate identity. In fact, for every fixed
+\(\delta>0\),
+\[
+ \int_{|t|>\delta}k_n(t)\,dt
+ \le\frac{C}{b\log n}\int_\eta^1\min(1,s/\delta)\,\frac{ds}{s}
+ \longrightarrow0.
+\]
+It follows that
+\[
+ \iint_{E\times E}k_n(x-y)\,dy\,dx\longrightarrow|E|.
+\]
+Replacing \(E\) by \(E_n\) changes this integral by at most \(2|E\setminus
+E_n|\). Taking limits in \eqref{eq:symmetric-energy} therefore yields
+\[
+ \frac{|E|}{A}\ge|E|,
+\]
+contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
+\end{proof}
+
+\section*{AI tool disclosure}
+
+The proofs and manuscript were developed using GPT-6 Astra (OpenAI).
+The author is solely responsible for the mathematical content of the paper.
+
+\begin{thebibliography}{9}
+
+\bibitem{Bloom}
+T.~F. Bloom,
+\emph{Erd\H{o}s Problem \#1132},
+\url{https://www.erdosproblems.com/1132}.
+Accessed 5 September 2026.
+
+\bibitem{Erdos}
+P.~Erd\H{o}s,
+Problems and results on the convergence and divergence properties of
+the Lagrange interpolation polynomials and some extremal problems,
+\emph{Mathematica (Cluj)} \textbf{10} (1968), 65--73.
+\href{https://combinatorica.hu/~p_erdos/1967-20.pdf}{Original paper}.
+
+\bibitem{Tao}
+T.~Tao,
+\emph{Local Bernstein theory, and lower bounds for Lebesgue constants},
+\href{https://arxiv.org/abs/2603.21453v3}{arXiv:2603.21453v3}
+(2026).
+
+\end{thebibliography}
+
+\end{document}
