@@ -607,29 +607,44 @@ and the Poisson semigroup gives
 \end{equation}
 
 \begin{lemma}\label{lem:cancellation}
-If \(0<a<1\) and \(h=n^{-a}\), then
+For every row with \(n\ge2\), every \(0<h\le1\), and every
+\(x\in[-1,1]\),
+\begin{equation}\label{eq:cancellation-bound}
+ \frac{|g(x+ih)|}{\gamma_h(x)}
+ \le\frac{4+h^2}{h^2\sinh((n-1)h/2)}.
+\end{equation}
+Consequently, if \(0<a<1\) and \(h=n^{-a}\), then
 \begin{equation}\label{eq:cancellation}
  \sup_{x\in[-1,1]}\frac{|g(x+ih)|}{\gamma_h(x)}\longrightarrow0.
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-The function \(t\mapsto(x+ih-t)^{-1}\) is analytic on the Bernstein ellipse of
-parameter \(R=1+h/4\), where its modulus is \(O(h^{-1})\). Truncating its
-Chebyshev expansion at degree \(n-2\) gives a polynomial \(p\) satisfying
-\begin{equation}\label{eq:chebyshev-tail}
- \sup_{t\in[-1,1]}\left|\frac1{x+ih-t}-p(t)\right|
- \le C h^{-2}e^{-cnh}.
-\end{equation}
-The Chebyshev coefficients are \(O(h^{-1}R^{-j})\), so the tail is geometric.
-The signed measure in \eqref{eq:transforms} has total variation one and
-annihilates \(p\), by \eqref{eq:moments}. Thus
-\eqref{eq:chebyshev-tail} bounds \(|g(x+ih)|\). On the other hand,
+Set \(z=x+ih\) and \(p=T_{n-1}\), the Chebyshev polynomial of the
+first kind. The polynomial \((p(t)-p(z))/(t-z)\) has degree at most
+\(n-2\), so \eqref{eq:moments} gives
 \[
- \gamma_h(x)=\sum_k\frac{\nu_kh}{(x-x_k)^2+h^2}
- \ge\frac{h}{4+h^2}\qquad(x\in[-1,1]).
+ p(z)g(z)=\sum_k\frac{\epsilon_k\nu_kp(x_k)}{z-x_k},
+ \qquad |p(z)g(z)|\le\frac1h,
 \]
-This proves \eqref{eq:cancellation}.
+using \(|p(x_k)|\le1\) and \(\sum_k\nu_k=1\).
+Write \(z=\cos(u+iv)\), with \(u,v\in\R\). Then
+\(h\le\sinh|v|\), so \(|v|\ge\operatorname{arsinh}h\ge h/2\).
+The identity \(T_{n-1}(\cos w)=\cos((n-1)w)\) yields
+\[
+ |p(z)|^2=\cos^2((n-1)u)+\sinh^2((n-1)v)
+ \ge\sinh^2((n-1)h/2).
+\]
+Finally, since the nodes and \(x\) lie in \([-1,1]\),
+\[
+ \frac{h}{4+h^2}\le
+ \gamma_h(x)=\sum_k\frac{\nu_kh}{(x-x_k)^2+h^2}
+ \le\frac1h.
+\]
+Combining these bounds proves \eqref{eq:cancellation-bound}.
+For \(h=n^{-a}\), its right-hand side tends to zero: the hyperbolic
+sine grows exponentially in \(n^{1-a}\), while \(h^{-2}\) grows
+polynomially. This proves \eqref{eq:cancellation}.
 \end{proof}
 
 \begin{lemma}\label{lem:boundary}
@@ -670,10 +685,17 @@ which is possible because \(c<2/\pi\). Set
  h=n^{-a},\qquad\eta=n^{-b},\qquad
  H^\eta(x)=\frac2\pi\int_\eta^1\gamma_s(x)\,\frac{ds}{s}.
 \]
-By \eqref{eq:lebesgue-transform}, \(H^\eta\le H\). Direct differentiation
-gives \(|\gamma_s'|\le\gamma_s/s\), and consequently
-\begin{equation}\label{eq:log-derivative}
- |(\log H^\eta)'|\le\eta^{-1}.
+By \eqref{eq:lebesgue-transform}, \(H^\eta\le H\). For \(s>0\)
+and real \(x,y,t\), the triangle inequality gives
+\[
+ |y+is-t|\le |x+is-t|+|x-y|
+ \le\left(1+\frac{|x-y|}{s}\right)|x+is-t|.
+\]
+Taking reciprocal squares and summing against the positive masses yields
+\(\gamma_s(x)\le(1+|x-y|/s)^2\gamma_s(y)\). Integrating over
+\(\eta\le s\le1\), we obtain
+\begin{equation}\label{eq:potential-comparison}
+ H^\eta(x)\le\left(1+\frac{|x-y|}{\eta}\right)^2H^\eta(y).
 \end{equation}
 
 Fix \(x\in E\), and write
@@ -707,10 +729,10 @@ events true. We may take \(y\) away from the nodes, and then
  |g(y)|\le K\gamma_h(x).
 \]
 Using \eqref{eq:lebesgue-transform}, \eqref{eq:common-low-set}, and
-\eqref{eq:log-derivative}, we obtain
+\eqref{eq:potential-comparison}, we obtain
 \begin{equation}\label{eq:local-comparison}
- H^\eta(x)\le e^{Rh/\eta}H^\eta(y)
- \le cK e^{Rh/\eta}(\log n)\gamma_h(x)
+ H^\eta(x)\le(1+Rh/\eta)^2H^\eta(y)
+ \le cK(1+Rh/\eta)^2(\log n)\gamma_h(x)
  \qquad(x\in E_n).
 \end{equation}
 
@@ -726,7 +748,7 @@ Thus \eqref{eq:local-comparison} becomes
 \begin{equation}\label{eq:kernel-ratio}
  \frac{T_n\gamma_h(x)}{\gamma_h(x)}\le\frac1{A_n}
  \quad(x\in E_n),\qquad
- A_n=\frac{2b}{\pi cK}e^{-Rh/\eta}\longrightarrow A>1.
+ A_n=\frac{2b}{\pi cK}(1+Rh/\eta)^{-2}\longrightarrow A>1.
 \end{equation}
 Integrate \eqref{eq:kernel-ratio} over \(E_n\), discard the contribution from
 \(y\notin E_n\), and symmetrize. Positivity of \(\gamma_h\), symmetry of

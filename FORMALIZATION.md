@@ -1,7 +1,7 @@
 # Lean formalization of the almost-everywhere bound
 
-This project proves Theorem 1(ii) of the v4 preprint, following §§5–6 of
-[`PROOF.tex`](https://github.com/FireflySentinel/erdos-1132/blob/27cdcd0/PROOF.tex).
+This project proves Theorem 1(ii) of the preprint, following §§5–6 of
+[`PROOF.tex`](PROOF.tex).
 The bounded additive loss assertion, Theorem 1(i), is outside this formalization.
 The almost-everywhere proof is independent of Tao's local Bernstein theory.
 
@@ -59,11 +59,12 @@ axiom checks, and kernel replay.
 | Positive-measure contradiction, §6 | [`uniform_low_set_null`](Erdos1132/UniformLowSet.lean) |
 | Theorem 1(ii) | [`ae_lebesgue_limsup`](Erdos1132/Main.lean) |
 
-The Chebyshev step uses polynomial division and `T_(m-1)` directly, giving the
-uniform bound `20 m^(2a) exp(-m^(1-a)/4)` for all sufficiently large `m`.
-For the local comparison, the elementary factor `(1 + |x-y|/η)^2` replaces
-the exponential factor in the preprint; both tend to one on the required
-scale. Boundary harmonic measure is expressed as
+The manuscript and Lean proof both use polynomial division and `T_(m-1)`
+directly for the Chebyshev step. The resulting finite bound implies the
+uniform estimate `20 m^(2a) exp(-m^(1-a)/4)` for all sufficiently large `m`.
+Both also use the local comparison factor `(1 + |x-y|/η)^2`, proved in
+[`truncatedPotential_local`](Erdos1132/TruncatedPotential.lean).
+Boundary harmonic measure is expressed as
 `arg ((z-a)/(z-b)) / π` for the open interval `(a,b)`.
 The changing-set limit follows from continuity in measure under translation
 and the kernel tail bound.
