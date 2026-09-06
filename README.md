@@ -4,8 +4,6 @@ Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): a fixed 
 which the Lebesgue function exceeds $(2/\pi)\log n$ by a bounded additive loss infinitely
 often, and the sharp normalized lower bound almost everywhere.
 
-[Preprint PDF](paper/PROOF.pdf) · [LaTeX source](paper/PROOF.tex)
-
 ## Build and check
 
 With [Elan](https://github.com/leanprover/elan) installed, run from the repository root:
