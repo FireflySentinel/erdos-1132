@@ -15,4 +15,4 @@ name = "Erdos1132"
 [[lean_lib]]
 name = "Checks"
 srcDir = "checks"
-roots = ["Check", "Statement"]
+roots = ["Check", "Statement", "Counterexample"]

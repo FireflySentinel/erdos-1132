@@ -47,10 +47,11 @@ large row has some $x\in E$ with $c\log n<\lambda_n(x)$. Its proof uses
 `uniform_low_set_null`, whose uniform upper-bound hypothesis need hold only
 infinitely often. Both statements are covered by the checks.
 
-Theorem 1(i), the bounded additive loss on a dense set of points, and Theorem 2,
-the counterexamples to uniform additive constants, are outside this formalization.
-The new counterexample has received an independent paper-proof review by a Codex
-agent; it is not a Lean-verified result.
+Theorem 1(i), the bounded additive loss on a dense set of points, and the complete
+Theorem 2 remain outside this formalization. Selected lemmas from Section 7 are
+now proved in Lean, as detailed below. The complete counterexample has received
+an independent paper-proof review by a Codex agent; it is not yet a fully
+Lean-verified result.
 
 ## Proof correspondence
 
@@ -62,6 +63,37 @@ agent; it is not a Lean-verified result.
 | Positive-measure contradiction, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean), `uniform_low_set_null` |
 | Set corollary, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean), `eventually_exists_lower_bound` |
 | Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_frequently_lower_bound`, `ae_lebesgue_limsup_shifted` |
+
+## Formalized parts of Section 7
+
+The following modules are imported by `Erdos1132` and included in the build,
+axiom checks, and kernel replay. Their declarations live in the namespace
+`Erdos1132.Counterexample`.
+
+| Paper argument | Lean source and scope |
+|---|---|
+| Equation (7.1); operator stability and the local convergence estimate in §7.3 | [LogarithmicOperator.lean](Erdos1132/Counterexample/LogarithmicOperator.lean): absolute integrability, the derivative bound, quantitative control of $Lf/f$, and an $L^1$ tail bound when two functions agree near the query point |
+| Distance comparison (7.5) and the smooth distance in §7.2 | [GapGeometry.lean](Erdos1132/Counterexample/GapGeometry.lean): comparison with the distance to the endpoints, size, derivative, and Lipschitz estimates on a single gap |
+| Polynomial approximation and quotient stability in §7.4 | [PolynomialApproximation.lean](Erdos1132/Counterexample/PolynomialApproximation.lean): positive polynomial approximation of a positive $C^1$ function, controlling values, derivatives, and the actual integral quotient $Lf/f$ simultaneously |
+| Algebraic part of Lemma 9 | [AmplitudePolynomial.lean](Erdos1132/Counterexample/AmplitudePolynomial.lean): the Chebyshev sum, its trigonometric expansion, and degree exactly $n$ |
+| Degree blocks and the final quantifiers in §7.5 | [Assembly.lean](Erdos1132/Counterexample/Assembly.lean): increasing thresholds, transfer to all sufficiently large rows under explicit analytic hypotheses, and relative non-density in $(-1,1)$ |
+
+The assembly theorem assumes a family of valid node rows, their upper estimates,
+and eventual lower estimates for an auxiliary function `q`. It does not construct
+that family or identify `q` with an amplitude quotient. The existing `Nodes` type
+requires nodes in the closed interval; this conditional theorem does not certify
+the interior-root construction in Theorem 2.
+
+Still outside the formalization are the Cantor-set construction and global gap
+gluing, the full logarithmic integral lower bound and smooth amplitude sequence,
+the factorization and reciprocal-square-root approximation leading to
+$|h|^{-1}$, and the phase-root and Lebesgue estimates in Lemma 9.
+
+[Counterexample.lean](checks/Counterexample.lean) writes out the integral in the
+positive approximation theorem and the Lagrange product in the relative
+non-density statement. It also checks that the listed main lemmas depend only
+on `propext`, `Classical.choice`, and `Quot.sound`, with no added proof assumptions
+hidden as axioms.
 
 ## Use of generative AI
 

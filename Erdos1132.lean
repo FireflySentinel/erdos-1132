@@ -1,1 +1,6 @@
 import Erdos1132.Main
+import Erdos1132.Counterexample.LogarithmicOperator
+import Erdos1132.Counterexample.PolynomialApproximation
+import Erdos1132.Counterexample.GapGeometry
+import Erdos1132.Counterexample.AmplitudePolynomial
+import Erdos1132.Counterexample.Assembly
