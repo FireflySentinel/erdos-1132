@@ -4,6 +4,10 @@ Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): sharp po
 bounds for Lebesgue functions of arbitrary triangular interpolation arrays.
 The paper proves a bounded additive loss on a dense set, with constants that may
 depend on the point, and the sharp normalized lower bound almost everywhere.
+The logarithmic order was already known from
+[Erdős–Vértesi (1981), Theorem 2.1](https://www.renyi.hu/~p_erdos/1981-18.pdf).
+Theorem 1(ii) supplies the sharp coefficient $2/\pi$ in the almost-everywhere
+limsup lower bound.
 
 Theorem 2 gives counterexamples to uniform additive constants. For every $M>0$,
 there is an array such that every fixed $x\in(-1,1)$ eventually satisfies
@@ -11,6 +15,12 @@ $\lambda_n(x)\le(2/\pi)\log n-M$. For the same array, no single finite constant
 gives a dense set of points with infinitely many lower-bound occurrences.
 This counterexample does not impose nesting between rows and does not settle
 the version restricted to initial segments of one infinite node sequence.
+The uniform-constant question for that nested setting remains open.
+
+For arbitrary arrays, Theorem 2 rules out both an absolute constant guaranteeing
+one good point for every array and a constant depending only on the array that
+guarantees a dense good-point set. Theorem 1(i) still guarantees a dense set of
+points when the finite constant may vary from point to point.
 
 The current manuscript is available as [PDF](paper/PROOF.pdf) and [LaTeX](paper/PROOF.tex).
 
@@ -46,6 +56,12 @@ $E\subset(-1,1)$ of positive measure and every $0<c<2/\pi$, every sufficiently
 large row has some $x\in E$ with $c\log n<\lambda_n(x)$. Its proof uses
 `uniform_low_set_null`, whose uniform upper-bound hypothesis need hold only
 infinitely often. Both statements are covered by the checks.
+This corollary has a different scope from Erdős–Vértesi's 1981 Theorem 2.1:
+their result controls all points outside a set of arbitrarily small measure
+with coefficient $\eta(\varepsilon)>0$, while this corollary controls at least
+one point of each fixed positive-measure set with any coefficient $c<2/\pi$.
+Neither conclusion subsumes the other. Their Corollary 2.2 gives the associated
+integral estimate.
 
 Theorem 1(i), the bounded additive loss on a dense set of points, and the complete
 Theorem 2 remain outside this formalization. Selected lemmas from Section 7 are

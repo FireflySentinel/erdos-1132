@@ -49,6 +49,8 @@ for every \(M>0\), there is an array for which each fixed
 \(\lambda_n(x)\le(2/\pi)\log n-M\).
 For the same array, no single finite constant gives a dense set of
 points with infinitely many lower-bound occurrences.
+These counterexamples concern arbitrary triangular arrays; the
+uniform-constant question for nested node sequences remains open.
 The positive results use derivative-jump energies and positive Cauchy
 transforms. The counterexample combines an explicit logarithmic
 integral estimate on the gaps of a compact set with real-rooted
@@ -88,6 +90,11 @@ for infinitely many \(n\) is dense in \((-1,1)\).
 \end{enumerate}
 \end{theorem}
 
+Theorem~\ref{thm:main}(ii) gives the sharp coefficient in an
+almost-everywhere logarithmic-order lower bound already established
+by Erd\H{o}s and V\'ertesi \cite{ErdosVertesi1981}; we recall their
+more precise measure estimate below.
+
 Erd\H{o}s posed the existence and almost-everywhere questions for triangular arrays in
 \cite[p.~68]{Erdos}, and they are recorded as Problem 1132 in
 \cite{Bloom}. The constant in \eqref{eq:main-fixed} is independent of
@@ -114,14 +121,28 @@ so that, for every finite \(C\), the set
 is not dense in \((-1,1)\).
 \end{theorem}
 
-Thus no absolute \(C\) guarantees even one point with infinitely many
-lower-bound occurrences for every array. Even if \(C\) is allowed to
-depend on the array, it need not give a dense good-point set.
-These statements concern arbitrary triangular arrays, as in
+Theorem~\ref{thm:nonuniform} concerns arbitrary triangular arrays, as in
 \cite[p.~68]{Erdos} and \cite[Corollary~1.11]{Tao}.
-The construction does not impose nesting between rows, so it does not
-give a counterexample for the initial segments of a single infinite
-sequence.
+The problem page \cite{Bloom} instead uses the initial segments of a
+single infinite node sequence. Our counterexample does not impose
+this nesting, and the uniform-constant question in that setting
+remains open.
+
+For arbitrary triangular arrays, the three possible quantifier
+patterns can now be distinguished, using \(G_C\) from
+\eqref{eq:counter-good-set} for the array in question:
+\begin{enumerate}
+\item[(S1)] There is an absolute \(C\) such that \(G_C\ne\varnothing\)
+for every array. This is false: use
+Theorem~\ref{thm:nonuniform} with \(M>\max\{C,0\}\).
+\item[(S2)] For every array, there is a finite \(C\), depending on the
+array but not on the point, such that \(G_C\) is dense. This is false
+by the second assertion of Theorem~\ref{thm:nonuniform}.
+\item[(S3)] For every array, there are a finite \(C\) and a point
+\(x\in G_C\). This is true by Theorem~\ref{thm:main}(i).
+More precisely, \(\bigcup_{C\in\mathbb R}G_C\) is dense; the constant
+may vary from point to point in this union.
+\end{enumerate}
 
 Faber \cite{Faber} proved the order \(\log n\) for the global Lebesgue
 constant, Bernstein \cite{Bernstein} obtained the asymptotically sharp
@@ -138,12 +159,43 @@ of points \(x\) satisfying
  \limsup_{n\to\infty}\frac{\lambda_n(x)}{\log n}\ge\frac2\pi
 \]
 is everywhere dense, and asked whether this holds for almost every
-\(x\). Erd\H{o}s and V\'ertesi
-\cite{ErdosVertesi} proved that for every triangular array there is a
-continuous function whose interpolants diverge almost everywhere; in
-particular, \(\limsup_{n\to\infty}\lambda_n(x)=\infty\) for almost every
-\(x\). Thus Theorem~\ref{thm:main}(ii) gives the sharp
-logarithmic rate almost everywhere.
+\(x\). Erd\H{o}s and V\'ertesi \cite{ErdosVertesi} proved
+almost-everywhere divergence of interpolants of a suitable continuous
+function for every array. Their subsequent paper
+\cite[Theorem~2.1]{ErdosVertesi1981} gives a quantitative lower bound
+for the Lebesgue functions: for every \(\varepsilon>0\), there are
+\(\eta(\varepsilon)>0\) and \(n_0(\varepsilon)\) such that, for every
+array and \(n\ge n_0(\varepsilon)\), there is a measurable set
+\(H_n\subset[-1,1]\) satisfying
+\[
+ |H_n|\le\varepsilon,\qquad
+ \lambda_n(x)>\eta(\varepsilon)\log n
+ \quad(x\in[-1,1]\setminus H_n).
+\]
+They note that Chebyshev nodes show this order to be optimal.
+The exceptional sets may vary with \(n\); the estimate implies
+\(\limsup_n\lambda_n(x)/\log n>0\) almost everywhere.
+Thus the logarithmic order was already known in 1981.
+Theorem~\ref{thm:main}(ii) supplies the optimal coefficient \(2/\pi\),
+which is the coefficient in Erd\H{o}s's question and in
+\cite[Remark~1.12]{Tao}.
+Erd\H{o}s and V\'ertesi also give the integral version
+\cite[Corollary~2.2]{ErdosVertesi1981}:
+\[
+ \int_{S_n}\lambda_n(x)\,dx>
+ (|S_n|-\varepsilon)\eta(\varepsilon)\log n
+ \qquad(n\ge n_0(\varepsilon))
+\]
+for arbitrary measurable \(S_n\subset[-1,1]\).
+
+The corollary at the end of Section~\ref{sec:ae} gives a different conclusion:
+every fixed positive-measure set contains a point with
+\(\lambda_n(x)>c\log n\) in every sufficiently large row, for any
+\(0<c<2/\pi\). Erd\H{o}s--V\'ertesi's theorem controls all points outside
+a small exceptional set with coefficient \(\eta(\varepsilon)\);
+our corollary controls at least one point in each fixed set with a
+coefficient arbitrarily close to \(2/\pi\). Neither conclusion
+subsumes the other.
 
 Tao \cite[Theorem 1.10(i)]{Tao} proved that every fixed nondegenerate
 interval \(I\subset[-1,1]\) satisfies
@@ -158,6 +210,14 @@ His Corollary 1.11 and Remark 1.12 give, for every prescribed
 \]
 infinitely often. Theorem~\ref{thm:main}(i) replaces \(\omega(n)\) by a
 finite constant depending on the point, on a dense set.
+In footnote~6 to Remark~1.12 of \cite{Tao}, Tao expresses the tentative belief that
+``this dependency on \(I\) in the error term cannot be entirely
+eliminated.'' Theorem~\ref{thm:nonuniform} proves this nonuniformity
+for arbitrary triangular arrays, even if the common constant is
+allowed to depend on the array. Indeed, if one constant \(C\) gave
+Tao's interval bound on every nondegenerate \(I\), with the starting
+index allowed to depend on \(I\), the same Baire argument would make
+\(G_{C+1}\) dense, contradicting Theorem~\ref{thm:nonuniform}.
 Baire category enters (i) at one point, to
 produce an interval with a uniform upper bound; recurrence on a
 positive-measure set follows from the energy estimate in
@@ -1232,7 +1292,7 @@ and hypotheses are documented with the source.
 Theorem~\ref{thm:main}(i) and the complete
 Theorem~\ref{thm:nonuniform} remain outside the formalization.
 
-\begin{thebibliography}{10}
+\begin{thebibliography}{11}
 
 \bibitem{Bernstein}
 S.~Bernstein,
@@ -1244,7 +1304,7 @@ sur tout un segment par ses valeurs en \((n+1)\) points du segment,
 T.~F. Bloom,
 \emph{Erd\H{o}s Problem \#1132},
 \url{https://www.erdosproblems.com/1132}.
-Accessed 5 September 2026.
+Accessed 6 September 2026.
 
 \bibitem{Brutman}
 L.~Brutman,
@@ -1273,6 +1333,15 @@ P.~Erd\H{o}s and P.~V\'ertesi,
 On the almost everywhere divergence of Lagrange interpolatory polynomials
 for arbitrary system of nodes,
 \emph{Acta Math. Acad. Sci. Hungar.} \textbf{36} (1980), 71--89.
+
+\bibitem{ErdosVertesi1981}
+P.~Erd\H{o}s and P.~V\'ertesi,
+On the Lebesgue function of interpolation,
+in \emph{Functional Analysis and Approximation} (Oberwolfach, 1980),
+P.~L.~Butzer, B.~Sz.-Nagy and E.~G\"orlich (eds.),
+International Series of Numerical Mathematics \textbf{60},
+Birkh\"auser, Basel, 1981, 299--309.
+\href{https://doi.org/10.1007/978-3-0348-9369-5_27}{doi:10.1007/978-3-0348-9369-5\_27}.
 
 \bibitem{Faber}
 G.~Faber,
