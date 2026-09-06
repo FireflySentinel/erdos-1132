@@ -50,7 +50,7 @@ Boundary harmonic measure is expressed as
 The changing-set limit follows from continuity in measure under translation
 and the kernel tail bound.
 
-## Declaration of generative AI and AI-assisted technologies
+## Use of generative AI
 
 GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition. The author
