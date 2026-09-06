@@ -12,8 +12,6 @@ often, and the sharp normalized lower bound almost everywhere.
 
 Published version: [v5](https://doi.org/10.5281/zenodo.22448859), 6 September 2026, manuscript and Lean sources.
 
-Comments and corrections: [email](mailto:phoenix1203@uchicago.edu) or
-[issue](https://github.com/FireflySentinel/erdos-1132/issues).
 
 ## Abstract
 
@@ -94,19 +92,3 @@ GPT-6 Astra was used to generate the mathematical proofs and draft the manuscrip
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition. The author
 reviewed the final manuscript and takes full responsibility for its content.
 The Lean formalization was generated using OpenAI Codex (GPT-6).
-
-## Citation
-
-```bibtex
-@misc{gu2026erdos1132,
-  author       = {Qiyuan Gu},
-  title        = {Sharp pointwise lower bounds for Lebesgue functions},
-  year         = {2026},
-  doi          = {10.5281/zenodo.22322281},
-  howpublished = {Preprint, Zenodo},
-  note         = {Erd\H{o}s Problem 1132}
-}
-```
-
-Problem statement quoted from T. F. Bloom, *Erdős Problem #1132*,
-<https://www.erdosproblems.com/1132>.
