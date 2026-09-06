@@ -1,8 +1,18 @@
-# Erdős Problem #1132: sharp pointwise lower bounds for Lebesgue functions
+# Erdős Problem #1132: sharp pointwise bounds for Lebesgue functions
 
-Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): a dense set of points
-at which the Lebesgue function exceeds $(2/\pi)\log n$ with a bounded additive loss
-infinitely often, and the sharp normalized lower bound almost everywhere.
+Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): sharp pointwise
+bounds for Lebesgue functions of arbitrary triangular interpolation arrays.
+The paper proves a bounded additive loss on a dense set, with constants that may
+depend on the point, and the sharp normalized lower bound almost everywhere.
+
+Theorem 2 gives counterexamples to uniform additive constants. For every $M>0$,
+there is an array such that every fixed $x\in(-1,1)$ eventually satisfies
+$\lambda_n(x)\le(2/\pi)\log n-M$. For the same array, no single finite constant
+gives a dense set of points with infinitely many lower-bound occurrences.
+This counterexample does not impose nesting between rows and does not settle
+the version restricted to initial segments of one infinite node sequence.
+
+The current manuscript is available as [PDF](paper/PROOF.pdf) and [LaTeX](paper/PROOF.tex).
 
 ## Build and check
 
@@ -37,14 +47,17 @@ large row has some $x\in E$ with $c\log n<\lambda_n(x)$. Its proof uses
 `uniform_low_set_null`, whose uniform upper-bound hypothesis need hold only
 infinitely often. Both statements are covered by the checks.
 
-Theorem 1(i), the bounded additive loss on a dense set of points, is outside this formalization.
+Theorem 1(i), the bounded additive loss on a dense set of points, and Theorem 2,
+the counterexamples to uniform additive constants, are outside this formalization.
+The new counterexample has received an independent paper-proof review by a Codex
+agent; it is not a Lean-verified result.
 
 ## Proof correspondence
 
 | Preprint | Lean source |
 |---|---|
-| Lemma 6, Chebyshev cancellation | [Cancellation.lean](Erdos1132/Cancellation.lean), [Scales.lean](Erdos1132/Scales.lean) |
-| Lemma 7, boundary harmonic measure | [BoundaryMeasure.lean](Erdos1132/BoundaryMeasure.lean), `boundary_harmonic_measure` |
+| Chebyshev cancellation, §5 | [Cancellation.lean](Erdos1132/Cancellation.lean), [Scales.lean](Erdos1132/Scales.lean) |
+| Boundary harmonic measure, §5 | [BoundaryMeasure.lean](Erdos1132/BoundaryMeasure.lean), `boundary_harmonic_measure` |
 | Local comparison (6.4), factor $(1+Rh/\eta)^2$ | [ProofParameters.lean](Erdos1132/ProofParameters.lean), `localizationFactor` |
 | Positive-measure contradiction, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean), `uniform_low_set_null` |
 | Set corollary, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean), `eventually_exists_lower_bound` |
@@ -53,8 +66,8 @@ Theorem 1(i), the bounded additive loss on a dense set of points, is outside thi
 ## Use of generative AI
 
 GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
-GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition. The author
-reviewed the manuscript.
+GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition.
+An independent Codex agent also reviewed the complete counterexample proof.
 The Lean formalization was generated using OpenAI Codex (GPT-6).
 Lean 4's kernel checks the proofs, and CI replays the project declarations with
 `leanchecker`; verification does not use the generation tool.
