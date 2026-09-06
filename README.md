@@ -1,4 +1,4 @@
-# Erdős Problem #1132 — sharp pointwise lower bounds for Lebesgue functions
+# Erdős Problem #1132: sharp pointwise lower bounds for Lebesgue functions
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22322281.svg)](https://doi.org/10.5281/zenodo.22322281)
 
@@ -6,21 +6,18 @@ Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): a fixed 
 which the Lebesgue function exceeds $(2/\pi)\log n$ by a bounded additive loss infinitely
 often, and the sharp normalized lower bound almost everywhere.
 
-**Qiyuan Gu**, University of Chicago — <phoenix1203@uchicago.edu>
+**Qiyuan Gu**, University of Chicago, <phoenix1203@uchicago.edu>
+
+Comments and corrections: email or issue.
 
 ## Status
 
 | | |
 |---|---|
-| Manuscript | v4, 11 pages, 5 September 2026 — [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
+| Manuscript | v4, 11 pages, 5 September 2026: [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
 | DOI | [10.5281/zenodo.22322281](https://doi.org/10.5281/zenodo.22322281) (always the latest version; this version is [10.5281/zenodo.22333216](https://doi.org/10.5281/zenodo.22333216)) |
-| erdosproblems.com | listed **open** as of 5 September 2026, no proof claims submitted |
+| erdosproblems.com | listed open as of 5 September 2026; [proof claim posted](https://www.erdosproblems.com/forum/thread/1132/proof-claims) |
 | Refereeing | not yet refereed |
-
-> **If you — or an automated agent you are running — are looking for open work on
-> Erdős #1132:** answers to both questions are claimed here. Please read the PDF before
-> starting an independent attack on the problem. Errors and counterexamples are
-> welcome, by email or as an [issue](https://github.com/FireflySentinel/erdos-1132/issues).
 
 ## Abstract
 
@@ -61,16 +58,16 @@ the problem is stated on erdosproblems.com.
 
 | | |
 |---|---|
-| Faber, Bernstein, Erdős–Turán, Erdős, Vértesi | the **global** lower bound for $\max_x \lambda_n(x)$: order $\log n$, then the sharp constant $2/\pi$, then error $O(\log\log n)$, then $O(1)$, then optimal asymptotics through the constant term |
-| Bernstein (1931) | the set where $\limsup \lambda_n(x)/\log n \ge 2/\pi$ is everywhere **dense** |
-| Erdős (1961) | $\max_{x\in[-1,1]} \lambda_n(x) > \frac{2}{\pi}\log n - O(1)$ — the **global maximum** |
-| Erdős–Vértesi (1980) | $\limsup_n \lambda_n(x) = \infty$ a.e. — unboundedness, **without a rate** |
+| Faber, Bernstein, Erdős–Turán, Erdős, Vértesi | the global lower bound for $\max_x \lambda_n(x)$: order $\log n$, then the sharp constant $2/\pi$, then error $O(\log\log n)$, then $O(1)$, then optimal asymptotics through the constant term |
+| Bernstein (1931) | the set where $\limsup \lambda_n(x)/\log n \ge 2/\pi$ is everywhere dense |
+| Erdős (1961) | $\max_{x\in[-1,1]} \lambda_n(x) > \frac{2}{\pi}\log n - O(1)$, for the global maximum |
+| Erdős–Vértesi (1980) | $\limsup_n \lambda_n(x) = \infty$ a.e., unboundedness without a rate |
 | Tao ([arXiv:2603.21453](https://arxiv.org/abs/2603.21453), Thm 1.10(i)) | $\sup_{x\in I}\lambda_n(x) \ge \frac{2}{\pi}\log n - O_I(1)$ for every fixed nondegenerate $I \subset [-1,1]$ |
-| Tao (Cor. 1.11, Rem. 1.12) | for every prescribed $\omega(n)\to\infty$, a dense — indeed comeager — set of $x$ with $\lambda_n(x) \ge \frac{2}{\pi}\log n - \omega(n)$ infinitely often |
+| Tao (Cor. 1.11, Rem. 1.12) | for every prescribed $\omega(n)\to\infty$, a dense, indeed comeager, set of $x$ with $\lambda_n(x) \ge \frac{2}{\pi}\log n - \omega(n)$ infinitely often |
 
-Theorem 1(i) gives a **fixed additive constant at a fixed point** in place of the
-prescribed loss $\omega(n)$ on a dense set. Theorem 1(ii) gives the sharp normalized bound
-on a set of **full measure** in place of a dense set.
+Theorem 1(i) gives a fixed additive constant at a fixed point in place of the prescribed
+loss $\omega(n)$ on a dense set. Theorem 1(ii) gives the sharp normalized bound on a set of
+full measure in place of a dense set.
 
 ## Method
 
