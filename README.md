@@ -11,18 +11,25 @@ With [Elan](https://github.com/leanprover/elan) installed, run from the reposito
 ```sh
 lake exe cache get
 lake build
-lake env lean checks/Check.lean
-lake env lean checks/Statement.lean
+lake test
 LEAN_NUM_THREADS=2 lake env leanchecker -v Erdos1132
 ```
 
 ## Exact statement
 
-[`ae_lebesgue_limsup_shifted`](Erdos1132/Main.lean) proves Theorem 1(ii): for every
-triangular array of nodes, $\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi$ for almost
-every $x\in(-1,1)$. It starts with rows of size $n+2$.
+[`ae_frequently_lower_bound`](Erdos1132/Main.lean) proves that, for every triangular
+array of distinct nodes in $[-1,1]$, for almost every $x\in(-1,1)$ and every
+$c<2/\pi$,
+
+$$c\log n<\lambda_n(x)\qquad\text{for infinitely many }n.$$
+
+Theorem 1(ii), $\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi$ almost everywhere,
+follows as `ae_lebesgue_limsup_shifted`. Lean indexes these rows by `n` with
+`rowSize n = n + 2`, so their logarithms are positive. Its conventions `log 0 = 0`
+and `x / 0 = 0` do not affect the statements; the unshifted limsup theorem discards
+the first two rows.
 [Statement.lean](checks/Statement.lean) writes out the node conditions and the
-Lagrange product formula in full; CI checks this statement against the theorem.
+Lagrange product formula in full; `lake test` checks it and the axiom dependencies.
 
 Theorem 1(i), the bounded additive loss at a fixed point, is outside this formalization.
 
@@ -32,8 +39,9 @@ Theorem 1(i), the bounded additive loss at a fixed point, is outside this formal
 |---|---|
 | Lemma 6, Chebyshev cancellation | [Cancellation.lean](Erdos1132/Cancellation.lean), [Scales.lean](Erdos1132/Scales.lean) |
 | Lemma 7, boundary harmonic measure | [BoundaryMeasure.lean](Erdos1132/BoundaryMeasure.lean), `boundary_harmonic_measure` |
+| Local comparison (6.4), factor $(1+Rh/\eta)^2$ | [ProofParameters.lean](Erdos1132/ProofParameters.lean), `localizationFactor` |
 | Positive-measure contradiction, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean), `uniform_low_set_null` |
-| Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_lebesgue_limsup_shifted` |
+| Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_frequently_lower_bound`, `ae_lebesgue_limsup_shifted` |
 
 ## Use of generative AI
 
@@ -41,3 +49,5 @@ GPT-6 Astra was used to generate the mathematical proofs and draft the manuscrip
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition. The author
 reviewed the manuscript.
 The Lean formalization was generated using OpenAI Codex (GPT-6).
+Lean 4's kernel checks the proofs, and CI replays the project declarations with
+`leanchecker`; verification does not use the generation tool.

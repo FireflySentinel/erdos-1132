@@ -17,6 +17,7 @@ interpolation, almost everywhere, pointwise lower bounds}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem*{taoestimates}{Proposition (Tao's local estimates)}
+\newtheorem*{corollary}{Corollary}
 \numberwithin{equation}{section}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\sgn}{sgn}
@@ -763,6 +764,19 @@ E_n|\). Taking limits in \eqref{eq:symmetric-energy} therefore yields
 \]
 contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
 \end{proof}
+
+\begin{corollary}
+For every measurable \(E\subset[-1,1]\) of positive measure and every
+\(c<2/\pi\), there are infinitely many \(n\) for which some \(x\in E\)
+satisfies \(\lambda_n(x)>c\log n\).
+\end{corollary}
+\begin{proof}
+Choose \(x\in E\cap(-1,1)\) satisfying Theorem~\ref{thm:main}(ii).
+The inequality holds at this same point for infinitely many \(n\).
+\end{proof}
+For \(0<c<2/\pi\), the argument above proves this directly: any measurable
+set supporting an eventual uniform bound \(\lambda_n\le c\log n\) has
+measure zero. This is \texttt{Erdos1132.uniform\_low\_set\_null} in Lean.
 
 \section*{Use of generative AI}
 

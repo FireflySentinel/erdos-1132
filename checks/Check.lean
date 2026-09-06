@@ -1,5 +1,9 @@
 import Erdos1132
 
+/-- info: 'Erdos1132.ae_frequently_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.ae_frequently_lower_bound
+
 /-- info: 'Erdos1132.ae_lebesgue_limsup_shifted' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos1132.ae_lebesgue_limsup_shifted
