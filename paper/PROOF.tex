@@ -38,13 +38,13 @@ University of Chicago\\
 \begin{abstract}
 For each \(n\), let \(\lambda_n\) be the Lebesgue function for
 polynomial interpolation at an arbitrary set of \(n\) distinct nodes
-in \([-1,1]\). We prove that there are a fixed point \(x\in(-1,1)\)
-and a constant \(C\) such that
-\(\lambda_n(x)>(2/\pi)\log n-C\) for infinitely many \(n\).
+in \([-1,1]\). We prove that the points \(x\in(-1,1)\) for which
+\(\lambda_n(x)>(2/\pi)\log n-C(x)\) for infinitely many \(n\), with
+some finite constant \(C(x)\), form a dense set.
 We also prove that
 \(\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi\)
 for almost every \(x\in(-1,1)\).
-The constant \(C\) may depend on the array and on \(x\).
+The constant \(C(x)\) may depend on the array and on \(x\).
 The first proof rests on an energy estimate for the derivative jumps of
 \(\lambda_n\) at the nodes. The second proof uses positive Cauchy transforms and harmonic
 measure and is independent of Tao's local Bernstein theory.
@@ -70,11 +70,12 @@ The rows of the array need not be nested.
 For every triangular array of distinct nodes as above, the following
 statements hold.
 \begin{enumerate}
-\item[(i)] There exist \(x\in(-1,1)\) and a finite constant \(C\) such that
+\item[(i)] The set of points \(x\in(-1,1)\) for which there is a finite
+constant \(C(x)\) such that
 \begin{equation}\label{eq:main-fixed}
- \lambda_n(x)>\frac2\pi\log n-C
+ \lambda_n(x)>\frac2\pi\log n-C(x)
 \end{equation}
-for infinitely many \(n\).
+for infinitely many \(n\) is dense in \((-1,1)\).
 \item[(ii)] For Lebesgue almost every \(x\in(-1,1)\),
 \begin{equation}\label{eq:main-ae}
  \limsup_{n\to\infty}\frac{\lambda_n(x)}{\log n}\ge\frac2\pi.
@@ -82,29 +83,30 @@ for infinitely many \(n\).
 \end{enumerate}
 \end{theorem}
 
-Erd\H{o}s posed both questions for triangular arrays in
+Erd\H{o}s posed the existence and almost-everywhere questions for triangular arrays in
 \cite[p.~68]{Erdos}, and they are recorded as Problem 1132 in
 \cite{Bloom}. The constant in \eqref{eq:main-fixed} is independent of
 \(n\); it may depend on the array and the point \(x\).
 
-The global lower bound for Lebesgue constants has a classical history.
-Faber proved the order \(\log n\), Bernstein obtained the asymptotically
-sharp leading constant \(2/\pi\), Erd\H{o}s and Tur\'an improved the error to
-\(O(\log\log n)\), Erd\H{o}s to \(O(1)\), and V\'ertesi determined the
-optimal asymptotics through the constant term. See
-\cite[Section~1.3]{Tao} and \cite{Brutman} for references and further
-historical discussion.
+Faber \cite{Faber} proved the order \(\log n\) for the global Lebesgue
+constant, Bernstein \cite{Bernstein} obtained the asymptotically sharp
+leading constant \(2/\pi\), Erd\H{o}s and Tur\'an \cite{ErdosTuran}
+improved the error to \(O(\log\log n)\), Erd\H{o}s \cite{Erdos1961}
+to \(O(1)\), and V\'ertesi \cite{Vertesi1990} determined the optimal
+asymptotics through the constant term. See
+\cite[Section~1.3]{Tao} and \cite{Brutman} for further historical discussion.
 
-For triangular arrays, Bernstein's result already implies that the set of
+For triangular arrays, Bernstein's result \cite{Bernstein} implies that the set of
 points \(x\) satisfying
 \[
  \limsup_{n\to\infty}\frac{\lambda_n(x)}{\log n}\ge\frac2\pi
 \]
 is everywhere dense; Erd\H{o}s explicitly asked whether this holds for
-almost every \(x\) \cite[p.~68]{Erdos}. Erd\H{o}s and V\'ertesi later proved
-the weaker almost-everywhere conclusion
-\(\limsup_{n\to\infty}\lambda_n(x)=\infty\) for arbitrary triangular
-arrays \cite{ErdosVertesi}. Thus Theorem~\ref{thm:main}(ii) gives the sharp
+almost every \(x\) \cite[p.~68]{Erdos}. Erd\H{o}s and V\'ertesi
+\cite{ErdosVertesi} proved that for every triangular array there is a
+continuous function whose interpolants diverge almost everywhere; in
+particular, \(\limsup_{n\to\infty}\lambda_n(x)=\infty\) for almost every
+\(x\). Thus Theorem~\ref{thm:main}(ii) gives the sharp
 logarithmic rate almost everywhere.
 
 Tao \cite[Theorem 1.10(i)]{Tao} proved that every fixed nondegenerate
@@ -118,8 +120,9 @@ His Corollary 1.11 and Remark 1.12 give, for every prescribed
 \[
  \lambda_n(x)\ge\frac2\pi\log n-\omega(n)
 \]
-infinitely often. Theorem~\ref{thm:main}(i) gives a fixed additive
-constant at a fixed point. Baire category enters (i) at one point, to
+infinitely often. Theorem~\ref{thm:main}(i) replaces \(\omega(n)\) by a
+finite constant depending on the point, on a dense set.
+Baire category enters (i) at one point, to
 produce an interval with a uniform upper bound; recurrence on a
 positive-measure set follows from the energy estimate in
 Section~\ref{sec:energy}.
@@ -236,7 +239,8 @@ for all sufficiently large \(n\),
 \begin{equation}\label{eq:local-upper}
  \lambda_n(x)\le \Lambda_n:=c_0\log n+C\qquad(x\in I),
 \end{equation}
-where \(C\) is fixed, and let \(\rho_n\) be the densities above.
+where \(C\) is fixed. This bound gives the hypothesis of the proposition
+above; let \(\rho_n\) be its densities.
 For every fixed interval \(J\Subset\operatorname{int}I\) and every
 real interpolant
 \[
@@ -275,10 +279,10 @@ Fix \(x\in J\), and put
  \omega=\pi n\rho_n(x)(1+n^{-1/10}).
 \]
 On the upper edge of \(\{|\Re z-x|\le L,\ 0\le\Im z\le H\}\),
-we have \(|q(z)|\le\Lambda_n e^{\omega H}\): the allowance in
-\(\omega H\) is of order \(n^{1/2}\), while the Lipschitz variation of
-\(\rho_n\) contributes \(O(n^{2/5})\) and the remaining terms in
-\eqref{eq:complex-interpolant} contribute \(O(\log n)\).
+we have \(|q(z)|\le\Lambda_n e^{\omega H}\): \(\omega H\) exceeds
+\(\pi nH\rho_n(x)\) by \(\pi\rho_n(x)n^{1/2}\), which dominates the
+\(O(n^{2/5})\) from the Lipschitz variation of \(\rho_n\) and the
+remaining \(O(\log n)\) terms in \eqref{eq:complex-interpolant}.
 On the lower edge \(|q|\le\Lambda_n\); a Chebyshev expansion on \(I\)
 gives \(|q|\le\Lambda_n\exp(O_I(n))\) on the vertical sides.
 Apply \cite[Lemma 2.5]{Tao} to
@@ -296,11 +300,22 @@ The rescaled function
 \]
 satisfies Lemma~\ref{lem:riesz} on a square of radius
 \(T\asymp_J n^{3/5}\).
-Since \(\Lambda_n n^{-1/10}=o(1)\), \eqref{eq:riesz-derivative}
-gives the first bound in \eqref{eq:derivative-bounds}; Cauchy's estimate
+By \eqref{eq:riesz-derivative},
+\[
+ |q'(x)|=\omega\Lambda_n(1+n^{-10})|F'(0)|
+ \le\pi n\rho_n(x)\Lambda_n(1+n^{-1/10})
+                       (1+O(n^{-3/5})).
+\]
+Since \(\Lambda_n n^{-1/10}=o(1)\), this gives the first bound in
+\eqref{eq:derivative-bounds}; Cauchy's estimate
 on a disk of radius comparable to \(n^{-1}\) gives the second.
-Under \eqref{eq:large-derivative}, change the sign of \(q\) if necessary
-so that \(F'(0)\ge1-C_1/\Lambda_n\).
+Under \eqref{eq:large-derivative}, change the sign of \(q\) if necessary.
+For sufficiently large \(n\),
+\[
+ F'(0)\ge\frac{c_0\log n-D}
+                 {\Lambda_n(1+n^{-1/10})(1+n^{-10})}
+ \ge1-\frac{C_1}{\Lambda_n},\qquad C_1=1+\max\{C+D,0\}.
+\]
 Equation \eqref{eq:riesz-stability} then gives
 \(|q(x+\pi/(2\omega))|\ge\Lambda_n-C_2\).
 Since \(|q(y)|\le\lambda_n(y)\) on the real axis and \(\omega\asymp_J n\),
@@ -319,7 +334,8 @@ At the first and last nodes, use the exterior polynomial pieces. Set
 \]
 The absolute values of all cardinal polynomials other than \(\ell_{k,n}\) have
 a cusp at \(x_{k,n}\), whereas \(\ell_{k,n}\) is positive near that node.
-Consequently
+Using \(\ell_{j,n}(x)=P_n(x)/((x-x_{j,n})P_n'(x_{j,n}))\) and
+\(P_n(x_{k,n})=0\) to differentiate at \(x_{k,n}\), we obtain
 \begin{equation}\label{eq:jump}
  J_k=2\sum_{j\ne k}|\ell_{j,n}'(x_{k,n})|
      =2\sum_{j\ne k}\frac{\nu_j}{\nu_k|x_{k,n}-x_{j,n}|}.
@@ -374,8 +390,12 @@ The mass of \(\mu_n\) is bounded. Also, by \eqref{eq:quadrature},
  =\frac1n\sum_k\frac{f(x_{k,n})^2}{\rho_n(x_{k,n})}
  =\int f^2+O(n^{-1/10}).
 \end{equation}
-Equations \eqref{eq:energy-positivity}--\eqref{eq:weighted-quadrature}
-therefore yield
+Again by \eqref{eq:kernel-asymptotic},
+\[
+ \mathcal E_{1/n}(f\,dx,f\,dx)=2\log n\int f^2+O(1).
+\]
+Together with \eqref{eq:energy-positivity}--\eqref{eq:weighted-quadrature}, this
+yields
 \begin{equation}\label{eq:energy-lower}
  \mathcal E_{1/n}(\mu_n,\mu_n)
  \ge2\log n\int f^2-O(1).
@@ -406,7 +426,7 @@ Pairing the terms indexed by \((k,j)\) and \((j,k)\), and then applying
 This proves \eqref{eq:jump-average}.
 \end{proof}
 
-\section{A fixed point with bounded additive loss}\label{sec:fixed}
+\section{A dense set of points with bounded additive loss}\label{sec:fixed}
 
 \begin{proposition}\label{prop:recurrence}
 Assume the local upper bound \eqref{eq:local-upper} on a fixed
@@ -465,12 +485,10 @@ piece \(q\) has
 Lemma~\ref{lem:local} gives a point
 \begin{equation}\label{eq:high-points}
  y_k=x_{k,n}+O(n^{-1}),\qquad
- \lambda_n(y_k)\ge c_0\log n-D_1.
+\lambda_n(y_k)\ge c_0\log n-D_1.
 \end{equation}
-
-For a node satisfying \eqref{eq:large-jump}, take an adjacent polynomial
-piece with the large derivative above. Its values at the two endpoints of the
-corresponding gap are both 1. Rolle's theorem and
+The same polynomial piece \(q\) has value 1 at both endpoints of the
+corresponding gap. Rolle's theorem and
 \eqref{eq:derivative-bounds} imply that this gap has length at least \(d/n\)
 for some fixed \(d>0\) when the gap is contained in \(J_1\). If it is not
 contained in \(J_1\), its length is bounded below by
@@ -532,12 +550,13 @@ Together with \eqref{eq:high-sets}, this proves the proposition.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}(i)]
-Suppose the assertion were false. Then
+Fix a nondegenerate compact interval \(K_0\subset(-1,1)\), and suppose
+that it contains no point satisfying the assertion. Then
 \begin{equation}\label{eq:additive-failure}
  \lambda_n(x)-c_0\log n\longrightarrow-\infty
- \qquad\text{for every }x\in(-1,1).
+ \qquad\text{for every }x\in K_0.
 \end{equation}
-Fix a nondegenerate compact interval \(K_0\subset(-1,1)\). The closed sets
+The closed sets
 \[
  F_M=\{x\in K_0:\lambda_n(x)\le c_0\log n+M
                    \text{ for every }n\ge2\},
@@ -547,8 +566,9 @@ cover \(K_0\), by \eqref{eq:additive-failure}. Baire's theorem supplies
 a nondegenerate closed subinterval \(I\subset K_0\) on which
 \eqref{eq:local-upper} holds with a fixed \(C\).
 Proposition~\ref{prop:recurrence} contradicts
-\eqref{eq:additive-failure}. Increasing the final additive constant by
-one gives the strict inequality in the statement.
+\eqref{eq:additive-failure}. Thus every such \(K_0\) contains a good
+point, proving density. Increasing the final additive constant by one
+gives the strict inequality in the statement.
 \end{proof}
 
 \section{Positive Cauchy transforms}\label{sec:cauchy}
@@ -621,8 +641,7 @@ The identity \(T_{n-1}(\cos w)=\cos((n-1)w)\) yields
 Finally, since the nodes and \(x\) lie in \([-1,1]\),
 \[
  \frac{h}{4+h^2}\le
- \gamma_h(x)=\sum_k\frac{\nu_kh}{(x-x_k)^2+h^2}
- \le\frac1h.
+ \gamma_h(x)=\sum_k\frac{\nu_kh}{(x-x_k)^2+h^2}.
 \]
 Combining these bounds proves \eqref{eq:cancellation-bound}.
 For \(h=n^{-a}\), its right-hand side tends to zero: the hyperbolic
@@ -643,7 +662,8 @@ every \(h>0\),
 \end{lemma}
 
 \begin{proof}
-Compose harmonic measure of \(S_0\) in the lower half-plane with \(F\). The
+The function \(F\) maps the upper half-plane into the lower half-plane.
+Compose harmonic measure of \(S_0\) there with \(F\). The
 resulting bounded harmonic function on the upper half-plane has the indicated
 boundary values almost everywhere. The exceptional boundary points are poles
 of \(F\) and preimages of the endpoints of \(S_0\), a finite set. Its Poisson
@@ -699,7 +719,12 @@ has probability
  p_K+o(1),\qquad p_K=\frac2\pi\arctan K>\frac12,
 \]
 under the Poisson probability \(p_h(x-y)\,dy\). The error is uniform in \(x\in
-E\). Their intersection therefore has probability at least
+E\): for \(F=m\pm g\), \eqref{eq:cancellation} gives
+\(\Re F(x+ih)=u+o(\gamma)\) and
+\(-\Im F(x+ih)=\gamma(1+o(1))\). Substituting \(t=u+\gamma s\)
+in \eqref{eq:harmonic-measure} therefore gives
+\(\pi^{-1}\int_{-K}^K(1+s^2)^{-1}\,ds+o(1)=p_K+o(1)\).
+The two events have intersection probability at least
 \begin{equation}\label{eq:event-intersection}
  q_K+o(1),\qquad q_K=2p_K-1>0.
 \end{equation}
@@ -709,14 +734,22 @@ and let
  E_n=\{x\in E:(p_h*\mathbf1_{\mathbb R\setminus E})(x)<q_K/8\}.
 \]
 The approximate identity theorem gives \(|E\setminus E_n|\to0\). For all
-sufficiently large \(n\), \eqref{eq:event-intersection} implies that, for
-every \(x\in E_n\), there exists \(y\in E\) with \(|y-x|\le Rh\) and both
-events true. We may take \(y\) away from the nodes, and then
+sufficiently large \(n\), \eqref{eq:event-intersection} is greater than
+\(q_K/2\). For \(x\in E_n\), the two excluded sets
+\(\R\setminus E\) and \(\{|y-x|>Rh\}\) have total Poisson mass
+less than \(q_K/4\). Hence there exists \(y\in E\) with
+\(|y-x|\le Rh\) and both events true. We may take \(y\) away from
+the nodes. Since \(m(y)\pm g(y)\) both lie in an interval of length
+\(2K\gamma_h(x)\),
 \[
  |g(y)|\le K\gamma_h(x).
 \]
-Using \eqref{eq:lebesgue-transform}, \eqref{eq:common-low-set}, and
-\eqref{eq:potential-comparison}, we obtain
+Equations \eqref{eq:lebesgue-transform} and \eqref{eq:common-low-set} give
+\[
+ H^\eta(y)\le H(y)=\lambda_n(y)|g(y)|
+ \le cK(\log n)\gamma_h(x).
+\]
+Together with \eqref{eq:potential-comparison}, this yields
 \begin{equation}\label{eq:local-comparison}
  H^\eta(x)\le(1+Rh/\eta)^2H^\eta(y)
  \le cK(1+Rh/\eta)^2(\log n)\gamma_h(x)
@@ -727,7 +760,8 @@ Let \(T_n\) be convolution with the symmetric probability kernel
 \[
  k_n(t)=\frac1{b\log n}\int_\eta^1p_{s-h}(t)\,\frac{ds}{s}.
 \]
-Equation \eqref{eq:semigroup} shows that
+Its integral is one, since \(\int_\eta^1 ds/s=b\log n\).
+Equation \eqref{eq:semigroup} then shows that
 \[
  H^\eta=\frac{2b}{\pi}(\log n)T_n\gamma_h.
 \]
@@ -766,29 +800,38 @@ contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
 \end{proof}
 
 \begin{corollary}
-For every measurable \(E\subset[-1,1]\) of positive measure and every
-\(c<2/\pi\), there are infinitely many \(n\) for which some \(x\in E\)
-satisfies \(\lambda_n(x)>c\log n\).
+Let \(E\subset(-1,1)\) be measurable with \(|E|>0\), and let
+\(0<c<2/\pi\). For all sufficiently large \(n\), there is \(x\in E\)
+such that \(\lambda_n(x)>c\log n\).
 \end{corollary}
 \begin{proof}
-Choose \(x\in E\cap(-1,1)\) satisfying Theorem~\ref{thm:main}(ii).
-The inequality holds at this same point for infinitely many \(n\).
+Otherwise \(\lambda_n(y)\le c\log n\) for every \(y\in E\) and every
+\(n\) in an infinite set \(S\). The argument above applies to these
+rows, with all limits taken as \(n\to\infty\) through \(S\), and gives
+the same contradiction \(|E|/A\ge|E|\) with \(A>1\).
 \end{proof}
-For \(0<c<2/\pi\), the argument above proves this directly: any measurable
-set supporting an eventual uniform bound \(\lambda_n\le c\log n\) has
-measure zero. This is \texttt{Erdos1132.uniform\_low\_set\_null} in Lean.
 
 \section*{Use of generative AI}
 
 GPT-6 Astra generated the proofs and first draft; GPT-5.6 Sol and Claude
 Opus 5 were used for editorial review. The author reviewed the manuscript.
 Theorem~\ref{thm:main}(ii), including the arguments of
-Sections~\ref{sec:cauchy}--\ref{sec:ae}, has been formalized in Lean 4
-with Mathlib using OpenAI Codex (GPT-6). The source and build instructions
+Sections~\ref{sec:cauchy}--\ref{sec:ae}, and the set corollary have been
+formalized in Lean 4 with Mathlib using OpenAI Codex (GPT-6).
+The corollary is \texttt{Erdos1132.eventually\_exists\_lower\_bound}, derived
+from \texttt{uniform\_low\_set\_null} with an upper bound assumed for
+infinitely many rows.
+The source and build instructions
 are at \url{https://github.com/FireflySentinel/erdos-1132}.
 Theorem~\ref{thm:main}(i) is not formalized.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{10}
+
+\bibitem{Bernstein}
+S.~Bernstein,
+Sur la limitation des valeurs d'un polyn\^ome \(P_n(x)\) de degr\'e \(n\)
+sur tout un segment par ses valeurs en \((n+1)\) points du segment,
+\emph{Izv. Akad. Nauk SSSR}, Ser.~VII (1931), no.~8, 1025--1050.
 
 \bibitem{Bloom}
 T.~F. Bloom,
@@ -808,17 +851,37 @@ the Lagrange interpolation polynomials and some extremal problems,
 \emph{Mathematica (Cluj)} \textbf{10} (1968), 65--73.
 \href{https://combinatorica.hu/~p_erdos/1967-20.pdf}{Original paper}.
 
+\bibitem{Erdos1961}
+P.~Erd\H{o}s,
+Problems and results on the theory of interpolation. II,
+\emph{Acta Math. Acad. Sci. Hungar.} \textbf{12} (1961), 235--244.
+
+\bibitem{ErdosTuran}
+P.~Erd\H{o}s and P.~Tur\'an,
+An extremal problem in the theory of interpolation,
+\emph{Acta Math. Acad. Sci. Hungar.} \textbf{12} (1961), 221--234.
+
 \bibitem{ErdosVertesi}
 P.~Erd\H{o}s and P.~V\'ertesi,
-On the almost everywhere divergence of Lagrange interpolation polynomials
-for arbitrary systems of nodes,
+On the almost everywhere divergence of Lagrange interpolatory polynomials
+for arbitrary system of nodes,
 \emph{Acta Math. Acad. Sci. Hungar.} \textbf{36} (1980), 71--89.
+
+\bibitem{Faber}
+G.~Faber,
+\"Uber die interpolatorische Darstellung stetiger Funktionen,
+\emph{Jahresber. Deutsch. Math.-Verein.} \textbf{23} (1914), 192--210.
 
 \bibitem{Tao}
 T.~Tao,
 \emph{Local Bernstein theory, and lower bounds for Lebesgue constants},
 \href{https://arxiv.org/abs/2603.21453v3}{arXiv:2603.21453v3}
 (2026).
+
+\bibitem{Vertesi1990}
+P.~V\'ertesi,
+Optimal Lebesgue constant for Lagrange interpolation,
+\emph{SIAM J. Numer. Anal.} \textbf{27} (1990), 1322--1331.
 
 \end{thebibliography}
 

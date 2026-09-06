@@ -7,11 +7,11 @@ open scoped Topology
 
 namespace Erdos1132
 
-/-- No positive-measure set supports an eventual uniform bound below the sharp constant. -/
+/-- No positive-measure set supports a uniform bound below the sharp constant infinitely often. -/
 theorem uniform_low_set_null (X : ∀ n, Nodes (n + 2)) {c : ℝ}
     (hc : 0 < c) (hcπ : c < 2 / Real.pi) {E : Set ℝ}
     (hE : MeasurableSet E) (hEint : E ⊆ Icc (-1) 1)
-    (hlow : ∀ᶠ n in atTop, ∀ x ∈ E, (X n).lebesgue x ≤ c * Real.log (rowSize n)) :
+    (hlow : ∃ᶠ n in atTop, ∀ x ∈ E, (X n).lebesgue x ≤ c * Real.log (rowSize n)) :
     volume E = 0 := by
   by_contra hpos
   have hEfin := interval_subset_finite hEint
@@ -43,14 +43,25 @@ theorem uniform_low_set_null (X : ∀ n, Nodes (n + 2)) {c : ℝ}
       (fun n => integral_logKernel (height_pos b n) (height_antitone hba n) (height_lt_one hb n))
       (fun δ hδ => tendsto_logKernel_tail hb hba hδ) hE hEint hFm hFE hsmall
   have hcoeflim := (tendsto_energyCoefficient c K R hba).mul hmeasure
-  have he : ∀ᶠ n in atTop, kernelEnergy (k n) (F n) ≤
+  have he : ∃ᶠ n in atTop, kernelEnergy (k n) (F n) ≤
       energyCoefficient c K R a b n * volume.real (F n) := by
-    filter_upwards [eventually_cancellation_bound ha ha1,
-      (tendsto_cancellationError ha1).eventually (gt_mem_nhds hδ), hlow] with n hn hδn hnlow
+    apply (hlow.and_eventually ((eventually_cancellation_bound ha ha1).and
+      ((tendsto_cancellationError ha1).eventually (gt_mem_nhds hδ)))).mono
+    rintro n ⟨hnlow, hn, hδn⟩
     apply row_energy_bound n (X n) hb hba hc.le hK0 hq hR hRt hstable hE hEint _ hnlow
     intro x hx
     exact (hn (X n) x (hEint hx)).trans_lt hδn
-  have hcontr := le_of_tendsto_of_tendsto henergy hcoeflim he
+  have hcontr := le_of_tendsto_of_tendsto_of_frequently henergy hcoeflim he
   nlinarith
+
+/-- Every positive-measure set contains a point above the lower bound in every sufficiently large row. -/
+theorem eventually_exists_lower_bound (X : ∀ n, Nodes (n + 2)) {c : ℝ}
+    (hc : 0 < c) (hcπ : c < 2 / Real.pi) {E : Set ℝ}
+    (hE : MeasurableSet E) (hEint : E ⊆ Icc (-1) 1) (hEpos : 0 < volume E) :
+    ∀ᶠ n in atTop, ∃ x ∈ E, c * Real.log (rowSize n) < (X n).lebesgue x := by
+  by_contra hnot
+  have hlow : ∃ᶠ n in atTop, ∀ x ∈ E, (X n).lebesgue x ≤ c * Real.log (rowSize n) := by
+    simpa only [not_eventually, not_exists, not_and, not_lt] using hnot
+  exact (ne_of_gt hEpos) (uniform_low_set_null X hc hcπ hE hEint hlow)
 
 end Erdos1132

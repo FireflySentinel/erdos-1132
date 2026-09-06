@@ -26,6 +26,7 @@ theorem measurable_eventualLowSet (X : ∀ n, Nodes (n + 2)) (c : ℝ) (N : ℕ)
 theorem eventualLowSet_null (X : ∀ n, Nodes (n + 2)) {c : ℝ}
     (hc : 0 < c) (hcπ : c < 2 / Real.pi) (N : ℕ) : volume (eventualLowSet X c N) = 0 := by
   apply uniform_low_set_null X hc hcπ (measurable_eventualLowSet X c N) inter_subset_left
+  apply Filter.Eventually.frequently
   filter_upwards [eventually_ge_atTop N] with n hn x hx
   exact hx.2 n hn
 

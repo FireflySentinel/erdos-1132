@@ -1,8 +1,8 @@
 # Erdős Problem #1132: sharp pointwise lower bounds for Lebesgue functions
 
-Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): a fixed point at
-which the Lebesgue function exceeds $(2/\pi)\log n$ by a bounded additive loss infinitely
-often, and the sharp normalized lower bound almost everywhere.
+Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): a dense set of points
+at which the Lebesgue function exceeds $(2/\pi)\log n$ with a bounded additive loss
+infinitely often, and the sharp normalized lower bound almost everywhere.
 
 ## Build and check
 
@@ -31,7 +31,13 @@ the first two rows.
 [Statement.lean](checks/Statement.lean) writes out the node conditions and the
 Lagrange product formula in full; `lake test` checks it and the axiom dependencies.
 
-Theorem 1(i), the bounded additive loss at a fixed point, is outside this formalization.
+The set corollary is `eventually_exists_lower_bound`: for every measurable
+$E\subset(-1,1)$ of positive measure and every $0<c<2/\pi$, every sufficiently
+large row has some $x\in E$ with $c\log n<\lambda_n(x)$. Its proof uses
+`uniform_low_set_null`, whose uniform upper-bound hypothesis need hold only
+infinitely often. Both statements are covered by the checks.
+
+Theorem 1(i), the bounded additive loss on a dense set of points, is outside this formalization.
 
 ## Proof correspondence
 
@@ -41,6 +47,7 @@ Theorem 1(i), the bounded additive loss at a fixed point, is outside this formal
 | Lemma 7, boundary harmonic measure | [BoundaryMeasure.lean](Erdos1132/BoundaryMeasure.lean), `boundary_harmonic_measure` |
 | Local comparison (6.4), factor $(1+Rh/\eta)^2$ | [ProofParameters.lean](Erdos1132/ProofParameters.lean), `localizationFactor` |
 | Positive-measure contradiction, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean), `uniform_low_set_null` |
+| Set corollary, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean), `eventually_exists_lower_bound` |
 | Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_frequently_lower_bound`, `ae_lebesgue_limsup_shifted` |
 
 ## Use of generative AI
