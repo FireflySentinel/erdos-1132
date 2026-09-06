@@ -6,18 +6,14 @@ Preprint on [Erdős Problem #1132](https://www.erdosproblems.com/1132): a fixed 
 which the Lebesgue function exceeds $(2/\pi)\log n$ by a bounded additive loss infinitely
 often, and the sharp normalized lower bound almost everywhere.
 
-**Qiyuan Gu**, University of Chicago, <phoenix1203@uchicago.edu>
+**Qiyuan Gu**, University of Chicago
 
-Comments and corrections: email or issue.
+[Preprint PDF](PROOF.pdf) · [LaTeX source](PROOF.tex)
 
-## Status
+Published version: [v4](https://doi.org/10.5281/zenodo.22333216), 5 September 2026.
 
-| | |
-|---|---|
-| Manuscript | v4, 11 pages, 5 September 2026: [`PROOF.pdf`](PROOF.pdf), [`PROOF.tex`](PROOF.tex) |
-| DOI | [10.5281/zenodo.22322281](https://doi.org/10.5281/zenodo.22322281) (always the latest version; this version is [10.5281/zenodo.22333216](https://doi.org/10.5281/zenodo.22333216)) |
-| erdosproblems.com | listed open as of 5 September 2026; [proof claim posted](https://www.erdosproblems.com/forum/thread/1132/proof-claims) |
-| Refereeing | not yet refereed |
+Comments and corrections: [email](mailto:phoenix1203@uchicago.edu) or
+[issue](https://github.com/FireflySentinel/erdos-1132/issues).
 
 ## Abstract
 
