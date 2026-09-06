@@ -10,7 +10,7 @@ often, and the sharp normalized lower bound almost everywhere.
 
 [Preprint PDF](PROOF.pdf) · [LaTeX source](PROOF.tex) · [Lean formalization](FORMALIZATION.md)
 
-Published version: [v4](https://doi.org/10.5281/zenodo.22333216), 5 September 2026.
+Published version: [v5](https://doi.org/10.5281/zenodo.22448859), 6 September 2026, manuscript and Lean sources.
 
 Comments and corrections: [email](mailto:phoenix1203@uchicago.edu) or
 [issue](https://github.com/FireflySentinel/erdos-1132/issues).
