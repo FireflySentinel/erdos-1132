@@ -15,6 +15,11 @@ jobs:
       LEAN_NUM_THREADS: 2
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Reject unfinished proofs
+        run: |
+          if grep -RnE '\b(sorry|admit)\b' --include='*.lean' Erdos1132 Erdos1132.lean checks; then
+            exit 1
+          fi
       - uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
         with:
           build: "true"
@@ -23,5 +28,7 @@ jobs:
           use-mathlib-cache: "true"
       - name: Check axiom dependencies
         run: lake env lean checks/Check.lean
+      - name: Check the explicit statement
+        run: lake env lean checks/Statement.lean
       - name: Replay project declarations through the kernel
-        run: lake env leanchecker Erdos1132
+        run: lake env leanchecker -v Erdos1132

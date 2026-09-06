@@ -82,7 +82,9 @@ theorem ae_lebesgue_limsup_shifted (X : ∀ n, Nodes (n + 2)) :
   intro n hn
   exact hyr.trans (EReal.coe_lt_coe_iff.mpr ((lt_div_iff₀ (log_rowSize_pos n)).mpr hn))
 
-/-- Theorem 1(ii): the sharp almost-everywhere lower bound for an arbitrary triangular array. -/
+/-- Theorem 1(ii): the sharp almost-everywhere lower bound for an arbitrary triangular array.
+Rows `0` and `1` use Lean's totalized logarithm and division; `limsup_nat_add`
+discards these two rows. See `ae_lebesgue_limsup_shifted` for rows of size at least two. -/
 theorem ae_lebesgue_limsup (X : ∀ n, Nodes n) :
     ∀ᵐ x ∂volume.restrict (Ioo (-1) 1),
       ((2 / Real.pi : ℝ) : EReal) ≤

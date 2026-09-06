@@ -171,7 +171,7 @@ theorem harmonic_boundary_cauchy {u : ℂ → ℝ} {M : ℝ}
     (by filter_upwards [hl] with t ht; exact tendsto_const_nhds.mul ht)
   have hav (n : ℕ) : (∫ t, poissonKernel 1 t * u ((r n : ℂ) * inverseCayley t)) = u 0 := by
     rw [← circleAverage_eq_cauchy_integral]
-    apply _root_.HarmonicOnNhd.circleAverage_eq
+    apply InnerProductSpace.HarmonicOnNhd.circleAverage_eq
     apply hu.mono
     apply closedBall_subset_ball
     rw [abs_of_nonneg (hr n).1]

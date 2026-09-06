@@ -1,5 +1,9 @@
 import Erdos1132
 
+/-- info: 'Erdos1132.ae_lebesgue_limsup_shifted' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.ae_lebesgue_limsup_shifted
+
 /-- info: 'Erdos1132.ae_lebesgue_limsup' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos1132.ae_lebesgue_limsup

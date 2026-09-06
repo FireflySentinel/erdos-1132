@@ -12,14 +12,17 @@ With [Elan](https://github.com/leanprover/elan) installed, run from the reposito
 lake exe cache get
 lake build
 lake env lean checks/Check.lean
-LEAN_NUM_THREADS=2 lake env leanchecker Erdos1132
+lake env lean checks/Statement.lean
+LEAN_NUM_THREADS=2 lake env leanchecker -v Erdos1132
 ```
 
 ## Exact statement
 
-[`Erdos1132.ae_lebesgue_limsup`](Erdos1132/Main.lean) proves Theorem 1(ii): for every
+[`ae_lebesgue_limsup_shifted`](Erdos1132/Main.lean) proves Theorem 1(ii): for every
 triangular array of nodes, $\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi$ for almost
-every $x\in(-1,1)$.
+every $x\in(-1,1)$. It starts with rows of size $n+2$.
+[Statement.lean](checks/Statement.lean) writes out the node conditions and the
+Lagrange product formula in full; CI checks this statement against the theorem.
 
 Theorem 1(i), the bounded additive loss at a fixed point, is outside this formalization.
 
@@ -30,11 +33,11 @@ Theorem 1(i), the bounded additive loss at a fixed point, is outside this formal
 | Lemma 6, Chebyshev cancellation | [Cancellation.lean](Erdos1132/Cancellation.lean), [Scales.lean](Erdos1132/Scales.lean) |
 | Lemma 7, boundary harmonic measure | [BoundaryMeasure.lean](Erdos1132/BoundaryMeasure.lean), `boundary_harmonic_measure` |
 | Positive-measure contradiction, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean), `uniform_low_set_null` |
-| Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_lebesgue_limsup` |
+| Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_lebesgue_limsup_shifted` |
 
 ## Use of generative AI
 
 GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition. The author
-reviewed the final manuscript and takes full responsibility for its content.
+reviewed the manuscript.
 The Lean formalization was generated using OpenAI Codex (GPT-6).

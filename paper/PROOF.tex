@@ -16,6 +16,7 @@ interpolation, almost everywhere, pointwise lower bounds}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem*{taoestimates}{Proposition (Tao's local estimates)}
 \numberwithin{equation}{section}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\sgn}{sgn}
@@ -42,12 +43,9 @@ and a constant \(C\) such that
 We also prove that
 \(\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi\)
 for almost every \(x\in(-1,1)\).
-The first conclusion answers the bounded-loss question in the interpretation
-that the constant may depend on the array and the point; the second answers
-the almost-everywhere question in Erd\H{o}s Problem 1132. The first proof
-combines Tao's local potential estimates with a local Riesz differentiation
-formula, an energy estimate for nodal derivative jumps, and a second moment
-argument. The second proof uses positive Cauchy transforms and harmonic
+The constant \(C\) may depend on the array and on \(x\).
+The first proof rests on an energy estimate for the derivative jumps of
+\(\lambda_n\) at the nodes. The second proof uses positive Cauchy transforms and harmonic
 measure and is independent of Tao's local Bernstein theory.
 \end{abstract}
 
@@ -120,9 +118,10 @@ His Corollary 1.11 and Remark 1.12 give, for every prescribed
  \lambda_n(x)\ge\frac2\pi\log n-\omega(n)
 \]
 infinitely often. Theorem~\ref{thm:main}(i) gives a fixed additive
-constant at a fixed point. In its proof, Baire category is used only to
-produce an interval with a uniform upper bound; the recurrence on a set of
-positive measure comes from the energy estimate in Section~\ref{sec:energy}.
+constant at a fixed point. Baire category enters (i) at one point, to
+produce an interval with a uniform upper bound; recurrence on a
+positive-measure set follows from the energy estimate in
+Section~\ref{sec:energy}.
 
 Throughout the paper, all logarithms are natural and \(|E|\) denotes
 Lebesgue measure. We write \(c_0=2/\pi\), and suppress the row index
@@ -144,7 +143,7 @@ z|,|\Im z|\le T\}\), is real on its real diameter, and satisfies, throughout thi
 \[
  |F(u+iv)|\le e^{|v|}.
 \]
-For sufficiently large \(T\),
+Then
 \begin{equation}\label{eq:riesz-derivative}
  |F'(0)|\le 1+O(T^{-1}).
 \end{equation}
@@ -180,7 +179,55 @@ in \eqref{eq:riesz-formula} gives
 which proves \eqref{eq:riesz-stability}.
 \end{proof}
 
-We apply this formula to interpolants with bounded nodal data.
+We apply this formula to interpolants with bounded nodal data. The
+estimates we use from Tao are stated first, with their normalization:
+\[
+ S_n=\sum_k\frac1{|P_n'(x_{k,n})|},\qquad
+ \alpha_n=\frac1n\log S_n,\qquad
+ U_n(z)=\frac1n\log\frac1{|P_n(z)|}.
+\]
+
+\begin{taoestimates}
+Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval, and
+suppose that \(\sup_I\lambda_n\ll n^{O(1)}\). With \(\alpha_n\)
+normalized as above \cite[equation (4.11)]{Tao}, there are densities
+\(\rho_n\) on \(\operatorname{int}I\) with the following properties.
+For each fixed compact interval \(I'\Subset\operatorname{int}I\):
+\begin{enumerate}
+\item The densities are bounded above and below by positive constants
+and have uniformly bounded Lipschitz norms:
+\[
+ \rho_n(x)\asymp_{I'}1,\qquad
+ |\rho_n(x)-\rho_n(x_0)|\ll_{I'}|x-x_0|
+ \qquad(x,x_0\in I').
+\]
+This is \cite[Theorem 4.1(ii), equation (4.6)]{Tao}.
+\item For \(x\in I'\) and \(\eta\ge\log n/n\),
+\begin{equation}\label{eq:potential}
+ U_n(x+i\eta)=\alpha_n-\pi\eta\rho_n(x)
+              +O_{I'}\!\left(\frac{\log n}{n}+\eta^3\right).
+\end{equation}
+This is \cite[equation (4.7)]{Tao}.
+\item For every subinterval \(K\subset I'\) and every \(A\ge1\),
+\begin{equation}\label{eq:discrepancy}
+ \frac1n\#\{k:x_{k,n}\in K\}
+ =\int_K\rho_n(x)\,dx
+   +O_{I'}\!\left(\frac{|K|}{A}+\frac{A^2\log n}{n}\right).
+\end{equation}
+This is \cite[Theorem 4.1(iv), equation (4.9)]{Tao}.
+\end{enumerate}
+\end{taoestimates}
+
+The function \(\rho_n\) here is Tao's density defined from the original
+interval \(I\) by his equation (4.15), so it does not depend on the
+auxiliary choice of \(I'\).
+Taking \(A=n^{1/10}\) in \eqref{eq:discrepancy} and integrating by parts
+shows that, for functions \(h_n\) supported in a fixed compact subset
+of \(\operatorname{int}I\) with uniformly bounded Lipschitz norms,
+\begin{equation}\label{eq:quadrature}
+ \frac1n\sum_k h_n(x_{k,n})
+ =\int h_n(x)\rho_n(x)\,dx+O(n^{-1/10}).
+\end{equation}
 
 \begin{lemma}\label{lem:local}
 Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval. Suppose that,
@@ -188,13 +235,9 @@ for all sufficiently large \(n\),
 \begin{equation}\label{eq:local-upper}
  \lambda_n(x)\le \Lambda_n:=c_0\log n+C\qquad(x\in I),
 \end{equation}
-where \(C\) is fixed. There are functions \(\rho_n\) on
-\(\operatorname{int}I\) whose restrictions to each fixed compact interval are
-bounded above and below by positive constants and have uniformly bounded
-Lipschitz norms. They have the following properties on every fixed interval
-\(J\Subset\operatorname{int}I\).
-
-For every real polynomial
+where \(C\) is fixed, and let \(\rho_n\) be the densities above.
+For every fixed interval \(J\Subset\operatorname{int}I\) and every
+real interpolant
 \[
  q(x)=\sum_{k=1}^n a_k\ell_{k,n}(x),\qquad |a_k|\le1,
 \]
@@ -214,115 +257,53 @@ then there is \(y=x+O_J(n^{-1})\) such that
 where \(D'\) depends on \(I,J,C,D\), but not on \(n,x,q\). The point \(y\)
 lies in any fixed compact interior interval containing \(J\) in its interior,
 for all sufficiently large \(n\).
-
-Finally, if \(h_n\) have support in a fixed compact subset of
-\(\operatorname{int}I\) and have uniformly bounded Lipschitz norms, then
-\begin{equation}\label{eq:quadrature}
- \frac1n\sum_k h_n(x_{k,n})
- =\int h_n(x)\rho_n(x)\,dx+O(n^{-1/10}).
-\end{equation}
-
 \end{lemma}
 
 \begin{proof}
-Fix one compact interval \(I'\Subset\operatorname{int}I\) with
-\(J\Subset\operatorname{int}I'\), also containing, when
-\eqref{eq:quadrature} is being proved, the fixed compact set containing the
-supports of the functions \(h_n\). Assumption \eqref{eq:local-upper}
-implies the hypothesis \(\sup_I\lambda_n\ll n^{O(1)}\) of Tao
-\cite[Theorem 4.1, equation (4.1)]{Tao}. Put
-\[
- S_n=\sum_k\frac1{|P_n'(x_{k,n})|},\qquad
- \alpha_n=\frac1n\log S_n,\qquad
- U_n(z)=\frac1n\log\frac1{|P_n(z)|}.
-\]
-Tao's equation (4.11) identifies this \(\alpha_n\), while
-Theorem 4.1(ii),(iv), equations (4.6), (4.7), and (4.9), give on \(I'\)
-the asserted upper and lower bounds and Lipschitz bound for \(\rho_n\),
-together with
-\begin{equation}\label{eq:potential}
- U_n(x+i\eta)=\alpha_n-\pi\eta\rho_n(x)
-              +O\!\left(\frac{\log n}{n}+\eta^3\right)
-\end{equation}
-for \(\eta\ge\log n/n\), uniformly on fixed compact interior intervals. It
-also gives, for every subinterval \(K\) of such an interval,
-\begin{equation}\label{eq:discrepancy}
- \frac1n\#\{k:x_{k,n}\in K\}
- =\int_K\rho_n(x)\,dx
-   +O\!\left(\frac{|K|}{A}+\frac{A^2\log n}{n}\right)
- \qquad(A\ge1).
-\end{equation}
-The function \(\rho_n\) here is Tao's density defined from the original
-interval \(I\) by his equation (4.15), so it does not depend on the
-auxiliary choice of \(I'\). Taking \(A=n^{1/10}\) and integrating by
-parts proves \eqref{eq:quadrature}.
-
-For complex \(z\) with \(\Re z\in I'\) and
-\(\Im z=\eta\ge\log n/n\), the
-interpolation formula and \eqref{eq:potential} imply
+Fix \(I'\Subset\operatorname{int}I\) with \(J\Subset\operatorname{int}I'\).
+For \(\Re z\in I'\) and \(\Im z=\eta\ge\log n/n\), the
+interpolation formula and \eqref{eq:potential} give
 \begin{equation}\label{eq:complex-interpolant}
- |q(z)|\le \frac{S_n|P_n(z)|}{\eta}
- \le \frac1\eta
-       \exp\!\left(\pi n\eta\rho_n(\Re z)
-                       +O(\log n+n\eta^3)\right).
+ |q(z)|\le\frac{S_n|P_n(z)|}{\eta}
+ \le\frac1\eta\exp\!\left(\pi n\eta\rho_n(\Re z)
+                              +O(\log n+n\eta^3)\right).
 \end{equation}
-Fix \(x\in J\), and set
+Fix \(x\in J\), and put
 \[
  L=n^{-1/5},\qquad H=n^{-2/5},\qquad
- \omega=\pi n\rho_n(x)(1+D_0n^{-1/10}),
+ \omega=\pi n\rho_n(x)(1+n^{-1/10}).
 \]
-where \(D_0>0\) is any fixed constant. On the upper edge of the
-rectangle
-\[
- |\Re z-x|\le L,\qquad 0\le\Im z\le H,
-\]
-the Lipschitz bound for \(\rho_n\) and \eqref{eq:complex-interpolant} give
-\[
- |q(z)|\le\Lambda_n e^{\omega H}
-\]
-for all sufficiently large \(n\): the allowance in \(\omega H\) is of order
-\(n^{1/2}\), while the density variation contributes \(O(n^{2/5})\) and the
-remaining terms contribute \(O(\log n)\).
-
-On the lower edge, \(|q|\le\lambda_n\le\Lambda_n\). Expanding \(q\) in
-Chebyshev polynomials on \(I\) also gives the bound
-\(|q(z)|\le\Lambda_n\exp(O_I(n))\) on the vertical sides. Apply the local
-Phragm\'en--Lindel\"of estimate \cite[Lemma 2.5]{Tao} to
-\[
- \Lambda_n^{-1}q(z)e^{i\omega(z-x)}.
-\]
-In the notation of that lemma, the upper and lower edge bound is \(1\),
-the vertical-edge factor is \(M=\exp(O_I(n))\), the height is \(H\),
-and points with \(|u|\le L/2\) have distance at least \(L/2\) from the
-vertical sides. Thus its error is
-\(\exp(O(n e^{-cL/H}))\)=\(1+O(n^{-10})\). For \(|u|\le L/2\) and
-\(0\le v\le H\), it yields
+On the upper edge of \(\{|\Re z-x|\le L,\ 0\le\Im z\le H\}\),
+we have \(|q(z)|\le\Lambda_n e^{\omega H}\): the allowance in
+\(\omega H\) is of order \(n^{1/2}\), while the Lipschitz variation of
+\(\rho_n\) contributes \(O(n^{2/5})\) and the remaining terms in
+\eqref{eq:complex-interpolant} contribute \(O(\log n)\).
+On the lower edge \(|q|\le\Lambda_n\); a Chebyshev expansion on \(I\)
+gives \(|q|\le\Lambda_n\exp(O_I(n))\) on the vertical sides.
+Apply \cite[Lemma 2.5]{Tao} to
+\(\Lambda_n^{-1}q(z)e^{i\omega(z-x)}\).
+At distance at least \(L/2\) from the vertical sides, its error factor is
+\(\exp(O(n e^{-cL/H}))=1+O(n^{-10})\). Thus, also reflecting across
+the real axis,
 \begin{equation}\label{eq:local-growth}
- |q(x+u+iv)|\le\Lambda_n(1+n^{-10})e^{\omega|v|}.
+ |q(x+u+iv)|\le\Lambda_n(1+n^{-10})e^{\omega|v|}
+ \qquad(|u|\le L/2,\ |v|\le H).
 \end{equation}
-Reflection gives the estimate for negative \(v\).
-
-After the change of variable \(t=\omega(z-x)\), the function
+The rescaled function
 \[
  F(t)=\frac{q(x+t/\omega)}{\Lambda_n(1+n^{-10})}
 \]
-satisfies Lemma~\ref{lem:riesz} on a square of radius \(T\asymp_J n^{3/5}\).
-Equation \eqref{eq:riesz-derivative}, and the fact that \(\Lambda_n
-n^{-1/10}=o(1)\), give the first estimate in \eqref{eq:derivative-bounds}.
-Cauchy's estimate on a disk of radius comparable to \(n^{-1}\) in
-\eqref{eq:local-growth} gives the second estimate.
-
-Under \eqref{eq:large-derivative}, replacing \(q\) by \(-q\) if necessary, we have
-\[
- F'(0)\ge1-\frac{C_1}{\Lambda_n}
-\]
-with \(C_1\) independent of \(n,x,q\). Equation \eqref{eq:riesz-stability} now
-shows that
-\[
- |q(x+\pi/(2\omega))|\ge\Lambda_n-C_2.
-\]
-Since \(|q(y)|\le\lambda_n(y)\) for real \(y\), this proves
-\eqref{eq:nearby-peak}.
+satisfies Lemma~\ref{lem:riesz} on a square of radius
+\(T\asymp_J n^{3/5}\).
+Since \(\Lambda_n n^{-1/10}=o(1)\), \eqref{eq:riesz-derivative}
+gives the first bound in \eqref{eq:derivative-bounds}; Cauchy's estimate
+on a disk of radius comparable to \(n^{-1}\) gives the second.
+Under \eqref{eq:large-derivative}, change the sign of \(q\) if necessary
+so that \(F'(0)\ge1-C_1/\Lambda_n\).
+Equation \eqref{eq:riesz-stability} then gives
+\(|q(x+\pi/(2\omega))|\ge\Lambda_n-C_2\).
+Since \(|q(y)|\le\lambda_n(y)\) on the real axis and \(\omega\asymp_J n\),
+this proves \eqref{eq:nearby-peak} with the asserted displacement.
 \end{proof}
 
 \section{Derivative jumps and a Riesz energy}\label{sec:energy}
@@ -520,7 +501,8 @@ The separation of the centers in the \(m\)-th row implies, for every interval
  |A_m\cap B|\le C_3\left(\frac{|B|}{\log m}
                               +\frac1{m\log m}\right).
 \]
-Since \(A_n\) has at most \(n\) components, for \(m>n\),
+Summing this inequality over the at most \(n\) components of \(A_n\)
+gives, for \(m>n\),
 \begin{equation}\label{eq:intersection}
  |A_n\cap A_m|
  \le C_3\left(\frac{|A_n|}{\log m}
@@ -670,9 +652,13 @@ representation is \eqref{eq:harmonic-measure}.
 \section{The almost-everywhere bound}\label{sec:ae}
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}(ii)]
-Suppose that the assertion fails. By a countable-union argument, there are a
-measurable set \(E\subset(-1,1)\) of positive measure, a constant \(0<c<c_0\),
-and an integer \(N\) such that
+The failure set is the union, over rational \(0<c<c_0\) and integers
+\(N\ge2\), of the measurable sets
+\[
+ \{y\in(-1,1):\lambda_n(y)\le c\log n\text{ for every }n\ge N\}.
+\]
+If the assertion fails, one of these sets \(E\) has positive measure.
+For its fixed \(c,N\), we therefore have
 \begin{equation}\label{eq:common-low-set}
  \lambda_n(y)\le c\log n\qquad(y\in E,\ n\ge N).
 \end{equation}
@@ -780,10 +766,13 @@ contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
 
 \section*{Use of generative AI}
 
-GPT-6 Astra was used to generate the mathematical proofs and draft the
-manuscript. GPT-5.6 Sol and Claude Opus 5 were used for editorial review of
-the exposition. The author reviewed the final manuscript and takes full
-responsibility for its content.
+GPT-6 Astra generated the proofs and first draft; GPT-5.6 Sol and Claude
+Opus 5 were used for editorial review. The author reviewed the manuscript.
+Theorem~\ref{thm:main}(ii), including the arguments of
+Sections~\ref{sec:cauchy}--\ref{sec:ae}, has been formalized in Lean 4
+with Mathlib using OpenAI Codex (GPT-6). The source and build instructions
+are at \url{https://github.com/FireflySentinel/erdos-1132}.
+Theorem~\ref{thm:main}(i) is not formalized.
 
 \begin{thebibliography}{9}
 
