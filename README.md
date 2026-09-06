@@ -8,7 +8,7 @@ often, and the sharp normalized lower bound almost everywhere.
 
 **Qiyuan Gu**, University of Chicago
 
-[Preprint PDF](PROOF.pdf) · [LaTeX source](PROOF.tex)
+[Preprint PDF](PROOF.pdf) · [LaTeX source](PROOF.tex) · [Lean formalization](FORMALIZATION.md)
 
 Published version: [v4](https://doi.org/10.5281/zenodo.22333216), 5 September 2026.
 
@@ -50,6 +50,13 @@ The constant in (i) is independent of $n$; it may depend on the array and on $x$
 of the array need not be nested, so this covers the single-infinite-sequence form in which
 the problem is stated on erdosproblems.com.
 
+## Lean formalization
+
+Theorem 1(ii) is formalized in Lean 4 with mathlib. The main result is
+[`ae_lebesgue_limsup`](Erdos1132/Main.lean), for arbitrary triangular arrays
+of distinct nodes in $[-1,1]$. See [FORMALIZATION.md](FORMALIZATION.md) for the
+statement, build instructions, and correspondence with §§5–6 of the preprint.
+
 ## Prior work
 
 | | |
@@ -86,6 +93,7 @@ it.
 GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition. The author
 reviewed the final manuscript and takes full responsibility for its content.
+The Lean formalization was generated using OpenAI Codex (GPT-6).
 
 ## Citation
 

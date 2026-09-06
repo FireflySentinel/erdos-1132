@@ -1,0 +1,27 @@
+name: Lean
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      LEAN_NUM_THREADS: 2
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
+        with:
+          build: "true"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "true"
+      - name: Check axiom dependencies
+        run: lake env lean Check.lean
+      - name: Replay project declarations through the kernel
+        run: lake env leanchecker Erdos1132
