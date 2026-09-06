@@ -1,7 +1,7 @@
 # Lean formalization of the almost-everywhere bound
 
 This project proves Theorem 1(ii) of the preprint, following §§5–6 of
-[`PROOF.tex`](PROOF.tex).
+[`PROOF.tex`](paper/PROOF.tex).
 The bounded additive loss assertion, Theorem 1(i), is outside this formalization.
 The almost-everywhere proof is independent of Tao's local Bernstein theory.
 

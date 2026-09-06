@@ -22,6 +22,6 @@ jobs:
           lint: "false"
           use-mathlib-cache: "true"
       - name: Check axiom dependencies
-        run: lake env lean Check.lean
+        run: lake env lean checks/Check.lean
       - name: Replay project declarations through the kernel
         run: lake env leanchecker Erdos1132
