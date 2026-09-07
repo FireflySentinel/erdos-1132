@@ -237,6 +237,15 @@ contradicts the assumed lower bound for large \(n\).
 Thus \(G_{C+1}\) is dense, contrary to Theorem~\ref{thm:nonuniform}.
 \end{proof}
 
+The dependence of Tao's constant on \(I\) is already unavoidable when
+the array varies with the interval: a smooth profile for \(|h|\), equal
+to one on \(I\) and large outside, followed by polynomial approximation gives
+\(\sup_I\lambda_n=(2/\pi)\log(n|I|)+O(1)\), hence
+\(C_I\ge(2/\pi)\log(1/|I|)-O(1)\); see
+the interval-length remark in Section~\ref{subsec:counter-amplitude}.
+Theorem~\ref{thm:nonuniform} gives one
+fixed array for which every finite constant fails on some interval.
+
 Baire category enters (i) at one point, to
 produce an interval with a uniform upper bound; recurrence on a
 positive-measure set follows from the energy estimate in
@@ -249,6 +258,11 @@ explicit continuous function whose logarithmic integral ratio is
 large in every gap. Smooth positive approximations also make this
 ratio large at each fixed point of the compact set. An amplitude
 construction converts these functions into interpolation arrays.
+
+Both main theorems and their set and interval-constant corollaries are
+formalized in Lean; see the final section for the precise statements
+and repository. The formal proof includes direct proofs of the local
+potential estimates used from Tao.
 
 Throughout the paper, all logarithms are natural and \(|E|\) denotes
 Lebesgue measure. We write \(c_0=2/\pi\), and suppress the row index
@@ -265,8 +279,9 @@ We use the following local form of Riesz's differentiation formula and its
 near-equality consequence.
 
 \begin{lemma}\label{lem:riesz}
-Suppose that \(F\) is holomorphic in a neighborhood of the square \(\{|\Re
-z|,|\Im z|\le T\}\), is real on its real diameter, and satisfies, throughout this square,
+Suppose that \(T\ge2\pi\) and \(F\) is holomorphic in a neighborhood of
+the disk \(\{|z|\le T\}\), is real on its real diameter, and satisfies,
+throughout this disk,
 \[
  |F(u+iv)|\le e^{|v|}.
 \]
@@ -287,18 +302,21 @@ Choose \(R=m\pi\) with \(T/2\le R<T\), and integrate
 \[
  \frac{F(z)}{z^2\cos z}
 \]
-around the square of radius \(R\). On its vertical sides, \(|\cos z|=\cosh(\Im
-z)\); on its horizontal sides, \(|\cos z|\ge\sinh R\). The contour integral,
-divided by \(2\pi i\), is consequently \(O(R^{-1})\). Taking residues at zero
+around \(|z|=R\). On this circle, \(e^{|\Im z|}\le8|\cos z|\).
+Indeed, for \(|v|\ge1\), use \(|\cos(u+iv)|\ge\sinh|v|\ge e^{|v|}/4\).
+For \(|v|\le1\), put \(d=R-|u|=v^2/(R+|u|)\le1/2\); then
+\(|\cos u|=|\cos d|\ge1/2\), while \(e^{|v|}\le e<3\).
+The contour integral, divided by \(2\pi i\), has absolute value at most
+\(8/R\). Taking residues at zero
 and at \(t_j=(j+\tfrac12)\pi\) gives
 \begin{equation}\label{eq:riesz-formula}
  F'(0)=\sum_{|t_j|<R}\frac{(-1)^jF(t_j)}{t_j^2}+O(T^{-1}).
 \end{equation}
-Since \(|F(t_j)|\le1\) and
+Applying the same formula to \(F(z)=\sin z\) gives
 \[
- \sum_{j\in\mathbb Z}\frac1{t_j^2}=1,
+ \sum_{|t_j|<R}\frac1{t_j^2}=1+O(T^{-1}).
 \]
-equation \eqref{eq:riesz-derivative} follows. Isolating the term \(t_0=\pi/2\)
+Together with \(|F(t_j)|\le1\), equation \eqref{eq:riesz-derivative} follows. Isolating the term \(t_0=\pi/2\)
 in \eqref{eq:riesz-formula} gives
 \[
  1-\delta\le \frac4{\pi^2}F(\pi/2)+1-\frac4{\pi^2}+O(T^{-1}),
@@ -306,8 +324,8 @@ in \eqref{eq:riesz-formula} gives
 which proves \eqref{eq:riesz-stability}.
 \end{proof}
 
-We apply this formula to interpolants with bounded nodal data. The
-estimates we use from Tao are stated first, with their normalization:
+We apply this formula to interpolants with bounded nodal data. We first
+state the local estimates in the form used here, with the normalization:
 \[
  S_n=\sum_k\frac1{|P_n'(x_{k,n})|},\qquad
  \alpha_n=\frac1n\log S_n,\qquad
@@ -316,10 +334,15 @@ estimates we use from Tao are stated first, with their normalization:
 
 \begin{taoestimates}
 Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval, and
-suppose that \(\sup_I\lambda_n\ll n^{O(1)}\). With \(\alpha_n\)
-normalized as above \cite[equation (4.11)]{Tao}, there are densities
-\(\rho_n\) on \(\operatorname{int}I\) with the following properties.
-For each fixed compact interval \(I'\Subset\operatorname{int}I\):
+suppose that \(\sup_I\lambda_n\le n\) for all sufficiently large \(n\).
+This is a specialization of the polynomial upper bound in
+\cite[equation (4.1)]{Tao}. Define
+\[
+ \rho_n(x)=-\frac1{\pi^2}\int_{\mathbb R\setminus I}
+                  \frac{U_n(y)-\alpha_n}{(y-x)^2}\,dy.
+\]
+For each fixed compact interval \(I'\Subset\operatorname{int}I\), the
+following hold uniformly for all sufficiently large \(n\):
 \begin{enumerate}
 \item The densities are bounded above and below by positive constants
 and have uniformly bounded Lipschitz norms:
@@ -328,33 +351,36 @@ and have uniformly bounded Lipschitz norms:
  |\rho_n(x)-\rho_n(x_0)|\ll_{I'}|x-x_0|
  \qquad(x,x_0\in I').
 \]
-This is \cite[Theorem 4.1(ii), equation (4.6)]{Tao}.
-\item For \(x\in I'\) and \(\eta\ge\log n/n\),
+This is the form of \cite[Theorem 4.1(ii), equation (4.6)]{Tao} needed here.
+\item For \(x\in I'\) and \(\eta\ge1/n\),
 \begin{equation}\label{eq:potential}
  U_n(x+i\eta)=\alpha_n-\pi\eta\rho_n(x)
               +O_{I'}\!\left(\frac{\log n}{n}+\eta^3\right).
 \end{equation}
-This is \cite[equation (4.7)]{Tao}.
-\item For every subinterval \(K\subset I'\) and every \(A\ge1\),
-\begin{equation}\label{eq:discrepancy}
- \frac1n\#\{k:x_{k,n}\in K\}
- =\int_K\rho_n(x)\,dx
-   +O_{I'}\!\left(\frac{|K|}{A}+\frac{A^2\log n}{n}\right).
+Compare \cite[equation (4.7)]{Tao}.
+\item For globally Lipschitz functions \(h_n\) supported in \(I'\), with
+uniformly bounded supremum norms and Lipschitz constants,
+\begin{equation}\label{eq:quadrature}
+ \frac1n\sum_k h_n(x_{k,n})
+ =\int h_n(x)\rho_n(x)\,dx+O(n^{-1/4}).
 \end{equation}
-This is \cite[Theorem 4.1(iv), equation (4.9)]{Tao}.
 \end{enumerate}
 \end{taoestimates}
 
-The function \(\rho_n\) here is Tao's density defined from the original
-interval \(I\) by his equation (4.15), so it does not depend on the
-auxiliary choice of \(I'\).
-Taking \(A=n^{1/10}\) in \eqref{eq:discrepancy} and integrating by parts
-shows that, for functions \(h_n\) supported in a fixed compact subset
-of \(\operatorname{int}I\) with uniformly bounded Lipschitz norms,
-\begin{equation}\label{eq:quadrature}
- \frac1n\sum_k h_n(x_{k,n})
- =\int h_n(x)\rho_n(x)\,dx+O(n^{-1/10}).
-\end{equation}
+The Lean development proves this proposition directly in the stated form,
+including the potential expansion
+(\texttt{uniform\_\allowbreak{}complex\_\allowbreak{}potential\_\allowbreak{}expansion})
+and density positivity
+(\texttt{eventually\_\allowbreak{}exterior\_\allowbreak{}density\_\allowbreak{}positive}).
+Thus the formal proof of Theorem~\ref{thm:main} does not depend on \cite{Tao}.
+
+The density is defined from \(I\), as in \cite[equation (4.15)]{Tao}, and
+is independent of the auxiliary interval \(I'\).
+The quadrature estimate follows directly from the Poisson representation:
+averaging Poisson kernels between heights \(h\) and \(2h\) gives an
+approximate identity with Lipschitz error \(O(\sqrt h)\), while
+\eqref{eq:potential} contributes \(O(\log n/(nh)+h^2)\).
+Taking \(h=n^{-1/2}\) gives \eqref{eq:quadrature}.
 
 \begin{lemma}\label{lem:local}
 Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval. Suppose that,
@@ -408,10 +434,17 @@ we have \(|q(z)|\le\Lambda_n e^{\omega H}\): \(\omega H\) exceeds
 remaining \(O(\log n)\) terms in \eqref{eq:complex-interpolant}.
 On the lower edge \(|q|\le\Lambda_n\); a Chebyshev expansion on \(I\)
 gives \(|q|\le\Lambda_n\exp(O_I(n))\) on the vertical sides.
-Apply \cite[Lemma 2.5]{Tao} to
-\(\Lambda_n^{-1}q(z)e^{i\omega(z-x)}\).
-At distance at least \(L/2\) from the vertical sides, its error factor is
-\(\exp(O(n e^{-cL/H}))=1+O(n^{-10})\). Thus, also reflecting across
+For \(f(z)=\Lambda_n^{-1}q(z)e^{i\omega(z-x)}\), the horizontal
+edges have \(|f|\le1\), and the vertical edges have \(|f|\le e^B\)
+with \(B=O_I(n)\). Set
+\[
+ \mathcal B(z)=2B\left[e^{(z-x-L)/H}+e^{(-z+x-L)/H}\right].
+\]
+Its real part is nonnegative on the horizontal edges and at least
+\(B\) on the vertical edges, since \(\cos(v/H)\ge1/2\) for \(0\le v\le H\).
+The maximum modulus principle gives \(|f(z)e^{-\mathcal B(z)}|\le1\).
+At distance at least \(L/2\) from the vertical sides, the resulting error
+factor is \(\exp(O(n e^{-L/(2H)}))=1+O(n^{-10})\). Thus, also reflecting across
 the real axis,
 \begin{equation}\label{eq:local-growth}
  |q(x+u+iv)|\le\Lambda_n(1+n^{-10})e^{\omega|v|}
@@ -421,7 +454,7 @@ The rescaled function
 \[
  F(t)=\frac{q(x+t/\omega)}{\Lambda_n(1+n^{-10})}
 \]
-satisfies Lemma~\ref{lem:riesz} on a square of radius
+satisfies Lemma~\ref{lem:riesz} on a disk of radius
 \(T\asymp_J n^{3/5}\).
 By \eqref{eq:riesz-derivative},
 \[
@@ -1274,7 +1307,6 @@ three fixed examples \(h=1,\ 1-z/2,\ (1-z/2)^2\) for
 closed expressions for \(Lv/v\). On the prescribed phase midpoints
 in \(K=[-0.8,0.8]\), the largest computed values at \(n=800\) are,
 respectively, \(0.5212524\), \(0.5215144\), and \(0.5217777\).
-All values reported by the script are floating-point evaluations.
 \end{remark}
 
 Every positive smooth function \(v\) on \(I\) can be approximated in
@@ -1336,14 +1368,14 @@ Fix \(M>0\), and carry out Subsections~\ref{subsec:counter-set}--\ref{subsec:cou
 For each \(j\ge2\), choose an amplitude \(\widetilde v_j=|h_j|^{-1}\) as in Subsection~\ref{subsec:counter-amplitude} so close to \(v_j\) that
 \begin{equation}\label{eq:counter-u30}
 \left\|\frac{L\widetilde v_j}{\widetilde v_j}
-                 -\frac{Lv_j}{v_j}\right\|_\infty\le1/j.
+                 -\frac{Lv_j}{v_j}\right\|_\infty<1/2.
 \end{equation}
 Let \(K_j=[-1+1/j,1-1/j]\). Choose a strictly increasing sequence of integers \(N_j\), each larger than \(\deg h_j\) and the threshold in Lemma~\ref{lem:amplitude} for \(h_j,K_j\). For \(N_j\le n<N_{j+1}\), use as row \(n\) the \(n\) roots of \eqref{eq:counter-u25} with \(h=h_j\). Fill the finitely many earlier rows with Chebyshev roots.
 
 Fix \(x\in(-1,1)\). The block index \(j\) tends to infinity with \(n\), and \(x\in K_j\) for all large \(j\). Equations \eqref{eq:counter-u19} and \eqref{eq:counter-u30} give
-\(L\widetilde v_j(x)/\widetilde v_j(x)\ge A+1-1/j\) eventually. Hence \eqref{eq:counter-u26} gives, for all sufficiently large \(n\),
+\(L\widetilde v_j(x)/\widetilde v_j(x)\ge A+1/2\) eventually. Hence \eqref{eq:counter-u26} gives, for all sufficiently large \(n\),
 \[
- \lambda_n(x)\le\frac2\pi\log n+3-\frac{A+1-1/j}{\pi}
+ \lambda_n(x)\le\frac2\pi\log n+3-\frac{A+1/2}{\pi}
  <\frac2\pi\log n-M.
 \]
 This proves \eqref{eq:counter-eventual} and the failure of an absolute additive constant.
@@ -1352,44 +1384,28 @@ For the final assertion, \eqref{eq:counter-u18}, \eqref{eq:counter-u26}, and \eq
 \begin{equation}\label{eq:counter-u31}
 \limsup_{n\to\infty}
  \left(\lambda_n(x)-\frac2\pi\log n\right)
- \le3-\frac{Lu(x)}{\pi u(x)}.
+ \le3+\frac1{2\pi}-\frac{Lu(x)}{\pi u(x)}.
 \end{equation}
 Choose a gap \((b,c)\) with both endpoints in \((-1,1)\). By \eqref{eq:counter-u9}, \(Lu(x)/u(x)\to+\infty\) as \(x\downarrow b\). Given any finite \(C\), there is a nonempty interval \((b,b+\sigma)\) on which the right side of \eqref{eq:counter-u31} is strictly less than \(-C-1\). This interval is disjoint from \(G_C\), proving the second assertion. \end{proof}
 
 
 \section*{Use of generative AI}
 
-GPT-6 Astra was used to generate proofs and draft the manuscript;
-GPT-5.6 Sol and Claude Opus 5 were used for editorial review.
-An independent Codex agent also reviewed the complete proof of
-Theorem~\ref{thm:nonuniform}.
-Both conclusions of Theorem~\ref{thm:main}, the set corollary, and the
-complete Theorem~\ref{thm:nonuniform} with its interval-constant corollary
-have been formalized in Lean 4 with Mathlib using OpenAI Codex (GPT-6).
-The main statements are \texttt{Erdos1132.theorem1} and
-\texttt{Erdos1132.Counterexample.}\allowbreak
-\texttt{theorem2\_unshifted}; their hypotheses
-are precisely the node-array conditions and \(M>0\), respectively.
-The checks expand the Lagrange products and verify that the proofs use
-only Lean's standard axioms \texttt{propext}, \texttt{Classical.choice},
-and \texttt{Quot.sound}.
+The Lean statements \texttt{Erdos1132.theorem1} and
+\texttt{Erdos1132.Counterexample.theorem2} have precisely the node-array
+conditions and \(M>0\) as their hypotheses, respectively.
+Both main theorems, the set corollary, and the interval-constant
+corollary are formalized in Lean 4 with Mathlib. The formal proofs
+follow the arguments above with the substitutions listed in the
+repository README. The checks expand the Lagrange products and verify
+that the proofs use only Lean's standard axioms \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.
 The source and build instructions are at
 \url{https://github.com/FireflySentinel/erdos-1132}.
 
-For Theorem~\ref{thm:main}(i), the formal proof uses circular contours
-for the finite Riesz formula, obtains the required Lipschitz quadrature
-estimate directly from the Poisson representation, and estimates the
-high-value covers by bounded overlap. These replace the corresponding
-auxiliary arguments above and yield the same conclusion. The local
-potential, positive density, derivative, energy, and recurrence estimates
-are all proved in Lean.
-For Theorem~\ref{thm:nonuniform}, the formal proof includes the Cantor set,
-the smooth sequence, the polynomial amplitudes, all analytic estimates of
-Lemma~\ref{lem:amplitude}, and both conclusions for the same array.
-It chooses smooth cutoffs from an open-set support function, with value
-one on the same finite collections of gap middle halves, and uses a
-fixed ratio-approximation error below \(1/2\), which suffices for both
-conclusions.
+GPT-6 Astra was used to generate proofs and draft the manuscript;
+GPT-5.6 Sol and Claude Opus 5 were used for editorial review.
+The Lean formalization was generated using OpenAI Codex (GPT-6).
 
 \begin{thebibliography}{11}
 

@@ -1,5 +1,5 @@
 import Erdos1132.BaireBounds
-import Erdos1132.Counterexample.Theorem2Unshifted
+import Erdos1132.Counterexample.Theorem2
 
 /-! # Quantifier consequences of Theorem 2 -/
 
@@ -58,7 +58,7 @@ theorem theorem2_with_interval_corollary (M : ℝ) (hM : 0 < M) :
       (∀ C : ℝ, ∃ l r : ℝ, l < r ∧ Icc l r ⊆ Ioo (-1 : ℝ) 1 ∧
         ∃ᶠ n in atTop, sSup ((X n).lebesgue '' Icc l r) <
           (2 / Real.pi) * Real.log (n : ℝ) - C) := by
-  obtain ⟨X, hI, hupper, hnd⟩ := theorem2_unshifted M hM
+  obtain ⟨X, hI, hupper, hnd⟩ := theorem2 M hM
   exact ⟨X, hI, hupper, hnd, frequently_interval_sup_lt X hnd⟩
 
 /-- Quantifier pattern (S1) is false, even when all nodes are interior. -/
@@ -68,7 +68,7 @@ theorem no_absolute_additive_constant :
       ∃ x ∈ Ioo (-1 : ℝ) 1, ∃ᶠ (n : ℕ) in atTop,
         (2 / Real.pi) * Real.log (n : ℝ) - C < (X n).lebesgue x := by
   rintro ⟨C, hC⟩
-  obtain ⟨X, hI, hupper, _⟩ := theorem2_unshifted (max C 0 + 1) (by positivity)
+  obtain ⟨X, hI, hupper, _⟩ := theorem2 (max C 0 + 1) (by positivity)
   obtain ⟨x, hx, hfreq⟩ := hC X hI
   obtain ⟨n, hn, hle⟩ := (hfreq.and_eventually (hupper x hx)).exists
   linarith [le_max_left C 0]
@@ -81,7 +81,7 @@ theorem no_arraywise_dense_constant :
       ∃ C : ℝ, Dense {x : Ioo (-1 : ℝ) 1 | ∃ᶠ (n : ℕ) in atTop,
         (2 / Real.pi) * Real.log (n : ℝ) - C < (X n).lebesgue x} := by
   intro h
-  obtain ⟨X, hI, _, hnd⟩ := theorem2_unshifted 1 (by norm_num)
+  obtain ⟨X, hI, _, hnd⟩ := theorem2 1 (by norm_num)
   obtain ⟨C, hd⟩ := h X hI
   exact hnd C hd
 

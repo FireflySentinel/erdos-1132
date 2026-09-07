@@ -16,7 +16,7 @@ import Erdos1132.Counterexample.AmplitudeRoots
 import Erdos1132.Counterexample.AmplitudeInterpolation
 import Erdos1132.Counterexample.MidpointQuadrature
 import Erdos1132.Counterexample.Assembly
-import Erdos1132.Counterexample.Theorem2Unshifted
+import Erdos1132.Counterexample.Theorem2
 import Erdos1132.Counterexample.Corollaries
 import Erdos1132.JumpEnergy
 import Erdos1132.SecondMoment

@@ -95,19 +95,19 @@ info: 'Erdos1132.Counterexample.abs_logarithmicOperator_le_of_derivative' depend
  Classical.choice,
  Quot.sound]
 -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.abs_logarithmicOperator_le_of_derivative
 
 /-- info: 'Erdos1132.Counterexample.integrable_differenceKernel' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.integrable_differenceKernel
 
 /-- info: 'Erdos1132.Counterexample.logarithmicRatio_sub_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.logarithmicRatio_sub_bound
 
 /-- info: 'Erdos1132.Counterexample.logarithmicOperator_local_eq_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.logarithmicOperator_local_eq_bound
 
 /--
@@ -115,43 +115,43 @@ info: 'Erdos1132.Counterexample.exists_positive_polynomial_C1_ratio_approximatio
  Classical.choice,
  Quot.sound]
 -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.exists_positive_polynomial_C1_ratio_approximation
 
 /-- info: 'Erdos1132.Counterexample.gapRadius_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.gapRadius_lipschitz
 
 /-- info: 'Erdos1132.Counterexample.amplitudePolynomial_degree' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.amplitudePolynomial_degree
 
 /-- info: 'Erdos1132.Counterexample.fractional_power_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.fractional_power_bound
 
 /-- info: 'Erdos1132.Counterexample.contraction_factor_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.contraction_factor_bound
 
 /-- info: 'Erdos1132.Counterexample.logarithmic_contraction_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.logarithmic_contraction_bound
 
 /-- info: 'Erdos1132.Counterexample.gapScale_log_parameter' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.gapScale_log_parameter
 
 /-- info: 'Erdos1132.Counterexample.gapScale_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.gapScale_lower_bound
 
 /-- info: 'Erdos1132.Counterexample.amplitudePolynomial_trig_expansion' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.amplitudePolynomial_trig_expansion
 
 /-- info: 'Erdos1132.Counterexample.assembled_eventually_upper' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.assembled_eventually_upper
 
 /--
@@ -159,19 +159,19 @@ info: 'Erdos1132.Counterexample.not_dense_goodPoints_of_open_interval' depends o
  Classical.choice,
  Quot.sound]
 -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.not_dense_goodPoints_of_open_interval
 
 /-- info: 'Erdos1132.Counterexample.integral_radial_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.integral_radial_tail_le
 
 /-- info: 'Erdos1132.Counterexample.integral_inverseDistance_annulus' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.integral_inverseDistance_annulus
 
 /-- info: 'Erdos1132.Counterexample.logarithmic_integral_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.logarithmic_integral_lower_bound
 
 /--
@@ -179,15 +179,15 @@ info: 'Erdos1132.Counterexample.logarithmic_integral_lower_bound_at_scale' depen
  Classical.choice,
  Quot.sound]
 -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.logarithmic_integral_lower_bound_at_scale
 
 /-- info: 'Erdos1132.Counterexample.cutoffIndex_margin' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.cutoffIndex_margin
 
 /-- info: 'Erdos1132.Counterexample.explicit_smoothCutoff_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.explicit_smoothCutoff_lower_bound
 
 /-- The constructed amplitude rows, with the polynomial and Lagrange products explicit. -/
@@ -239,31 +239,31 @@ example {S : Type*} (R : ℕ → S → ℝ → ℝ) {V : ℝ}
     (fun p => hBV p.1 p.2) (fun p => hi p.1 p.2) (fun p => hV p.1 p.2) (n, s) hn
 
 /-- info: 'Erdos1132.Counterexample.exists_normalized_polynomial_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.exists_normalized_polynomial_log
 
 /-- info: 'Erdos1132.Counterexample.exists_amplitude_phase' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.exists_amplitude_phase
 
 /-- info: 'Erdos1132.Counterexample.eventually_exists_amplitude_roots' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.eventually_exists_amplitude_roots
 
 /-- info: 'Erdos1132.Counterexample.cardinal_eq_polynomial_quotient' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.cardinal_eq_polynomial_quotient
 
 /-- info: 'Erdos1132.Counterexample.eventually_exists_amplitude_rows' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.eventually_exists_amplitude_rows
 
 /-- info: 'Erdos1132.Counterexample.midpoint_quadrature_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.midpoint_quadrature_error_bound
 
 /-- info: 'Erdos1132.Counterexample.uniform_midpoint_quadrature_error' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.uniform_midpoint_quadrature_error
 
 /-- The complete Theorem 2, with distinct interior nodes and the Lagrange
@@ -278,7 +278,7 @@ example (M : ℝ) (hM : 0 < M) :
       (∀ C : ℝ, ¬Dense {x : Ioo (-1 : ℝ) 1 |
         ∃ᶠ (n : ℕ) in atTop, (2/Real.pi)*Real.log (n:ℝ)-C <
           ∑ i : Fin n, |∏ j ∈ Finset.univ.erase i, ((x:ℝ)-X n j)/(X n i-X n j)|}) := by
-  obtain ⟨X,hinternal,hupper,hnd⟩ := Erdos1132.Counterexample.theorem2_unshifted M hM
+  obtain ⟨X,hinternal,hupper,hnd⟩ := Erdos1132.Counterexample.theorem2 M hM
   refine ⟨fun n => (X n).point,fun n => (X n).injective,hinternal,?_,?_⟩
   · simpa only [Erdos1132.Nodes.lebesgue,Erdos1132.Nodes.cardinal,
       Lagrange.basis,Lagrange.basisDivisor,Polynomial.eval_prod,
@@ -289,16 +289,16 @@ example (M : ℝ) (hM : 0 < M) :
       Polynomial.eval_mul,Polynomial.eval_C,Polynomial.eval_sub,
       Polynomial.eval_X,div_eq_mul_inv,mul_comm] using hnd
 
+/-- info: 'Erdos1132.Counterexample.theorem2_shifted' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.Counterexample.theorem2_shifted
+
 /-- info: 'Erdos1132.Counterexample.theorem2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.theorem2
 
-/-- info: 'Erdos1132.Counterexample.theorem2_unshifted' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
-#print axioms Erdos1132.Counterexample.theorem2_unshifted
-
 /-- info: 'Erdos1132.Counterexample.exists_cantor_smooth_sequence' depends on axioms: [propext, Classical.choice, Quot.sound] -/
-#guard_msgs in
+#guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.exists_cantor_smooth_sequence
 
 /-- info: 'Erdos1132.Counterexample.exists_amplitude_logarithmicRatio_approximation' depends on axioms: [propext, Classical.choice, Quot.sound] -/
@@ -335,7 +335,7 @@ example (M : ℝ) (hM : 0 < M) :
           sSup ((fun x => ∑ i : Fin n,
             |∏ j ∈ Finset.univ.erase i,
               (x - (X n).point j) / ((X n).point i - (X n).point j)|) '' Icc l r) := by
-  obtain ⟨X, hI, hupper, hnd⟩ := Erdos1132.Counterexample.theorem2_unshifted M hM
+  obtain ⟨X, hI, hupper, hnd⟩ := Erdos1132.Counterexample.theorem2 M hM
   refine ⟨X, hI, hupper, ?_⟩
   have hL (n : ℕ) : (fun x => ∑ i : Fin n,
       |∏ j ∈ Finset.univ.erase i,

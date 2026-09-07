@@ -13,6 +13,9 @@ namespace Erdos1132
 theorem mem_interval_of_inset {a b d x : ℝ} (hd : 0 ≤ d) (hx : x ∈ Icc (a+d) (b-d)) :
     x ∈ Icc a b := by constructor <;> linarith [hx.1, hx.2]
 
+/-- A direct proof of [Tao, Theorem 4.1(ii)] in the form needed here, with
+his hypothesis (4.1) specialized to `λ ≤ n` on the fixed interval.
+The normalization and exterior density are defined from the node array. -/
 theorem uniform_complex_potential_expansion {a b d : ℝ} (hab : a < b)
     (hI : Icc a b ⊆ Icc (-1) 1) (hd : 0 < d) :
     ∃ C > 0, ∀ (n : ℕ) (X : Nodes n), 0 < n →
