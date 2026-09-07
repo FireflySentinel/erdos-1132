@@ -4,7 +4,8 @@ import Erdos1132.Counterexample.RemainderIntegral
 /-!
 # The explicit integral of the coordinate remainder
 
-The endpoint terms reduce to the logarithmic correction in equation (7.29).
+The endpoint terms give the logarithmic correction in the finite-part
+integral identity of the amplitude lemma.
 
 Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/

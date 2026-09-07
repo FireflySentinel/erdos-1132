@@ -5,7 +5,8 @@ import Erdos1132.Counterexample.AmplitudeInterpolation
 # Amplitude nodes at the inverse images of phase midpoints
 
 These rows use the same globally bounded phase as the quadrature estimates.
-Their Lebesgue function is the exact inverse-coordinate sum in (7.28).
+Their Lebesgue function is the exact inverse-coordinate sum used in the
+amplitude lemma.
 
 Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
