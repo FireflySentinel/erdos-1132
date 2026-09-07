@@ -189,3 +189,79 @@ info: 'Erdos1132.Counterexample.logarithmic_integral_lower_bound_at_scale' depen
 /-- info: 'Erdos1132.Counterexample.explicit_smoothCutoff_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos1132.Counterexample.explicit_smoothCutoff_lower_bound
+
+/-- The constructed amplitude rows, with the polynomial and Lagrange products explicit. -/
+example (h : ℝ[X])
+    (hzero : ∀ z : ℂ, ‖z‖ ≤ 1 → (h.map Complex.ofRealHom).eval z ≠ 0)
+    (hpos : 0 < h.coeff 0) :
+    ∃ ψ : ℝ → ℝ, ContDiff ℝ ⊤ ψ ∧ ψ 0 = 0 ∧ ψ Real.pi = 0 ∧
+      ∀ᶠ n : ℕ in atTop, ∃ X : Fin n → ℝ, ∃ θ : Fin n → ℝ,
+        Function.Injective X ∧
+        (∀ i, θ i ∈ Ioo 0 Real.pi ∧ X i = Real.cos (θ i) ∧ X i ∈ Ioo (-1) 1) ∧
+        (∀ x : ℝ,
+          (∑ r ∈ Finset.range (h.natDegree + 1),
+            h.coeff r * (Polynomial.Chebyshev.T ℝ (n - r : ℕ)).eval x) = 0 ↔ ∃ i, x = X i) ∧
+        ∀ t : ℝ, (∀ i, Real.cos t ≠ X i) →
+          (∑ i : Fin n, |∏ j ∈ Finset.univ.erase i,
+            (Real.cos t - X j) / (X i - X j)|) =
+            ‖(h.map Complex.ofRealHom).eval (Complex.exp ((t : ℂ) * Complex.I))‖ *
+              |Real.cos (n * t - ψ t)| *
+              ∑ i : Fin n, Real.sin (θ i) /
+                (‖(h.map Complex.ofRealHom).eval (Complex.exp ((θ i : ℂ) * Complex.I))‖ *
+                  (n - deriv ψ (θ i)) * |Real.cos t - X i|) := by
+  obtain ⟨ψ, hc, h0, hπ, hrows⟩ :=
+    Erdos1132.Counterexample.eventually_exists_amplitude_rows h hzero hpos
+  refine ⟨ψ, hc, h0, hπ, ?_⟩
+  filter_upwards [hrows] with n hn
+  obtain ⟨Y, θ, hθ, hroots, _, hformula⟩ := hn
+  refine ⟨Y.point, θ, Y.injective, hθ, ?_, ?_⟩
+  · intro x
+    simpa only [Erdos1132.Counterexample.amplitudePolynomial, Polynomial.eval_finsetSum,
+      Polynomial.eval_mul, Polynomial.eval_C] using hroots x
+  · intro t ht
+    simpa only [Erdos1132.Counterexample.complexPolynomial,
+      Erdos1132.Counterexample.circlePoint, Erdos1132.Nodes.lebesgue,
+      Erdos1132.Nodes.cardinal, Lagrange.basis, Lagrange.basisDivisor,
+      Polynomial.eval_prod, Polynomial.eval_mul, Polynomial.eval_C,
+      Polynomial.eval_sub, Polynomial.eval_X, div_eq_mul_inv, mul_comm] using hformula t ht
+
+/-- A common variation bound controls the quadrature error for every parameter and degree. -/
+example {S : Type*} (R : ℕ → S → ℝ → ℝ) {V : ℝ}
+    (hBV : ∀ n s, BoundedVariationOn (R n s) (Icc 0 Real.pi))
+    (hi : ∀ n s, IntervalIntegrable (R n s) volume 0 Real.pi)
+    (hV : ∀ n s, (eVariationOn (R n s) (Icc 0 Real.pi)).toReal ≤ V)
+    (n : ℕ) (hn : 0 < n) (s : S) :
+    |(Real.pi / n) * (∑ k ∈ Finset.range n,
+        R n s (((k : ℝ) + 1 / 2) * (Real.pi / n))) -
+        ∫ t in (0 : ℝ)..Real.pi, R n s t| ≤ Real.pi * V / n := by
+  exact Erdos1132.Counterexample.uniform_midpoint_quadrature_error
+    (R := fun p : ℕ × S => R p.1 p.2) Real.pi_pos.le
+    (fun p => hBV p.1 p.2) (fun p => hi p.1 p.2) (fun p => hV p.1 p.2) (n, s) hn
+
+/-- info: 'Erdos1132.Counterexample.exists_normalized_polynomial_log' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.exists_normalized_polynomial_log
+
+/-- info: 'Erdos1132.Counterexample.exists_amplitude_phase' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.exists_amplitude_phase
+
+/-- info: 'Erdos1132.Counterexample.eventually_exists_amplitude_roots' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.eventually_exists_amplitude_roots
+
+/-- info: 'Erdos1132.Counterexample.cardinal_eq_polynomial_quotient' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.cardinal_eq_polynomial_quotient
+
+/-- info: 'Erdos1132.Counterexample.eventually_exists_amplitude_rows' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.eventually_exists_amplitude_rows
+
+/-- info: 'Erdos1132.Counterexample.midpoint_quadrature_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.midpoint_quadrature_error_bound
+
+/-- info: 'Erdos1132.Counterexample.uniform_midpoint_quadrature_error' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.uniform_midpoint_quadrature_error

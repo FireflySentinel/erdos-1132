@@ -79,7 +79,9 @@ The Section 7 lemmas below are proved from the hypotheses shown in their types.
 Not formalized: the Cantor construction and its geometric measure estimates
 (§§7.1–7.2), the construction of the smooth amplitude sequence (§7.3), the
 factorization and reciprocal-square-root approximation leading to $|h|^{-1}$
-(§7.4), and the phase, root, and quadrature estimates in Lemma 9.
+(§7.4), and the remaining analytic estimates in Lemma 9: inverse-coordinate
+regularity, the finite-part identity (7.22), the harmonic-sum bounds, and a
+uniform variation bound for the concrete remainder $R_n(s,\cdot)$.
 The assembly theorem takes the row family, its upper estimates, and the eventual
 lower estimates for $q$ as hypotheses. Theorem 1(i) also remains outside the
 formalization.
@@ -93,6 +95,9 @@ formalization.
 | Cutoff estimate on $F$ in §7.3 | [SmoothLowerBound.lean](Erdos1132/Counterexample/SmoothLowerBound.lean): $(A+1)v_j(x)\le Lv_j(x)$ for the explicit profile and cutoff index. | $j>0$, measurable $r,\chi$, $0\le r\le2$, $r(y)\le\lvert x-y\rvert$, $0\le\chi\le1$, $\chi=0$ near $x$, and $A_\tau(x)\ge k_j/16$. |
 | Polynomial approximation in §7.4, applied in the paper to $v_j^{-2}$ | [PolynomialApproximation.lean](Erdos1132/Counterexample/PolynomialApproximation.lean): positive $C^1$ polynomial approximation controlling values, derivatives, and $Lp/p$. | A strictly positive function with a continuous derivative on $[-1,1]$, and a positive error tolerance. |
 | Algebraic part of Lemma 9 | [AmplitudePolynomial.lean](Erdos1132/Counterexample/AmplitudePolynomial.lean): the Chebyshev sum, its trigonometric expansion, and degree exactly $n$. | Real polynomial coefficients; $n>\deg h$ for the expansion, and additionally $h(0)\ne0$ for the degree. |
+| Phase and simple interior roots in Lemma 9, including (7.20) | [AmplitudePhase.lean](Erdos1132/Counterexample/AmplitudePhase.lean) and [AmplitudeRoots.lean](Erdos1132/Counterexample/AmplitudeRoots.lean): a smooth phase with zero endpoint values, the exact cosine identity, and all $n$ interior simple roots with their derivative weights. | A real polynomial $h$ nonvanishing on the closed unit disk, with $h(0)>0$; the sufficiently-large-degree threshold is derived. |
+| Lagrange formula underlying (7.21) | [AmplitudeInterpolation.lean](Erdos1132/Counterexample/AmplitudeInterpolation.lean): actual `Nodes n` rows, the complete real root set, and the exact angular formula for their Lebesgue functions. | The same hypotheses on $h$; the evaluation point is outside the row's nodes. |
+| Midpoint quadrature used in Lemma 9 | [MidpointQuadrature.lean](Erdos1132/Counterexample/MidpointQuadrature.lean): error at most mesh width times total variation, giving $\pi V/n$ uniformly across a family. | Interval integrability and bounded variation on $[0,\pi]$, with one variation bound $V$ for every parameter and degree. |
 | Degree blocks and final quantifiers in §7.5 | [Assembly.lean](Erdos1132/Counterexample/Assembly.lean): increasing thresholds, all-row bounds, and relative non-density in $(-1,1)$. | Valid node rows, increasing thresholds, eventual coverage by $K_j$, and the stated upper and lower estimates; an eventual upper bound on an open interval gives non-density. |
 
 The integral proof uses [RadialComparison.lean](Erdos1132/Counterexample/RadialComparison.lean)
@@ -105,7 +110,8 @@ integral estimate are proved in Lean.
 
 These modules are imported by `Erdos1132` and included in `lake test` and kernel
 replay. [Counterexample.lean](checks/Counterexample.lean) expands the integral
-and Lagrange product in the checked statements and checks the axiom dependencies
+and Lagrange product in the checked statements, including the newly constructed
+amplitude rows, and checks the axiom dependencies
 `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## Numerical check

@@ -11,4 +11,8 @@ import Erdos1132.Counterexample.RadialIntervals
 import Erdos1132.Counterexample.LogIntegralLowerBound
 import Erdos1132.Counterexample.SmoothLowerBound
 import Erdos1132.Counterexample.AmplitudePolynomial
+import Erdos1132.Counterexample.AmplitudePhase
+import Erdos1132.Counterexample.AmplitudeRoots
+import Erdos1132.Counterexample.AmplitudeInterpolation
+import Erdos1132.Counterexample.MidpointQuadrature
 import Erdos1132.Counterexample.Assembly
