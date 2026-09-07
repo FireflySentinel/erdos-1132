@@ -94,4 +94,26 @@ theorem ae_lebesgue_limsup (X : ∀ n, Nodes n) :
   rw [← limsup_nat_add (fun n => (((X n).lebesgue x / Real.log (n : ℝ) : ℝ) : EReal)) 2]
   simpa only [rowSize, Nat.cast_add, Nat.cast_ofNat] using hx
 
+/-- The sharp strict lower bounds in the original convention of `n` nodes in row `n`. -/
+theorem ae_frequently_lower_bound_unshifted (X : ∀ n, Nodes n) :
+    ∀ᵐ x ∂volume.restrict (Ioo (-1) 1), ∀ c < 2 / Real.pi,
+      ∃ᶠ (n : ℕ) in atTop, c * Real.log (n : ℝ) < (X n).lebesgue x := by
+  filter_upwards [ae_frequently_lower_bound (fun n => X (n + 2))] with x hx
+  intro c hc
+  apply (tendsto_add_atTop_nat 2).frequently
+  simpa only [rowSize, Nat.cast_add, Nat.cast_ofNat] using hx c hc
+
+/-- The positive-measure set corollary with exactly `n` nodes in row `n`. -/
+theorem eventually_exists_lower_bound_unshifted (X : ∀ n, Nodes n) {c : ℝ}
+    (hc : 0 < c) (hcπ : c < 2 / Real.pi) {E : Set ℝ}
+    (hE : MeasurableSet E) (hEint : E ⊆ Icc (-1) 1) (hEpos : 0 < volume E) :
+    ∀ᶠ (n : ℕ) in atTop, ∃ x ∈ E, c * Real.log (n : ℝ) < (X n).lebesgue x := by
+  obtain ⟨N, hN⟩ := eventually_atTop.mp
+    (eventually_exists_lower_bound (fun n => X (n + 2)) hc hcπ hE hEint hEpos)
+  apply eventually_atTop.mpr
+  refine ⟨N + 2, fun n hn => ?_⟩
+  obtain ⟨m, rfl⟩ : ∃ m : ℕ, n = m + 2 :=
+    ⟨n - 2, (Nat.sub_add_cancel (by omega)).symm⟩
+  simpa only [rowSize, Nat.cast_add, Nat.cast_ofNat] using hN m (by omega)
+
 end Erdos1132

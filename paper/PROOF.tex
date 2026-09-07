@@ -1363,26 +1363,33 @@ GPT-6 Astra was used to generate proofs and draft the manuscript;
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review.
 An independent Codex agent also reviewed the complete proof of
 Theorem~\ref{thm:nonuniform}.
-Theorem~\ref{thm:main}(ii), including the arguments of
-Sections~\ref{sec:cauchy}--\ref{sec:ae}, and the set corollary have been
-formalized in Lean 4 with Mathlib using OpenAI Codex (GPT-6).
-The corollary is \texttt{Erdos1132.eventually\_exists\_lower\_bound}, derived
-from \texttt{uniform\_low\_set\_null} with an upper bound assumed for
-infinitely many rows.
-The source and build instructions
-are at \url{https://github.com/FireflySentinel/erdos-1132}.
-The complete Theorem~\ref{thm:nonuniform} is also formalized as
-\texttt{Erdos1132.Counterexample.theorem2\_unshifted}, including the
-construction of the Cantor set, the smooth sequence, the polynomial
-amplitudes, all analytic estimates of Lemma~\ref{lem:amplitude}, and both
-conclusions for the same array. Its only hypothesis is \(M>0\).
-The formal proof chooses smooth cutoffs from an open-set support function,
-with value one on the same finite collections of gap middle halves;
-it uses a fixed ratio-approximation error below \(1/2\), which suffices
-for both conclusions. The checks expand the Lagrange product and verify
-that the proof uses only Lean's standard axioms \texttt{propext},
-\texttt{Classical.choice}, and \texttt{Quot.sound}.
-Theorem~\ref{thm:main}(i) remains outside the formalization.
+Both conclusions of Theorem~\ref{thm:main}, the set corollary, and the
+complete Theorem~\ref{thm:nonuniform} with its interval-constant corollary
+have been formalized in Lean 4 with Mathlib using OpenAI Codex (GPT-6).
+The main statements are \texttt{Erdos1132.theorem1} and
+\texttt{Erdos1132.Counterexample.}\allowbreak
+\texttt{theorem2\_unshifted}; their hypotheses
+are precisely the node-array conditions and \(M>0\), respectively.
+The checks expand the Lagrange products and verify that the proofs use
+only Lean's standard axioms \texttt{propext}, \texttt{Classical.choice},
+and \texttt{Quot.sound}.
+The source and build instructions are at
+\url{https://github.com/FireflySentinel/erdos-1132}.
+
+For Theorem~\ref{thm:main}(i), the formal proof uses circular contours
+for the finite Riesz formula, obtains the required Lipschitz quadrature
+estimate directly from the Poisson representation, and estimates the
+high-value covers by bounded overlap. These replace the corresponding
+auxiliary arguments above and yield the same conclusion. The local
+potential, positive density, derivative, energy, and recurrence estimates
+are all proved in Lean.
+For Theorem~\ref{thm:nonuniform}, the formal proof includes the Cantor set,
+the smooth sequence, the polynomial amplitudes, all analytic estimates of
+Lemma~\ref{lem:amplitude}, and both conclusions for the same array.
+It chooses smooth cutoffs from an open-set support function, with value
+one on the same finite collections of gap middle halves, and uses a
+fixed ratio-approximation error below \(1/2\), which suffices for both
+conclusions.
 
 \begin{thebibliography}{11}
 

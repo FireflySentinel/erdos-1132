@@ -17,3 +17,16 @@ import Erdos1132.Counterexample.AmplitudeInterpolation
 import Erdos1132.Counterexample.MidpointQuadrature
 import Erdos1132.Counterexample.Assembly
 import Erdos1132.Counterexample.Theorem2Unshifted
+import Erdos1132.Counterexample.Corollaries
+import Erdos1132.JumpEnergy
+import Erdos1132.SecondMoment
+
+import Erdos1132.DyadicRecurrence
+import Erdos1132.DensityPositive
+import Erdos1132.QuadratureRate
+import Erdos1132.InterpolantLocalGrowth
+import Erdos1132.PolynomialSecondDerivative
+import Erdos1132.InterpolantPeak
+import Erdos1132.JumpEnergyLower
+import Erdos1132.IsolatedPeaks
+import Erdos1132.AdditiveMain

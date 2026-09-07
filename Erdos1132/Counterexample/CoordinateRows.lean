@@ -61,6 +61,8 @@ theorem exists_phaseCoordinate_row (h : ℝ[X]) {ψ v : ℝ → ℝ} {B : ℝ} {
     ∃ Y : Nodes n,
       (∀ i, Y.point i = phaseCoordinate ψ ((n : ℝ)⁻¹, phaseMidpoint n i) ∧
         Y.point i ∈ Set.Ioo (-1) 1) ∧
+      (∀ i, (amplitudePolynomial h n).eval (Y.point i) = 0 ∧
+        (amplitudePolynomial h n).derivative.eval (Y.point i) ≠ 0) ∧
       ∀ s : ℝ, (∀ i, phaseCoordinate ψ ((n : ℝ)⁻¹, s) ≠ Y.point i) →
         let X := fun t => phaseCoordinate ψ ((n : ℝ)⁻¹, t)
         Y.lebesgue (X s) = |Real.cos (n*s)| / (n*v (X s)) *
@@ -122,9 +124,14 @@ theorem exists_phaseCoordinate_row (h : ℝ[X]) {ψ v : ℝ → ℝ} {B : ℝ} {
     have hh := amplitudePolynomial_degree h hn hpos.ne'
     rw [hz, Polynomial.degree_zero] at hh
     exact WithBot.bot_ne_coe hh
-  refine ⟨Y, ?_, ?_⟩
+  refine ⟨Y, ?_, ?_, ?_⟩
   · intro i
     exact ⟨rfl, phaseCoordinate_mem_Ioo hψ hval hder hε h0 hπ (phaseMidpoint_mem_Ioo i)⟩
+  · intro i
+    refine ⟨hroot i, abs_pos.mp ?_⟩
+    rw [hweight]
+    exact div_pos (mul_pos (hwpos _) (hp _))
+      (Real.sin_pos_of_mem_Ioo (hθ _ (phaseMidpoint_mem_Ioo i)))
   · intro s hs
     dsimp only
     rw [lebesgue_eq_polynomial_derivative_sum Y hP

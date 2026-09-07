@@ -308,3 +308,42 @@ example (M : ℝ) (hM : 0 < M) :
 /-- info: 'Erdos1132.Counterexample.eventually_exists_amplitude_upper_rows' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.Counterexample.eventually_exists_amplitude_upper_rows
+
+/-- info: 'Erdos1132.Counterexample.amplitude_lemma' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.Counterexample.amplitude_lemma
+
+/-- info: 'Erdos1132.Counterexample.theorem2_with_interval_corollary' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.Counterexample.theorem2_with_interval_corollary
+
+/-- info: 'Erdos1132.Counterexample.no_absolute_additive_constant' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.Counterexample.no_absolute_additive_constant
+
+/-- info: 'Erdos1132.Counterexample.no_arraywise_dense_constant' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.Counterexample.no_arraywise_dense_constant
+
+example (M : ℝ) (hM : 0 < M) :
+    ∃ X : ∀ n : ℕ, Erdos1132.Nodes n,
+      (∀ n i, (X n).point i ∈ Ioo (-1) 1) ∧
+      (∀ x ∈ Ioo (-1 : ℝ) 1, ∀ᶠ n in atTop,
+        (X n).lebesgue x ≤ (2 / Real.pi) * Real.log (n : ℝ) - M) ∧
+      ¬∃ C : ℝ, ∀ l r : ℝ, l < r → Icc l r ⊆ Ioo (-1 : ℝ) 1 →
+        ∀ᶠ (n : ℕ) in atTop, (2 / Real.pi) * Real.log (n : ℝ) - C ≤
+          sSup ((fun x => ∑ i : Fin n,
+            |∏ j ∈ Finset.univ.erase i,
+              (x - (X n).point j) / ((X n).point i - (X n).point j)|) '' Icc l r) := by
+  obtain ⟨X, hI, hupper, hnd⟩ := Erdos1132.Counterexample.theorem2_unshifted M hM
+  refine ⟨X, hI, hupper, ?_⟩
+  have hL (n : ℕ) : (fun x => ∑ i : Fin n,
+      |∏ j ∈ Finset.univ.erase i,
+        (x - (X n).point j) / ((X n).point i - (X n).point j)|) = (X n).lebesgue := by
+    funext x
+    simp only [Erdos1132.Nodes.lebesgue, Erdos1132.Nodes.cardinal,
+      Lagrange.basis, Lagrange.basisDivisor, Polynomial.eval_prod,
+      Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_sub,
+      Polynomial.eval_X, div_eq_mul_inv, mul_comm]
+  simp_rw [hL]
+  exact Erdos1132.Counterexample.no_uniform_interval_constant X hnd

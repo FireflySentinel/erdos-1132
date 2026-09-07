@@ -20,21 +20,21 @@ LEAN_NUM_THREADS=2 lake env leanchecker Erdos1132
 
 ## Exact statement
 
-[`ae_frequently_lower_bound`](Erdos1132/Main.lean) proves that, for every triangular
-array of distinct nodes in $[-1,1]$, for almost every $x\in(-1,1)$ and every
-$c<2/\pi$,
+The complete **Theorem 1** is [`theorem1`](Erdos1132/AdditiveMain.lean).
+For every triangular array of distinct nodes in $[-1,1]$, it proves both:
 
-$$c\log n<\lambda_n(x)\qquad\text{for infinitely many }n.$$
+- the points $x\in(-1,1)$ for which some finite $C(x)$ satisfies
+  $\lambda_n(x)>(2/\pi)\log n-C(x)$ infinitely often form a dense set;
+- $\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi$ almost everywhere.
 
-Theorem 1(ii), $\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi$ almost everywhere,
-follows as `ae_lebesgue_limsup_shifted`. Lean indexes these rows by `n` with
-`rowSize n = n + 2`, so their logarithms are positive. Its conventions `log 0 = 0`
-and `x / 0 = 0` do not affect the statements; the unshifted limsup theorem discards
-the first two rows.
+The individual conclusions are `dense_additive_lower_bound` and
+[`ae_lebesgue_limsup`](Erdos1132/Main.lean). These statements use exactly `n`
+nodes in row `n`. The almost-everywhere proof internally uses rows of size
+`n + 2`; reindexing removes this shift in the final theorem.
 
-The set corollary is `eventually_exists_lower_bound`: for every measurable
-$E\subset(-1,1)$ of positive measure and every $0<c<2/\pi$, every sufficiently
-large row has some $x\in E$ with $c\log n<\lambda_n(x)$.
+The set corollary is `eventually_exists_lower_bound_unshifted`: for every
+measurable $E\subset(-1,1)$ of positive measure and every $0<c<2/\pi$, every
+sufficiently large row has some $x\in E$ with $c\log n<\lambda_n(x)$.
 
 The complete **Theorem 2** is
 [`theorem2_unshifted`](Erdos1132/Counterexample/Theorem2Unshifted.lean).
@@ -48,7 +48,10 @@ The uniform-constant question for nested node sequences remains open.
 
 The theorem's only hypothesis is $M>0$. The Cantor geometry, smooth amplitudes,
 zero-free polynomials, actual node rows, and analytic estimates are constructed
-in Lean. Theorem 1(i) remains outside the formalization.
+in Lean. Theorem 1 takes only the node array as its argument; its local density,
+energy, quadrature, and recurrence estimates are proved in Lean as well.
+[`Corollaries.lean`](Erdos1132/Counterexample/Corollaries.lean) also proves the
+absence of a uniform interval constant for the same counterexample array.
 [Statement.lean](checks/Statement.lean) and
 [Counterexample.lean](checks/Counterexample.lean) write out the node conditions
 and Lagrange products. `lake test` checks the complete statements and the axiom
@@ -60,18 +63,30 @@ The manuscript is available as [PDF](paper/PROOF.pdf) and [LaTeX](paper/PROOF.te
 
 | Preprint | Lean source |
 |---|---|
+| Local Riesz formula and near-equality estimate, §2 | [FiniteRiesz.lean](Erdos1132/FiniteRiesz.lean), [LocalRiesz.lean](Erdos1132/LocalRiesz.lean) |
+| Local potential, positive density, and quadrature, §3 | [TaoPotential.lean](Erdos1132/TaoPotential.lean), [DensityPositive.lean](Erdos1132/DensityPositive.lean), [QuadratureRate.lean](Erdos1132/QuadratureRate.lean) |
+| Sharp interpolant derivatives and nearby high values, §3 | [InterpolantDerivative.lean](Erdos1132/InterpolantDerivative.lean), [InterpolantSecondDerivative.lean](Erdos1132/InterpolantSecondDerivative.lean), [InterpolantPeak.lean](Erdos1132/InterpolantPeak.lean) |
+| Weighted derivative-jump energy, §4 | [DerivativeJumps.lean](Erdos1132/DerivativeJumps.lean), [RieszEnergy.lean](Erdos1132/RieszEnergy.lean), [JumpEnergyLower.lean](Erdos1132/JumpEnergyLower.lean) |
+| High-value sets, second moments, and Baire, §4 | [HighCovers.lean](Erdos1132/HighCovers.lean), [LocalRecurrence.lean](Erdos1132/LocalRecurrence.lean), [BaireBounds.lean](Erdos1132/BaireBounds.lean) |
+| Theorem 1(i), and both parts together | [AdditiveMain.lean](Erdos1132/AdditiveMain.lean), `dense_additive_lower_bound`, `theorem1` |
 | Chebyshev cancellation, §5 | [Cancellation.lean](Erdos1132/Cancellation.lean), [Scales.lean](Erdos1132/Scales.lean) |
 | Boundary harmonic measure, §5 | [BoundaryMeasure.lean](Erdos1132/BoundaryMeasure.lean), `boundary_harmonic_measure` |
 | Positive-measure contradiction and the set corollary, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean) |
-| Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_frequently_lower_bound`, `ae_lebesgue_limsup_shifted` |
+| Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_lebesgue_limsup` |
 | Cantor geometry and the explicit log-integral bound, §§7.1–7.2 | [CantorDensity.lean](Erdos1132/Counterexample/CantorDensity.lean), [CantorGapIntegral.lean](Erdos1132/Counterexample/CantorGapIntegral.lean), [CantorLogarithmicBound.lean](Erdos1132/Counterexample/CantorLogarithmicBound.lean) |
 | Smooth positive sequence, §7.3 | [CantorSmoothSequence.lean](Erdos1132/Counterexample/CantorSmoothSequence.lean), `exists_cantor_smooth_sequence` |
 | Positive polynomial approximation applied to $1/v_j$, followed by root reflection, §7.4 | [AmplitudeApproximation.lean](Erdos1132/Counterexample/AmplitudeApproximation.lean), `exists_amplitude_logarithmicRatio_approximation` |
-| Lemma 9: actual interior rows and the complete upper estimate | [AmplitudeLemma.lean](Erdos1132/Counterexample/AmplitudeLemma.lean), `eventually_exists_amplitude_upper_rows` |
+| Lemma 9: actual interior rows and the complete upper estimate | [AmplitudeLemma.lean](Erdos1132/Counterexample/AmplitudeLemma.lean), `amplitude_lemma` |
 | Uniform remainder and finite-part identity in Lemma 9 | [UniformRemainder.lean](Erdos1132/Counterexample/UniformRemainder.lean), [CoordinateIntegral.lean](Erdos1132/Counterexample/CoordinateIntegral.lean) |
-| Theorem 2: both assertions for one array, §7.5 | [Theorem2.lean](Erdos1132/Counterexample/Theorem2.lean), [Theorem2Unshifted.lean](Erdos1132/Counterexample/Theorem2Unshifted.lean) |
+| Theorem 2 and the interval-constant corollary | [Theorem2.lean](Erdos1132/Counterexample/Theorem2.lean), [Theorem2Unshifted.lean](Erdos1132/Counterexample/Theorem2Unshifted.lean), [Corollaries.lean](Erdos1132/Counterexample/Corollaries.lean) |
 
-The formal proof obtains smooth cutoffs from an open-set support function,
+The formal proof of Theorem 1(i) uses circular contours for the finite Riesz
+formula, proves the needed Lipschitz quadrature estimate directly from the
+Poisson representation, and uses bounded overlap to estimate the high-value
+covers. These replace the corresponding auxiliary arguments in the manuscript
+and yield its full conclusion.
+
+For Theorem 2, the formal proof obtains smooth cutoffs from an open-set support function,
 with value one on the prescribed gap middle halves. It uses ratio approximation
 with error below $1/2$, which suffices for both conclusions. Degree blocks pass
 the estimates to every sufficiently large row, not merely to a subsequence.
