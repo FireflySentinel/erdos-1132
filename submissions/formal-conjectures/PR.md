@@ -11,9 +11,8 @@ Formalization choices:
 - The main questions use one infinite sequence, restricted to `Fin n` in row n. The bridge specializes the array theorem.
 - The normalized limsup is in `EReal`. Terms at n = 0 and n = 1 have no effect on the filter at infinity; the empty and singleton rows have Lean tests.
 
-The external proof attributes link to the [proved results](https://github.com/FireflySentinel/erdos-1132/blob/d352ff88a5a170c2fad8207684377df1022457f7/Erdos1132/Theorems.lean).
-`checks/FormalConjecturesBridge.lean` in the proof repository proves the linked
-statements using the proposed definitions. Its axiom guards allow only
+The external proof attributes link to each declaration in the [proof bridge](https://github.com/FireflySentinel/erdos-1132/blob/0a245ce8833d4ee1d3edaffb79510cedbaf365cc/checks/FormalConjecturesBridge.lean#L50).
+The theorem types use the proposed definitions; the axiom guards allow only
 `propext`, `Classical.choice`, and `Quot.sound`.
 
 Validation: `lake --wfail build 'FormalConjectures.ErdosProblems.«1132»'`

@@ -79,7 +79,8 @@ def check(repo, upstream=None):
     payload = repo / "submissions/formal-conjectures" / rel
     bridge = repo / "checks/FormalConjecturesBridge.lean"
     fc = uncomment(payload.read_text())
-    local = uncomment(bridge.read_text())
+    bridge_source = bridge.read_text()
+    local = uncomment(bridge_source)
     if re.search(r"\b(sorry|admit|axiom|opaque|unsafe)\b", local):
         raise ValueError("An unfinished or unchecked declaration occurs in the bridge")
     if re.findall(r"^import (.+)$", local, re.MULTILINE) != [f"Erdos{number}"]:
@@ -89,14 +90,23 @@ def check(repo, upstream=None):
     context = r"^(?:open .*|open scoped .*|namespace .*)$"
     if re.findall(context, fc, re.MULTILINE) != re.findall(context, local, re.MULTILINE):
         raise ValueError("Namespace or open declarations differ")
-    linked = set(re.findall(
-        r'@\[[^\]]*formal_proof using lean4 at "[^"]+"[^\]]*\]\s*theorem ([\w.]+)',
-        fc, re.MULTILINE))
+    links = {name: url for url, name in re.findall(
+        r'@\[[^\]]*formal_proof using lean4 at "([^"]+)"[^\]]*\]\s*theorem ([\w.]+)',
+        fc, re.MULTILINE)}
     actual = theorem_types(local)
-    if not linked or linked != set(actual):
+    if not links or set(links) != set(actual):
         raise ValueError("The bridge does not cover exactly the external proof claims")
+    commit = spec["bridge_commit"]
+    if not re.fullmatch(r"[0-9a-f]{40}", commit):
+        raise ValueError("The proof link must pin a full commit hash")
+    prefix = f"https://github.com/FireflySentinel/erdos-{number}/blob/{commit}/"
     proposed = theorem_types(fc)
     for name, statement in actual.items():
+        line = next(i for i, text in enumerate(bridge_source.splitlines(), 1)
+                    if re.match(rf"theorem {re.escape(name)}\s*:", text))
+        expected_url = f"{prefix}checks/FormalConjecturesBridge.lean#L{line}"
+        if links[name] != expected_url:
+            raise ValueError(f"Proof link does not select the pinned bridge declaration: {name}")
         expected = proposed[name].replace("answer(True)", "True").replace("answer(False)", "False")
         if statement != expected:
             raise ValueError(f"Statement differs: {name}")
@@ -110,7 +120,7 @@ def check(repo, upstream=None):
             raise ValueError("Upstream checkout is at a different revision")
         if (upstream / rel).read_bytes() != payload.read_bytes():
             raise ValueError("Upstream copy differs from the prepared file")
-    print(f"#{number}: definitions and all externally linked theorem types match the proof bridge.")
+    print(f"#{number}: definitions, theorem types, and pinned proof links match the bridge.")
 
 
 if __name__ == "__main__":

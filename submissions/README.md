@@ -54,7 +54,7 @@ The checked rules are [Formal Conjectures CONTRIBUTING](https://github.com/googl
 and [erdosproblems CONTRIBUTING](https://github.com/teorth/erdosproblems/blob/5308c57c700559416b9f205df274b136784203e7/CONTRIBUTING.md).
 Neither contribution process requires an arXiv link.
 
-The external proof links point to fixed commits of the proved results.
+Each external proof link selects its declaration in the bridge at a fixed published commit.
 The community submissions are prepared here for separate review.
 Before an actual Formal Conjectures submission, check the Google CLA and coordinate
 on the existing issue. Its adopted [Mathlib AI policy](https://leanprover-community.github.io/contribute/index.html#use-of-ai)

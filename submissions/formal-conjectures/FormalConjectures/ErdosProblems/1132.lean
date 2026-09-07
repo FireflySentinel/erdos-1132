@@ -61,7 +61,7 @@ for infinitely many $n$?
 The nodes are distinct. Here the additive constant may depend on the sequence
 and the chosen point. Gu [Gu26] proves this form of the assertion.
 -/
-@[category research solved, AMS 26 41, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-1132/blob/d352ff88a5a170c2fad8207684377df1022457f7/Erdos1132/Theorems.lean"]
+@[category research solved, AMS 26 41, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-1132/blob/0a245ce8833d4ee1d3edaffb79510cedbaf365cc/checks/FormalConjecturesBridge.lean#L50"]
 theorem erdos_1132.parts.i :
     answer(True) ↔ ∀ X : ℕ → ℝ, Function.Injective X →
       (∀ i, X i ∈ Icc (-1 : ℝ) 1) → ∃ x ∈ Ioo (-1 : ℝ) 1, ∃ C : ℝ,
@@ -77,8 +77,10 @@ $$
 for almost all $x\in (-1,1)$?
 
 Gu [Gu26] proves the affirmative answer. The limsup is taken in the extended reals.
+Lean sets $\log 0=\log 1=0$ and division by zero to zero; the terms at $n=0,1$
+do not affect the limsup.
 -/
-@[category research solved, AMS 26 41, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-1132/blob/d352ff88a5a170c2fad8207684377df1022457f7/Erdos1132/Theorems.lean"]
+@[category research solved, AMS 26 41, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-1132/blob/0a245ce8833d4ee1d3edaffb79510cedbaf365cc/checks/FormalConjecturesBridge.lean#L70"]
 theorem erdos_1132.parts.ii :
     answer(True) ↔ ∀ X : ℕ → ℝ, Function.Injective X →
       (∀ i, X i ∈ Icc (-1 : ℝ) 1) →
@@ -93,7 +95,7 @@ For every triangular array of distinct nodes, the points with a finite additive
 loss infinitely often form a dense set, and the normalized limsup is at least
 $2/\pi$ almost everywhere [Gu26, Theorem 1].
 -/
-@[category research solved, AMS 26 41, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-1132/blob/d352ff88a5a170c2fad8207684377df1022457f7/Erdos1132/Theorems.lean"]
+@[category research solved, AMS 26 41, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-1132/blob/0a245ce8833d4ee1d3edaffb79510cedbaf365cc/checks/FormalConjecturesBridge.lean#L33"]
 theorem erdos_1132.variants.triangular_arrays :
     ∀ X : ∀ n : ℕ, Fin n → ℝ, (∀ n, Function.Injective (X n)) →
       (∀ n i, X n i ∈ Icc (-1 : ℝ) 1) →
@@ -109,7 +111,7 @@ For every $M>0$, one triangular array has eventual deficit at least $M$ at every
 fixed interior point; for the same array, each finite-constant recurrent lower-bound
 set is non-dense [Gu26, Theorem 2].
 -/
-@[category research solved, AMS 26 41, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-1132/blob/d352ff88a5a170c2fad8207684377df1022457f7/Erdos1132/Theorems.lean"]
+@[category research solved, AMS 26 41, formal_proof using lean4 at "https://github.com/FireflySentinel/erdos-1132/blob/0a245ce8833d4ee1d3edaffb79510cedbaf365cc/checks/FormalConjecturesBridge.lean#L89"]
 theorem erdos_1132.variants.nonuniform_arrays :
     ∀ M : ℝ, 0 < M → ∃ X : ∀ n : ℕ, Fin n → ℝ,
       (∀ n, Function.Injective (X n)) ∧ (∀ n i, X n i ∈ Ioo (-1 : ℝ) 1) ∧

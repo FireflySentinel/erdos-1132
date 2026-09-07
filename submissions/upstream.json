@@ -14,5 +14,6 @@
     "commit": "5308c57c700559416b9f205df274b136784203e7"
   },
   "proof_toolchain": "leanprover/lean4:v4.33.0",
-  "proof_mathlib": "db584cd6d46c92f209a44c0f1c829460d327499d"
+  "proof_mathlib": "db584cd6d46c92f209a44c0f1c829460d327499d",
+  "bridge_commit": "0a245ce8833d4ee1d3edaffb79510cedbaf365cc"
 }
