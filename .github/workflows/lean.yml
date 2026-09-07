@@ -30,5 +30,7 @@ jobs:
         run: python3 scripts/prune_obsolete_modules.py
       - name: Check axioms and the explicit statement
         run: lake test
+      - name: Check community statement correspondence
+        run: python3 submissions/check_bridge.py
       - name: Replay project declarations through the kernel
         run: lake env leanchecker -v Erdos1132

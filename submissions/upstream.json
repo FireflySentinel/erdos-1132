@@ -1,0 +1,18 @@
+{
+  "problem": 1132,
+  "prepared_on": "2026-09-07",
+  "proof_base": "d352ff88a5a170c2fad8207684377df1022457f7",
+  "formal_conjectures": {
+    "repository": "https://github.com/google-deepmind/formal-conjectures",
+    "commit": "2c817e975be7a95478b72a8429155ca568e1a3de",
+    "toolchain": "leanprover/lean4:v4.33.1",
+    "issue": 1971,
+    "mathlib": "0df444a360eaa60ab8c11dca51a86af692955474"
+  },
+  "erdosproblems": {
+    "repository": "https://github.com/teorth/erdosproblems",
+    "commit": "5308c57c700559416b9f205df274b136784203e7"
+  },
+  "proof_toolchain": "leanprover/lean4:v4.33.0",
+  "proof_mathlib": "db584cd6d46c92f209a44c0f1c829460d327499d"
+}

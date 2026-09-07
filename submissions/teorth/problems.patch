@@ -1,0 +1,14 @@
+--- a/data/problems.yaml
++++ b/data/problems.yaml
+@@ -18466,7 +18466,10 @@
+     state: "open"
+     last_update: "2026-01-01"
+   formal_status:
+-    state: "unformalized"
++    state: "Lean"
++    last_update: "2026-09-07"
++    url: "https://github.com/FireflySentinel/erdos-1132"
++    note: "Both questions proved for triangular arrays, hence for nested sequences, with the additive constant allowed to depend on the point. The uniform-constant question for nested sequences remains open. Lean 4 / Mathlib; standard axioms only."
+   status:
+     state: "open"
+     last_update: "2026-01-01"

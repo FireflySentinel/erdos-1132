@@ -1,0 +1,18 @@
+- number: "1132"
+  prize: "no"
+  informal_status:
+    state: "open"
+    last_update: "2026-01-01"
+  formal_status:
+    state: "Lean"
+    last_update: "2026-09-07"
+    url: "https://github.com/FireflySentinel/erdos-1132"
+    note: "Both questions proved for triangular arrays, hence for nested sequences, with the additive constant allowed to depend on the point. The uniform-constant question for nested sequences remains open. Lean 4 / Mathlib; standard axioms only."
+  status:
+    state: "open"
+    last_update: "2026-01-01"
+  formalized:
+    state: "no"
+    last_update: "2026-01-01"
+  oeis: ["N/A"]
+  tags: ["analysis", "polynomials"]

@@ -82,6 +82,13 @@ manuscript argues differently; the conclusion is the same. Theorem 2 uses the
 same smooth cutoff construction and fixed ratio-approximation error below $1/2$
 in the manuscript and Lean.
 
+## Community statements
+
+[Prepared contributions](submissions/README.md) include the Formal Conjectures
+statement, a [proved bridge](checks/FormalConjecturesBridge.lean), and the proposed
+Erdős database update. Run `python3 submissions/check_bridge.py` to check that
+the definitions and linked theorem types agree.
+
 ## Use of generative AI
 
 GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
