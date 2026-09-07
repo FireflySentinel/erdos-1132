@@ -1,30 +1,9 @@
 import Erdos1132.Theorems
 
-/-! Theorem 1 and the set corollary, with the node conditions and Lebesgue
-function written out. Every denominator involves two distinct nodes. -/
+/-! The two corollaries in §8, with the Lagrange products written out. -/
 
 open MeasureTheory Set Filter
 open scoped BigOperators
-
-/-- Both conclusions of Theorem 1 with exactly `n` nodes in row `n`. -/
-example (X : ∀ n : ℕ, Fin n → ℝ)
-    (distinct : ∀ n, Function.Injective (X n))
-    (in_interval : ∀ n i, X n i ∈ Icc (-1) 1) :
-    Dense {x : Ioo (-1 : ℝ) 1 | ∃ C : ℝ, ∃ᶠ n : ℕ in atTop,
-      (2 / Real.pi) * Real.log (n : ℝ) - C <
-        ∑ i : Fin n,
-          |∏ j ∈ Finset.univ.erase i, ((x : ℝ) - X n j) / (X n i - X n j)|} ∧
-    (∀ᵐ x ∂volume.restrict (Ioo (-1) 1),
-      ((2 / Real.pi : ℝ) : EReal) ≤
-        limsup (fun n =>
-          (((∑ i : Fin n,
-            |∏ j ∈ Finset.univ.erase i, (x - X n j) / (X n i - X n j)|) /
-            Real.log (n : ℝ) : ℝ) : EReal)) atTop) := by
-  simpa only [Erdos1132.Nodes.lebesgue, Erdos1132.Nodes.cardinal,
-    Lagrange.basis, Lagrange.basisDivisor, Polynomial.eval_prod,
-    Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_sub,
-    Polynomial.eval_X, div_eq_mul_inv, mul_comm] using
-    Erdos1132.theorem1 (fun n => ⟨X n, distinct n, in_interval n⟩)
 
 /-- The set corollary with exactly `n` nodes in row `n`. -/
 example (X : ∀ n : ℕ, Fin n → ℝ)
@@ -42,3 +21,29 @@ example (X : ∀ n : ℕ, Fin n → ℝ)
     Polynomial.eval_X, div_eq_mul_inv, mul_comm] using
     Erdos1132.positive_measure_lower_bound
       (fun n => ⟨X n, distinct n, in_interval n⟩) hE hEint hEpos hc hcπ
+
+/-- The array of Theorem 2 admits no additive constant uniform over interior intervals. -/
+example (M : ℝ) (hM : 0 < M) :
+    ∃ X : ∀ n : ℕ, Erdos1132.Nodes n,
+      (∀ n i, (X n).point i ∈ Ioo (-1) 1) ∧
+      (∀ x ∈ Ioo (-1 : ℝ) 1, ∀ᶠ n in atTop,
+        (X n).lebesgue x ≤ (2 / Real.pi) * Real.log (n : ℝ) - M) ∧
+      (∀ C : ℝ, ¬Dense {x : Ioo (-1 : ℝ) 1 | ∃ᶠ (n : ℕ) in atTop,
+        (2 / Real.pi) * Real.log (n : ℝ) - C < (X n).lebesgue x}) ∧
+      ¬∃ C : ℝ, ∀ l r : ℝ, l < r → Icc l r ⊆ Ioo (-1 : ℝ) 1 →
+        ∀ᶠ (n : ℕ) in atTop, (2 / Real.pi) * Real.log (n : ℝ) - C ≤
+          sSup ((fun x => ∑ i : Fin n,
+            |∏ j ∈ Finset.univ.erase i,
+              (x - (X n).point j) / ((X n).point i - (X n).point j)|) '' Icc l r) := by
+  obtain ⟨X, hI, hupper, hnd, hinterval⟩ := Erdos1132.no_uniform_interval_constant M hM
+  refine ⟨X, hI, hupper, hnd, ?_⟩
+  have hL (n : ℕ) : (fun x => ∑ i : Fin n,
+      |∏ j ∈ Finset.univ.erase i,
+        (x - (X n).point j) / ((X n).point i - (X n).point j)|) = (X n).lebesgue := by
+    funext x
+    simp only [Erdos1132.Nodes.lebesgue, Erdos1132.Nodes.cardinal,
+      Lagrange.basis, Lagrange.basisDivisor, Polynomial.eval_prod,
+      Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_sub,
+      Polynomial.eval_X, div_eq_mul_inv, mul_comm]
+  simp_rw [hL]
+  exact hinterval

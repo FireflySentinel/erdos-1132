@@ -15,7 +15,6 @@ With [Elan](https://github.com/leanprover/elan) installed, run from the reposito
 ```sh
 lake exe cache get
 lake build
-python3 scripts/prune_obsolete_modules.py
 lake test
 LEAN_NUM_THREADS=2 lake env leanchecker Erdos1132
 ```
@@ -50,9 +49,10 @@ hypothesis is $M>0$.
 
 Start with the paper's Introduction and Organization subsection, then open
 [`Theorems.lean`](Erdos1132/Theorems.lean), which collects the two main theorems and
-two corollaries. [Statement.lean](checks/Statement.lean) and
-[Counterexample.lean](checks/Counterexample.lean) write out the node conditions
-and Lagrange products; [Check.lean](checks/Check.lean) checks their axioms.
+two corollaries. [FormalConjecturesBridge.lean](checks/FormalConjecturesBridge.lean)
+writes the main statements using explicit Lagrange products;
+[Statement.lean](checks/Statement.lean) gives the two corollaries in the same form.
+[Check.lean](checks/Check.lean) verifies their axiom dependencies.
 
 The proof modules are grouped into [Additive/](Erdos1132/Additive/) (§§2–4),
 [AlmostEverywhere/](Erdos1132/AlmostEverywhere/) (§§5–6), and

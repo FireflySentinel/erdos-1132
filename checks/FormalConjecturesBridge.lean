@@ -24,7 +24,7 @@ private theorem rowLebesgue_eq {n : ℕ} (X : Nodes n) (x : ℝ) :
     Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_sub,
     Polynomial.eval_X, div_eq_mul_inv, mul_comm]
 
-/-- Bridge for `erdos_1132.variants.triangular_arrays` in the proposed community statement. -/
+/-- Dense additive lower bounds and sharp almost-everywhere growth for triangular arrays. -/
 theorem erdos_1132.variants.triangular_arrays :
     ∀ X : ∀ n : ℕ, Fin n → ℝ, (∀ n, Function.Injective (X n)) →
       (∀ n i, X n i ∈ Icc (-1 : ℝ) 1) →
@@ -41,7 +41,7 @@ theorem erdos_1132.variants.triangular_arrays :
 #guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.erdos_1132.variants.triangular_arrays
 
-/-- Bridge for `erdos_1132.parts.i` in the proposed community statement. -/
+/-- A nested node sequence has a point with bounded additive loss infinitely often. -/
 theorem erdos_1132.parts.i :
     True ↔ ∀ X : ℕ → ℝ, Function.Injective X →
       (∀ i, X i ∈ Icc (-1 : ℝ) 1) → ∃ x ∈ Ioo (-1 : ℝ) 1, ∃ C : ℝ,
@@ -61,7 +61,7 @@ theorem erdos_1132.parts.i :
 #guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.erdos_1132.parts.i
 
-/-- Bridge for `erdos_1132.parts.ii` in the proposed community statement. -/
+/-- The sharp normalized lower bound holds almost everywhere for nested node sequences. -/
 theorem erdos_1132.parts.ii :
     True ↔ ∀ X : ℕ → ℝ, Function.Injective X →
       (∀ i, X i ∈ Icc (-1 : ℝ) 1) →
@@ -80,7 +80,7 @@ theorem erdos_1132.parts.ii :
 #guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.erdos_1132.parts.ii
 
-/-- Bridge for `erdos_1132.variants.nonuniform_arrays` in the proposed community statement. -/
+/-- Triangular arrays with an arbitrary pointwise deficit and no dense uniform additive bound. -/
 theorem erdos_1132.variants.nonuniform_arrays :
     ∀ M : ℝ, 0 < M → ∃ X : ∀ n : ℕ, Fin n → ℝ,
       (∀ n, Function.Injective (X n)) ∧ (∀ n i, X n i ∈ Ioo (-1 : ℝ) 1) ∧
