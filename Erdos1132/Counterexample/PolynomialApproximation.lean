@@ -9,8 +9,7 @@ import Erdos1132.Counterexample.LogarithmicOperator
 
 The approximation argument in Section 7.4: approximate the derivative by a
 polynomial and take a polynomial primitive. Strict positivity is preserved on
-the compact interval. The spectral factorization and amplitude estimate of
-Lemma 9 are not asserted here.
+the compact interval, with uniform control of the logarithmic-operator quotient.
 -/
 
 noncomputable section
@@ -92,8 +91,7 @@ theorem exists_positive_polynomial_C1_approximation {f f' : ℝ → ℝ}
   linarith [hpos z hz]
 
 /-- A positive C¹ function can be approximated by a positive polynomial while
-also approximating its logarithmic-operator quotient uniformly. This proves
-the C¹ stability step in Section 7.4; it does not claim spectral factorization. -/
+also approximating its logarithmic-operator quotient uniformly. -/
 theorem exists_positive_polynomial_C1_ratio_approximation {f f' : ℝ → ℝ}
     (hf : ∀ x ∈ interval, HasDerivWithinAt f (f' x) interval x)
     (hf' : ContinuousOn f' interval)

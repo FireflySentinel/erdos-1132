@@ -6,8 +6,7 @@ import Mathlib.Tactic
 # Algebraic part of the amplitude construction
 
 The polynomial in (7.18) has the prescribed trigonometric expansion and degree
-exactly `n` when `h(0)` is nonzero and `n > deg h`. The phase argument, root
-locations, and the Lebesgue estimate of Lemma 9 are not claimed in this file.
+exactly `n` when `h(0)` is nonzero and `n > deg h`.
 -/
 
 noncomputable section

@@ -2,5 +2,13 @@ import Erdos1132.Main
 import Erdos1132.Counterexample.LogarithmicOperator
 import Erdos1132.Counterexample.PolynomialApproximation
 import Erdos1132.Counterexample.GapGeometry
+import Erdos1132.Counterexample.Constants
+import Erdos1132.Counterexample.RadialComparison
+import Erdos1132.Counterexample.InverseDistance
+import Erdos1132.Counterexample.LogProfile
+import Erdos1132.Counterexample.FarProfile
+import Erdos1132.Counterexample.RadialIntervals
+import Erdos1132.Counterexample.LogIntegralLowerBound
+import Erdos1132.Counterexample.SmoothLowerBound
 import Erdos1132.Counterexample.AmplitudePolynomial
 import Erdos1132.Counterexample.Assembly

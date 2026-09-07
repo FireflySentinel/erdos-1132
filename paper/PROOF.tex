@@ -18,6 +18,8 @@ interpolation, almost everywhere, pointwise bounds, additive constants}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem*{taoestimates}{Proposition (Tao's local estimates)}
 \newtheorem*{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
 \numberwithin{equation}{section}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\sgn}{sgn}
@@ -49,8 +51,6 @@ for every \(M>0\), there is an array for which each fixed
 \(\lambda_n(x)\le(2/\pi)\log n-M\).
 For the same array, no single finite constant gives a dense set of
 points with infinitely many lower-bound occurrences.
-These counterexamples concern arbitrary triangular arrays; the
-uniform-constant question for nested node sequences remains open.
 The positive results use derivative-jump energies and positive Cauchy
 transforms. The counterexample combines an explicit logarithmic
 integral estimate on the gaps of a compact set with real-rooted
@@ -174,7 +174,10 @@ array and \(n\ge n_0(\varepsilon)\), there is a measurable set
 \]
 They note that Chebyshev nodes show this order to be optimal.
 The exceptional sets may vary with \(n\); the estimate implies
-\(\limsup_n\lambda_n(x)/\log n>0\) almost everywhere.
+\(\limsup_n\lambda_n(x)/\log n>0\) almost everywhere
+(indeed, \(\left|\bigcup_N\bigcap_{n\ge N}H_n\right|\le\varepsilon\),
+so outside a set of measure at most \(\varepsilon\), each point
+leaves \(H_n\) infinitely often; now let \(\varepsilon\downarrow0\)).
 Thus the logarithmic order was already known in 1981.
 Theorem~\ref{thm:main}(ii) supplies the optimal coefficient \(2/\pi\),
 which is the coefficient in Erd\H{o}s's question and in
@@ -188,14 +191,11 @@ Erd\H{o}s and V\'ertesi also give the integral version
 \]
 for arbitrary measurable \(S_n\subset[-1,1]\).
 
-The corollary at the end of Section~\ref{sec:ae} gives a different conclusion:
-every fixed positive-measure set contains a point with
-\(\lambda_n(x)>c\log n\) in every sufficiently large row, for any
-\(0<c<2/\pi\). Erd\H{o}s--V\'ertesi's theorem controls all points outside
-a small exceptional set with coefficient \(\eta(\varepsilon)\);
-our corollary controls at least one point in each fixed set with a
-coefficient arbitrarily close to \(2/\pi\). Neither conclusion
-subsumes the other.
+The corollary at the end of Section~\ref{sec:ae} gives, in every
+sufficiently large row, a point in each fixed positive-measure set
+with \(\lambda_n(x)>c\log n\), for any \(0<c<2/\pi\).
+Erd\H{o}s--V\'ertesi's theorem instead controls all points outside a
+small exceptional set, with coefficient \(\eta(\varepsilon)\).
 
 Tao \cite[Theorem 1.10(i)]{Tao} proved that every fixed nondegenerate
 interval \(I\subset[-1,1]\) satisfies
@@ -212,12 +212,31 @@ infinitely often. Theorem~\ref{thm:main}(i) replaces \(\omega(n)\) by a
 finite constant depending on the point, on a dense set.
 In footnote~6 to Remark~1.12 of \cite{Tao}, Tao expresses the tentative belief that
 ``this dependency on \(I\) in the error term cannot be entirely
-eliminated.'' Theorem~\ref{thm:nonuniform} proves this nonuniformity
-for arbitrary triangular arrays, even if the common constant is
-allowed to depend on the array. Indeed, if one constant \(C\) gave
-Tao's interval bound on every nondegenerate \(I\), with the starting
-index allowed to depend on \(I\), the same Baire argument would make
-\(G_{C+1}\) dense, contradicting Theorem~\ref{thm:nonuniform}.
+eliminated.'' The following consequence of Theorem~\ref{thm:nonuniform}
+establishes this for a single triangular array.
+
+\begin{corollary}
+For the array satisfying both assertions of Theorem~\ref{thm:nonuniform},
+with any \(M>0\), there is no finite \(C\) such that
+\[
+ \sup_{x\in I}\lambda_n(x)\ge\frac2\pi\log n-C
+\]
+for every nondegenerate interval \(I\subset(-1,1)\) and all sufficiently
+large \(n\), with the threshold allowed to depend on \(I\).
+\end{corollary}
+\begin{proof}
+Suppose that such a \(C\) exists. If \(G_{C+1}\) misses a nondegenerate
+compact interval \(K_0\subset(-1,1)\), the closed sets
+\[
+ F_N=\{x\in K_0:\lambda_n(x)\le(2/\pi)\log n-C-1
+                    \text{ for all }n\ge N\}
+\]
+cover \(K_0\). Baire's theorem gives an \(F_N\) containing a
+nondegenerate subinterval \(I\). The resulting upper bound on \(I\)
+contradicts the assumed lower bound for large \(n\).
+Thus \(G_{C+1}\) is dense, contrary to Theorem~\ref{thm:nonuniform}.
+\end{proof}
+
 Baire category enters (i) at one point, to
 produce an interval with a uniform upper bound; recurrence on a
 positive-measure set follows from the energy estimate in
@@ -1236,12 +1255,61 @@ Substituting these estimates and \eqref{eq:counter-u29} into \eqref{eq:counter-u
 For large \(n\) the bracket is nonnegative, uniformly on \(K\). We may replace \(b\le1\) by one. Since
 \(2+(2-2\log\pi)/\pi<3\), this proves \eqref{eq:counter-u26} away from the nodes. At the nodes, \(\lambda_n=1\), and \eqref{eq:counter-u26} follows for large \(n\) as well. \end{proof}
 
+\begin{remark}[A numerical check of the finite term]
+At phase midpoints, \(b=1\), and the harmonic sum above satisfies
+\[
+ \sum_{k=1}^n\frac1{|m+\tfrac12-k|}
+ =\log(m(n-m))+2\gamma+4\log2+o(1),
+\]
+uniformly on compact interior intervals. Thus the corrected quantity
+\[
+ E_n(x)=\lambda_n(x)-\frac2\pi\log n+\frac{Lv(x)}{\pi v(x)}
+\]
+at these points tends to
+\(\kappa_V=(2/\pi)(\gamma+\log(4/\pi))=0.521251626\ldots\),
+the constant in V\'ertesi's asymptotic formula \cite{Vertesi1990}.
+The reproducible script \texttt{checks/amplitude\_numerics.py} evaluates
+three fixed examples \(h=1,\ 1-z/2,\ (1-z/2)^2\) for
+\(n=50,100,\ldots,800\), using the derivative-weight identity and
+closed expressions for \(Lv/v\). On the prescribed phase midpoints
+in \(K=[-0.8,0.8]\), the largest computed values at \(n=800\) are,
+respectively, \(0.5212524\), \(0.5215144\), and \(0.5217777\).
+All values reported by the script are floating-point evaluations.
+\end{remark}
+
 Every positive smooth function on \(I\) can be approximated in \(C^1(I)\) by amplitudes occurring in this lemma. Indeed, approximate its inverse square by a strictly positive real polynomial \(p(x)\). The Laurent polynomial \(p((z+z^{-1})/2)\) has reciprocal and conjugate pairs of zeros, with none on the unit circle. Choosing the zeros outside the circle gives a real polynomial \(h\), zero-free on the closed disk, such that
 \[
  p(\cos\theta)=|h(e^{i\theta})|^2.
 \]
 The scalar factor is positive because both sides are positive on the circle; choose \(h(0)>0\). Thus \(p^{-1/2}\) is the required amplitude. Polynomial approximation in \(C^1\) follows by uniformly approximating the derivative and then integrating. For a fixed strictly positive \(v\), \eqref{eq:counter-u3} also shows that sufficiently accurate \(C^1\) approximation gives arbitrarily accurate uniform approximation of \(Lv/v\).
 
+
+\begin{remark}[Dependence on interval length]
+The loss on a small interval is already visible in a simpler construction.
+Let \(I_\ell=[-\ell/2,\ell/2]\), where \(0<\ell<1/4\), and choose a
+smooth \(v\) equal to \(1\) on \(I_\ell\) and to
+\(\delta=1/\log(1/\ell)\) outside \([-\ell,\ell]\), with
+\(\delta\le v\le1\) and \(\|v'\|_\infty=O(1/\ell)\).
+The integral outside \([-\ell,\ell]\) and the transition regions give,
+uniformly on \(I_\ell\),
+\[
+ Lv/v=2\log(1/\ell)+O(1).
+\]
+Approximate by an amplitude as above, with error at most one in this
+quotient. Lemma~\ref{lem:amplitude} gives the upper bound in
+\[
+ \sup_{I_\ell}\lambda_n=\frac2\pi\log(n\ell)+O(1).
+\]
+The matching lower bound follows from \eqref{eq:counter-u28}--\eqref{eq:counter-u29}
+at a phase midpoint, where \(b=1\); such points lie in \(I_\ell\) for
+all large \(n\). The constants here can be absolute, with the starting
+index depending on \(\ell\).
+Thus Tao's interval constant can be at least
+\((2/\pi)\log(1/|I_\ell|)-O(1)\) when the array changes with \(\ell\).
+The gap losses in Theorem~\ref{thm:nonuniform} are consistent with this
+dependence; its additional conclusion concerns one fixed array for
+which every finite common constant fails.
+\end{remark}
 
 \subsection{Assembly of the array}\label{subsec:counter-array}
 
@@ -1286,9 +1354,10 @@ from \texttt{uniform\_low\_set\_null} with an upper bound assumed for
 infinitely many rows.
 The source and build instructions
 are at \url{https://github.com/FireflySentinel/erdos-1132}.
-Selected lemmas of Section~\ref{sec:counterexample}, including the
-conditional assembly step, are also formalized; their precise scope
-and hypotheses are documented with the source.
+Selected lemmas of Section~\ref{sec:counterexample} are also formalized,
+including the explicit logarithmic integral bound and the cutoff estimate
+on \(F\) under geometric hypotheses, and the conditional assembly step.
+Their precise scope and hypotheses are documented with the source.
 Theorem~\ref{thm:main}(i) and the complete
 Theorem~\ref{thm:nonuniform} remain outside the formalization.
 

@@ -8,8 +8,7 @@ import Mathlib.Tactic
 # The logarithmic difference operator in Section 7
 
 This file proves the analytic estimate (7.1), including absolute integrability,
-and quantitative stability of the quotient `L f / f`. It does not assert the
-existence of the counterexample array in Theorem 2.
+and quantitative stability of the quotient `L f / f`.
 -/
 
 noncomputable section

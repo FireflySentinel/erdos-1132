@@ -1,11 +1,52 @@
 import Erdos1132
 
-/-! Exact statements and axiom checks for the formalized parts of Section 7.
-The analytic premises in the assembly lemma remain visible in its type;
-this module contains no claim that Theorem 2 has been fully formalized. -/
+/-! Exact statements and axiom checks for the Section 7 lemmas. -/
 
 open Set Filter MeasureTheory Polynomial
 open scoped BigOperators
+
+/-- The contraction uses real powers with the paper's exact rational constants. -/
+example : (254 / 255 : ℝ) * (8 / 7 : ℝ) ^ (1 / 256 : ℝ) ≤ 1 - 1 / 512 :=
+  Erdos1132.Counterexample.contraction_factor_bound
+
+/-- The scale estimate with the exponential choice of ρ written out. -/
+example {A r : ℝ} (hA : 1 < A) (hr : 0 < r)
+    (hsmall : r ≤ Real.exp (-1024 * (A + 40)) / 2) :
+    16 ≤ Real.log (Real.exp 8 / r) ∧
+      A + 2 < (1 / 512 : ℝ) * Real.log (1 / (4 * r)) - 32 :=
+  ⟨Erdos1132.Counterexample.gapScale_log_parameter hA hr hsmall,
+   Erdos1132.Counterexample.gapScale_lower_bound hA hr hsmall⟩
+
+/-- The gap estimate for the explicit profile, with its integral written out. -/
+example {r : ℝ → ℝ} {x s : ℝ}
+    (hrm : Measurable r) (hx : x ∈ Icc (-1 : ℝ) 1)
+    (hs : 0 < s) (hs4 : s ≤ 1 / 4) (hT : 16 ≤ 8 - Real.log s) (hrx : r x = s)
+    (hr : ∀ y ∈ Icc (-1 : ℝ) 1, 0 ≤ r y ∧ r y ≤ 2)
+    (hLip : ∀ y ∈ Icc (-1 : ℝ) 1, |r y - s| ≤ |x - y|)
+    (hball : ∀ t ∈ Icc (4 * s) 2,
+      ((volume.restrict (Icc (-1 : ℝ) 1)).restrict {y | r y ≠ 0}) {y | |x - y| ≤ t} ≤
+        ENNReal.ofReal (127 / 128 : ℝ) *
+          (volume.restrict (Icc (-1 : ℝ) 1)) {y | |x - y| ≤ t}) :
+    let u : ℝ → ℝ := fun y => if r y = 0 then 0 else (8 - Real.log (r y)) ^ (-1 / 256 : ℝ)
+    (1 / 512 : ℝ) * Real.log (1 / (4 * s)) - 32 ≤
+      (∫ y in Icc (-1 : ℝ) 1, (u x - u y) / |x - y|) / u x := by
+  exact Erdos1132.Counterexample.logarithmic_integral_lower_bound hrm hx hs hs4 hT hrx hr hLip hball
+
+/-- The bound on `F`, with the explicit profile, cutoff index, and integral. -/
+example {χ r : ℝ → ℝ} {A x δ : ℝ} {j : ℕ}
+    (hj : 0 < j) (hx : x ∈ Icc (-1 : ℝ) 1)
+    (hχm : Measurable χ) (hrm : Measurable r) (hδ : 0 < δ)
+    (hχ : ∀ y ∈ Icc (-1 : ℝ) 1, 0 ≤ χ y ∧ χ y ≤ 1)
+    (hzero : ∀ y ∈ Icc (-1 : ℝ) 1, |x - y| ≤ δ → χ y = 0)
+    (hr : ∀ y ∈ Icc (-1 : ℝ) 1, 0 ≤ r y ∧ r y ≤ 2)
+    (hdist : ∀ y ∈ Icc (-1 : ℝ) 1, r y ≤ |x - y|)
+    (hA : ((⌈32 * (A + 1)⌉₊ + 64 * j * (2 * j) ^ 256 + j : ℕ) : ℝ) / 16 ≤
+      ∫ y in Icc (-1 : ℝ) 1, χ y / |x - y|) :
+    let u : ℝ → ℝ := fun y => if r y = 0 then 0 else (8 - Real.log (r y)) ^ (-1 / 256 : ℝ)
+    let v : ℝ → ℝ := fun y => χ y * u y + (1 - χ y) * (1 / (j : ℝ))
+    (A + 1) * v x ≤ ∫ y in Icc (-1 : ℝ) 1, (v x - v y) / |x - y| := by
+  exact Erdos1132.Counterexample.explicit_smoothCutoff_lower_bound
+    hj hx hχm hrm hδ hχ hzero hr hdist hA
 
 /-- The positive approximation theorem, with the actual integral written out. -/
 example {f f' : ℝ → ℝ}
@@ -85,6 +126,26 @@ info: 'Erdos1132.Counterexample.exists_positive_polynomial_C1_ratio_approximatio
 #guard_msgs in
 #print axioms Erdos1132.Counterexample.amplitudePolynomial_degree
 
+/-- info: 'Erdos1132.Counterexample.fractional_power_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.fractional_power_bound
+
+/-- info: 'Erdos1132.Counterexample.contraction_factor_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.contraction_factor_bound
+
+/-- info: 'Erdos1132.Counterexample.logarithmic_contraction_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.logarithmic_contraction_bound
+
+/-- info: 'Erdos1132.Counterexample.gapScale_log_parameter' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.gapScale_log_parameter
+
+/-- info: 'Erdos1132.Counterexample.gapScale_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.gapScale_lower_bound
+
 /-- info: 'Erdos1132.Counterexample.amplitudePolynomial_trig_expansion' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos1132.Counterexample.amplitudePolynomial_trig_expansion
@@ -100,3 +161,31 @@ info: 'Erdos1132.Counterexample.not_dense_goodPoints_of_open_interval' depends o
 -/
 #guard_msgs in
 #print axioms Erdos1132.Counterexample.not_dense_goodPoints_of_open_interval
+
+/-- info: 'Erdos1132.Counterexample.integral_radial_tail_le' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.integral_radial_tail_le
+
+/-- info: 'Erdos1132.Counterexample.integral_inverseDistance_annulus' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.integral_inverseDistance_annulus
+
+/-- info: 'Erdos1132.Counterexample.logarithmic_integral_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.logarithmic_integral_lower_bound
+
+/--
+info: 'Erdos1132.Counterexample.logarithmic_integral_lower_bound_at_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+-/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.logarithmic_integral_lower_bound_at_scale
+
+/-- info: 'Erdos1132.Counterexample.cutoffIndex_margin' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.cutoffIndex_margin
+
+/-- info: 'Erdos1132.Counterexample.explicit_smoothCutoff_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.explicit_smoothCutoff_lower_bound

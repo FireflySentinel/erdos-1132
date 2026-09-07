@@ -13,9 +13,7 @@ Theorem 2 gives counterexamples to uniform additive constants. For every $M>0$,
 there is an array such that every fixed $x\in(-1,1)$ eventually satisfies
 $\lambda_n(x)\le(2/\pi)\log n-M$. For the same array, no single finite constant
 gives a dense set of points with infinitely many lower-bound occurrences.
-This counterexample does not impose nesting between rows and does not settle
-the version restricted to initial segments of one infinite node sequence.
-The uniform-constant question for that nested setting remains open.
+The uniform-constant question for nested node sequences remains open.
 
 For arbitrary arrays, Theorem 2 rules out both an absolute constant guaranteeing
 one good point for every array and a constant depending only on the array that
@@ -60,14 +58,9 @@ This corollary has a different scope from Erdős–Vértesi's 1981 Theorem 2.1:
 their result controls all points outside a set of arbitrarily small measure
 with coefficient $\eta(\varepsilon)>0$, while this corollary controls at least
 one point of each fixed positive-measure set with any coefficient $c<2/\pi$.
-Neither conclusion subsumes the other. Their Corollary 2.2 gives the associated
-integral estimate.
+Their Corollary 2.2 gives the associated integral estimate.
 
-Theorem 1(i), the bounded additive loss on a dense set of points, and the complete
-Theorem 2 remain outside this formalization. Selected lemmas from Section 7 are
-now proved in Lean, as detailed below. The complete counterexample has received
-an independent paper-proof review by a Codex agent; it is not yet a fully
-Lean-verified result.
+Selected lemmas from Section 7 are now proved in Lean, as detailed below.
 
 ## Proof correspondence
 
@@ -82,34 +75,49 @@ Lean-verified result.
 
 ## Formalized parts of Section 7
 
-The following modules are imported by `Erdos1132` and included in the build,
-axiom checks, and kernel replay. Their declarations live in the namespace
-`Erdos1132.Counterexample`.
+The Section 7 lemmas below are proved from the hypotheses shown in their types.
+Not formalized: the Cantor construction and its geometric measure estimates
+(§§7.1–7.2), the construction of the smooth amplitude sequence (§7.3), the
+factorization and reciprocal-square-root approximation leading to $|h|^{-1}$
+(§7.4), and the phase, root, and quadrature estimates in Lemma 9.
+The assembly theorem takes the row family, its upper estimates, and the eventual
+lower estimates for $q$ as hypotheses. Theorem 1(i) also remains outside the
+formalization.
 
-| Paper argument | Lean source and scope |
-|---|---|
-| Equation (7.1); operator stability and the local convergence estimate in §7.3 | [LogarithmicOperator.lean](Erdos1132/Counterexample/LogarithmicOperator.lean): absolute integrability, the derivative bound, quantitative control of $Lf/f$, and an $L^1$ tail bound when two functions agree near the query point |
-| Distance comparison (7.5) and the smooth distance in §7.2 | [GapGeometry.lean](Erdos1132/Counterexample/GapGeometry.lean): comparison with the distance to the endpoints, size, derivative, and Lipschitz estimates on a single gap |
-| Polynomial approximation and quotient stability in §7.4 | [PolynomialApproximation.lean](Erdos1132/Counterexample/PolynomialApproximation.lean): positive polynomial approximation of a positive $C^1$ function, controlling values, derivatives, and the actual integral quotient $Lf/f$ simultaneously |
-| Algebraic part of Lemma 9 | [AmplitudePolynomial.lean](Erdos1132/Counterexample/AmplitudePolynomial.lean): the Chebyshev sum, its trigonometric expansion, and degree exactly $n$ |
-| Degree blocks and the final quantifiers in §7.5 | [Assembly.lean](Erdos1132/Counterexample/Assembly.lean): increasing thresholds, transfer to all sufficiently large rows under explicit analytic hypotheses, and relative non-density in $(-1,1)$ |
+| Paper argument | Lean source and result | Hypotheses |
+|---|---|---|
+| Equation (7.1), quotient stability, and local convergence in §7.3 | [LogarithmicOperator.lean](Erdos1132/Counterexample/LogarithmicOperator.lean): integrability, derivative and quotient bounds, and an $L^1$ tail estimate. | Derivative bounds, positive denominator bounds for quotients, or local equality and an integrable difference for the tail estimate. |
+| Distance comparison (7.5) in §7.2 | [GapGeometry.lean](Erdos1132/Counterexample/GapGeometry.lean): size, derivative, distance, and Lipschitz bounds on one gap. | Ordered gap endpoints and a point in the specified open or closed gap. |
+| Numerical inequalities (7.11)–(7.12) | [Constants.lean](Erdos1132/Counterexample/Constants.lean): the real-power contraction, the exponential choice of $\rho$, and the cutoff-index cancellation. | $T\ge16$ for the contraction; $A>1$ and $0<r\le\exp(-1024(A+40))/2$ for the scale estimates; $j>0$ for the cutoff-index cancellation. |
+| Explicit log-integral bound (7.7), including near and far integrals and the choice of $\rho$ | [LogIntegralLowerBound.lean](Erdos1132/Counterexample/LogIntegralLowerBound.lean): $Lu/u\ge\frac1{512}\log(1/(4r))-32$ and $Lu/u>A+2$ at the chosen scale. | Measurable $r$ with $0\le r\le2$, $r(x)>0$, the stated size and distance bounds, and the cumulative ball-measure comparison for $U=\{r\ne0\}$. |
+| Cutoff estimate on $F$ in §7.3 | [SmoothLowerBound.lean](Erdos1132/Counterexample/SmoothLowerBound.lean): $(A+1)v_j(x)\le Lv_j(x)$ for the explicit profile and cutoff index. | $j>0$, measurable $r,\chi$, $0\le r\le2$, $r(y)\le\lvert x-y\rvert$, $0\le\chi\le1$, $\chi=0$ near $x$, and $A_\tau(x)\ge k_j/16$. |
+| Polynomial approximation in §7.4, applied in the paper to $v_j^{-2}$ | [PolynomialApproximation.lean](Erdos1132/Counterexample/PolynomialApproximation.lean): positive $C^1$ polynomial approximation controlling values, derivatives, and $Lp/p$. | A strictly positive function with a continuous derivative on $[-1,1]$, and a positive error tolerance. |
+| Algebraic part of Lemma 9 | [AmplitudePolynomial.lean](Erdos1132/Counterexample/AmplitudePolynomial.lean): the Chebyshev sum, its trigonometric expansion, and degree exactly $n$. | Real polynomial coefficients; $n>\deg h$ for the expansion, and additionally $h(0)\ne0$ for the degree. |
+| Degree blocks and final quantifiers in §7.5 | [Assembly.lean](Erdos1132/Counterexample/Assembly.lean): increasing thresholds, all-row bounds, and relative non-density in $(-1,1)$. | Valid node rows, increasing thresholds, eventual coverage by $K_j$, and the stated upper and lower estimates; an eventual upper bound on an open interval gives non-density. |
 
-The assembly theorem assumes a family of valid node rows, their upper estimates,
-and eventual lower estimates for an auxiliary function `q`. It does not construct
-that family or identify `q` with an amplitude quotient. The existing `Nodes` type
-requires nodes in the closed interval; this conditional theorem does not certify
-the interior-root construction in Theorem 2.
+The integral proof uses [RadialComparison.lean](Erdos1132/Counterexample/RadialComparison.lean)
+for the layer-cake comparison, [LogProfile.lean](Erdos1132/Counterexample/LogProfile.lean)
+and [FarProfile.lean](Erdos1132/Counterexample/FarProfile.lean) for the explicit
+profile and its primitive, and [InverseDistance.lean](Erdos1132/Counterexample/InverseDistance.lean)
+and [RadialIntervals.lean](Erdos1132/Counterexample/RadialIntervals.lean) for the
+one-dimensional integral identities. Kernel integrability and the cutoff-weighted
+integral estimate are proved in Lean.
 
-Still outside the formalization are the Cantor-set construction and global gap
-gluing, the full logarithmic integral lower bound and smooth amplitude sequence,
-the factorization and reciprocal-square-root approximation leading to
-$|h|^{-1}$, and the phase-root and Lebesgue estimates in Lemma 9.
+These modules are imported by `Erdos1132` and included in `lake test` and kernel
+replay. [Counterexample.lean](checks/Counterexample.lean) expands the integral
+and Lagrange product in the checked statements and checks the axiom dependencies
+`propext`, `Classical.choice`, and `Quot.sound`.
 
-[Counterexample.lean](checks/Counterexample.lean) writes out the integral in the
-positive approximation theorem and the Lagrange product in the relative
-non-density statement. It also checks that the listed main lemmas depend only
-on `propext`, `Classical.choice`, and `Quot.sound`, with no added proof assumptions
-hidden as axioms.
+## Numerical check
+
+```sh
+python3 checks/amplitude_numerics.py
+```
+
+This standard-library script evaluates the corrected finite term at prescribed
+phase midpoints for three fixed polynomials and degrees $50,100,\ldots,800$.
+The paper's numerical remark gives the formulas and compares these floating-point
+values with Vértesi's constant $0.521251626\ldots$.
 
 ## Use of generative AI
 

@@ -7,11 +7,10 @@ import Mathlib.Tactic
 /-!
 # Degree blocks and the quantifiers in Section 7.5
 
-The assembly theorem below is conditional on the stated analytic estimates
-for the rows. It proves that pointwise eventual estimates in the amplitude
+Given the stated row estimates, pointwise eventual estimates in the amplitude
 index pass to every sufficiently large row, not merely to a subsequence.
-No existence theorem for the amplitudes or the counterexample is assumed as
-an axiom, and this file does not claim to prove Theorem 2 on its own.
+An eventual upper bound on an open interval implies relative non-density of
+the corresponding good-point set in `(-1,1)`.
 -/
 
 noncomputable section
@@ -90,8 +89,8 @@ theorem not_mem_goodPoints_of_eventually_le
   obtain ⟨n, hlt, hle⟩ := hfrequent.exists
   exact (not_lt_of_ge hle) hlt
 
-/-- Relative non-density is formulated in the open-interval subtype; merely
-proving non-density in all of `ℝ` would be too weak. -/
+/-- An eventual upper bound on a nonempty open subinterval implies non-density
+of the good-point set relative to `(-1,1)`. -/
 theorem not_dense_goodPoints_of_open_interval
     (X : ∀ n : ℕ, Nodes (n + 2)) {C b c : ℝ}
     (hbc : b < c) (hb : -1 ≤ b) (hc : c ≤ 1)
