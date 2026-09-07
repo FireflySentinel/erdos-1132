@@ -265,3 +265,46 @@ example {S : Type*} (R : ℕ → S → ℝ → ℝ) {V : ℝ}
 /-- info: 'Erdos1132.Counterexample.uniform_midpoint_quadrature_error' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in
 #print axioms Erdos1132.Counterexample.uniform_midpoint_quadrature_error
+
+/-- The complete Theorem 2, with distinct interior nodes and the Lagrange
+products written out in the original degree convention. -/
+example (M : ℝ) (hM : 0 < M) :
+    ∃ X : ∀ n : ℕ, Fin n → ℝ,
+      (∀ n, Function.Injective (X n)) ∧
+      (∀ n i, X n i ∈ Ioo (-1) 1) ∧
+      (∀ x ∈ Ioo (-1 : ℝ) 1, ∀ᶠ (n : ℕ) in atTop,
+        (∑ i : Fin n, |∏ j ∈ Finset.univ.erase i, (x-X n j)/(X n i-X n j)|) ≤
+          (2/Real.pi)*Real.log (n:ℝ)-M) ∧
+      (∀ C : ℝ, ¬Dense {x : Ioo (-1 : ℝ) 1 |
+        ∃ᶠ (n : ℕ) in atTop, (2/Real.pi)*Real.log (n:ℝ)-C <
+          ∑ i : Fin n, |∏ j ∈ Finset.univ.erase i, ((x:ℝ)-X n j)/(X n i-X n j)|}) := by
+  obtain ⟨X,hinternal,hupper,hnd⟩ := Erdos1132.Counterexample.theorem2_unshifted M hM
+  refine ⟨fun n => (X n).point,fun n => (X n).injective,hinternal,?_,?_⟩
+  · simpa only [Erdos1132.Nodes.lebesgue,Erdos1132.Nodes.cardinal,
+      Lagrange.basis,Lagrange.basisDivisor,Polynomial.eval_prod,
+      Polynomial.eval_mul,Polynomial.eval_C,Polynomial.eval_sub,
+      Polynomial.eval_X,div_eq_mul_inv,mul_comm] using hupper
+  · simpa only [Erdos1132.Nodes.lebesgue,Erdos1132.Nodes.cardinal,
+      Lagrange.basis,Lagrange.basisDivisor,Polynomial.eval_prod,
+      Polynomial.eval_mul,Polynomial.eval_C,Polynomial.eval_sub,
+      Polynomial.eval_X,div_eq_mul_inv,mul_comm] using hnd
+
+/-- info: 'Erdos1132.Counterexample.theorem2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.theorem2
+
+/-- info: 'Erdos1132.Counterexample.theorem2_unshifted' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.theorem2_unshifted
+
+/-- info: 'Erdos1132.Counterexample.exists_cantor_smooth_sequence' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in
+#print axioms Erdos1132.Counterexample.exists_cantor_smooth_sequence
+
+/-- info: 'Erdos1132.Counterexample.exists_amplitude_logarithmicRatio_approximation' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.Counterexample.exists_amplitude_logarithmicRatio_approximation
+
+/-- info: 'Erdos1132.Counterexample.eventually_exists_amplitude_upper_rows' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.Counterexample.eventually_exists_amplitude_upper_rows

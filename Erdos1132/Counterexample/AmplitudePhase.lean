@@ -125,7 +125,7 @@ theorem amplitudePolynomial_boundary_expansion (h : ℝ[X]) {n : ℕ}
 
 /-- A smooth phase with zero endpoint values, constructed from the original
 zero-free real polynomial. -/
-theorem exists_amplitude_phase (h : ℝ[X])
+theorem exists_bounded_amplitude_phase (h : ℝ[X])
     (hzero : ∀ z : ℂ, ‖z‖ ≤ 1 → (complexPolynomial h).eval z ≠ 0)
     (hpos : 0 < h.coeff 0) :
     ∃ ψ : ℝ → ℝ, ContDiff ℝ ⊤ ψ ∧ ψ 0 = 0 ∧ ψ Real.pi = 0 ∧
@@ -133,9 +133,10 @@ theorem exists_amplitude_phase (h : ℝ[X])
         (((complexPolynomial h).derivative.eval (circlePoint θ) /
           (complexPolynomial h).eval (circlePoint θ)) *
           (circlePoint θ * Complex.I)).im θ) ∧
-      ∀ n : ℕ, h.natDegree < n → ∀ θ : ℝ,
+      (∀ n : ℕ, h.natDegree < n → ∀ θ : ℝ,
         (amplitudePolynomial h n).eval (Real.cos θ) =
-          ‖(complexPolynomial h).eval (circlePoint θ)‖ * Real.cos (n * θ - ψ θ) := by
+          ‖(complexPolynomial h).eval (circlePoint θ)‖ * Real.cos (n * θ - ψ θ)) ∧
+      ∃ B : ℝ, 0 < B ∧ ∀ θ : ℝ, |ψ θ| ≤ B ∧ |deriv ψ θ| ≤ B := by
   obtain ⟨R, hR, hz⟩ := exists_zero_free_larger_disk (complexPolynomial h) hzero
   obtain ⟨F, hF0, hF, hexp⟩ := exists_normalized_polynomial_log (complexPolynomial h)
     (by linarith : 0 < R) hz
@@ -149,7 +150,7 @@ theorem exists_amplitude_phase (h : ℝ[X])
       ((hFc.restrict_scalars ℝ).comp_contDiff contDiff_circlePoint hcircle)
   have hreal (x : ℝ) (hx : |x| < R) : (F (x : ℂ)).im = 0 :=
     normalized_log_im_real h (by linarith : 0 < R) hF0 hF hx
-  refine ⟨ψ, hψc, ?_, ?_, ?_, ?_⟩
+  refine ⟨ψ, hψc, ?_, ?_, ?_, ?_, ?_⟩
   · simpa [ψ] using hreal 1 (by simpa using hR)
   · simpa [ψ] using hreal (-1) (by simpa using hR)
   · intro θ
@@ -167,5 +168,49 @@ theorem exists_amplitude_phase (h : ℝ[X])
     simp only [Complex.mul_re, Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im,
       zero_mul, sub_zero, Complex.exp_re, Complex.exp_im, ψ]
     ring
+
+  · have hsub : closedBall (0 : ℂ) 1 ⊆ ball (0 : ℂ) R :=
+      fun z hz => lt_of_le_of_lt hz hR
+    obtain ⟨B₀, hB₀⟩ := (isCompact_closedBall (0 : ℂ) 1).bddAbove_image
+      ((hFc.continuousOn.mono hsub).norm)
+    let G : ℂ → ℝ := fun z =>
+      (((complexPolynomial h).derivative.eval z / (complexPolynomial h).eval z) *
+        (z * Complex.I)).im
+    have hGc : ContinuousOn G (closedBall (0 : ℂ) 1) := by
+      apply Complex.continuous_im.comp_continuousOn
+      exact ((complexPolynomial h).derivative.continuous.continuousOn.div
+        (complexPolynomial h).continuous.continuousOn
+        (fun z hz => hzero z (by simpa using hz))).mul
+          (continuous_id.mul continuous_const).continuousOn
+    obtain ⟨B₁, hB₁⟩ := (isCompact_closedBall (0 : ℂ) 1).bddAbove_image hGc.abs
+    refine ⟨|B₀| + |B₁| + 1, by positivity, ?_⟩
+    intro θ
+    have hmem : circlePoint θ ∈ closedBall (0 : ℂ) 1 := by simp [mem_closedBall, dist_zero_right]
+    have hb₀ := hB₀ (mem_image_of_mem _ hmem)
+    have hb₁ := hB₁ (mem_image_of_mem _ hmem)
+    have hd := (hF _ (hcircle θ)).comp θ (hasDerivAt_circlePoint θ)
+    have hψd : deriv ψ θ = G (circlePoint θ) := by
+      exact (Complex.imCLM.hasFDerivAt.comp_hasDerivAt θ hd).deriv
+    constructor
+    · have him := Complex.abs_im_le_norm (F (circlePoint θ))
+      dsimp [ψ]
+      linarith [le_abs_self B₀, abs_nonneg B₁]
+    · rw [hψd]
+      linarith [le_abs_self B₁, abs_nonneg B₀]
+
+/-- The exact smooth phase and cosine identity of the amplitude polynomial. -/
+theorem exists_amplitude_phase (h : ℝ[X])
+    (hzero : ∀ z : ℂ, ‖z‖ ≤ 1 → (complexPolynomial h).eval z ≠ 0)
+    (hpos : 0 < h.coeff 0) :
+    ∃ ψ : ℝ → ℝ, ContDiff ℝ ⊤ ψ ∧ ψ 0 = 0 ∧ ψ Real.pi = 0 ∧
+      (∀ θ, HasDerivAt ψ
+        (((complexPolynomial h).derivative.eval (circlePoint θ) /
+          (complexPolynomial h).eval (circlePoint θ)) *
+          (circlePoint θ * Complex.I)).im θ) ∧
+      ∀ n : ℕ, h.natDegree < n → ∀ θ : ℝ,
+        (amplitudePolynomial h n).eval (Real.cos θ) =
+          ‖(complexPolynomial h).eval (circlePoint θ)‖ * Real.cos (n * θ - ψ θ) := by
+  obtain ⟨ψ, hc, h0, hπ, hd, he, _⟩ := exists_bounded_amplitude_phase h hzero hpos
+  exact ⟨ψ, hc, h0, hπ, hd, he⟩
 
 end Erdos1132.Counterexample

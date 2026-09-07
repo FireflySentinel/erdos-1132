@@ -36,16 +36,25 @@ The set corollary is `eventually_exists_lower_bound`: for every measurable
 $E\subset(-1,1)$ of positive measure and every $0<c<2/\pi$, every sufficiently
 large row has some $x\in E$ with $c\log n<\lambda_n(x)$.
 
-[Statement.lean](checks/Statement.lean) writes out the node conditions and the
-Lagrange product formula in full, and [Counterexample.lean](checks/Counterexample.lean)
-expands the integral and Lagrange product of the amplitude rows; `lake test` checks
-both together with the axiom dependencies.
+The complete **Theorem 2** is
+[`theorem2_unshifted`](Erdos1132/Counterexample/Theorem2Unshifted.lean).
+For every $M>0$, it constructs one array of distinct interior nodes such that
 
-Not formalized: Theorem 1(i), and, in the counterexample, the Cantor construction and
-its geometric measure estimates (§§7.1–7.2), the smooth amplitude sequence (§7.3), the
-factorization leading to $|h|^{-1}$ (§7.4), and the remaining analytic estimates of
-Lemma 9. The assembly theorem takes the row family and its upper and lower estimates
-as hypotheses.
+- every fixed $x\in(-1,1)$ eventually satisfies $\lambda_n(x)\le(2/\pi)\log n-M$;
+- for every finite $C$, the points satisfying $\lambda_n(x)>(2/\pi)\log n-C$
+  infinitely often form a non-dense set in $(-1,1)$.
+
+The uniform-constant question for nested node sequences remains open.
+
+The theorem's only hypothesis is $M>0$. The Cantor geometry, smooth amplitudes,
+zero-free polynomials, actual node rows, and analytic estimates are constructed
+in Lean. Theorem 1(i) remains outside the formalization.
+[Statement.lean](checks/Statement.lean) and
+[Counterexample.lean](checks/Counterexample.lean) write out the node conditions
+and Lagrange products. `lake test` checks the complete statements and the axiom
+dependencies `propext`, `Classical.choice`, and `Quot.sound`.
+
+The manuscript is available as [PDF](paper/PROOF.pdf) and [LaTeX](paper/PROOF.tex).
 
 ## Proof correspondence
 
@@ -55,9 +64,17 @@ as hypotheses.
 | Boundary harmonic measure, §5 | [BoundaryMeasure.lean](Erdos1132/BoundaryMeasure.lean), `boundary_harmonic_measure` |
 | Positive-measure contradiction and the set corollary, §6 | [UniformLowSet.lean](Erdos1132/UniformLowSet.lean) |
 | Theorem 1(ii) | [Main.lean](Erdos1132/Main.lean), `ae_frequently_lower_bound`, `ae_lebesgue_limsup_shifted` |
-| Explicit log-integral bound (7.7) | [LogIntegralLowerBound.lean](Erdos1132/Counterexample/LogIntegralLowerBound.lean) |
-| Lemma 9: amplitude polynomial, phase, interior roots | [AmplitudePolynomial.lean](Erdos1132/Counterexample/AmplitudePolynomial.lean), [AmplitudeRoots.lean](Erdos1132/Counterexample/AmplitudeRoots.lean) |
-| Degree blocks, final quantifiers and non-density, §7.5 | [Assembly.lean](Erdos1132/Counterexample/Assembly.lean) |
+| Cantor geometry and the explicit log-integral bound, §§7.1–7.2 | [CantorDensity.lean](Erdos1132/Counterexample/CantorDensity.lean), [CantorGapIntegral.lean](Erdos1132/Counterexample/CantorGapIntegral.lean), [CantorLogarithmicBound.lean](Erdos1132/Counterexample/CantorLogarithmicBound.lean) |
+| Smooth positive sequence, §7.3 | [CantorSmoothSequence.lean](Erdos1132/Counterexample/CantorSmoothSequence.lean), `exists_cantor_smooth_sequence` |
+| Positive polynomial approximation applied to $1/v_j$, followed by root reflection, §7.4 | [AmplitudeApproximation.lean](Erdos1132/Counterexample/AmplitudeApproximation.lean), `exists_amplitude_logarithmicRatio_approximation` |
+| Lemma 9: actual interior rows and the complete upper estimate | [AmplitudeLemma.lean](Erdos1132/Counterexample/AmplitudeLemma.lean), `eventually_exists_amplitude_upper_rows` |
+| Uniform remainder and finite-part identity in Lemma 9 | [UniformRemainder.lean](Erdos1132/Counterexample/UniformRemainder.lean), [CoordinateIntegral.lean](Erdos1132/Counterexample/CoordinateIntegral.lean) |
+| Theorem 2: both assertions for one array, §7.5 | [Theorem2.lean](Erdos1132/Counterexample/Theorem2.lean), [Theorem2Unshifted.lean](Erdos1132/Counterexample/Theorem2Unshifted.lean) |
+
+The formal proof obtains smooth cutoffs from an open-set support function,
+with value one on the prescribed gap middle halves. It uses ratio approximation
+with error below $1/2$, which suffices for both conclusions. Degree blocks pass
+the estimates to every sufficiently large row, not merely to a subsequence.
 
 `python3 checks/amplitude_numerics.py` evaluates the corrected finite term at
 prescribed phase midpoints for three fixed polynomials and degrees $50,100,\ldots,800$.
