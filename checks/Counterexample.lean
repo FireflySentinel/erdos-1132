@@ -278,7 +278,7 @@ example (M : ℝ) (hM : 0 < M) :
       (∀ C : ℝ, ¬Dense {x : Ioo (-1 : ℝ) 1 |
         ∃ᶠ (n : ℕ) in atTop, (2/Real.pi)*Real.log (n:ℝ)-C <
           ∑ i : Fin n, |∏ j ∈ Finset.univ.erase i, ((x:ℝ)-X n j)/(X n i-X n j)|}) := by
-  obtain ⟨X,hinternal,hupper,hnd⟩ := Erdos1132.Counterexample.theorem2 M hM
+  obtain ⟨X,hinternal,hupper,hnd⟩ := Erdos1132.theorem2 M hM
   refine ⟨fun n => (X n).point,fun n => (X n).injective,hinternal,?_,?_⟩
   · simpa only [Erdos1132.Nodes.lebesgue,Erdos1132.Nodes.cardinal,
       Lagrange.basis,Lagrange.basisDivisor,Polynomial.eval_prod,
@@ -330,13 +330,15 @@ example (M : ℝ) (hM : 0 < M) :
       (∀ n i, (X n).point i ∈ Ioo (-1) 1) ∧
       (∀ x ∈ Ioo (-1 : ℝ) 1, ∀ᶠ n in atTop,
         (X n).lebesgue x ≤ (2 / Real.pi) * Real.log (n : ℝ) - M) ∧
+      (∀ C : ℝ, ¬Dense {x : Ioo (-1 : ℝ) 1 | ∃ᶠ (n : ℕ) in atTop,
+        (2 / Real.pi) * Real.log (n : ℝ) - C < (X n).lebesgue x}) ∧
       ¬∃ C : ℝ, ∀ l r : ℝ, l < r → Icc l r ⊆ Ioo (-1 : ℝ) 1 →
         ∀ᶠ (n : ℕ) in atTop, (2 / Real.pi) * Real.log (n : ℝ) - C ≤
           sSup ((fun x => ∑ i : Fin n,
             |∏ j ∈ Finset.univ.erase i,
               (x - (X n).point j) / ((X n).point i - (X n).point j)|) '' Icc l r) := by
-  obtain ⟨X, hI, hupper, hnd⟩ := Erdos1132.Counterexample.theorem2 M hM
-  refine ⟨X, hI, hupper, ?_⟩
+  obtain ⟨X, hI, hupper, hnd, hinterval⟩ := Erdos1132.no_uniform_interval_constant M hM
+  refine ⟨X, hI, hupper, hnd, ?_⟩
   have hL (n : ℕ) : (fun x => ∑ i : Fin n,
       |∏ j ∈ Finset.univ.erase i,
         (x - (X n).point j) / ((X n).point i - (X n).point j)|) = (X n).lebesgue := by
@@ -346,4 +348,4 @@ example (M : ℝ) (hM : 0 < M) :
       Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_sub,
       Polynomial.eval_X, div_eq_mul_inv, mul_comm]
   simp_rw [hL]
-  exact Erdos1132.Counterexample.no_uniform_interval_constant X hnd
+  exact hinterval

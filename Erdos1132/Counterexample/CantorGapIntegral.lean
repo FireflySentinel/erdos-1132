@@ -1,6 +1,9 @@
 import Erdos1132.Counterexample.GapMiddle
 
-/-! # The inverse-distance contribution of every Cantor stage -/
+/-! # The inverse-distance contribution of every Cantor stage
+
+Paper: §7.1, the compact set and its gaps.
+-/
 noncomputable section
 open Set MeasureTheory Finset
 open scoped BigOperators

@@ -10,6 +10,8 @@ import Erdos1132.Counterexample.LogarithmicOperator
 The approximation argument in Section 7.4: approximate the derivative by a
 polynomial and take a polynomial primitive. Strict positivity is preserved on
 the compact interval, with uniform control of the logarithmic-operator quotient.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

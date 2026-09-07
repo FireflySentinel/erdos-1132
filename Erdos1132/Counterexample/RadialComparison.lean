@@ -8,6 +8,8 @@ import Mathlib.Tactic
 Cumulative measure bounds on balls control integrals of decreasing radial
 weights. The weight is held constant below the first controlled radius,
 giving the boundary term used in the far-field estimate of Section 7.2.
+
+Paper: §7.2, the logarithmic integral estimate.
 -/
 
 open MeasureTheory Set Filter

@@ -1,7 +1,10 @@
 import Erdos1132.Counterexample.CantorRadius
 import Erdos1132.Counterexample.LogIntegralLowerBound
 
-/-! # The logarithmic lower bound for the constructed Cantor radius -/
+/-! # The logarithmic lower bound for the constructed Cantor radius
+
+Paper: §7.2, the logarithmic integral estimate.
+-/
 noncomputable section
 open Set MeasureTheory Filter
 open scoped Topology

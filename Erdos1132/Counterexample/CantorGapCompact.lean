@@ -1,7 +1,10 @@
 import Erdos1132.Counterexample.CantorGapIntegral
 import Erdos1132.Counterexample.SmoothLowerBound
 
-/-! # Finite compact collections of gap middle halves -/
+/-! # Finite compact collections of gap middle halves
+
+Paper: §7.3, smooth positive approximations.
+-/
 noncomputable section
 open Set MeasureTheory Finset
 open scoped BigOperators

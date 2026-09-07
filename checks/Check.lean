@@ -1,5 +1,22 @@
 import Erdos1132
 
+/-! # Axiom checks for the paper's theorems and proof lemmas
+
+Paper: Theorems 1 and 2 and the two corollaries in §8.
+-/
+
+/-- info: 'Erdos1132.theorem2' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.theorem2
+
+/-- info: 'Erdos1132.positive_measure_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.positive_measure_lower_bound
+
+/-- info: 'Erdos1132.no_uniform_interval_constant' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms Erdos1132.no_uniform_interval_constant
+
 /-- info: 'Erdos1132.eventually_exists_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in
 #print axioms Erdos1132.eventually_exists_lower_bound

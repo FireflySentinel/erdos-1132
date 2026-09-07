@@ -7,6 +7,8 @@ import Mathlib.Topology.Instances.Real.Lemmas
 
 Finite words label the intervals at each level. The recursive construction
 retains disjoint closed children inside every parent interval.
+
+Paper: §7.1, the compact set and its gaps.
 -/
 
 noncomputable section

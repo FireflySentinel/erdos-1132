@@ -7,6 +7,8 @@ import Mathlib.Tactic
 
 The error is bounded by the mesh width times the total variation. The
 estimate includes functions with jumps, uniformly in the location of a jump.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

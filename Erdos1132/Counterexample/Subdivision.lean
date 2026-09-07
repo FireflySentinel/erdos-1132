@@ -7,6 +7,8 @@ import Mathlib.Tactic
 
 The interval subdivision used in the Cantor construction retains both
 parent endpoints and specifies every child and gap explicitly.
+
+Paper: §7.1, the compact set and its gaps.
 -/
 
 noncomputable section

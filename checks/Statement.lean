@@ -1,4 +1,4 @@
-import Erdos1132.AdditiveMain
+import Erdos1132.Theorems
 
 /-! Theorem 1 and the set corollary, with the node conditions and Lebesgue
 function written out. Every denominator involves two distinct nodes. -/
@@ -40,6 +40,5 @@ example (X : ∀ n : ℕ, Fin n → ℝ)
     Lagrange.basis, Lagrange.basisDivisor, Polynomial.eval_prod,
     Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_sub,
     Polynomial.eval_X, div_eq_mul_inv, mul_comm] using
-    Erdos1132.eventually_exists_lower_bound_unshifted
-      (fun n => ⟨X n, distinct n, in_interval n⟩) hc hcπ hE
-      (fun x hx => ⟨(hEint hx).1.le, (hEint hx).2.le⟩) hEpos
+    Erdos1132.positive_measure_lower_bound
+      (fun n => ⟨X n, distinct n, in_interval n⟩) hE hEint hEpos hc hcπ

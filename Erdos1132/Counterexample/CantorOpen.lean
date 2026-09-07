@@ -1,7 +1,10 @@
 import Erdos1132.Counterexample.CantorGaps
 import Erdos1132.Counterexample.CantorDensity
 
-/-! # The open complement and its explicit gap decomposition -/
+/-! # The open complement and its explicit gap decomposition
+
+Paper: §7.1, the compact set and its gaps.
+-/
 
 noncomputable section
 open Set MeasureTheory Filter

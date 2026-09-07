@@ -3,7 +3,10 @@ import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
 import Mathlib.Analysis.Calculus.MeanValue
 
-/-! # The explicit logarithmic profile in Section 7.2 -/
+/-! # The explicit logarithmic profile in Section 7.2
+
+Paper: §7.2, the logarithmic integral estimate.
+-/
 
 noncomputable section
 

@@ -7,6 +7,8 @@ import Erdos1132.Counterexample.AmplitudeRemainder
 Joint regularity of the inverse coordinates supplies derivative bounds on the
 complete angle interval. The resulting variation bound is uniform both in the
 interior angle parameter and in all sufficiently large degrees.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section
@@ -62,7 +64,7 @@ theorem eventually_uniform_amplitudeRemainder_variation
   · intro t ht
     exact (h3 t ht).trans hM2
 
-/-- The `C/n` estimate for the concrete remainder in Lemma 9, with a single
+/-- The `C/n` estimate for the concrete remainder in the amplitude lemma (§7.4), with a single
 constant for all interior parameters and all sufficiently large degrees. -/
 theorem eventually_amplitudeRemainder_midpoint_error
     {ψ v : ℝ → ℝ} {B a b : ℝ}

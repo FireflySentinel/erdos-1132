@@ -8,6 +8,8 @@ import Mathlib.Topology.MetricSpace.UniformConvergence
 
 Cosine has negative extended slopes on compact interior angle sets. Uniform
 convergence of first derivatives transfers this bound to the perturbed coordinates.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

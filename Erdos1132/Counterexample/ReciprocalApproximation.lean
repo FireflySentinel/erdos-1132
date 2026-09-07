@@ -6,6 +6,8 @@ import Mathlib.Analysis.Calculus.Deriv.Inv
 
 Value and derivative errors are controlled using a common positive lower
 bound. The estimates feed directly into stability of the logarithmic ratio.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

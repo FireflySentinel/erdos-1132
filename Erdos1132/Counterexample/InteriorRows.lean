@@ -1,7 +1,10 @@
 import Erdos1132.Counterexample.AmplitudeLemma
 import Erdos1132.Counterexample.Assembly
 
-/-! # Interior rows in every degree and compact interval exhaustion -/
+/-! # Interior rows in every degree and compact interval exhaustion
+
+Paper: §7.5, assembly of the array in Theorem 2.
+-/
 noncomputable section
 open Set Filter Polynomial
 open scoped Topology

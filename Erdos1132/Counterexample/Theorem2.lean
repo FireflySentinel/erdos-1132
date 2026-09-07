@@ -1,6 +1,9 @@
 import Erdos1132.Counterexample.Theorem2Shifted
 
-/-! # Theorem 2 in the paper's original degree convention -/
+/-! # Theorem 2 in the paper's original degree convention
+
+Paper: §7.5, assembly of the array in Theorem 2.
+-/
 noncomputable section
 open Set Filter
 open scoped Topology

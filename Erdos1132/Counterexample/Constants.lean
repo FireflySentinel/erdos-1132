@@ -8,6 +8,8 @@ import Mathlib.Tactic
 The real-power contraction and the exponential choice of `ρ` give the
 numerical bounds used in Sections 7.2–7.3. The cutoff index and radius
 also give the cancellation in the lower estimate on `F`.
+
+Paper: §7.2, the logarithmic integral estimate.
 -/
 
 namespace Erdos1132.Counterexample

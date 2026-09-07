@@ -3,6 +3,11 @@ import Mathlib.Analysis.Polynomial.Basic
 import Mathlib.MeasureTheory.Constructions.BorelSpace.Basic
 import Mathlib.Tactic
 
+/-! # Interpolation nodes, cardinal polynomials, and Lebesgue functions
+
+Paper: §1, definitions used by both main theorems.
+-/
+
 noncomputable section
 
 open scoped BigOperators

@@ -1,7 +1,10 @@
 import Erdos1132.Counterexample.CantorRadius
 import Mathlib.MeasureTheory.Integral.Bochner.Set
 
-/-! # Middle halves of gaps and an explicit one-sided block -/
+/-! # Middle halves of gaps and an explicit one-sided block
+
+Paper: §7.1, the compact set and its gaps.
+-/
 noncomputable section
 open Set MeasureTheory Finset
 open scoped BigOperators

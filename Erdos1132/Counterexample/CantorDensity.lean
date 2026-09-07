@@ -6,6 +6,8 @@ import Erdos1132.Counterexample.CantorMeasure
 A small retained parent supplies enough measure directly. In a larger
 parent, a consecutive block of complete children lies inside the query
 interval, and each retains at least half its measure in the limit.
+
+Paper: §7.1, the compact set and its gaps.
 -/
 
 noncomputable section

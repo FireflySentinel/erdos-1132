@@ -7,6 +7,8 @@ import Mathlib.Tactic
 
 The polynomial in (7.18) has the prescribed trigonometric expansion and degree
 exactly `n` when `h(0)` is nonzero and `n > deg h`.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

@@ -1,7 +1,10 @@
-import Erdos1132.BaireBounds
+import Erdos1132.Shared.BaireBounds
 import Erdos1132.Counterexample.Theorem2
 
-/-! # Quantifier consequences of Theorem 2 -/
+/-! # Quantifier consequences of Theorem 2
+
+Paper: §1 (S1)–(S2) and §8, consequences of Theorem 2.
+-/
 
 noncomputable section
 open Set Filter
@@ -21,7 +24,7 @@ theorem dense_goodPoints_of_uniform_interval_constant
     (fun n => (X n).lebesgue) (fun n => (X n).continuous_lebesgue)
     (fun n => (2 / Real.pi) * Real.log (n : ℝ) - C) (ε := 1) (by norm_num) h
 
-/-- The corollary following Theorem 2: for any array whose every finite-constant
+/-- The interval-constant corollary in §8: for any array whose every finite-constant
 good-point set is non-dense, an eventual interval-supremum bound cannot use one
 constant for all intervals. -/
 theorem no_uniform_interval_constant

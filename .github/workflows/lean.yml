@@ -26,6 +26,8 @@ jobs:
           test: "false"
           lint: "false"
           use-mathlib-cache: "true"
+      - name: Remove cached modules whose sources were moved or deleted
+        run: python3 scripts/prune_obsolete_modules.py
       - name: Check axioms and the explicit statement
         run: lake test
       - name: Replay project declarations through the kernel

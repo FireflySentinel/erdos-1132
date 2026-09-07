@@ -5,6 +5,8 @@ import Erdos1132.Counterexample.AmplitudeRoots
 
 The amplitude polynomial factors over its constructed roots. Cancellation of
 its leading coefficient gives the exact Lebesgue-function formula.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

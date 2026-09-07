@@ -4,7 +4,10 @@ import Erdos1132.Counterexample.RadialComparison
 import Erdos1132.Counterexample.RadialIntervals
 import Erdos1132.Counterexample.InverseDistance
 
-/-! # The explicit logarithmic integral lower bound on an open gap -/
+/-! # The explicit logarithmic integral lower bound on an open gap
+
+Paper: §7.2, the logarithmic integral estimate.
+-/
 
 noncomputable section
 

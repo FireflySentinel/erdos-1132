@@ -9,6 +9,8 @@ import Erdos1132.Counterexample.LogProfile
 For `v = χ u + (1-χ) ε` and `χ(x)=0`, the logarithmic integral equals
 `ε A - W`. A local modulus bound for `u` and the exact logarithmic tail
 estimate control `W`; the explicit cutoff index supplies the lower bound.
+
+Paper: §7.3, smooth positive approximations.
 -/
 
 noncomputable section

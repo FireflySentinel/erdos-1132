@@ -16,8 +16,8 @@ interpolation, almost everywhere, pointwise bounds, additive constants}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem*{taoestimates}{Proposition (Tao's local estimates)}
-\newtheorem*{corollary}{Corollary}
+\newtheorem{taoestimates}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \numberwithin{equation}{section}
@@ -45,7 +45,7 @@ in \([-1,1]\). We prove that the points \(x\in(-1,1)\) for which
 some finite \(C(x)\), form a dense set. We also prove
 \(\limsup_{n\to\infty}\lambda_n(x)/\log n\ge2/\pi\)
 for almost every \(x\in(-1,1)\).
-We also show that no absolute additive constant works for all arrays:
+Conversely, we show that no absolute additive constant works for all arrays:
 for every \(M>0\), there is an array for which each fixed
 \(x\in(-1,1)\) eventually satisfies
 \(\lambda_n(x)\le(2/\pi)\log n-M\).
@@ -90,20 +90,6 @@ for infinitely many \(n\) is dense in \((-1,1)\).
 \end{enumerate}
 \end{theorem}
 
-Theorem~\ref{thm:main}(ii) gives the sharp coefficient in an
-almost-everywhere logarithmic-order lower bound already established
-by Erd\H{o}s and V\'ertesi \cite{ErdosVertesi1981}; we recall their
-more precise measure estimate below.
-
-Erd\H{o}s posed the existence and almost-everywhere questions for triangular arrays in
-\cite[p.~68]{Erdos}, and they are recorded as Problem 1132 in
-\cite{Bloom}. The constant in \eqref{eq:main-fixed} is independent of
-\(n\); it may depend on the array and the point \(x\).
-As Tao notes in \cite[Remark~1.12]{Tao}, the original question leaves
-the allowed dependence of the additive constant unspecified.
-The following result separates two uniform interpretations from
-Theorem~\ref{thm:main}(i).
-
 \begin{theorem}\label{thm:nonuniform}
 For every \(M>0\), there is a triangular array of distinct nodes in
 \((-1,1)\) such that, for every fixed \(x\in(-1,1)\),
@@ -121,12 +107,16 @@ so that, for every finite \(C\), the set
 is not dense in \((-1,1)\).
 \end{theorem}
 
-Theorem~\ref{thm:nonuniform} concerns arbitrary triangular arrays, as in
-\cite[p.~68]{Erdos} and \cite[Corollary~1.11]{Tao}.
-The problem page \cite{Bloom} instead uses the initial segments of a
-single infinite node sequence. Our counterexample does not impose
-this nesting, and the uniform-constant question in that setting
-remains open.
+Erd\H{o}s \cite[p.~68]{Erdos} asked whether every triangular array
+has a point at which the sharp logarithmic lower bound holds
+infinitely often with a bounded additive loss, and whether the
+normalized lower bound \eqref{eq:main-ae} holds almost everywhere.
+Theorem~\ref{thm:main}(i) answers the first question with a constant
+that may depend on the point; part~(ii) answers the second.
+As Tao observes in \cite[Remark~1.12]{Tao}, the original question does
+not specify the allowed dependence of the additive constant.
+Theorem~\ref{thm:nonuniform} distinguishes the uniform readings from
+the point-dependent one.
 
 For arbitrary triangular arrays, the three possible quantifier
 patterns can now be distinguished, using \(G_C\) from
@@ -143,6 +133,15 @@ by the second assertion of Theorem~\ref{thm:nonuniform}.
 More precisely, \(\bigcup_{C\in\mathbb R}G_C\) is dense; the constant
 may vary from point to point in this union.
 \end{enumerate}
+
+Theorem~\ref{thm:nonuniform} concerns arbitrary triangular arrays, as in
+\cite[p.~68]{Erdos} and \cite[Corollary~1.11]{Tao}.
+The problem page \cite{Bloom} instead uses the initial segments of a
+single infinite node sequence. Our counterexample does not impose
+this nesting, and the uniform-constant question in that setting
+remains open.
+
+\subsection{Background}
 
 Faber \cite{Faber} proved the order \(\log n\) for the global Lebesgue
 constant, Bernstein \cite{Bernstein} obtained the asymptotically sharp
@@ -191,7 +190,7 @@ Erd\H{o}s and V\'ertesi also give the integral version
 \]
 for arbitrary measurable \(S_n\subset[-1,1]\).
 
-The corollary at the end of Section~\ref{sec:ae} gives, in every
+Corollary~\ref{cor:positive-measure} gives, in every
 sufficiently large row, a point in each fixed positive-measure set
 with \(\lambda_n(x)>c\log n\), for any \(0<c<2/\pi\).
 Erd\H{o}s--V\'ertesi's theorem instead controls all points outside a
@@ -212,57 +211,37 @@ infinitely often. Theorem~\ref{thm:main}(i) replaces \(\omega(n)\) by a
 finite constant depending on the point, on a dense set.
 In footnote~6 to Remark~1.12 of \cite{Tao}, Tao expresses the tentative belief that
 ``this dependency on \(I\) in the error term cannot be entirely
-eliminated.'' The following consequence of Theorem~\ref{thm:nonuniform}
-establishes this for a single triangular array.
+eliminated.'' Corollary~\ref{cor:no-uniform-interval} establishes this
+for the single array of Theorem~\ref{thm:nonuniform}.
 
-\begin{corollary}
-For the array satisfying both assertions of Theorem~\ref{thm:nonuniform},
-with any \(M>0\), there is no finite \(C\) such that
-\[
- \sup_{x\in I}\lambda_n(x)\ge\frac2\pi\log n-C
-\]
-for every nondegenerate interval \(I\subset(-1,1)\) and all sufficiently
-large \(n\), with the threshold allowed to depend on \(I\).
-\end{corollary}
-\begin{proof}
-Suppose that such a \(C\) exists. If \(G_{C+1}\) misses a nondegenerate
-compact interval \(K_0\subset(-1,1)\), the closed sets
-\[
- F_N=\{x\in K_0:\lambda_n(x)\le(2/\pi)\log n-C-1
-                    \text{ for all }n\ge N\}
-\]
-cover \(K_0\). Baire's theorem gives an \(F_N\) containing a
-nondegenerate subinterval \(I\). The resulting upper bound on \(I\)
-contradicts the assumed lower bound for large \(n\).
-Thus \(G_{C+1}\) is dense, contrary to Theorem~\ref{thm:nonuniform}.
-\end{proof}
+\subsection{Organization}
 
-The dependence of Tao's constant on \(I\) is already unavoidable when
-the array varies with the interval: a smooth profile for \(|h|\), equal
-to one on \(I\) and large outside, followed by polynomial approximation gives
-\(\sup_I\lambda_n=(2/\pi)\log(n|I|)+O(1)\), hence
-\(C_I\ge(2/\pi)\log(1/|I|)-O(1)\); see
-the interval-length remark in Section~\ref{subsec:counter-amplitude}.
-Theorem~\ref{thm:nonuniform} gives one
-fixed array for which every finite constant fails on some interval.
+Sections~\ref{sec:local}--\ref{sec:fixed} prove
+Theorem~\ref{thm:main}(i). The local differentiation estimate turns
+large derivative jumps into nearby high values of the Lebesgue
+function. A weighted energy bound supplies enough such jumps, and a
+second-moment argument gives recurrence on a positive-measure set.
+Baire's theorem then gives density.
 
-Baire category enters (i) at one point, to
-produce an interval with a uniform upper bound; recurrence on a
-positive-measure set follows from the energy estimate in
-Section~\ref{sec:energy}.
+Sections~\ref{sec:cauchy}--\ref{sec:ae} prove
+Theorem~\ref{thm:main}(ii) by a separate argument using positive
+Cauchy transforms. This proof is independent of
+Sections~\ref{sec:local}--\ref{sec:fixed} and of Tao's estimates.
+Section~\ref{sec:counterexample} proves Theorem~\ref{thm:nonuniform}
+independently of both lower-bound arguments. Its first three
+subsections construct positive functions with large logarithmic
+integral ratios; Lemma~\ref{lem:amplitude} converts them into
+interpolation rows, which are assembled in the final subsection.
+Section~\ref{sec:consequences} gives the positive-measure and
+interval-constant corollaries.
 
-Theorem~\ref{thm:nonuniform} is proved in
-Section~\ref{sec:counterexample}, independently of the preceding
-lower-bound arguments. A compact set with many small gaps supports an
-explicit continuous function whose logarithmic integral ratio is
-large in every gap. Smooth positive approximations also make this
-ratio large at each fixed point of the compact set. An amplitude
-construction converts these functions into interpolation arrays.
-
-Both main theorems and their set and interval-constant corollaries are
-formalized in Lean; see the final section for the precise statements
-and repository. The formal proof includes direct proofs of the local
-potential estimates used from Tao.
+Both main theorems and the two corollaries are formalized in Lean 4
+with Mathlib. The estimates used from Tao in Proposition~\ref{prop:tao}
+are proved directly in Lean. The file \path{Erdos1132/Theorems.lean}
+collects the four statements; \path{checks/Statement.lean} and
+\path{checks/Counterexample.lean} also write out the node conditions
+and Lagrange products. The source and build instructions are at
+\url{https://github.com/FireflySentinel/erdos-1132}.
 
 Throughout the paper, all logarithms are natural and \(|E|\) denotes
 Lebesgue measure. We write \(c_0=2/\pi\), and suppress the row index
@@ -332,7 +311,7 @@ state the local estimates in the form used here, with the normalization:
  U_n(z)=\frac1n\log\frac1{|P_n(z)|}.
 \]
 
-\begin{taoestimates}
+\begin{taoestimates}[Tao's local estimates]\label{prop:tao}
 Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval, and
 suppose that \(\sup_I\lambda_n\le n\) for all sufficiently large \(n\).
 This is a specialization of the polynomial upper bound in
@@ -955,22 +934,13 @@ E_n|\). Taking limits in \eqref{eq:symmetric-energy} therefore yields
 contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
 \end{proof}
 
-\begin{corollary}
-Let \(E\subset(-1,1)\) be measurable with \(|E|>0\), and let
-\(0<c<2/\pi\). For all sufficiently large \(n\), there is \(x\in E\)
-such that \(\lambda_n(x)>c\log n\).
-\end{corollary}
-\begin{proof}
-Otherwise \(\lambda_n(y)\le c\log n\) for every \(y\in E\) and every
-\(n\) in an infinite set \(S\). The argument above applies to these
-rows, with all limits taken as \(n\to\infty\) through \(S\), and gives
-the same contradiction \(|E|/A\ge|E|\) with \(A>1\).
-\end{proof}
+
 
 \section{Failure of uniform additive constants}
 \label{sec:counterexample}
 
-We prove Theorem~\ref{thm:nonuniform}. Smooth on \(I=[-1,1]\)
+We prove Theorem~\ref{thm:nonuniform}. The constants are chosen
+for a clean verification and are not optimized. Smooth on \(I=[-1,1]\)
 will mean extendible to a smooth function on a neighborhood of \(I\).
 
 \subsection{The compact set}\label{subsec:counter-set}
@@ -1132,21 +1102,19 @@ It also shows that \(Lu(x)/u(x)\to+\infty\) as \(x\) approaches either endpoint 
 
 \subsection{Smooth positive functions on the whole interval}\label{subsec:counter-smooth}
 
-Choose a nondecreasing smooth \(q_0:\mathbb R\to[0,1]\), equal to zero on \((-\infty,1]\) and one on \([2,\infty)\). On a gap \((b,c)\), set
+Let \(K_N\) be the union of the closed middle halves of all gaps
+removed in the first \(N\) stages. This is a compact subset of \(U\).
+For any smooth \(0\le\chi\le1\), vanishing near \(F\) and equal to
+one on \(K_N\), put
 \[
- \chi_\tau(x)=q_0((x-b)/\tau)q_0((c-x)/\tau),
+ A_\chi(x)=\int_U\frac{\chi(y)}{|x-y|}\,dy\qquad(x\in F).
 \]
-and put \(\chi_\tau=0\) on \(F\). Only finitely many gaps, those of length greater than \(2\tau\), contribute. Therefore \(\chi_\tau\) is smooth on \(I\); it vanishes for \(D\le\tau\), equals one for \(D\ge2\tau\), and increases pointwise to \(1_U\) as \(\tau\downarrow0\).
-
-For \(x\in F\), define
-\[
- A_\tau(x)=\int_U\frac{\chi_\tau(y)}{|x-y|}\,dy.
-\]
-There is a direct uniform bound
+The estimate proving \eqref{eq:counter-u6}, restricted to these middle
+halves, gives at least \(1/16\) from each of the first \(N\) stages.
+Consequently,
 \begin{equation}\label{eq:counter-u15}
-A_{b_N/8}(x)\ge N/16\qquad(x\in F).
+ A_\chi(x)\ge N/16\qquad(x\in F).
 \end{equation}
-Indeed, \(b_k\) decreases strictly with \(k\). If \(k\le N\), the middle half of every stage \(k\) gap has distance at least \(b_k/4\ge2(b_N/8)\) from its endpoints, so \(\chi_{b_N/8}=1\) there. The argument proving \eqref{eq:counter-u6}, restricted to these middle halves, gives at least \(1/16\) from each of the first \(N\) stages.
 
 Let \(\epsilon_j=1/j\), \(j\ge2\), and put
 \[
@@ -1154,39 +1122,56 @@ Let \(\epsilon_j=1/j\), \(j\ge2\), and put
 \]
 Since \(r\le D\) and \(p(d_j)=1/(2j)\), one has
 \(u(y)\le\epsilon_j/2\) when \(D(y)\le d_j\).
-Using this for \(|x-y|<d_j\), and \(u\le1\) on the remainder, gives, uniformly for \(x\in F\),
+Using this for \(|x-y|<d_j\), and \(u\le1\) on the remainder, gives
 \begin{equation}\label{eq:counter-u16}
-\int_U\frac{\chi_\tau(y)u(y)}{|x-y|}\,dy
- \le\frac{\epsilon_j}{2}A_\tau(x)+C_j.
+ \int_U\frac{\chi(y)u(y)}{|x-y|}\,dy
+ \le\frac{\epsilon_j}{2}A_\chi(x)+C_j
+ \qquad(x\in F).
 \end{equation}
-Here the far integral is at most
-\(2\log(2/d_j)\le C_j\).
+Here the far integral is at most \(2\log(2/d_j)\le C_j\).
 
-Now specify the increasing integers and decreasing cutoffs
+Set
 \[
- k_j=\lceil32(A+1)\rceil+64j(2j)^{256}+j,\qquad
- \tau_j=b_{k_j}/8.
+ k_j=\lceil32(A+1)\rceil+64j(2j)^{256}+j.
 \]
-By \eqref{eq:counter-u15},
+Choose a smooth function \(f:\mathbb R\to[0,1]\) with
+\(\{f>0\}=U\), and a nondecreasing smooth
+\(q_0:\mathbb R\to[0,1]\), equal to zero on \((-\infty,1]\)
+and one on \([2,\infty)\). By compactness, choose
+\(0<\tau_j\le1/j\) such that \(2\tau_j\le f\) on \(K_{k_j}\),
+and define
 \[
- \frac{\epsilon_j}{2}A_{\tau_j}(x)-C_j
+ \chi_j(x)=q_0(f(x)/\tau_j).
+\]
+Thus \(\chi_j\) is smooth, vanishes on a neighborhood of \(F\),
+and equals one on \(K_{k_j}\). Since \(\tau_j\to0\), at each
+fixed point of \(U\) it is eventually identically one on a
+neighborhood of that point. Equation~\eqref{eq:counter-u15} gives
+\[
+ \frac{\epsilon_j}{2}A_{\chi_j}(x)-C_j
  \ge\frac{k_j}{32j}-C_j\ge(A+1)\epsilon_j
  \qquad(x\in F).
 \]
 Define
 \begin{equation}\label{eq:counter-u17}
-v_j=\chi_{\tau_j}u+(1-\chi_{\tau_j})\epsilon_j.
+ v_j=\chi_j u+(1-\chi_j)\epsilon_j.
 \end{equation}
-This function is strictly positive and smooth on a neighborhood of \(I\): only finitely many compact portions of gaps contribute, \(u\) is smooth and positive there, and the function equals \(\epsilon_j\) near their boundaries and near the endpoints of \(I\).
+This function is strictly positive and smooth on a neighborhood of
+\(I\): the function \(u\) is smooth and positive in each gap, and
+\(v_j=\epsilon_j\) near \(F\).
 
-At \(x\in F\), \eqref{eq:counter-u16} gives \(Lv_j(x)\ge(A+1)v_j(x)\). At every fixed \(x\in U\), eventually \(v_j=u\) on a neighborhood of \(x\). Also \(v_j\to u\) in \(L^1(I)\), by bounded convergence. The integrals outside that neighborhood then converge, so
+At \(x\in F\), \eqref{eq:counter-u16} gives
+\(Lv_j(x)\ge(A+1)v_j(x)\). At every fixed \(x\in U\), eventually
+\(v_j=u\) on a neighborhood of \(x\). Also \(v_j\to u\) in
+\(L^1(I)\), by bounded convergence. The integrals outside that
+neighborhood then converge, so
 \begin{equation}\label{eq:counter-u18}
-\frac{Lv_j(x)}{v_j(x)}\longrightarrow\frac{Lu(x)}{u(x)}
+ \frac{Lv_j(x)}{v_j(x)}\longrightarrow\frac{Lu(x)}{u(x)}
  >A+2\qquad(x\in U).
 \end{equation}
 We have therefore constructed positive smooth functions such that
 \begin{equation}\label{eq:counter-u19}
-\frac{Lv_j(x)}{v_j(x)}\ge A+1
+ \frac{Lv_j(x)}{v_j(x)}\ge A+1
  \quad\text{eventually for every fixed }x\in I.
 \end{equation}
 The eventual index is allowed to depend on \(x\).
@@ -1389,19 +1374,44 @@ For the final assertion, \eqref{eq:counter-u18}, \eqref{eq:counter-u26}, and \eq
 Choose a gap \((b,c)\) with both endpoints in \((-1,1)\). By \eqref{eq:counter-u9}, \(Lu(x)/u(x)\to+\infty\) as \(x\downarrow b\). Given any finite \(C\), there is a nonempty interval \((b,b+\sigma)\) on which the right side of \eqref{eq:counter-u31} is strictly less than \(-C-1\). This interval is disjoint from \(G_C\), proving the second assertion. \end{proof}
 
 
-\section*{Use of generative AI}
+\section{Consequences}
+\label{sec:consequences}
 
-The Lean statements \texttt{Erdos1132.theorem1} and
-\texttt{Erdos1132.Counterexample.theorem2} have precisely the node-array
-conditions and \(M>0\) as their hypotheses, respectively.
-Both main theorems, the set corollary, and the interval-constant
-corollary are formalized in Lean 4 with Mathlib. The formal proofs
-follow the arguments above with the substitutions listed in the
-repository README. The checks expand the Lagrange products and verify
-that the proofs use only Lean's standard axioms \texttt{propext},
-\texttt{Classical.choice}, and \texttt{Quot.sound}.
-The source and build instructions are at
-\url{https://github.com/FireflySentinel/erdos-1132}.
+\begin{corollary}[Positive-measure sets]\label{cor:positive-measure}
+Let \(E\subset(-1,1)\) be measurable with \(|E|>0\), and let
+\(0<c<2/\pi\). For all sufficiently large \(n\), there is \(x\in E\)
+such that \(\lambda_n(x)>c\log n\).
+\end{corollary}
+\begin{proof}
+Otherwise \(\lambda_n(y)\le c\log n\) for every \(y\in E\) and every
+\(n\) in an infinite set \(S\). The argument in Section~\ref{sec:ae} applies to these
+rows, with all limits taken as \(n\to\infty\) through \(S\), and gives
+the same contradiction \(|E|/A\ge|E|\) with \(A>1\).
+\end{proof}
+
+\begin{corollary}[No uniform interval constant]\label{cor:no-uniform-interval}
+For the array satisfying both assertions of Theorem~\ref{thm:nonuniform},
+with any \(M>0\), there is no finite \(C\) such that
+\[
+ \sup_{x\in I}\lambda_n(x)\ge\frac2\pi\log n-C
+\]
+for every nondegenerate compact interval \(I\subset(-1,1)\) and all sufficiently
+large \(n\), with the threshold allowed to depend on \(I\).
+\end{corollary}
+\begin{proof}
+Suppose that such a \(C\) exists. If \(G_{C+1}\) misses a nondegenerate
+compact interval \(K_0\subset(-1,1)\), the closed sets
+\[
+ F_N=\{x\in K_0:\lambda_n(x)\le(2/\pi)\log n-C-1
+                    \text{ for all }n\ge N\}
+\]
+cover \(K_0\). Baire's theorem gives an \(F_N\) containing a
+nondegenerate compact subinterval \(I\). The resulting upper bound on \(I\)
+contradicts the assumed lower bound for large \(n\).
+Thus \(G_{C+1}\) is dense, contrary to Theorem~\ref{thm:nonuniform}.
+\end{proof}
+
+\section*{Use of generative AI}
 
 GPT-6 Astra was used to generate proofs and draft the manuscript;
 GPT-5.6 Sol and Claude Opus 5 were used for editorial review.

@@ -8,6 +8,8 @@ import Mathlib.NumberTheory.Harmonic.Bounds
 
 The removed proportions are summable, while the number of children forces
 a fixed logarithmic contribution from the gaps at every stage.
+
+Paper: §7.1, the compact set and its gaps.
 -/
 
 noncomputable section

@@ -1,32 +1,7 @@
-import Erdos1132.Main
-import Erdos1132.Counterexample.LogarithmicOperator
-import Erdos1132.Counterexample.PolynomialApproximation
-import Erdos1132.Counterexample.GapGeometry
-import Erdos1132.Counterexample.Constants
-import Erdos1132.Counterexample.RadialComparison
-import Erdos1132.Counterexample.InverseDistance
-import Erdos1132.Counterexample.LogProfile
-import Erdos1132.Counterexample.FarProfile
-import Erdos1132.Counterexample.RadialIntervals
-import Erdos1132.Counterexample.LogIntegralLowerBound
-import Erdos1132.Counterexample.SmoothLowerBound
-import Erdos1132.Counterexample.AmplitudePolynomial
-import Erdos1132.Counterexample.AmplitudePhase
-import Erdos1132.Counterexample.AmplitudeRoots
-import Erdos1132.Counterexample.AmplitudeInterpolation
-import Erdos1132.Counterexample.MidpointQuadrature
-import Erdos1132.Counterexample.Assembly
-import Erdos1132.Counterexample.Theorem2
-import Erdos1132.Counterexample.Corollaries
-import Erdos1132.JumpEnergy
-import Erdos1132.SecondMoment
+import Erdos1132.Theorems
 
-import Erdos1132.DyadicRecurrence
-import Erdos1132.DensityPositive
-import Erdos1132.QuadratureRate
-import Erdos1132.InterpolantLocalGrowth
-import Erdos1132.PolynomialSecondDerivative
-import Erdos1132.InterpolantPeak
-import Erdos1132.JumpEnergyLower
-import Erdos1132.IsolatedPeaks
-import Erdos1132.AdditiveMain
+/-! # Sharp pointwise bounds for Lebesgue functions
+
+Paper: Theorems 1 and 2 and their consequences.
+All proof modules are imported transitively by `Erdos1132.Theorems`.
+-/

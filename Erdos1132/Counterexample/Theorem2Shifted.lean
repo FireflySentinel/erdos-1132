@@ -10,6 +10,8 @@ import Mathlib.Analysis.Real.Pi.Bounds
 For each positive M, a single array of distinct interior nodes has the
 eventual pointwise deficit M and, for every finite C, a non-dense set of
 points attaining the corresponding lower bound infinitely often.
+
+Paper: §7.5, assembly of the array in Theorem 2.
 -/
 noncomputable section
 open Set Filter Polynomial

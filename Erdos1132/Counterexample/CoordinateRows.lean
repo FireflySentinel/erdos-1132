@@ -6,6 +6,8 @@ import Erdos1132.Counterexample.AmplitudeInterpolation
 
 These rows use the same globally bounded phase as the quadrature estimates.
 Their Lebesgue function is the exact inverse-coordinate sum in (7.28).
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

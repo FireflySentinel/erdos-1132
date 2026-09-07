@@ -9,7 +9,9 @@ import Mathlib.Analysis.Calculus.Deriv.Polynomial
 # The phase of a zero-free real polynomial
 
 A primitive of `h'/h` on a disk gives a normalized logarithm. Its imaginary
-part on the unit circle supplies the phase used in Lemma 9.
+part on the unit circle supplies the phase used in the amplitude lemma (§7.4).
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

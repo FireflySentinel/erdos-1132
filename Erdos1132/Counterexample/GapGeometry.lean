@@ -8,6 +8,8 @@ import Mathlib.Tactic
 Section 7.2 uses `r(x) = (x-b)(c-x)/(c-b)` on a complementary interval.
 These lemmas prove its comparison with the distance to the two endpoints,
 its size bound, and its Lipschitz estimate on the closed gap.
+
+Paper: §7.2, the logarithmic integral estimate.
 -/
 
 noncomputable section

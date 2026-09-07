@@ -2,7 +2,10 @@ import Erdos1132.Counterexample.CantorOpen
 import Erdos1132.Counterexample.GapGeometry
 import Mathlib.Analysis.Calculus.ContDiff.Operations
 
-/-! # A globally Lipschitz radius, polynomial on each gap -/
+/-! # A globally Lipschitz radius, polynomial on each gap
+
+Paper: §7.2, the logarithmic integral estimate.
+-/
 noncomputable section
 open Set Filter
 open scoped Topology

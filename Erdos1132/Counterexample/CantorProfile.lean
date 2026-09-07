@@ -2,7 +2,10 @@ import Erdos1132.Counterexample.CantorLogarithmicBound
 import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
 import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 
-/-! # Regularity and bounds for the logarithmic Cantor profile -/
+/-! # Regularity and bounds for the logarithmic Cantor profile
+
+Paper: §7.2, the logarithmic integral estimate.
+-/
 noncomputable section
 open Set MeasureTheory Filter
 open scoped Topology ContDiff

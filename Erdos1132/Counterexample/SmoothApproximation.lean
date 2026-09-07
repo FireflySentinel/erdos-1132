@@ -2,7 +2,10 @@ import Erdos1132.Counterexample.SmoothLowerBound
 import Erdos1132.Counterexample.SmoothCutoffs
 import Mathlib.MeasureTheory.Integral.DominatedConvergence
 
-/-! # Smooth cutoff approximations and convergence of the logarithmic operator -/
+/-! # Smooth cutoff approximations and convergence of the logarithmic operator
+
+Paper: §7.3, smooth positive approximations.
+-/
 noncomputable section
 open Set MeasureTheory Filter
 open scoped Topology ContDiff

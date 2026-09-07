@@ -2,7 +2,10 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 import Mathlib.MeasureTheory.Function.LocallyIntegrable
 import Mathlib.Tactic
 
-/-! # Exact logarithmic integrals of the inverse-distance kernel -/
+/-! # Exact logarithmic integrals of the inverse-distance kernel
+
+Paper: §7.2, the logarithmic integral estimate.
+-/
 
 open MeasureTheory Set
 

@@ -7,6 +7,8 @@ import Erdos1132.Counterexample.ReciprocalApproximation
 Approximate the reciprocal by a positive real polynomial and reflect its
 Joukowsky polynomial. The logarithmic ratio approximation is uniform on
 the full closed interval.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

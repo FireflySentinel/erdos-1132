@@ -10,6 +10,8 @@ import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 
 The increasing phase gives all `n` roots and the exact derivative formula
 in (7.20). The resulting row has distinct nodes in the open interval.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

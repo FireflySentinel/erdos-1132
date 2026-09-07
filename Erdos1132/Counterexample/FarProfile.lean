@@ -2,7 +2,10 @@ import Erdos1132.Counterexample.LogProfile
 import Mathlib.Analysis.Calculus.Deriv.MeanValue
 import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 
-/-! # The decreasing far-field weight and its exact primitive -/
+/-! # The decreasing far-field weight and its exact primitive
+
+Paper: §7.2, the logarithmic integral estimate.
+-/
 
 noncomputable section
 

@@ -6,6 +6,8 @@ import Erdos1132.Counterexample.AmplitudeUpperBound
 A zero-free real polynomial supplies interior interpolation nodes in every
 sufficiently large degree, with the stated Lebesgue-function upper bound on
 any fixed compact interior interval.
+
+Paper: §7.4, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section
@@ -15,7 +17,7 @@ open scoped Topology ContDiff
 
 namespace Erdos1132.Counterexample
 
-/-- Lemma 9 on a compact interval: the same row consists of all the simple
+/-- the amplitude lemma (§7.4) on a compact interval: the same row consists of all the simple
 roots of the specified amplitude polynomial and satisfies the upper estimate. -/
 theorem eventually_exists_amplitude_polynomial_rows (h : ℝ[X])
     (hzero : ∀ z : ℂ, ‖z‖ ≤ 1 → (complexPolynomial h).eval z ≠ 0)
@@ -100,7 +102,7 @@ theorem eventually_exists_amplitude_upper_rows (h : ℝ[X])
   obtain ⟨_, _, Y, hI, _, _, hupper⟩ := hn
   exact ⟨Y, hI, hupper⟩
 
-/-- Lemma 9 for any compact subset of the open interval, with the polynomial,
+/-- the amplitude lemma (§7.4) for any compact subset of the open interval, with the polynomial,
 its complete simple root set, and the upper bound in one statement. -/
 theorem amplitude_lemma (h : ℝ[X])
     (hzero : ∀ z : ℂ, ‖z‖ ≤ 1 → (complexPolynomial h).eval z ≠ 0)

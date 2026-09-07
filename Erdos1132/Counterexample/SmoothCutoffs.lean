@@ -3,7 +3,10 @@ import Mathlib.Analysis.SpecialFunctions.SmoothTransition
 import Mathlib.Analysis.SpecificLimits.Basic
 import Mathlib.Tactic
 
-/-! # Smooth cutoffs adapted to compact subsets of an open set -/
+/-! # Smooth cutoffs adapted to compact subsets of an open set
+
+Paper: §7.3, smooth positive approximations.
+-/
 noncomputable section
 open Set Filter
 open scoped Topology ContDiff

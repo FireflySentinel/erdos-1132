@@ -5,6 +5,8 @@ import Erdos1132.Counterexample.CantorDescendants
 
 Summability of the removed proportions gives a uniform lower bound for the
 measure of the compact limit inside every retained interval.
+
+Paper: §7.1, the compact set and its gaps.
 -/
 
 noncomputable section

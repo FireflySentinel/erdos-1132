@@ -5,6 +5,8 @@ import Erdos1132.Counterexample.CantorLevels
 
 Every gap lies inside its parent, is disjoint from the next retained level,
 and has both endpoints in the compact limit set.
+
+Paper: §7.1, the compact set and its gaps.
 -/
 
 noncomputable section
