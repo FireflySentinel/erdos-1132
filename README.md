@@ -1,12 +1,11 @@
 # Erdős Problem #1132: sharp pointwise bounds for Lebesgue functions
 
-[Preprint](paper/PROOF.pdf) on [Erdős Problem #1132](https://www.erdosproblems.com/1132): for arbitrary
-triangular interpolation arrays, a bounded additive loss on a dense set of points with
-point-dependent constants, and the sharp normalized lower bound almost everywhere.
-For general arrays, no additive constant uniform in $x$ gives a dense set of points
-attaining the lower bound infinitely often.
-The logarithmic order was already known from
-[Erdős–Vértesi (1981), Theorem 2.1](https://www.renyi.hu/~p_erdos/1981-18.pdf).
+Lean 4 formalization answering both questions of
+[Erdős Problem #1132](https://www.erdosproblems.com/1132).
+[`Erdos1132.theorem1`](Erdos1132/Theorems.lean) and
+[`Erdos1132.theorem2`](Erdos1132/Theorems.lean) are proved from the node conditions,
+and from $M>0$, alone: no analytic estimate is assumed, including the local potential
+estimates cited from Tao, which are proved directly in Lean.
 
 ## Build and check
 
@@ -19,48 +18,15 @@ lake test
 LEAN_NUM_THREADS=2 lake env leanchecker Erdos1132
 ```
 
-## Exact statement
-
-**Theorem 1** is [`Erdos1132.theorem1`](Erdos1132/Theorems.lean). For every triangular array
-of distinct nodes in $[-1,1]$, with exactly $n$ nodes in row $n$:
-
-- the points $x\in(-1,1)$ for which some finite $C(x)$ satisfies
-  $\lambda_n(x)>(2/\pi)\log n-C(x)$ infinitely often form a dense set;
-- $\limsup_{n\to\infty}\lambda_n(x)/\log n\ge 2/\pi$ almost everywhere.
-
-**Theorem 2** is [`Erdos1132.theorem2`](Erdos1132/Theorems.lean). For every $M>0$
-it constructs one array of distinct interior nodes such that
-
-- every fixed $x\in(-1,1)$ eventually satisfies $\lambda_n(x)\le(2/\pi)\log n-M$;
-- for every finite $C$, the points satisfying $\lambda_n(x)>(2/\pi)\log n-C$
-  infinitely often form a non-dense set.
-
-Both are proved from the node conditions, and from $M>0$, alone. The uniform-constant
-question for nested node sequences remains open.
-
-`Erdos1132.positive_measure_lower_bound` gives the set corollary: for every measurable
-$E\subset(-1,1)$ of positive measure and every $0<c<2/\pi$, every sufficiently large row
-has some $x\in E$ with $c\log n<\lambda_n(x)$.
-`Erdos1132.no_uniform_interval_constant` includes both assertions of Theorem 2
-and the absence of a uniform interval constant for the same array. Its only
-hypothesis is $M>0$.
-
 ## Proof correspondence
 
-Start with the paper's Introduction and Organization subsection, then open
-[`Theorems.lean`](Erdos1132/Theorems.lean), which collects the two main theorems and
-two corollaries. [FormalConjecturesBridge.lean](checks/FormalConjecturesBridge.lean)
-writes the main statements using explicit Lagrange products;
-[Statement.lean](checks/Statement.lean) gives the two corollaries in the same form.
-[Check.lean](checks/Check.lean) verifies their axiom dependencies.
-
-The proof modules are grouped into [Additive/](Erdos1132/Additive/) (§§2–4),
+[`Theorems.lean`](Erdos1132/Theorems.lean) collects the two main theorems and two
+corollaries. The proof modules are grouped into [Additive/](Erdos1132/Additive/) (§§2–4),
 [AlmostEverywhere/](Erdos1132/AlmostEverywhere/) (§§5–6), and
 [Counterexample/](Erdos1132/Counterexample/) (§7), with common tools in
 [Shared/](Erdos1132/Shared/) and node definitions in
 [Interpolation.lean](Erdos1132/Interpolation.lean). Each module's opening comment
-identifies its paper section. The almost-everywhere proof imports no `Additive/`
-modules and does not use Tao's estimates.
+identifies its paper section. The almost-everywhere proof imports no `Additive/` modules.
 
 | Preprint | Lean source |
 |---|---|
@@ -78,15 +44,14 @@ modules and does not use Tao's estimates.
 | Positive-measure and interval-constant corollaries, §8 | [Theorems.lean](Erdos1132/Theorems.lean) |
 
 In the covering argument for Theorem 1(i) the Lean proof uses bounded overlap where the
-manuscript argues differently; the conclusion is the same. Theorem 2 uses the
-same smooth cutoff construction and fixed ratio-approximation error below $1/2$
-in the manuscript and Lean.
+manuscript argues differently; the conclusion is the same.
 
 The [proof bridge](checks/FormalConjecturesBridge.lean) derives the corresponding
 problem statements and is included in `lake test`.
 
 ## Use of generative AI
 
-GPT-6 Astra was used to generate the mathematical proofs and draft the manuscript.
-GPT-5.6 Sol and Claude Opus 5 were used for editorial review of the exposition.
-The Lean formalization was generated using OpenAI Codex (GPT-6).
+GPT-6 Astra proposed the arguments and drafted the manuscript.
+GPT-5.6 Sol and Claude Opus 5 were used for editorial review.
+The Lean formalization was generated with OpenAI Codex (GPT-6).
+The author completed the manuscript and is responsible for the content.
