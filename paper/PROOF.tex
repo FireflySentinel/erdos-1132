@@ -55,6 +55,8 @@ The positive results use derivative-jump energies and positive Cauchy
 transforms. The counterexample combines an explicit logarithmic
 integral estimate on the gaps of a compact set with real-rooted
 polynomials having prescribed amplitudes.
+The proofs are formalized in Lean 4; generative AI was used
+in developing the arguments.
 \end{abstract}
 
 \section{Introduction}
@@ -235,14 +237,6 @@ interpolation rows, which are assembled in the final subsection.
 Section~\ref{sec:consequences} gives the positive-measure and
 interval-constant corollaries.
 
-Both main theorems and the two corollaries are formalized in Lean 4
-with Mathlib. The estimates used from Tao in Proposition~\ref{prop:tao}
-are proved directly in Lean. The file \path{Erdos1132/Theorems.lean}
-collects the four statements. The \path{checks/} directory also gives them
-with explicit node conditions and Lagrange products.
-The source and build instructions are at
-\url{https://github.com/FireflySentinel/erdos-1132}.
-
 Throughout the paper, all logarithms are natural and \(|E|\) denotes
 Lebesgue measure. We write \(c_0=2/\pi\), and suppress the row index
 when discussing a single row. Constants in local estimates may depend
@@ -345,13 +339,6 @@ uniformly bounded supremum norms and Lipschitz constants,
 \end{equation}
 \end{enumerate}
 \end{taoestimates}
-
-The Lean development proves this proposition directly in the stated form,
-including the potential expansion
-(\texttt{uniform\_\allowbreak{}complex\_\allowbreak{}potential\_\allowbreak{}expansion})
-and density positivity
-(\texttt{eventually\_\allowbreak{}exterior\_\allowbreak{}density\_\allowbreak{}positive}).
-Thus the formal proof of Theorem~\ref{thm:main} does not depend on \cite{Tao}.
 
 The density is defined from \(I\), as in \cite[equation (4.15)]{Tao}, and
 is independent of the auxiliary interval \(I'\).
@@ -1411,11 +1398,20 @@ contradicts the assumed lower bound for large \(n\).
 Thus \(G_{C+1}\) is dense, contrary to Theorem~\ref{thm:nonuniform}.
 \end{proof}
 
-\section*{Use of generative AI}
+\section*{Code availability}
 
-GPT-6 Astra was used to generate proofs and draft the manuscript;
-GPT-5.6 Sol and Claude Opus 5 were used for editorial review.
-The Lean formalization was generated using OpenAI Codex (GPT-6).
+The Lean 4 formalization is available at
+\url{https://github.com/FireflySentinel/erdos-1132}.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the writing process}
+
+GPT-6 Astra proposed the derivative-jump and positive Cauchy-transform
+arguments and the counterexample construction, drafted the manuscript,
+and generated the Lean formalization.
+GPT-5.6 Sol and Claude Opus 5 were used to organize earlier research material
+and to review the Lean code.
+The author checked the arguments, completed the final manuscript, and takes
+full responsibility for the content.
 
 \begin{thebibliography}{11}
 
