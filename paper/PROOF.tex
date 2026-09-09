@@ -962,9 +962,9 @@ In particular,
 \|Lf\|_\infty\le2\|f'\|_\infty\qquad(f\in C^1(I)).
 \end{equation}
 
-Fix \(A>1\), and put
+Fix \(A>1\). Choose \(0<\rho<1/16\) sufficiently small, as specified
+in Subsection~\ref{subsec:counter-integral}, and put
 \[
- \rho=e^{-1024(A+40)},\qquad
  \delta_k=\rho\,2^{-k},\qquad
  m_k=\left\lceil e^{1/\delta_k}\right\rceil .
 \]
@@ -1049,10 +1049,6 @@ Choose \(z\in F\) with \(|x-z|=D(x)\le2s\). If \(4s\le t\le2\), the ball of radi
 M_U(t)\le(1-\eta)M_I(t),\qquad \eta=\kappa/4=1/128
  \quad(4s\le t\le2).
 \end{equation}
-The choice \(\alpha<\eta\) leaves a positive fraction of the far-field
-logarithmic integral: its loss factor tends to
-\((1-\eta)/(1-\alpha)<1\) as \(s\to0\).
-
 First consider \(|y-x|<4s\). For \(|y-x|<s/2\), Lipschitz continuity of \(r\) gives
 \(r(y)\in[s/2,3s/2]\). On this range \(p'(r(y))\le4p(s)/s\), by the derivative formula for \(p\) and \(\Theta\ge16\). The integral of the absolute difference quotient over this part is thus at most \(4p(s)\). On \(s/2\le|y-x|<4s\), we have \(r(y)\le5s\) and
 \[
@@ -1091,14 +1087,15 @@ Then \(0\le h<\Theta_0\), since \(\Theta_0-h=\log(4B/(5l_\nu))>0\), and
 The last inequality follows from
 \((1-z)^{1-\alpha}\ge1-z\) for \(0\le z\le1\).
 
-Finally, concavity of the power \(\alpha\), \(\log5<2\), and \(\Theta\ge16\) give
+Since \(\alpha=\eta/2\), concavity of the power \(\alpha\),
+\(\log5<2\), and \(\Theta\ge16\) give
 \begin{equation}\label{eq:counter-u13}
 \begin{split}
  \frac{1-\eta}{1-\alpha}\frac{\Theta_0^{-\alpha}}{p(s)}
- &=\frac{254}{255}\left(\frac{\Theta}{\Theta-\log5}\right)^{1/256}\\
- &\le\frac{254}{255}(8/7)^{1/256}
- \le\frac{254}{255}\left(1+\frac1{1792}\right)
- \le1-\frac1{512}.
+ &=\frac{1-\eta}{1-\alpha}
+       \left(\frac{\Theta}{\Theta-\log5}\right)^\alpha\\
+ &\le\frac{1-\eta}{1-\alpha}\left(1+\frac\alpha7\right)
+ \le1-\frac\eta4=1-\frac1{512}.
 \end{split}
 \end{equation}
 Thus the negative far contribution is at most
@@ -1107,11 +1104,15 @@ Thus the negative far contribution is at most
 At least one of \(l_-,l_+\) is at least one, so
 \(\mathcal H\ge\log(1/(4s))\). This proves \eqref{eq:counter-u9}.
 
+We now fix \(\rho\) small enough that
+\[
+ \log(2B/\rho)\ge16,\qquad
+ \frac1{512}\log\frac1{2\rho}-32>A+2.
+\]
 Every gap has length at most \(|U|\le2\rho\), so \(r(x)\le\rho/2\).
-Our choice of \(\rho\) ensures \(\Theta\ge16\), and \eqref{eq:counter-u9} yields
+Thus \(\Theta\ge16\), and \eqref{eq:counter-u9} yields
 \begin{equation}\label{eq:counter-u14}
-\frac{Lu(x)}{u(x)}
- \ge 2(A+40)-\frac{\log2}{512}-32>A+2
+\frac{Lu(x)}{u(x)}>A+2
  \qquad(x\in U).
 \end{equation}
 It also shows that \(Lu(x)/u(x)\to+\infty\) as \(x\) approaches either endpoint of any fixed gap.
@@ -1132,11 +1133,13 @@ Consequently,
  A_\chi(x)\ge N/16\qquad(x\in F).
 \end{equation}
 
-Let \(\epsilon_j=1/j\), \(j\ge2\), and put
+Let \(\epsilon_j=1/j\), \(j\ge2\). Since \(p(t)\to0\) as
+\(t\downarrow0\), choose \(0<d_j<1\) with
+\(p(d_j)\le\epsilon_j/2\), and put
 \[
- d_j=\exp(8-(2j)^{256}),\qquad C_j=2(2j)^{256}.
+ C_j=2\log(2/d_j).
 \]
-Since \(r\le D\) and \(p(d_j)=1/(2j)\), one has
+Since \(r\le D\), one has
 \(u(y)\le\epsilon_j/2\) when \(D(y)\le d_j\).
 Using this for \(|x-y|<d_j\), and \(u\le1\) on the remainder, gives
 \begin{equation}\label{eq:counter-u16}
@@ -1144,11 +1147,11 @@ Using this for \(|x-y|<d_j\), and \(u\le1\) on the remainder, gives
  \le\frac{\epsilon_j}{2}A_\chi(x)+C_j
  \qquad(x\in F).
 \end{equation}
-Here the far integral is at most \(2\log(2/d_j)\le C_j\).
+Here the far integral is at most \(C_j\).
 
-Set
+Choose an integer \(k_j\ge j\) such that
 \[
- k_j=\lceil32(A+1)\rceil+64j(2j)^{256}+j.
+ \frac{k_j}{32j}-C_j\ge(A+1)\epsilon_j.
 \]
 Choose a smooth function \(f:\mathbb R\to[0,1]\) with
 \(\{f>0\}=U\), and a nondecreasing smooth
