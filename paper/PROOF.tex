@@ -45,7 +45,7 @@ in \([-1,1]\). We prove that the points \(x\in(-1,1)\) for which
 some finite \(C(x)\), form a dense set. We also prove
 \(\limsup_{n\to\infty}\lambda_n(x)/\log n\ge2/\pi\)
 for almost every \(x\in(-1,1)\).
-We also show that no absolute additive constant works for all arrays:
+No absolute additive constant works for all arrays:
 for every \(M>0\), there is an array for which each fixed
 \(x\in(-1,1)\) eventually satisfies
 \(\lambda_n(x)\le(2/\pi)\log n-M\).
@@ -55,8 +55,7 @@ The positive results use derivative-jump energies and positive Cauchy
 transforms. The counterexample combines an explicit logarithmic
 integral estimate on the gaps of a compact set with real-rooted
 polynomials having prescribed amplitudes.
-The proofs are formalized in Lean 4; generative AI was used
-in developing the arguments.
+The proofs are formalized in Lean 4.
 \end{abstract}
 
 \section{Introduction}
@@ -153,13 +152,17 @@ asymptotics through the optimal constant term to an error of
 \(O((\log\log n/\log n)^2)\). See
 \cite[Section~1.3]{Tao} and \cite{Brutman} for further historical discussion.
 
-For triangular arrays, Erd\H{o}s \cite[p.~68]{Erdos} stated that the set
+For triangular arrays, Erd\H{o}s \cite[p.~68, equation (7)]{Erdos}
+stated that the set
 of points \(x\) satisfying
 \[
  \limsup_{n\to\infty}\frac{\lambda_n(x)}{\log n}\ge\frac2\pi
 \]
-is everywhere dense, and asked whether this holds for almost every
-\(x\). Erd\H{o}s and V\'ertesi \cite{ErdosVertesi} proved
+is everywhere dense, deducing this from an interval estimate whose
+proof he described as unpublished. He asked whether the normalized
+bound holds almost everywhere, and separately whether the logarithmic
+bound holds infinitely often at a point with a bounded additive loss.
+Erd\H{o}s and V\'ertesi \cite{ErdosVertesi} proved
 almost-everywhere divergence of interpolants of a suitable continuous
 function for every array. Their subsequent paper
 \cite[Theorem~2.1]{ErdosVertesi1981} gives a quantitative lower bound
@@ -304,11 +307,14 @@ state the local estimates in the form used here, with the normalization:
  U_n(z)=\frac1n\log\frac1{|P_n(z)|}.
 \]
 
-\begin{taoestimates}[Tao's local estimates]\label{prop:tao}
+The first two assertions below are Tao's local estimates
+\cite[Theorem~4.1(ii), equations (4.6)--(4.7)]{Tao}; the normalization
+and density are those of his equations (4.11) and (4.15).
+
+\begin{taoestimates}[Local estimates]\label{prop:tao}
 Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval, and
 suppose that \(\sup_I\lambda_n\le n\) for all sufficiently large \(n\).
-This is a specialization of the polynomial upper bound in
-\cite[equation (4.1)]{Tao}. Define
+Define
 \[
  \rho_n(x)=-\frac1{\pi^2}\int_{\mathbb R\setminus I}
                   \frac{U_n(y)-\alpha_n}{(y-x)^2}\,dy.
@@ -323,29 +329,36 @@ and have uniformly bounded Lipschitz norms:
  |\rho_n(x)-\rho_n(x_0)|\ll_{I'}|x-x_0|
  \qquad(x,x_0\in I').
 \]
-This is the form of \cite[Theorem 4.1(ii), equation (4.6)]{Tao} needed here.
-\item For \(x\in I'\) and \(\eta\ge1/n\),
+\item For \(x\in I'\) and \(\eta\ge\log n/n\),
 \begin{equation}\label{eq:potential}
  U_n(x+i\eta)=\alpha_n-\pi\eta\rho_n(x)
               +O_{I'}\!\left(\frac{\log n}{n}+\eta^3\right).
 \end{equation}
-Compare \cite[equation (4.7)]{Tao}.
-\item For globally Lipschitz functions \(h_n\) supported in \(I'\), with
+\item For globally Lipschitz functions \(\varphi_n\) supported in \(I'\), with
 uniformly bounded supremum norms and Lipschitz constants,
 \begin{equation}\label{eq:quadrature}
- \frac1n\sum_k h_n(x_{k,n})
- =\int h_n(x)\rho_n(x)\,dx+O(n^{-1/4}).
+ \frac1n\sum_k \varphi_n(x_{k,n})
+ =\int \varphi_n(x)\rho_n(x)\,dx+O(n^{-1/4}).
 \end{equation}
 \end{enumerate}
 \end{taoestimates}
 
-The density is defined from \(I\), as in \cite[equation (4.15)]{Tao}, and
-is independent of the auxiliary interval \(I'\).
-The quadrature estimate follows directly from the Poisson representation:
-averaging Poisson kernels between heights \(h\) and \(2h\) gives an
-approximate identity with Lipschitz error \(O(\sqrt h)\), while
-\eqref{eq:potential} contributes \(O(\log n/(nh)+h^2)\).
-Taking \(h=n^{-1/2}\) gives \eqref{eq:quadrature}.
+\begin{proof}[Proof of (iii)]
+Let \(\mu_n=n^{-1}\sum_k\delta_{x_{k,n}}\) and
+\(Q_h=h^{-1}\int_h^{2h}p_t\,dt\), where
+\(p_t(y)=t/(\pi(y^2+t^2))\). This is a probability kernel with
+\(\int_{|y|>\sqrt h}Q_h(y)\,dy=O(\sqrt h)\), so
+\(\|Q_h*\varphi_n-\varphi_n\|_\infty=O(\sqrt h)\).
+The Poisson representation gives
+\[
+ (Q_h*\mu_n)(x)=\frac{U_n(x+ih)-U_n(x+2ih)}{\pi h}
+ =\rho_n(x)+O\!\left(\frac{\log n}{nh}+h^2\right)
+ \qquad(x\in I').
+\]
+Integrating against \(\varphi_n\) and using Fubini therefore gives
+an error \(O(\sqrt h+\log n/(nh)+h^2)\) in
+\eqref{eq:quadrature}. Taking \(h=n^{-1/2}\) proves the claim.
+\end{proof}
 
 \begin{lemma}\label{lem:local}
 Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval. Suppose that,
@@ -397,7 +410,7 @@ we have \(|q(z)|\le\Lambda_n e^{\omega H}\): \(\omega H\) exceeds
 \(\pi nH\rho_n(x)\) by \(\pi\rho_n(x)n^{1/2}\), which dominates the
 \(O(n^{2/5})\) from the Lipschitz variation of \(\rho_n\) and the
 remaining \(O(\log n)\) terms in \eqref{eq:complex-interpolant}.
-On the lower edge \(|q|\le\Lambda_n\); a Chebyshev expansion on \(I\)
+On the lower edge \(|q|\le\Lambda_n\); the Bernstein--Walsh bound
 gives \(|q|\le\Lambda_n\exp(O_I(n))\) on the vertical sides.
 For \(f(z)=\Lambda_n^{-1}q(z)e^{i\omega(z-x)}\), the horizontal
 edges have \(|f|\le1\), and the vertical edges have \(|f|\le e^B\)
@@ -509,7 +522,7 @@ The mass of \(\mu_n\) is bounded. Also, by \eqref{eq:quadrature},
 \begin{equation}\label{eq:weighted-quadrature}
  \int f\,d\mu_n
  =\frac1n\sum_k\frac{f(x_{k,n})^2}{\rho_n(x_{k,n})}
- =\int f^2+O(n^{-1/10}).
+ =\int f^2+O(n^{-1/4}).
 \end{equation}
 Again by \eqref{eq:kernel-asymptotic},
 \[
@@ -568,31 +581,31 @@ fixed, we choose \(D\), then \(\kappa,D_1,d,\kappa_1,d_1\), and finally
 \(b,D_2\). Let
 \[
  w_k=\frac{f(x_{k,n})^2}{n\rho_n(x_{k,n})},\qquad
- T_k=\frac{J_k}{2\pi n\rho_n(x_{k,n})},\qquad W=\int f^2>0.
+ \mathcal J_k=\frac{J_k}{2\pi n\rho_n(x_{k,n})},\qquad W=\int f^2>0.
 \]
 By \eqref{eq:quadrature},
 \begin{equation}\label{eq:weights}
- \sum_kw_k=W+O(n^{-1/10}),\qquad 0\le w_k\le C_f/n.
+ \sum_kw_k=W+O(n^{-1/4}),\qquad 0\le w_k\le C_f/n.
 \end{equation}
 On each interval between successive nodes, \(\lambda_n\) equals an interpolant
 with nodal data in \(\{-1,1\}\). Both one-sided derivatives at a node
 therefore satisfy \eqref{eq:derivative-bounds}, so
 \begin{equation}\label{eq:jump-upper}
- 0\le T_k\le\Lambda_n+o(1)
+ 0\le\mathcal J_k\le\Lambda_n+o(1)
 \end{equation}
 uniformly on the support of \(f\). Lemma~\ref{lem:energy}, \eqref{eq:weights},
 and \eqref{eq:jump-upper} show that
 \begin{equation}\label{eq:weighted-deficit}
- \sum_kw_k(\Lambda_n+1-T_k)=O(1),
+ \sum_kw_k(\Lambda_n+1-\mathcal J_k)=O(1),
 \end{equation}
 with nonnegative summands for all sufficiently large \(n\). On a node with
-\(T_k<c_0\log n-D\), the factor in \eqref{eq:weighted-deficit} is greater
+\(\mathcal J_k<c_0\log n-D\), the factor in \eqref{eq:weighted-deficit} is greater
 than \(C+1+D\). Hence, by choosing \(D\) sufficiently large, such nodes
 carry at most \(W/2\) of the weights. Since \eqref{eq:weights} has total
 weight \(W+o(1)\), for all
 sufficiently large \(n\) the nodes in the support of \(f\) satisfying
 \begin{equation}\label{eq:large-jump}
- T_k\ge c_0\log n-D
+ \mathcal J_k\ge c_0\log n-D
 \end{equation}
 carry at least \(W/4\) of the weights. In particular, there are at least
 \(\kappa n\) such nodes, with \(\kappa>0\) independent of \(n\). Discarding the first and last nodes does not change this conclusion
@@ -698,21 +711,21 @@ Suppress the row index and put
 \[
  S=\sum_k\frac1{|P'(x_k)|},\qquad
  \nu_k=\frac1{S|P'(x_k)|},\qquad
- \epsilon_k=\operatorname{sgn}P'(x_k).
+ \sigma_k=\operatorname{sgn}P'(x_k).
 \]
 Define
 \begin{equation}\label{eq:transforms}
  m(z)=\sum_k\frac{\nu_k}{z-x_k},\qquad
- g(z)=\sum_k\frac{\epsilon_k\nu_k}{z-x_k}
+ g(z)=\sum_k\frac{\sigma_k\nu_k}{z-x_k}
      =\frac1{SP(z)}.
 \end{equation}
 The last identity is the partial fraction formula for \(1/P\), whose expansion
 at infinity gives
 \begin{equation}\label{eq:moments}
- \sum_k\epsilon_k\nu_kx_k^j=0\qquad(0\le j\le n-2).
+ \sum_k\sigma_k\nu_kx_k^j=0\qquad(0\le j\le n-2).
 \end{equation}
 For \(n\ge2\), both \(m+g\) and \(m-g\) are Cauchy transforms of positive
-probability measures: their masses at \(x_k\) are \((1\pm\epsilon_k)\nu_k\).
+probability measures: their masses at \(x_k\) are \((1\pm\sigma_k)\nu_k\).
 
 For real \(x\) away from the nodes, write
 \[
@@ -748,7 +761,7 @@ Set \(z=x+ih\) and \(p=T_{n-1}\), the Chebyshev polynomial of the
 first kind. The polynomial \((p(t)-p(z))/(t-z)\) has degree at most
 \(n-2\), so \eqref{eq:moments} gives
 \[
- p(z)g(z)=\sum_k\frac{\epsilon_k\nu_kp(x_k)}{z-x_k},
+ p(z)g(z)=\sum_k\frac{\sigma_k\nu_kp(x_k)}{z-x_k},
  \qquad |p(z)g(z)|\le\frac1h,
 \]
 using \(|p(x_k)|\le1\) and \(\sum_k\nu_k=1\).
@@ -783,12 +796,19 @@ every \(h>0\),
 \end{lemma}
 
 \begin{proof}
-The function \(F\) maps the upper half-plane into the lower half-plane.
-Compose harmonic measure of \(S_0\) there with \(F\). The
-resulting bounded harmonic function on the upper half-plane has the indicated
-boundary values almost everywhere. The exceptional boundary points are poles
-of \(F\) and preimages of the endpoints of \(S_0\), a finite set. Its Poisson
-representation is \eqref{eq:harmonic-measure}.
+For \(\Im w<0\), define
+\[
+ B(w)=\frac1\pi\int_{S_0}
+       \frac{-\Im w}{(t-\Re w)^2+(\Im w)^2}\,dt.
+\]
+The function \(B\) is harmonic and lies between zero and one.
+Since \(F\) maps the upper half-plane into the lower half-plane,
+\(B\circ F\) is bounded and harmonic. Away from the poles of \(F\)
+and the preimages of the endpoints of \(S_0\), its boundary value is
+\(\mathbf1_{\{F(y)\in S_0\}}\). These exceptions form a finite set:
+\(F\) is a nonconstant rational function. The Poisson representation
+of the bounded harmonic function \(B\circ F\) now gives
+\eqref{eq:harmonic-measure}.
 \end{proof}
 
 \section{The almost-everywhere bound}\label{sec:ae}
@@ -804,6 +824,9 @@ For its fixed \(c,N\), we therefore have
 \begin{equation}\label{eq:common-low-set}
  \lambda_n(y)\le c\log n\qquad(y\in E,\ n\ge N).
 \end{equation}
+The argument below also applies if this bound holds only for \(n\)
+in an infinite set: each estimate uses one row, and the final limit
+can be taken along that set.
 Choose constants
 \[
  K>1,\qquad 0<b<a<1,\qquad \frac{2b}{\pi cK}>1,
@@ -877,18 +900,18 @@ Together with \eqref{eq:potential-comparison}, this yields
  \qquad(x\in E_n).
 \end{equation}
 
-Let \(T_n\) be convolution with the symmetric probability kernel
+Let \(\mathcal K_n\) be convolution with the symmetric probability kernel
 \[
  k_n(t)=\frac1{b\log n}\int_\eta^1p_{s-h}(t)\,\frac{ds}{s}.
 \]
 Its integral is one, since \(\int_\eta^1 ds/s=b\log n\).
 Equation \eqref{eq:semigroup} then shows that
 \[
- H^\eta=\frac{2b}{\pi}(\log n)T_n\gamma_h.
+ H^\eta=\frac{2b}{\pi}(\log n)\mathcal K_n\gamma_h.
 \]
 Thus \eqref{eq:local-comparison} becomes
 \begin{equation}\label{eq:kernel-ratio}
- \frac{T_n\gamma_h(x)}{\gamma_h(x)}\le\frac1{A_n}
+ \frac{\mathcal K_n\gamma_h(x)}{\gamma_h(x)}\le\frac1{A_n}
  \quad(x\in E_n),\qquad
  A_n=\frac{2b}{\pi cK}(1+Rh/\eta)^{-2}\longrightarrow A>1.
 \end{equation}
@@ -975,7 +998,12 @@ The gaps intersecting an interval of length \(s\) have total length at most \(2\
 \]
 Their intersections with \(F\) have total length at least \(r/4\), as required.
 
-For \eqref{eq:counter-u6}, in the stage \(k-1\) parent containing \(x\), one side of its child contains at least \((m_k-1)/2\) gaps. Use the first \(q=\lfloor m_k/8\rfloor\) on that side. The far endpoint of the \(j\)-th such gap is at distance at most \(4j\ell_{k-1}/m_k\) from \(x\), and its length is at least \(\delta_k\ell_{k-1}/m_k\). These gaps contribute at least
+For \eqref{eq:counter-u6}, at least \((m_k-1)/2\) gaps lie on one side
+of \(x\) within its stage \(k-1\) parent interval. Use the first
+\(q=\lfloor m_k/8\rfloor\) on that side. The far endpoint of the
+\(j\)-th such gap is at distance at most \(4j\ell_{k-1}/m_k\) from
+\(x\), and its length is at least \(\delta_k\ell_{k-1}/m_k\).
+These gaps contribute at least
 \[
  \frac{\delta_k}{4}\sum_{j=1}^{q}\frac1j
  \ge\frac{\delta_k}{4}(\log m_k-\log16)\ge\frac18.
@@ -1010,7 +1038,7 @@ We prove the quantitative bound
 \end{equation}
 All estimates below apply uniformly up to the endpoints of \(I\).
 
-Fix such an \(x\), and write \(s=r(x)\), \(T=\log(B/s)\), \(a_0=4s\).
+Fix such an \(x\), and write \(s=r(x)\), \(\Theta=\log(B/s)\), \(a_0=4s\).
 For \(t\in[0,2]\), let
 \[
  M_I(t)=|I\cap(x-t,x+t)|,\qquad
@@ -1021,19 +1049,22 @@ Choose \(z\in F\) with \(|x-z|=D(x)\le2s\). If \(4s\le t\le2\), the ball of radi
 M_U(t)\le(1-\eta)M_I(t),\qquad \eta=\kappa/4=1/128
  \quad(4s\le t\le2).
 \end{equation}
+The choice \(\alpha<\eta\) leaves a positive fraction of the far-field
+logarithmic integral: its loss factor tends to
+\((1-\eta)/(1-\alpha)<1\) as \(s\to0\).
 
 First consider \(|y-x|<4s\). For \(|y-x|<s/2\), Lipschitz continuity of \(r\) gives
-\(r(y)\in[s/2,3s/2]\). On this range \(p'(r(y))\le4p(s)/s\), by the derivative formula for \(p\) and \(T\ge16\). The integral of the absolute difference quotient over this part is thus at most \(4p(s)\). On \(s/2\le|y-x|<4s\), we have \(r(y)\le5s\) and
+\(r(y)\in[s/2,3s/2]\). On this range \(p'(r(y))\le4p(s)/s\), by the derivative formula for \(p\) and \(\Theta\ge16\). The integral of the absolute difference quotient over this part is thus at most \(4p(s)\). On \(s/2\le|y-x|<4s\), we have \(r(y)\le5s\) and
 \[
- p(5s)/p(s)=\left(\frac{T}{T-\log5}\right)^\alpha\le2.
+ p(5s)/p(s)=\left(\frac{\Theta}{\Theta-\log5}\right)^\alpha\le2.
 \]
 The absolute difference is at most \(3p(s)\), so this part contributes at most \(6\log8\,p(s)<18p(s)\). In particular, the whole near contribution to \(Lu(x)\) is at least \(-24p(s)\).
 
 For the far contribution, set \(l_-=1+x\), \(l_+=1-x\), and
 \[
- H=\sum_{\nu\in\{-,+\}}\max\{\log(l_\nu/(4s)),0\}.
+ \mathcal H=\sum_{\nu\in\{-,+\}}\max\{\log(l_\nu/(4s)),0\}.
 \]
-The positive part is exactly \(p(s)H\). For the negative part,
+The positive part is exactly \(p(s)\mathcal H\). For the negative part,
 \(r(y)\le s+|x-y|\le(5/4)|x-y|\), so it is bounded by
 \[
  \int_{a_0}^2 f(t)\,dM_U(t),\qquad
@@ -1049,35 +1080,35 @@ The first term on the right, including its factor, is at most \(4p(s)\).
 
 Since \(dM_I(t)=1_{\{t<l_-\}}dt+1_{\{t<l_+\}}dt\), the remaining term splits into at most two integrals. For a side with \(l_\nu>4s\), put
 \[
- h=\log(l_\nu/(4s)),\qquad T_0=T-\log5.
+ h=\log(l_\nu/(4s)),\qquad \Theta_0=\Theta-\log5.
 \]
-Then \(0\le h<T_0\), since \(T_0-h=\log(4B/(5l_\nu))>0\), and
+Then \(0\le h<\Theta_0\), since \(\Theta_0-h=\log(4B/(5l_\nu))>0\), and
 \begin{equation}\label{eq:counter-u12}
 \int_{4s}^{l_\nu}\frac{p(5t/4)}t\,dt
- =\int_0^h(T_0-z)^{-\alpha}\,dz
- \le\frac{T_0^{-\alpha}}{1-\alpha}\,h.
+ =\int_0^h(\Theta_0-z)^{-\alpha}\,dz
+ \le\frac{\Theta_0^{-\alpha}}{1-\alpha}\,h.
 \end{equation}
 The last inequality follows from
 \((1-z)^{1-\alpha}\ge1-z\) for \(0\le z\le1\).
 
-Finally, concavity of the power \(\alpha\), \(\log5<2\), and \(T\ge16\) give
+Finally, concavity of the power \(\alpha\), \(\log5<2\), and \(\Theta\ge16\) give
 \begin{equation}\label{eq:counter-u13}
 \begin{split}
- \frac{1-\eta}{1-\alpha}\frac{T_0^{-\alpha}}{p(s)}
- &=\frac{254}{255}\left(\frac{T}{T-\log5}\right)^{1/256}\\
+ \frac{1-\eta}{1-\alpha}\frac{\Theta_0^{-\alpha}}{p(s)}
+ &=\frac{254}{255}\left(\frac{\Theta}{\Theta-\log5}\right)^{1/256}\\
  &\le\frac{254}{255}(8/7)^{1/256}
  \le\frac{254}{255}\left(1+\frac1{1792}\right)
  \le1-\frac1{512}.
 \end{split}
 \end{equation}
 Thus the negative far contribution is at most
-\(4p(s)+(1-1/512)p(s)H\). Including the near part gives
-\(Lu(x)/u(x)\ge H/512-28\).
+\(4p(s)+(1-1/512)p(s)\mathcal H\). Including the near part gives
+\(Lu(x)/u(x)\ge \mathcal H/512-28\ge \mathcal H/512-32\).
 At least one of \(l_-,l_+\) is at least one, so
-\(H\ge\log(1/(4s))\). This proves \eqref{eq:counter-u9}.
+\(\mathcal H\ge\log(1/(4s))\). This proves \eqref{eq:counter-u9}.
 
 Every gap has length at most \(|U|\le2\rho\), so \(r(x)\le\rho/2\).
-Our choice of \(\rho\) ensures \(T\ge16\), and \eqref{eq:counter-u9} yields
+Our choice of \(\rho\) ensures \(\Theta\ge16\), and \eqref{eq:counter-u9} yields
 \begin{equation}\label{eq:counter-u14}
 \frac{Lu(x)}{u(x)}
  \ge 2(A+40)-\frac{\log2}{512}-32>A+2
@@ -1159,7 +1190,9 @@ We have therefore constructed positive smooth functions such that
  \frac{Lv_j(x)}{v_j(x)}\ge A+1
  \quad\text{eventually for every fixed }x\in I.
 \end{equation}
-The eventual index is allowed to depend on \(x\).
+This estimate is not uniform in \(x\). Indeed, at a minimum point
+\(\xi_j\) of \(v_j\) on \(I\), one has \(Lv_j(\xi_j)\le0\).
+No fixed point can minimize \(v_j\) for arbitrarily large \(j\).
 
 \subsection{From amplitudes to interpolation nodes}\label{subsec:counter-amplitude}
 
@@ -1170,8 +1203,7 @@ We prove an upper estimate with an absolute additive constant.
 \[
  v(\cos\theta)=|h(e^{i\theta})|^{-1}.
 \]
-In this subsection, \(T_k\) denotes the Chebyshev polynomial of the first
-kind, defined by \(T_k(\cos\theta)=\cos(k\theta)\).
+Let \(T_k\) be the Chebyshev polynomial of the first kind, defined by \(T_k(\cos\theta)=\cos(k\theta)\).
 For \(n>d\), define the real polynomial
 \begin{equation}\label{eq:counter-u25}
 P_n(x)=\sum_{r=0}^{d}h_rT_{n-r}(x).
@@ -1198,9 +1230,9 @@ For \(n>\|\psi'\|_\infty\), the phase increases strictly from \(0\) to \(n\pi\).
 \end{equation}
 
 Put \(s=(n\theta-\psi(\theta))/n\), let \(\theta=\Theta_n(s)\) be the inverse, and set \(X_n(s)=\cos\Theta_n(s)\). The roots correspond to
-\(s_k=(k-\tfrac12)\pi/n\). Moreover \(X_n\to\cos\) in \(C^3([0,\pi])\). At a point \(x=X_n(s)\) other than a node, put \(b=|\cos(ns)|\). Formula \eqref{eq:counter-u27} gives
+\(s_k=(k-\tfrac12)\pi/n\). Moreover \(X_n\to\cos\) in \(C^3([0,\pi])\). At a point \(x=X_n(s)\) other than a node, put \(\beta=|\cos(ns)|\). Formula \eqref{eq:counter-u27} gives
 \begin{equation}\label{eq:counter-u28}
-\lambda_n(x)=\frac{b}{nv(x)}
+\lambda_n(x)=\frac{\beta}{nv(x)}
   \sum_{k=1}^n
   \frac{v(X_n(s_k))|X_n'(s_k)|}{|X_n(s)-X_n(s_k)|}.
 \end{equation}
@@ -1211,8 +1243,28 @@ Subtract the simple singularity by defining
  \frac{v(X_n(t))|X_n'(t)|}{|X_n(s)-X_n(t)|}
  -\frac{v(X_n(s))}{|s-t|}.
 \]
-For \(s\) in a fixed compact subinterval of \((0,\pi)\), this function of \(t\) has uniformly bounded variation, with at most a bounded jump at \(t=s\). To verify this near \(s\), factor
-\(X_n(t)-X_n(s)=(t-s)D_n(s,t)\). Both \(D_n\) and \(X_n'\) are uniformly bounded away from zero there; the numerator remaining after subtraction vanishes at \(t=s\), so division leaves a uniformly \(C^1\) function on each side, multiplied by \(\operatorname{sgn}(t-s)\). Away from \(s\), the denominator stays uniformly away from zero. Midpoint quadrature therefore has error \(O(1/n)\), uniformly also when \(s\) is arbitrarily close to a quadrature point.
+For \(s\) in a fixed compact subinterval of \((0,\pi)\), this function
+of \(t\) has uniformly bounded variation. Near \(s\), write
+\(X_n(t)-X_n(s)=(t-s)D_n(s,t)\). The function \(D_n\) stays away
+from zero, and
+\[
+ A_n(s,t)=\frac{v(X_n(t))|X_n'(t)|}{|D_n(s,t)|}
+\]
+has uniformly bounded \(C^2\) norms, with \(A_n(s,s)=v(X_n(s))\).
+Thus \(R_n(s,t)=\operatorname{sgn}(t-s)
+(A_n(s,t)-A_n(s,s))/(t-s)\) has uniformly bounded \(C^1\) norms
+on each side of \(s\) and a bounded jump there; at \(t=s\), assign
+either one-sided limit. Away from \(s\),
+the denominator stays away from zero. If \(\Delta=\pi/n\), each
+quadrature cell contributes at most \(\Delta\) times the variation
+on that cell. Summing gives
+\[
+ \left|\Delta\sum_{k=1}^n R_n(s,s_k)
+       -\int_0^\pi R_n(s,t)\,dt\right|
+ \le \Delta\operatorname{Var}_{[0,\pi]}R_n(s,\cdot)=O(1/n).
+\]
+This bound does not depend on the distance from \(s\) to a
+quadrature point.
 
 Changing variables \(y=X_n(t)\) in the integral, and first deleting \((s-\epsilon,s+\epsilon)\), gives
 \begin{equation}\label{eq:counter-u29}
@@ -1234,11 +1286,11 @@ Write
 \]
 Since \((s-s_k)n/\pi=\tau-k\), midpoint quadrature in \eqref{eq:counter-u28} gives explicitly
 \[
- \lambda_n(x)=\frac b\pi\left[
+ \lambda_n(x)=\frac \beta\pi\left[
  \sum_{k=1}^n\frac1{|\tau-k|}
  +\frac1{v(x)}\int_0^\pi R_n(s,t')\,dt'\right]+O(1/n).
 \]
-On the compact interval under consideration, \(1\le m\le n-1\) for large \(n\), and \(b=\sin(\pi t)\). Splitting the elementary harmonic sum at \(m\) gives
+On the compact interval under consideration, \(1\le m\le n-1\) for large \(n\), and \(\beta=\sin(\pi t)\). Splitting the elementary harmonic sum at \(m\) gives
 \[
  \sum_{k=1}^n\frac1{|\tau-k|}
  \le \log(m(n-m))+2+\frac1t+\frac1{1-t}.
@@ -1249,13 +1301,13 @@ Also, uniformly in this compact interval,
  =2\log n-2\log\pi+O(1/n).
 \]
 Substituting these estimates and \eqref{eq:counter-u29} into \eqref{eq:counter-u28}, and using
-\(b/t\le\pi\), \(b/(1-t)\le\pi\), yields
+\(\beta/t\le\pi\), \(\beta/(1-t)\le\pi\), yields
 \[
  \lambda_n(x)\le
- b\left[\frac2\pi\log n-\frac{Lv(x)}{\pi v(x)}
+ \beta\left[\frac2\pi\log n-\frac{Lv(x)}{\pi v(x)}
                   +\frac{2-2\log\pi}{\pi}\right]+2+O(1/n).
 \]
-For large \(n\) the bracket is nonnegative, uniformly on \(K\). We may replace \(b\le1\) by one. Since
+For large \(n\) the bracket is nonnegative, uniformly on \(K\). We may replace \(\beta\le1\) by one. Since
 \(2+(2-2\log\pi)/\pi<3\), this proves \eqref{eq:counter-u26} away from the nodes. At the nodes, \(\lambda_n=1\), and \eqref{eq:counter-u26} follows for large \(n\) as well. \end{proof}
 
 Every positive smooth function \(v\) on \(I\) can be approximated in
@@ -1292,10 +1344,9 @@ Then, uniformly on \(I_\ell\),
  Lv/v=2\log(1/\ell)+O(1).
 \]
 After amplitude approximation with error at most one in this quotient,
-Lemma~\ref{lem:amplitude} and the phase-midpoint calculation in
-\eqref{eq:counter-u28}--\eqref{eq:counter-u29} give
+Lemma~\ref{lem:amplitude} gives
 \[
- \sup_{I_\ell}\lambda_n=\frac2\pi\log(n\ell)+O(1).
+ \sup_{I_\ell}\lambda_n\le\frac2\pi\log(n\ell)+O(1)
 \]
 for sufficiently large \(n\), with an absolute \(O(1)\) term and a
 starting index depending on \(\ell\). Thus the interval constant can be at least
@@ -1320,7 +1371,11 @@ Fix \(x\in(-1,1)\). The block index \(j\) tends to infinity with \(n\), and \(x\
  \lambda_n(x)\le\frac2\pi\log n+3-\frac{A+1/2}{\pi}
  <\frac2\pi\log n-M.
 \]
-This proves \eqref{eq:counter-eventual} and the failure of an absolute additive constant.
+This proves \eqref{eq:counter-eventual} and the failure of an absolute
+additive constant. The passage from \eqref{eq:counter-u19} to this
+bound is pointwise in \(x\), although \eqref{eq:counter-u26} is uniform
+for each fixed amplitude. An interval supremum can occur at points
+that vary with \(n\).
 
 For the final assertion, \eqref{eq:counter-u18}, \eqref{eq:counter-u26}, and \eqref{eq:counter-u30} give at every fixed \(x\in U\)
 \begin{equation}\label{eq:counter-u31}
@@ -1347,8 +1402,8 @@ the same contradiction \(|E|/A\ge|E|\) with \(A>1\).
 \end{proof}
 
 \begin{corollary}[No uniform interval constant]\label{cor:no-uniform-interval}
-For the array satisfying both assertions of Theorem~\ref{thm:nonuniform},
-with any \(M>0\), there is no finite \(C\) such that
+For the array in the second assertion of Theorem~\ref{thm:nonuniform},
+there is no finite \(C\) such that
 \[
  \sup_{x\in I}\lambda_n(x)\ge\frac2\pi\log n-C
 \]
@@ -1402,17 +1457,17 @@ L.~Brutman,
 Lebesgue functions for polynomial interpolation---a survey,
 \emph{Ann. Numer. Math.} \textbf{4} (1997), 111--127.
 
+\bibitem{Erdos1961}
+P.~Erd\H{o}s,
+Problems and results on the theory of interpolation. II,
+\emph{Acta Math. Acad. Sci. Hungar.} \textbf{12} (1961), 235--244.
+
 \bibitem{Erdos}
 P.~Erd\H{o}s,
 Problems and results on the convergence and divergence properties of
 the Lagrange interpolation polynomials and some extremal problems,
 \emph{Mathematica (Cluj)} \textbf{10} (1968), 65--73.
-\href{https://combinatorica.hu/~p_erdos/1967-20.pdf}{Original paper}.
-
-\bibitem{Erdos1961}
-P.~Erd\H{o}s,
-Problems and results on the theory of interpolation. II,
-\emph{Acta Math. Acad. Sci. Hungar.} \textbf{12} (1961), 235--244.
+\url{https://combinatorica.hu/~p_erdos/1967-20.pdf}.
 
 \bibitem{ErdosTuran}
 P.~Erd\H{o}s and P.~Tur\'an,
