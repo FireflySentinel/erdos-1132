@@ -45,7 +45,7 @@ in \([-1,1]\). We prove that the points \(x\in(-1,1)\) for which
 some finite \(C(x)\), form a dense set. We also prove
 \(\limsup_{n\to\infty}\lambda_n(x)/\log n\ge2/\pi\)
 for almost every \(x\in(-1,1)\).
-Conversely, we show that no absolute additive constant works for all arrays:
+We also show that no absolute additive constant works for all arrays:
 for every \(M>0\), there is an array for which each fixed
 \(x\in(-1,1)\) eventually satisfies
 \(\lambda_n(x)\le(2/\pi)\log n-M\).
@@ -117,24 +117,23 @@ Theorem~\ref{thm:main}(i) answers the first question with a constant
 that may depend on the point; part~(ii) answers the second.
 As Tao observes in \cite[Remark~1.12]{Tao}, the original question does
 not specify the allowed dependence of the additive constant.
-Theorem~\ref{thm:nonuniform} distinguishes the uniform readings from
-the point-dependent one.
+Theorem~\ref{thm:nonuniform} rules out two natural uniform
+strengthenings of Theorem~\ref{thm:main}(i).
 
-For arbitrary triangular arrays, the three possible quantifier
-patterns can now be distinguished, using \(G_C\) from
-\eqref{eq:counter-good-set} for the array in question:
-\begin{enumerate}
-\item[(S1)] There is an absolute \(C\) such that \(G_C\ne\varnothing\)
-for every array. This is false: use
-Theorem~\ref{thm:nonuniform} with \(M>\max\{C,0\}\).
-\item[(S2)] For every array, there is a finite \(C\), depending on the
-array but not on the point, such that \(G_C\) is dense. This is false
-by the second assertion of Theorem~\ref{thm:nonuniform}.
-\item[(S3)] For every array, there are a finite \(C\) and a point
-\(x\in G_C\). This is true by Theorem~\ref{thm:main}(i).
-More precisely, \(\bigcup_{C\in\mathbb R}G_C\) is dense; the constant
-may vary from point to point in this union.
-\end{enumerate}
+Write \(G_C(X)\) for the set in \eqref{eq:counter-good-set}
+associated with the array \(X\). Consider the following statements,
+where \(C\in\R\), \(X\) ranges over triangular arrays, and density
+is in \((-1,1)\):
+\[
+\begin{aligned}
+\text{(U1)}&\quad \exists C\ \forall X,\quad G_C(X)\ne\varnothing;\\
+\text{(U2)}&\quad \forall X\ \exists C,\quad G_C(X)\text{ is dense};\\
+\text{(U3)}&\quad \forall X,\quad
+ \bigcup_{C\in\R}G_C(X)\text{ is dense}.
+\end{aligned}
+\]
+Theorem~\ref{thm:nonuniform} disproves (U1) and (U2), while
+Theorem~\ref{thm:main}(i) proves (U3).
 
 Theorem~\ref{thm:nonuniform} concerns arbitrary triangular arrays, as in
 \cite[p.~68]{Erdos} and \cite[Corollary~1.11]{Tao}.
@@ -211,10 +210,10 @@ His Corollary 1.11 and Remark 1.12 give, for every prescribed
 \]
 infinitely often. Theorem~\ref{thm:main}(i) replaces \(\omega(n)\) by a
 finite constant depending on the point, on a dense set.
-In footnote~6 to Remark~1.12 of \cite{Tao}, Tao expresses the tentative belief that
-``this dependency on \(I\) in the error term cannot be entirely
-eliminated.'' Corollary~\ref{cor:no-uniform-interval} establishes this
-for the single array of Theorem~\ref{thm:nonuniform}.
+Corollary~\ref{cor:no-uniform-interval} shows that, for arbitrary
+triangular arrays, the additive constant in the interval lower bound
+cannot in general be chosen independently of the interval;
+see also \cite[Remark~1.12]{Tao}.
 
 \subsection{Organization}
 
@@ -926,8 +925,7 @@ contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
 \section{Failure of uniform additive constants}
 \label{sec:counterexample}
 
-We prove Theorem~\ref{thm:nonuniform}. The constants are chosen
-for a clean verification and are not optimized. Smooth on \(I=[-1,1]\)
+We prove Theorem~\ref{thm:nonuniform}. Smooth on \(I=[-1,1]\)
 will mean extendible to a smooth function on a neighborhood of \(I\).
 
 \subsection{The compact set}\label{subsec:counter-set}
@@ -1076,7 +1074,7 @@ Thus the negative far contribution is at most
 \(4p(s)+(1-1/512)p(s)H\). Including the near part gives
 \(Lu(x)/u(x)\ge H/512-28\).
 At least one of \(l_-,l_+\) is at least one, so
-\(H\ge\log(1/(4s))\). This proves \eqref{eq:counter-u9}, with room in its constant.
+\(H\ge\log(1/(4s))\). This proves \eqref{eq:counter-u9}.
 
 Every gap has length at most \(|U|\le2\rho\), so \(r(x)\le\rho/2\).
 Our choice of \(\rho\) ensures \(T\ge16\), and \eqref{eq:counter-u9} yields
@@ -1260,27 +1258,6 @@ Substituting these estimates and \eqref{eq:counter-u29} into \eqref{eq:counter-u
 For large \(n\) the bracket is nonnegative, uniformly on \(K\). We may replace \(b\le1\) by one. Since
 \(2+(2-2\log\pi)/\pi<3\), this proves \eqref{eq:counter-u26} away from the nodes. At the nodes, \(\lambda_n=1\), and \eqref{eq:counter-u26} follows for large \(n\) as well. \end{proof}
 
-\begin{remark}[A numerical check of the finite term]
-At phase midpoints, \(b=1\), and the harmonic sum above satisfies
-\[
- \sum_{k=1}^n\frac1{|m+\tfrac12-k|}
- =\log(m(n-m))+2\gamma+4\log2+o(1),
-\]
-uniformly on compact interior intervals. Thus the corrected quantity
-\[
- E_n(x)=\lambda_n(x)-\frac2\pi\log n+\frac{Lv(x)}{\pi v(x)}
-\]
-at these points tends to
-\(\kappa_V=(2/\pi)(\gamma+\log(4/\pi))=0.521251626\ldots\),
-the constant in V\'ertesi's asymptotic formula \cite{Vertesi1990}.
-The reproducible script \texttt{checks/amplitude\_numerics.py} evaluates
-three fixed examples \(h=1,\ 1-z/2,\ (1-z/2)^2\) for
-\(n=50,100,\ldots,800\), using the derivative-weight identity and
-closed expressions for \(Lv/v\). On the prescribed phase midpoints
-in \(K=[-0.8,0.8]\), the largest computed values at \(n=800\) are,
-respectively, \(0.5212524\), \(0.5215144\), and \(0.5217777\).
-\end{remark}
-
 Every positive smooth function \(v\) on \(I\) can be approximated in
 \(C^1(I)\) by amplitudes occurring in this lemma. Approximate \(1/v\)
 by a strictly positive real polynomial \(q\) of degree \(d\), and form
@@ -1306,30 +1283,23 @@ uniform approximation of \(Lv/v\).
 
 
 \begin{remark}[Dependence on interval length]
-The loss on a small interval is already visible in a simpler construction.
 Let \(I_\ell=[-\ell/2,\ell/2]\), where \(0<\ell<1/4\), and choose a
 smooth \(v\) equal to \(1\) on \(I_\ell\) and to
 \(\delta=1/\log(1/\ell)\) outside \([-\ell,\ell]\), with
 \(\delta\le v\le1\) and \(\|v'\|_\infty=O(1/\ell)\).
-The integral outside \([-\ell,\ell]\) and the transition regions give,
-uniformly on \(I_\ell\),
+Then, uniformly on \(I_\ell\),
 \[
  Lv/v=2\log(1/\ell)+O(1).
 \]
-Approximate by an amplitude as above, with error at most one in this
-quotient. Lemma~\ref{lem:amplitude} gives the upper bound in
+After amplitude approximation with error at most one in this quotient,
+Lemma~\ref{lem:amplitude} and the phase-midpoint calculation in
+\eqref{eq:counter-u28}--\eqref{eq:counter-u29} give
 \[
  \sup_{I_\ell}\lambda_n=\frac2\pi\log(n\ell)+O(1).
 \]
-The matching lower bound follows from \eqref{eq:counter-u28}--\eqref{eq:counter-u29}
-at a phase midpoint, where \(b=1\); such points lie in \(I_\ell\) for
-all large \(n\). The constants here can be absolute, with the starting
-index depending on \(\ell\).
-Thus Tao's interval constant can be at least
+for sufficiently large \(n\), with an absolute \(O(1)\) term and a
+starting index depending on \(\ell\). Thus the interval constant can be at least
 \((2/\pi)\log(1/|I_\ell|)-O(1)\) when the array changes with \(\ell\).
-The gap losses in Theorem~\ref{thm:nonuniform} are consistent with this
-dependence; its additional conclusion concerns one fixed array for
-which every finite common constant fails.
 \end{remark}
 
 \subsection{Assembly of the array}\label{subsec:counter-array}

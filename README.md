@@ -1,11 +1,17 @@
 # Erdős Problem #1132: sharp pointwise bounds for Lebesgue functions
 
-Lean 4 formalization answering both questions of
+Lean 4 formalization of sharp pointwise bounds for Lebesgue functions, in connection with
 [Erdős Problem #1132](https://www.erdosproblems.com/1132).
-[`Erdos1132.theorem1`](Erdos1132/Theorems.lean) and
-[`Erdos1132.theorem2`](Erdos1132/Theorems.lean) are proved from the node conditions,
-and from $M>0$, alone: no analytic estimate is assumed, including the local potential
-estimates cited from Tao, which are proved directly in Lean.
+
+For arbitrary triangular arrays, [`theorem1`](Erdos1132/Theorems.lean) proves
+that $\lambda_n(x)>(2/\pi)\log n-C(x)$ infinitely often on a dense set,
+with a finite constant depending on the point, and that
+$\limsup_n\lambda_n(x)/\log n\ge2/\pi$ almost everywhere.
+[`theorem2`](Erdos1132/Theorems.lean) disproves two uniform strengthenings:
+an absolute additive constant valid for all arrays, and a constant for each
+array giving a dense set of points. Its counterexample uses arbitrary
+triangular arrays; the uniform-constant question for initial segments of
+a single node sequence remains open.
 
 ## Build and check
 
