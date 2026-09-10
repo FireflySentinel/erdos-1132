@@ -2,7 +2,7 @@ import Erdos1132.Additive.RieszEnergy
 
 /-! # Energy expansion on a disjoint union of two finite measure spaces
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

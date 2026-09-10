@@ -2,7 +2,7 @@ import Erdos1132.Additive.ComplexInterpolant
 
 /-! # The upper-edge estimate at the local exponential type
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

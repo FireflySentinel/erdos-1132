@@ -2,7 +2,7 @@ import Erdos1132.Shared.BoundaryMeasure
 
 /-! # Stability of the centered interval probability
 
-Paper: §6, Theorem 1(ii) and the positive-measure argument used in §8.
+Main paper: §3, Theorem 1(ii), and the positive-measure corollary in §7.
 -/
 
 noncomputable section

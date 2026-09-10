@@ -3,7 +3,7 @@ import Erdos1132.Additive.PotentialNormalization
 
 /-! # Explicit control of the interior contribution to the Poisson integral
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

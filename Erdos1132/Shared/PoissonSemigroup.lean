@@ -2,7 +2,7 @@ import Erdos1132.Shared.BoundaryMeasure
 
 /-! # The convolution identity for Poisson kernels
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

@@ -3,7 +3,7 @@ import Erdos1132.Additive.PolynomialRectangle
 
 /-! # Local differentiation and peak estimates in the original polynomial coordinates
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

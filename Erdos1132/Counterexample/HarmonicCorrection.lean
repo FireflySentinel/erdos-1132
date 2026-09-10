@@ -6,7 +6,7 @@ import Erdos1132.Counterexample.ShiftedHarmonic
 A half-step displacement changes each logarithm by at most its relative
 size. This gives an explicit error bound independent of the fractional part.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

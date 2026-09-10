@@ -4,7 +4,7 @@ import Erdos1132.Additive.InterpolantPeak
 
 /-! # Large-jump nodes yield nearby high values and one-sided separation
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

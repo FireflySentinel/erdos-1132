@@ -2,7 +2,7 @@ import Erdos1132.Additive.FinitePoles
 
 /-! # A finite residue formula for the differentiated Cauchy kernel
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

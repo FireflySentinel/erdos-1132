@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 
 /-! # Row sizes, heights, and the cancellation error
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

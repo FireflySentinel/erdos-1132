@@ -3,7 +3,7 @@ import Mathlib.Analysis.Calculus.LocalExtr.Rolle
 
 /-! # A large one-sided derivative forces an adjacent empty interval
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

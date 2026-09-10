@@ -3,7 +3,7 @@ import Mathlib.MeasureTheory.Integral.Prod
 
 /-! # The logarithmic average of Poisson kernels
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

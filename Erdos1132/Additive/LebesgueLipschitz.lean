@@ -3,7 +3,7 @@ import Mathlib.Analysis.Calculus.MeanValue
 
 /-! # A local Lipschitz bound for the whole Lebesgue function
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

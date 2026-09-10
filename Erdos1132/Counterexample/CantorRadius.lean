@@ -4,7 +4,7 @@ import Mathlib.Analysis.Calculus.ContDiff.Operations
 
 /-! # A globally Lipschitz radius, polynomial on each gap
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 noncomputable section
 open Set Filter

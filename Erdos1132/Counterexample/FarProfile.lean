@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 
 /-! # The decreasing far-field weight and its exact primitive
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 
 noncomputable section

@@ -2,7 +2,7 @@ import Erdos1132.Shared.KernelConcentration
 
 /-! # Convergence of approximate identities
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

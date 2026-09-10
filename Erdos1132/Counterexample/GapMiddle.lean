@@ -3,7 +3,7 @@ import Mathlib.MeasureTheory.Integral.Bochner.Set
 
 /-! # Middle halves of gaps and an explicit one-sided block
 
-Paper: §7.1, the compact set and its gaps.
+Companion note: §2.1, the compact set and its gaps.
 -/
 noncomputable section
 open Set MeasureTheory Finset

@@ -4,7 +4,7 @@ import Mathlib.Topology.Order.IntermediateValue
 
 /-! # Polynomial pieces of the Lebesgue function between interpolation nodes
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

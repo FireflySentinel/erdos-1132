@@ -3,7 +3,7 @@ import Mathlib.Tactic
 
 /-! # Uniform Lipschitz bounds for a squared weight divided by a positive density
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

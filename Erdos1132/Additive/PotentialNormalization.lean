@@ -3,7 +3,7 @@ import Erdos1132.Additive.SecondMoment
 
 /-! # Bounds on the normalization and on small-set logarithmic integrals
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

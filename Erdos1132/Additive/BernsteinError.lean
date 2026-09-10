@@ -2,7 +2,7 @@ import Erdos1132.Additive.BernsteinLimits
 
 /-! # Additive error control for logarithmic upper levels
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

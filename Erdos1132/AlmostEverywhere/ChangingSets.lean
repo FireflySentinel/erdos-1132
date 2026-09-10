@@ -2,7 +2,7 @@ import Erdos1132.AlmostEverywhere.EnergyComparison
 
 /-! # Kernel energies on changing measurable sets
 
-Paper: §6, Theorem 1(ii) and the positive-measure argument used in §8.
+Main paper: §3, Theorem 1(ii), and the positive-measure corollary in §7.
 -/
 
 noncomputable section

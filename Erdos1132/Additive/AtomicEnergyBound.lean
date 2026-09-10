@@ -2,7 +2,7 @@ import Erdos1132.Additive.AtomicRieszEnergy
 
 /-! # Quantitative lower bound for atomic Riesz energy
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

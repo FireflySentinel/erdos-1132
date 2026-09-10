@@ -2,7 +2,7 @@ import Erdos1132.Additive.CenteredCover
 
 /-! # Measure bounds at the high-value interval scale
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

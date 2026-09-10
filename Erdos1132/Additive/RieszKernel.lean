@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Arsinh
 
 /-! # The regularized inverse-distance kernel and its Gaussian representation
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

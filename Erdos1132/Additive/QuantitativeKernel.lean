@@ -2,7 +2,7 @@ import Erdos1132.Shared.ApproximateIdentity
 
 /-! # A quantitative approximate-identity estimate for Lipschitz functions
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

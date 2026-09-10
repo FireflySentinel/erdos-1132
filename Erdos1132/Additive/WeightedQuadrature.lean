@@ -5,7 +5,7 @@ import Mathlib.Topology.Order.ProjIcc
 
 /-! # Quadrature for the actual squared weight divided by the local density
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

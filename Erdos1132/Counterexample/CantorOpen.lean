@@ -3,7 +3,7 @@ import Erdos1132.Counterexample.CantorDensity
 
 /-! # The open complement and its explicit gap decomposition
 
-Paper: §7.1, the compact set and its gaps.
+Companion note: §2.1, the compact set and its gaps.
 -/
 
 noncomputable section

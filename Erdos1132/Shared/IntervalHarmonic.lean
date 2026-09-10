@@ -4,7 +4,7 @@ import Mathlib.Analysis.InnerProductSpace.Harmonic.Constructions
 
 /-! # Harmonic measure of a boundary interval
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

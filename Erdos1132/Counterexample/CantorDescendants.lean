@@ -7,7 +7,7 @@ A word has one ancestor at every earlier level. The descendants are counted
 recursively, and their intervals give the exact part of a later level that
 lies inside the ancestor interval.
 
-Paper: §7.1, the compact set and its gaps.
+Companion note: §2.1, the compact set and its gaps.
 -/
 
 noncomputable section

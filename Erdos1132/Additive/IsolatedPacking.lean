@@ -4,7 +4,7 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 /-! # Local counting bounds from empty intervals on one side of every point
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

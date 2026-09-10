@@ -2,7 +2,7 @@ import Erdos1132.Counterexample.CantorProfile
 
 /-! # Arbitrarily large logarithmic ratios on open subintervals of one gap
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 noncomputable section
 open Set

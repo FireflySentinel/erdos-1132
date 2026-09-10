@@ -4,7 +4,7 @@ import Mathlib.Tactic
 
 /-! # Analytic cancellation of a simple pole
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

@@ -9,7 +9,7 @@ import Mathlib.Tactic
 The two singular terms are controlled after multiplication by the phase
 factor. All remaining terms are bounded by ordinary harmonic numbers.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

@@ -3,7 +3,7 @@ import Erdos1132.Additive.LocalPoissonEstimate
 
 /-! # Uniform Cauchy-weighted integrability of the boundary potential
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

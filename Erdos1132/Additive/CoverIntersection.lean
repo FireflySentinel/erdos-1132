@@ -2,7 +2,7 @@ import Erdos1132.Additive.ScaledCover
 
 /-! # Intersections of high-value interval unions in two different rows
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

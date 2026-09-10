@@ -9,7 +9,7 @@ import Mathlib.Topology.UniformSpace.UniformConvergence
 Partial derivatives in the second variable retain joint smoothness. Compactness
 then gives uniform convergence of every fixed derivative order as `ε → 0`.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

@@ -4,7 +4,7 @@ import Erdos1132.Counterexample.SmoothApproximation
 
 /-! # The positive smooth amplitude sequence of Section 7
 
-Paper: §7.3, smooth positive approximations.
+Companion note: §2.3, smooth positive approximations.
 -/
 noncomputable section
 open Set MeasureTheory Filter

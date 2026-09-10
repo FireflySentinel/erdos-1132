@@ -4,7 +4,7 @@ import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 
 /-! # Regularity and bounds for the logarithmic Cantor profile
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 noncomputable section
 open Set MeasureTheory Filter

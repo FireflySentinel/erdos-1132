@@ -12,7 +12,7 @@ index pass to every sufficiently large row, not merely to a subsequence.
 An eventual upper bound on an open interval implies relative non-density of
 the corresponding good-point set in `(-1,1)`.
 
-Paper: §7.5, assembly of the array in Theorem 2.
+Companion note: §4, assembly of the array in Theorem 1.
 -/
 
 noncomputable section

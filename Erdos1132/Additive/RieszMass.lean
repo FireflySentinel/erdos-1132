@@ -3,7 +3,7 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
 
 /-! # Exact local mass of the regularized inverse-distance kernel
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

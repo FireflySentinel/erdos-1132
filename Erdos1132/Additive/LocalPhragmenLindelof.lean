@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 
 /-! # An explicit local Phragmén–Lindelöf estimate on a rectangle
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

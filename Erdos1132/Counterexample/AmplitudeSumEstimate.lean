@@ -8,7 +8,7 @@ import Mathlib.Analysis.Real.Pi.Bounds
 The phase factor cancels both nearest-node poles. The remaining error is
 explicit in the mesh width, the phase derivative bound, and quadrature error.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

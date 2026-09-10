@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.PosLogEqCircleAverage
 
 /-! # The Poisson extension of a logarithmic singularity
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

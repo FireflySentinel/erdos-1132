@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Integral.Bochner.SumMeasure
 
 /-! # Riesz energy comparison for actual finite atomic measures
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

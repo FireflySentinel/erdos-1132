@@ -5,13 +5,13 @@ import Erdos1132.Counterexample.InteriorRows
 import Mathlib.Analysis.Real.Pi.Bounds
 
 /-!
-# Theorem 2 with rows indexed by `n + 2`
+# The companion counterexample with rows indexed by `n + 2`
 
 For each positive M, a single array of distinct interior nodes has the
 eventual pointwise deficit M and, for every finite C, a non-dense set of
 points attaining the corresponding lower bound infinitely often.
 
-Paper: §7.5, assembly of the array in Theorem 2.
+Companion note: §4, assembly of the array in Theorem 1.
 -/
 noncomputable section
 open Set Filter Polynomial

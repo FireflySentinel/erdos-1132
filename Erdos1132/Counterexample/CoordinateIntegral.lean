@@ -7,7 +7,7 @@ import Erdos1132.Counterexample.RemainderIntegral
 The endpoint terms give the logarithmic correction in the finite-part
 integral identity of the amplitude lemma.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

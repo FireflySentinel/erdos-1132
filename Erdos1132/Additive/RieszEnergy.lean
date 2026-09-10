@@ -2,7 +2,7 @@ import Erdos1132.Additive.GaussianEnergy
 
 /-! # Positivity of regularized inverse-distance energy
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

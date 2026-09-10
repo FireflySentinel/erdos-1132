@@ -8,7 +8,7 @@ The exponential series expresses each finite approximation as a sum of
 squares of moments. Dominated convergence then proves positivity of the
 actual Gaussian kernel.
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

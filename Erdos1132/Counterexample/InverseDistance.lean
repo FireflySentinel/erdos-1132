@@ -4,7 +4,7 @@ import Mathlib.Tactic
 
 /-! # Exact logarithmic integrals of the inverse-distance kernel
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 
 open MeasureTheory Set

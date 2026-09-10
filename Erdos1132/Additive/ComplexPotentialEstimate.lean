@@ -2,7 +2,7 @@ import Erdos1132.Additive.ExteriorDensity
 
 /-! # The local complex-potential expansion with an explicit remainder
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

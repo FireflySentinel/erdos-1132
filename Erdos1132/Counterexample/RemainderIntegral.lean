@@ -10,7 +10,7 @@ The singular terms cancel pointwise. The remaining divided-difference term
 is a logarithmic derivative, whose integral is evaluated on the two sides
 of the interior parameter.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

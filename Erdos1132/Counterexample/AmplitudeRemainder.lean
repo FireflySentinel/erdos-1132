@@ -7,7 +7,7 @@ The remainder is a sign jump times a regular function built from divided
 differences. Its variation and integral can therefore be estimated on the
 whole interval.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

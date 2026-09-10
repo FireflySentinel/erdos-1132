@@ -3,7 +3,7 @@ import Erdos1132.Shared.Chebyshev
 
 /-! # Chebyshev approximation and signed Cauchy cancellation
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

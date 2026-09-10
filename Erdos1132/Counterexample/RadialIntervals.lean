@@ -4,7 +4,7 @@ import Mathlib.Tactic
 
 /-! # Splitting a radial integral on the interpolation interval into its two sides
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 
 open MeasureTheory Set

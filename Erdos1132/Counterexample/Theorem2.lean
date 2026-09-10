@@ -1,8 +1,8 @@
 import Erdos1132.Counterexample.Theorem2Shifted
 
-/-! # Theorem 2 in the paper's original degree convention
+/-! # The companion counterexample with exactly `n` nodes in row `n`
 
-Paper: §7.5, assembly of the array in Theorem 2.
+Companion note: §4, assembly of the array in Theorem 1.
 -/
 noncomputable section
 open Set Filter
@@ -27,7 +27,7 @@ theorem unshiftRows_interior (X : ∀ n : ℕ, Nodes (n+2))
     | zero => exact defaultInteriorRows_interior 1 i
     | succ n => exact hX n i
 
-/-- Theorem 2 with exactly `n` nodes in row `n`, including both assertions
+/-- Theorem 1 of the companion note with exactly `n` nodes in row `n`, including both assertions
 for the same array. -/
 theorem theorem2 (M : ℝ) (hM : 0 < M) :
     ∃ X : ∀ n : ℕ, Nodes n,

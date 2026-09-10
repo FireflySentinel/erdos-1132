@@ -4,7 +4,7 @@ import Mathlib.MeasureTheory.Integral.Prod
 
 /-! # Uniform logarithmic asymptotics of Riesz convolution
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

@@ -3,7 +3,7 @@ import Erdos1132.AlmostEverywhere.SymmetricEnergy
 
 /-! # Comparison of the ratio energy and set energy
 
-Paper: §6, Theorem 1(ii) and the positive-measure argument used in §8.
+Main paper: §3, Theorem 1(ii), and the positive-measure corollary in §7.
 -/
 
 noncomputable section

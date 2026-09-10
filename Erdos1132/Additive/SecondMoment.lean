@@ -4,7 +4,7 @@ import Mathlib.Tactic
 
 /-! # Second moments and recurrence of measurable sets
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

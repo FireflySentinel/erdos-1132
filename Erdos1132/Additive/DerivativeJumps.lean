@@ -6,7 +6,7 @@ import Mathlib.Analysis.Calculus.Deriv.Polynomial
 
 /-! # The exact derivative jumps of a Lebesgue function
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

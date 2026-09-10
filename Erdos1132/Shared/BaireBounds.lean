@@ -5,7 +5,7 @@ import Mathlib.Order.Filter.IsBounded
 
 /-! # Interval lower bounds and dense sets of recurrent points
 
-Paper: §4 and §8, the Baire arguments for density and interval constants.
+Main paper, §6, and companion note, §5: the Baire arguments for density and interval constants.
 -/
 
 noncomputable section

@@ -2,7 +2,7 @@ import Erdos1132.Additive.InterpolantLocalGrowth
 
 /-! # Choosing the finite Riesz contour inside the local growth rectangle
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

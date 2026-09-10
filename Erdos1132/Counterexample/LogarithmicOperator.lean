@@ -10,7 +10,7 @@ import Mathlib.Tactic
 This file proves the analytic estimate (7.1), including absolute integrability,
 and quantitative stability of the quotient `L f / f`.
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 
 noncomputable section

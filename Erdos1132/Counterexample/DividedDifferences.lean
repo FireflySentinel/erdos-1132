@@ -9,7 +9,7 @@ import Mathlib.Analysis.Calculus.Deriv.Inv
 The extended divided difference is smooth for analytic functions. Taylor's
 formula bounds its first two derivatives by derivatives of the original function.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

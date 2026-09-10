@@ -6,7 +6,7 @@ import Erdos1132.Counterexample.InverseDistance
 
 /-! # The explicit logarithmic integral lower bound on an open gap
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 
 noncomputable section

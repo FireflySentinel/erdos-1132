@@ -8,7 +8,7 @@ Approximate the reciprocal by a positive real polynomial and reflect its
 Joukowsky polynomial. The logarithmic ratio approximation is uniform on
 the full closed interval.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section
@@ -25,7 +25,7 @@ theorem logarithmicOperator_congr_on_interval {f g : ℝ → ℝ} {x : ℝ}
   filter_upwards [ae_restrict_mem measurableSet_Icc] with y hy
   simp only [differenceKernel, hfg hx, hfg hy]
 
-/-- The amplitude approximation used in the construction of Theorem 2,
+/-- The amplitude approximation used in the construction of Theorem 1 of the companion note,
 including actual existence of a zero-free real polynomial. -/
 theorem exists_amplitude_logarithmicRatio_approximation {v v' : ℝ → ℝ}
     (hv : ∀ x ∈ interval, HasDerivWithinAt v (v' x) interval x)

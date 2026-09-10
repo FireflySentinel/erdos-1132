@@ -6,7 +6,7 @@ import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
 
 /-! # Cayley coordinates and the Cauchy boundary integral
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

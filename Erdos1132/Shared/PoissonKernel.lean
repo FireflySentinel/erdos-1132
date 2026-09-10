@@ -5,7 +5,7 @@ import Mathlib.Tactic
 
 /-! # The Poisson kernel and its mass
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

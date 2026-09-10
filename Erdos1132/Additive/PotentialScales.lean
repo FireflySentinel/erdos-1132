@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 
 /-! # Explicit choices of scales for the local potential expansion
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

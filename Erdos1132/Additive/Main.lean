@@ -6,7 +6,7 @@ import Erdos1132.Shared.BaireBounds
 This is Theorem 1(i), with exactly `n` distinct interpolation nodes in row `n`.
 The additive constant can depend on the chosen point.
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

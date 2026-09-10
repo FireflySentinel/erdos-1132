@@ -3,7 +3,7 @@ import Mathlib.Algebra.Polynomial.Roots
 
 /-! # Rational formulas and boundary limits for Cauchy transforms
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

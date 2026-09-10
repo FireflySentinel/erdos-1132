@@ -8,7 +8,7 @@ import Mathlib.Analysis.BoundedVariation
 Multiplying a Lipschitz function by a sign jump adds at most twice its
 supremum norm to its variation, independently of the jump's position.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

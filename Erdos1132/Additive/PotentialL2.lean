@@ -4,7 +4,7 @@ import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
 /-! # A uniform square-integral bound for empirical logarithmic potentials
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

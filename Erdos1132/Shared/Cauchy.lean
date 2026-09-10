@@ -3,7 +3,7 @@ import Mathlib.Analysis.Complex.Basic
 
 /-! # Positive and signed Cauchy transforms of the node weights
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

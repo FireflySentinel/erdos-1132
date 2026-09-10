@@ -12,7 +12,7 @@ import Mathlib.Analysis.SpecialFunctions.Trigonometric.Deriv
 The coordinate change `t - ε ψ(t)` has a jointly smooth inverse for small
 `ε`. At `ε = 0` the inverse is the identity.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

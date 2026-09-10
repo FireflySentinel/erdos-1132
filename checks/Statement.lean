@@ -1,6 +1,6 @@
 import Erdos1132.Theorems
 
-/-! The two corollaries in §8, with the Lagrange products written out. -/
+/-! The corollaries in main §7 and companion §5, with the Lagrange products written out. -/
 
 open MeasureTheory Set Filter
 open scoped BigOperators
@@ -22,7 +22,7 @@ example (X : ∀ n : ℕ, Fin n → ℝ)
     Erdos1132.positive_measure_lower_bound
       (fun n => ⟨X n, distinct n, in_interval n⟩) hE hEint hEpos hc hcπ
 
-/-- The array of Theorem 2 admits no additive constant uniform over interior intervals. -/
+/-- The array of the companion note's Theorem 1 admits no additive constant uniform over interior intervals. -/
 example (M : ℝ) (hM : 0 < M) :
     ∃ X : ∀ n : ℕ, Erdos1132.Nodes n,
       (∀ n i, (X n).point i ∈ Ioo (-1) 1) ∧

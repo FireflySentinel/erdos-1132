@@ -2,7 +2,7 @@ import Erdos1132.AlmostEverywhere.LowSetEnergy
 
 /-! # The null-set contradiction and the set corollary
 
-Paper: §6, Theorem 1(ii) and the positive-measure argument used in §8.
+Main paper: §3, Theorem 1(ii), and the positive-measure corollary in §7.
 -/
 
 noncomputable section

@@ -2,7 +2,7 @@ import Erdos1132.AlmostEverywhere.IntervalProbability
 
 /-! # Boundary events for a positive Cauchy transform
 
-Paper: §6, Theorem 1(ii) and the positive-measure argument used in §8.
+Main paper: §3, Theorem 1(ii), and the positive-measure corollary in §7.
 -/
 
 noncomputable section

@@ -2,7 +2,7 @@ import Erdos1132.Additive.AveragedPoisson
 
 /-! # Approximation of node averages by differences of complex potentials
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

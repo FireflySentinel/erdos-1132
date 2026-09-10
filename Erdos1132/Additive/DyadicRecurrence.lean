@@ -4,7 +4,7 @@ import Mathlib.Algebra.BigOperators.Intervals
 
 /-! # Recurrence from the dyadic intersection estimates in Section 4
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

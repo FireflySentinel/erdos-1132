@@ -2,7 +2,7 @@ import Mathlib.Tactic
 
 /-! # Many large values from a bounded weighted deficit
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

@@ -3,7 +3,7 @@ import Mathlib.Analysis.Complex.Liouville
 
 /-! # The second derivative bound from local complex growth
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

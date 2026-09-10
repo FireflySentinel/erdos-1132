@@ -4,7 +4,7 @@ import Erdos1132.Additive.BernsteinScales
 
 /-! # Uniform local growth for all interpolants with bounded nodal data
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

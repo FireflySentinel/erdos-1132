@@ -7,7 +7,7 @@ import Erdos1132.Counterexample.AmplitudeWeight
 Multiplication by a power of `z` turns `q((z + z⁻¹)/2)` into a real
 polynomial. Reflection of its interior roots preserves the boundary modulus.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

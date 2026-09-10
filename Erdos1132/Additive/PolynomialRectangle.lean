@@ -5,7 +5,7 @@ import Mathlib.Analysis.Calculus.Deriv.Polynomial
 
 /-! # Local exponential growth for a real polynomial
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

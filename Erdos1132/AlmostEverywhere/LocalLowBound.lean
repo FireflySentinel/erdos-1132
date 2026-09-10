@@ -4,7 +4,7 @@ import Erdos1132.AlmostEverywhere.ChangingSets
 
 /-! # A local lower estimate under a low Lebesgue bound
 
-Paper: §6, Theorem 1(ii) and the positive-measure argument used in §8.
+Main paper: §3, Theorem 1(ii), and the positive-measure corollary in §7.
 -/
 
 noncomputable section

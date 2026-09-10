@@ -4,7 +4,7 @@ import Erdos1132.Additive.CoverIntersection
 
 /-! # Actual high-value sets with uniform measure and intersection bounds
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

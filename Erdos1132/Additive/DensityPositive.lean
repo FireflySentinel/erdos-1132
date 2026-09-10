@@ -2,7 +2,7 @@ import Erdos1132.Additive.TaoPotential
 
 /-! # Positivity of the density forced by a decrease of the logarithmic potential
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

@@ -2,7 +2,7 @@ import Erdos1132.Additive.SecondMoment
 
 /-! # Lower bounds for a finite union with bounded multiplicity
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

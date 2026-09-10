@@ -3,7 +3,7 @@ import Erdos1132.Additive.IsolatedPacking
 
 /-! # Measures of unions of short intervals around displaced isolated nodes
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

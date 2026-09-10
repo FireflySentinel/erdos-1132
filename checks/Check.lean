@@ -1,6 +1,6 @@
 import Erdos1132
 
-/-! Axiom checks for Theorems 1 and 2 and the two corollaries in §8. -/
+/-! Axiom checks for both manuscripts' main theorems and corollaries. -/
 
 /-- info: 'Erdos1132.theorem1' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs (whitespace := lax) in

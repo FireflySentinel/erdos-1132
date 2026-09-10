@@ -10,7 +10,7 @@ The squared modulus of a real polynomial on the unit circle is a polynomial
 in the cosine coordinate. Its reciprocal square root supplies the amplitude
 and is analytic at the endpoints as well as in the interior.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

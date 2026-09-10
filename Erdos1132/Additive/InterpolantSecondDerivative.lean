@@ -3,7 +3,7 @@ import Erdos1132.Additive.PolynomialSecondDerivative
 
 /-! # A uniform second derivative bound for bounded-data interpolants
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

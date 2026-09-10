@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Trigonometric.Complex
 
 /-! # The finite set of cosine poles used by the local Riesz formula
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

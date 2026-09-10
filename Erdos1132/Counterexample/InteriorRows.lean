@@ -3,7 +3,7 @@ import Erdos1132.Counterexample.Assembly
 
 /-! # Interior rows in every degree and compact interval exhaustion
 
-Paper: §7.5, assembly of the array in Theorem 2.
+Companion note: §4, assembly of the array in Theorem 1.
 -/
 noncomputable section
 open Set Filter Polynomial

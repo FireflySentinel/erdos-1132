@@ -1,9 +1,9 @@
 import Erdos1132.Shared.BaireBounds
 import Erdos1132.Counterexample.Theorem2
 
-/-! # Quantifier consequences of Theorem 2
+/-! # Quantifier consequences of Theorem 1 of the companion note
 
-Paper: §1 (S1)–(S2) and §8, consequences of Theorem 2.
+Companion note: §1 (the two uniform statements) and §5 (interval constants).
 -/
 
 noncomputable section
@@ -24,7 +24,7 @@ theorem dense_goodPoints_of_uniform_interval_constant
     (fun n => (X n).lebesgue) (fun n => (X n).continuous_lebesgue)
     (fun n => (2 / Real.pi) * Real.log (n : ℝ) - C) (ε := 1) (by norm_num) h
 
-/-- The interval-constant corollary in §8: for any array whose every finite-constant
+/-- The interval-constant corollary in companion §5: for any array whose every finite-constant
 good-point set is non-dense, an eventual interval-supremum bound cannot use one
 constant for all intervals. -/
 theorem no_uniform_interval_constant
@@ -50,7 +50,7 @@ theorem frequently_interval_sup_lt
   push Not at h
   simpa only [not_eventually, not_le] using h C
 
-/-- Theorem 2 and its interval-constant corollary for the same constructed array. -/
+/-- Theorem 1 of the companion note and its interval-constant corollary for the same constructed array. -/
 theorem theorem2_with_interval_corollary (M : ℝ) (hM : 0 < M) :
     ∃ X : ∀ n : ℕ, Nodes n,
       (∀ n i, (X n).point i ∈ Ioo (-1) 1) ∧
@@ -64,7 +64,7 @@ theorem theorem2_with_interval_corollary (M : ℝ) (hM : 0 < M) :
   obtain ⟨X, hI, hupper, hnd⟩ := theorem2 M hM
   exact ⟨X, hI, hupper, hnd, frequently_interval_sup_lt X hnd⟩
 
-/-- Quantifier pattern (S1) is false, even when all nodes are interior. -/
+/-- No absolute additive constant works for all arrays, even with interior nodes. -/
 theorem no_absolute_additive_constant :
     ¬∃ C : ℝ, ∀ X : ∀ n : ℕ, Nodes n,
       (∀ n i, (X n).point i ∈ Ioo (-1) 1) →
@@ -76,8 +76,7 @@ theorem no_absolute_additive_constant :
   obtain ⟨n, hn, hle⟩ := (hfreq.and_eventually (hupper x hx)).exists
   linarith [le_max_left C 0]
 
-/-- Quantifier pattern (S2) is false: allowing the constant to depend on the
-array does not ensure density of its good-point set. -/
+/-- An array-dependent constant need not give a dense good-point set. -/
 theorem no_arraywise_dense_constant :
     ¬∀ X : ∀ n : ℕ, Nodes n,
       (∀ n i, (X n).point i ∈ Ioo (-1) 1) →

@@ -4,7 +4,8 @@ import Erdos1132.Counterexample.Corollaries
 
 /-! # Main theorems and consequences
 
-Paper: Theorems 1 and 2 (§1) and the two corollaries in §8.
+Main paper: Theorem 1 (`theorem1`) and Corollary 10 (`positive_measure_lower_bound`).
+Companion note: Theorem 1 (`theorem2`) and Corollary 4 (`no_uniform_interval_constant`).
 
 `Nodes n` records `n` distinct nodes in `[-1, 1]`; `Nodes.lebesgue` is
 the sum of the absolute values of their Lagrange cardinal polynomials.
@@ -16,7 +17,7 @@ open MeasureTheory Set Filter
 open scoped Topology
 namespace Erdos1132
 
-/-- Theorem 1: a dense set with point-dependent additive constants, and the
+/-- Main paper, Theorem 1: a dense set with point-dependent additive constants, and the
 sharp normalized lower bound almost everywhere, for every triangular array. -/
 theorem theorem1 (X : ∀ n, Nodes n) :
     Dense {x : Ioo (-1 : ℝ) 1 | ∃ C : ℝ, ∃ᶠ n : ℕ in atTop,
@@ -26,7 +27,7 @@ theorem theorem1 (X : ∀ n, Nodes n) :
         limsup (fun n => (((X n).lebesgue x / Real.log (n : ℝ) : ℝ) : EReal)) atTop) :=
   ⟨dense_additive_lower_bound X, ae_lebesgue_limsup X⟩
 
-/-- Theorem 2: one array has the prescribed eventual deficit at every fixed
+/-- Companion note, Theorem 1: one array has the prescribed eventual deficit at every fixed
 interior point, and every finite-constant good-point set is non-dense. -/
 theorem theorem2 (M : ℝ) (hM : 0 < M) :
     ∃ X : ∀ n : ℕ, Nodes n,
@@ -37,7 +38,7 @@ theorem theorem2 (M : ℝ) (hM : 0 < M) :
         (2 / Real.pi) * Real.log (n : ℝ) - C < (X n).lebesgue x}) :=
   Counterexample.theorem2 M hM
 
-/-- The positive-measure corollary (§8): each fixed measurable set of positive
+/-- The positive-measure corollary (main paper, §7): each fixed measurable set of positive
 measure contains a point exceeding `c log n` in every sufficiently large row. -/
 theorem positive_measure_lower_bound (X : ∀ n, Nodes n) {E : Set ℝ}
     (hE : MeasurableSet E) (hEint : E ⊆ Ioo (-1 : ℝ) 1) (hEpos : 0 < volume E)
@@ -46,8 +47,8 @@ theorem positive_measure_lower_bound (X : ∀ n, Nodes n) {E : Set ℝ}
   eventually_exists_lower_bound_unshifted X hc hcπ hE
     (hEint.trans Ioo_subset_Icc_self) hEpos
 
-/-- The interval-constant corollary (§8), for the same array as both assertions
-of Theorem 2: no constant works on all compact interior intervals, even when
+/-- The interval-constant corollary (companion note, §5), for the same array as both assertions
+of the companion note's Theorem 1: no constant works on all compact interior intervals, even when
 the starting row may depend on the interval. -/
 theorem no_uniform_interval_constant (M : ℝ) (hM : 0 < M) :
     ∃ X : ∀ n : ℕ, Nodes n,

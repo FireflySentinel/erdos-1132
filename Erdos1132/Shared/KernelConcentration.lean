@@ -3,7 +3,7 @@ import Erdos1132.Shared.Scales
 
 /-! # Concentration of Poisson and logarithmic kernels
 
-Paper: Shared analytic tools for §§2–6.
+Main paper: shared analytic tools for §§2–6.
 -/
 
 noncomputable section

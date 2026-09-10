@@ -10,7 +10,7 @@ For `v = χ u + (1-χ) ε` and `χ(x)=0`, the logarithmic integral equals
 `ε A - W`. A local modulus bound for `u` and the exact logarithmic tail
 estimate control `W`; the explicit cutoff index supplies the lower bound.
 
-Paper: §7.3, smooth positive approximations.
+Companion note: §2.3, smooth positive approximations.
 -/
 
 noncomputable section
@@ -138,7 +138,7 @@ theorem smoothCutoff_lower_bound {χ u : ℝ → ℝ} {A x : ℝ} {j : ℕ}
   rw [hdouble]
   linarith
 
-/-- The lower bound with the paper's explicit `u=p(r)` and cutoff indices.
+/-- The lower bound with explicit `u=p(r)` and cutoff indices.
 The geometric input is the cumulative cutoff integral bound at `x`. -/
 theorem explicit_smoothCutoff_lower_bound {χ r : ℝ → ℝ} {A x δ : ℝ} {j : ℕ}
     (hj : 0 < j) (hx : x ∈ interval)

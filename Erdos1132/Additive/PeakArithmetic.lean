@@ -2,7 +2,7 @@ import Erdos1132.Additive.BernsteinError
 
 /-! # Quantitative transfer from a large derivative to the Riesz peak
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

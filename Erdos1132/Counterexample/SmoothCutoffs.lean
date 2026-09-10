@@ -5,7 +5,7 @@ import Mathlib.Tactic
 
 /-! # Smooth cutoffs adapted to compact subsets of an open set
 
-Paper: §7.3, smooth positive approximations.
+Companion note: §2.3, smooth positive approximations.
 -/
 noncomputable section
 open Set Filter

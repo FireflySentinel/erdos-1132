@@ -3,7 +3,7 @@ import Erdos1132.Counterexample.SmoothLowerBound
 
 /-! # Finite compact collections of gap middle halves
 
-Paper: §7.3, smooth positive approximations.
+Companion note: §2.3, smooth positive approximations.
 -/
 noncomputable section
 open Set MeasureTheory Finset

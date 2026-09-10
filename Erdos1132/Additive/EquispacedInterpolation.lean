@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Exp
 
 /-! # A global complex bound from interpolation on a fixed real interval
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

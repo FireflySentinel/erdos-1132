@@ -4,7 +4,7 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 
 /-! # Smooth cutoff approximations and convergence of the logarithmic operator
 
-Paper: §7.3, smooth positive approximations.
+Companion note: §2.3, smooth positive approximations.
 -/
 noncomputable section
 open Set MeasureTheory Filter

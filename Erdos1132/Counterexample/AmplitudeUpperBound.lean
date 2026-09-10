@@ -10,7 +10,7 @@ import Erdos1132.Counterexample.AmplitudeWeight
 The quadrature estimate, exact integral and harmonic bound combine with one
 absolute additive constant. Nodes themselves are included in the estimate.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

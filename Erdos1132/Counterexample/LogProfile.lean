@@ -5,7 +5,7 @@ import Mathlib.Analysis.Calculus.MeanValue
 
 /-! # The explicit logarithmic profile in Section 7.2
 
-Paper: §7.2, the logarithmic integral estimate.
+Companion note: §2.2, the logarithmic integral estimate.
 -/
 
 noncomputable section

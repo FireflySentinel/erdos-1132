@@ -9,7 +9,7 @@ Each interior zero is replaced by its conjugate reciprocal through the
 factor `1 - conj(r) z`. This preserves the modulus on the unit circle,
 including the case `r = 0`, and gives a polynomial nonvanishing on the disk.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

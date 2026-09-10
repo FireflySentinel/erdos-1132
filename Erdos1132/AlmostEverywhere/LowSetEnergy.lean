@@ -4,7 +4,7 @@ import Erdos1132.AlmostEverywhere.RatioEnergy
 
 /-! # The energy bound on a low-value set
 
-Paper: §6, Theorem 1(ii) and the positive-measure argument used in §8.
+Main paper: §3, Theorem 1(ii), and the positive-measure corollary in §7.
 -/
 
 noncomputable section

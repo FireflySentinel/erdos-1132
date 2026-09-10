@@ -4,7 +4,7 @@ import Erdos1132.Additive.PotentialDrop
 
 /-! # Local potential estimates under a linear Lebesgue bound
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

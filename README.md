@@ -7,7 +7,8 @@ For arbitrary triangular arrays, [`theorem1`](Erdos1132/Theorems.lean) proves
 that $\lambda_n(x)>(2/\pi)\log n-C(x)$ infinitely often on a dense set,
 with a finite constant depending on the point, and that
 $\limsup_n\lambda_n(x)/\log n\ge2/\pi$ almost everywhere.
-[`theorem2`](Erdos1132/Theorems.lean) disproves two uniform strengthenings:
+[`theorem2`](Erdos1132/Theorems.lean), Theorem 1 of the companion note,
+disproves two uniform strengthenings:
 an absolute additive constant valid for all arrays, and a constant for each
 array giving a dense set of points. Its counterexample uses arbitrary
 triangular arrays; the uniform-constant question for initial segments of
@@ -29,8 +30,8 @@ LEAN_NUM_THREADS=2 lake env leanchecker Erdos1132
 
 ## Proof correspondence
 
-[`Theorems.lean`](Erdos1132/Theorems.lean) collects the two main theorems and two
-corollaries. The proof modules are grouped into [AlmostEverywhere/](Erdos1132/AlmostEverywhere/)
+[`Theorems.lean`](Erdos1132/Theorems.lean) collects the main theorem and corollary
+from each manuscript. The proof modules are grouped into [AlmostEverywhere/](Erdos1132/AlmostEverywhere/)
 (main paper, §§2–3), [Additive/](Erdos1132/Additive/)
 (main paper, §§4–6), and [Counterexample/](Erdos1132/Counterexample/)
 (companion note), with common tools in
@@ -50,6 +51,7 @@ The almost-everywhere proof imports no `Additive/` modules.
 | Cantor geometry and the log-integral bound, companion §§2.1–2.2 | [CantorLogarithmicBound.lean](Erdos1132/Counterexample/CantorLogarithmicBound.lean) |
 | Smooth cutoffs, companion §2.3 | [SmoothCutoffs.lean](Erdos1132/Counterexample/SmoothCutoffs.lean), [CantorSmoothSequence.lean](Erdos1132/Counterexample/CantorSmoothSequence.lean) |
 | Amplitude lemma, companion §3: interior rows and the upper estimate | [AmplitudeLemma.lean](Erdos1132/Counterexample/AmplitudeLemma.lean), `amplitude_lemma` |
+| Amplitude approximation, companion §3, Lemma 3 | [AmplitudeApproximation.lean](Erdos1132/Counterexample/AmplitudeApproximation.lean), `exists_amplitude_logarithmicRatio_approximation` |
 | Companion note, Theorem 1 | [Theorem2.lean](Erdos1132/Counterexample/Theorem2.lean), `theorem2` |
 | Positive-measure and interval-constant corollaries, main §7 and companion §5 | [Theorems.lean](Erdos1132/Theorems.lean) |
 

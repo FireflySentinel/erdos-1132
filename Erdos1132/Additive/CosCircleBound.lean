@@ -6,7 +6,7 @@ import Mathlib.Analysis.Real.Pi.Bounds
 
 /-! # Uniform cosine bounds on circles of radius an integer multiple of π
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

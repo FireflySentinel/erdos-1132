@@ -4,7 +4,7 @@ import Erdos1132.Additive.JumpEnergy
 
 /-! # The weighted derivative-jump lower bound for an actual node array
 
-Paper: §3, derivative-jump energy.
+Main paper: §5, derivative-jump energy.
 -/
 
 noncomputable section

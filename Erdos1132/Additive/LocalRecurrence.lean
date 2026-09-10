@@ -3,7 +3,7 @@ import Erdos1132.Additive.LogarithmicRecurrence
 
 /-! # Positive-measure recurrence of the sharp additive lower bound
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

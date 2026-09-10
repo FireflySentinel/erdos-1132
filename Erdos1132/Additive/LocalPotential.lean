@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
 /-! # Elementary bounds for the normalized node polynomial
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

@@ -2,7 +2,7 @@ import Erdos1132.Additive.WeightedQuadrature
 
 /-! # An explicit nonzero Lipschitz weight on any compact interval
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

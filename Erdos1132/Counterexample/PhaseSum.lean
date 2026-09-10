@@ -9,7 +9,7 @@ The interpolation sum splits into a shifted harmonic sum and the midpoint
 sum of the regular remainder. The fractional phase is interior whenever
 the evaluation point is not a node.
 
-Paper: §7.4, the amplitude lemma and polynomial approximation.
+Companion note: §3, the amplitude lemma and polynomial approximation.
 -/
 
 noncomputable section

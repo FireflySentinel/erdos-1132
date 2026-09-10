@@ -5,7 +5,7 @@ import Mathlib.Tactic
 
 /-! # Interpolation nodes, cardinal polynomials, and Lebesgue functions
 
-Paper: §1, definitions used by both main theorems.
+Both manuscripts: §1, interpolation nodes and Lebesgue functions.
 -/
 
 noncomputable section

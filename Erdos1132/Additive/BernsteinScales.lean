@@ -3,7 +3,7 @@ import Mathlib.Analysis.Real.Pi.Bounds
 
 /-! # Explicit scales for the local interpolation estimates
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section

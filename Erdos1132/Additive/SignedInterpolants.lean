@@ -3,7 +3,7 @@ import Erdos1132.Additive.InterpolantDerivative
 
 /-! # Bounded nodal data attaining Lebesgue values and derivative jumps
 
-Paper: §4, recurrence and Theorem 1(i).
+Main paper: §6, recurrence and Theorem 1(i).
 -/
 
 noncomputable section

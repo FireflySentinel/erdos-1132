@@ -3,7 +3,7 @@ import Erdos1132.Additive.TaoPotential
 
 /-! # Quantitative quadrature for functions supported in an interior interval
 
-Paper: §2, local potential and differentiation estimates.
+Main paper: §4, local potential and differentiation estimates.
 -/
 
 noncomputable section
