@@ -62,7 +62,6 @@ function by
  \ell_{k,n}(x)&=\frac{P_n(x)}{(x-x_{k,n})P_n'(x_{k,n})},
  &\lambda_n(x)&=\sum_{k=1}^n|\ell_{k,n}(x)|.
 \end{align*}
-The cardinal polynomials are interpreted by continuity at the nodes.
 The rows of the array need not be nested.
 
 \begin{theorem}\label{thm:main}
@@ -82,16 +81,14 @@ for infinitely many \(n\) is dense in \((-1,1)\).
 \end{enumerate}
 \end{theorem}
 
-Erd\H{o}s \cite[p.~68]{Erdos} asked whether every triangular array
-has a point at which the sharp logarithmic lower bound holds
-infinitely often with a bounded additive loss, and whether the
-normalized lower bound \eqref{eq:main-ae} holds almost everywhere.
-Theorem~\ref{thm:main}(i) answers the first question with a constant
-that may depend on the point; part~(ii) answers the second.
-These questions are recorded as Erd\H{o}s Problem~1132 \cite{Bloom}.
-A stronger uniform interpretation of the additive-constant question
-is false for arbitrary triangular arrays; this is treated separately
-in \cite{GuNonuniform}.
+Theorem~\ref{thm:main} answers the two questions in Erd\H{o}s
+Problem~1132 \cite{Bloom}, with a point-dependent constant in part~(i).
+An absolute constant cannot replace \(C(x)\): for every \(M>0\),
+there is an array such that, at every \(x\in(-1,1)\),
+\[
+ \lambda_n(x)\le\frac2\pi\log n-M\qquad(n\ge n_0(x)).
+\]
+This construction is given in \cite[Theorem~1]{GuNonuniform}.
 
 \subsection{Background}
 
@@ -140,11 +137,18 @@ His Corollary 1.11 and Remark 1.12 give, for every prescribed
 infinitely often. Theorem~\ref{thm:main}(i) replaces \(\omega(n)\) by a
 finite constant depending on the point, on a dense set.
 
-\subsection{Organization}
+\subsection{Proof outline}
 
 The proofs of Theorem~\ref{thm:main}(i) and (ii) are independent.
-Sections~\ref{sec:local}--\ref{sec:fixed} prove part~(i), and
-Sections~\ref{sec:cauchy}--\ref{sec:ae} prove part~(ii).
+For part~(i), Sections~\ref{sec:local}--\ref{sec:fixed} use Tao's local
+estimates \cite[Theorem~4.1(ii)]{Tao}, together with Riesz's
+differentiation formula, to turn large derivative jumps into nearby
+points with a bounded additive loss.
+A Riesz energy bound and a recurrence argument give a positive-measure
+set of such points, and Baire's theorem gives density.
+The proof of part~(ii) in Sections~\ref{sec:cauchy}--\ref{sec:ae} is
+self-contained: cancellation in positive Cauchy transforms and a
+harmonic-measure identity rule out a common low set of positive measure.
 Section~\ref{sec:consequences} gives a positive-measure consequence.
 
 Throughout the paper, all logarithms are natural and \(|E|\) denotes
@@ -215,14 +219,16 @@ state the local estimates in the form used here, with the normalization:
  U_n(z)=\frac1n\log\frac1{|P_n(z)|}.
 \]
 
-The first two assertions below are Tao's local estimates
+The following proposition is Tao's local estimate
 \cite[Theorem~4.1(ii), equations (4.6)--(4.7)]{Tao}; the normalization
 and density are those of his equations (4.11) and (4.15).
+We specialize his polynomial bound \(\sup_I\lambda_n\ll n^{O(1)}\)
+to \(\sup_I\lambda_n\le n\).
 
 \begin{taoestimates}[Local estimates]\label{prop:tao}
 Let \(I\Subset(-1,1)\) be a fixed nondegenerate closed interval, and
 suppose that \(\sup_I\lambda_n\le n\) for all sufficiently large \(n\).
-Define
+Define the approximate local node density by
 \[
  \rho_n(x)=-\frac1{\pi^2}\int_{\mathbb R\setminus I}
                   \frac{U_n(y)-\alpha_n}{(y-x)^2}\,dy.
@@ -230,28 +236,33 @@ Define
 For each fixed compact interval \(I'\Subset\operatorname{int}I\), the
 following hold uniformly for all sufficiently large \(n\):
 \begin{enumerate}
-\item The densities are bounded above and below by positive constants
+\item[(i)] The densities are bounded above and below by positive constants
 and have uniformly bounded Lipschitz norms:
 \[
  \rho_n(x)\asymp_{I'}1,\qquad
  |\rho_n(x)-\rho_n(x_0)|\ll_{I'}|x-x_0|
  \qquad(x,x_0\in I').
 \]
-\item For \(x\in I'\) and \(\eta\ge\log n/n\),
+\item[(ii)] For \(x\in I'\) and \(\eta\ge\log n/n\),
 \begin{equation}\label{eq:potential}
  U_n(x+i\eta)=\alpha_n-\pi\eta\rho_n(x)
               +O_{I'}\!\left(\frac{\log n}{n}+\eta^3\right).
 \end{equation}
-\item For globally Lipschitz functions \(\varphi_n\) supported in \(I'\), with
-uniformly bounded supremum norms and Lipschitz constants,
+\end{enumerate}
+\end{taoestimates}
+
+\begin{lemma}[Local quadrature]\label{lem:quadrature}
+Under the hypotheses of Proposition~\ref{prop:tao}, fix a compact
+interval \(I'\Subset\operatorname{int}I\).
+For globally Lipschitz functions \(\varphi_n\) supported in \(I'\),
+with uniformly bounded supremum norms and Lipschitz constants,
 \begin{equation}\label{eq:quadrature}
  \frac1n\sum_k \varphi_n(x_{k,n})
  =\int \varphi_n(x)\rho_n(x)\,dx+O(n^{-1/4}).
 \end{equation}
-\end{enumerate}
-\end{taoestimates}
+\end{lemma}
 
-\begin{proof}[Proof of (iii)]
+\begin{proof}
 Let \(\mu_n=n^{-1}\sum_k\delta_{x_{k,n}}\) and
 \(Q_h=h^{-1}\int_h^{2h}p_t\,dt\), where
 \(p_t(y)=t/(\pi(y^2+t^2))\). This is a probability kernel with
@@ -274,8 +285,8 @@ for all sufficiently large \(n\),
 \begin{equation}\label{eq:local-upper}
  \lambda_n(x)\le \Lambda_n:=c_0\log n+C\qquad(x\in I),
 \end{equation}
-where \(C\) is fixed. This bound gives the hypothesis of the proposition
-above; let \(\rho_n\) be its densities.
+where \(C\) is fixed. This bound gives the hypothesis of
+Proposition~\ref{prop:tao}; let \(\rho_n\) be its densities.
 For every fixed interval \(J\Subset\operatorname{int}I\) and every
 real interpolant
 \[
@@ -294,9 +305,7 @@ then there is \(y=x+O_J(n^{-1})\) such that
 \begin{equation}\label{eq:nearby-peak}
  \lambda_n(y)\ge c_0\log n-D',
 \end{equation}
-where \(D'\) depends on \(I,J,C,D\), but not on \(n,x,q\). The point \(y\)
-lies in any fixed compact interior interval containing \(J\) in its interior,
-for all sufficiently large \(n\).
+where \(D'\) depends on \(I,J,C,D\), but not on \(n,x,q\).
 \end{lemma}
 
 \begin{proof}
@@ -324,11 +333,11 @@ For \(f(z)=\Lambda_n^{-1}q(z)e^{i\omega(z-x)}\), the horizontal
 edges have \(|f|\le1\), and the vertical edges have \(|f|\le e^B\)
 with \(B=O_I(n)\). Set
 \[
- \mathcal B(z)=2B\left[e^{(z-x-L)/H}+e^{(-z+x-L)/H}\right].
+ \Psi(z)=2B\left[e^{(z-x-L)/H}+e^{(-z+x-L)/H}\right].
 \]
 Its real part is nonnegative on the horizontal edges and at least
 \(B\) on the vertical edges, since \(\cos(v/H)\ge1/2\) for \(0\le v\le H\).
-The maximum modulus principle gives \(|f(z)e^{-\mathcal B(z)}|\le1\).
+The maximum modulus principle gives \(|f(z)e^{-\Psi(z)}|\le1\).
 At distance at least \(L/2\) from the vertical sides, the resulting error
 factor is \(\exp(O(n e^{-L/(2H)}))=1+O(n^{-10})\). Thus, also reflecting across
 the real axis,
@@ -359,7 +368,7 @@ For sufficiently large \(n\),
  \ge1-\frac{C_1}{\Lambda_n},\qquad C_1=1+\max\{C+D,0\}.
 \]
 Equation \eqref{eq:riesz-stability} then gives
-\(|q(x+\pi/(2\omega))|\ge\Lambda_n-C_2\).
+\(|q(x+\pi/(2\omega))|\ge\Lambda_n-C_*\).
 Since \(|q(y)|\le\lambda_n(y)\) on the real axis and \(\omega\asymp_J n\),
 this proves \eqref{eq:nearby-peak} with the asserted displacement.
 \end{proof}
@@ -368,7 +377,7 @@ this proves \eqref{eq:nearby-peak} with the asserted displacement.
 
 At each internal interpolation node, write
 \[
- J_k=\lambda_n'(x_{k,n}+)-\lambda_n'(x_{k,n}-).
+ \Delta_k=\lambda_n'(x_{k,n}+)-\lambda_n'(x_{k,n}-).
 \]
 At the first and last nodes, use the exterior polynomial pieces. Set
 \[
@@ -379,7 +388,7 @@ a cusp at \(x_{k,n}\), whereas \(\ell_{k,n}\) is positive near that node.
 Using \(\ell_{j,n}(x)=P_n(x)/((x-x_{j,n})P_n'(x_{j,n}))\) and
 \(P_n(x_{k,n})=0\) to differentiate at \(x_{k,n}\), we obtain
 \begin{equation}\label{eq:jump}
- J_k=2\sum_{j\ne k}|\ell_{j,n}'(x_{k,n})|
+ \Delta_k=2\sum_{j\ne k}|\ell_{j,n}'(x_{k,n})|
      =2\sum_{j\ne k}\frac{\nu_j}{\nu_k|x_{k,n}-x_{j,n}|}.
 \end{equation}
 
@@ -388,7 +397,7 @@ Under the hypotheses of Lemma~\ref{lem:local}, choose a nonzero nonnegative
 smooth function \(f\) compactly supported in \(\operatorname{int}I\). Then
 \begin{equation}\label{eq:jump-average}
  \sum_k\frac{f(x_{k,n})^2}{n\rho_n(x_{k,n})}
-       \frac{J_k}{2\pi n\rho_n(x_{k,n})}
+       \frac{\Delta_k}{2\pi n\rho_n(x_{k,n})}
  \ge c_0\log n\int f(x)^2\,dx-O(1).
 \end{equation}
 Terms with \(f(x_{k,n})=0\) are taken to be zero; \(\rho_n\) is only needed on
@@ -476,7 +485,7 @@ nondegenerate interval \(I\Subset(-1,1)\). There are a constant \(D\)
 and a measurable set \(G\subset\operatorname{int}I\), with \(|G|>0\),
 such that every \(x\in G\) satisfies
 \[
- \lambda_n(x)\ge c_0\log n-D
+ \lambda_n(x)>c_0\log n-D
 \]
 for infinitely many \(n\).
 \end{proposition}
@@ -489,7 +498,7 @@ fixed, we choose \(D\), then \(\kappa,D_1,d,\kappa_1,d_1\), and finally
 \(b,D_2\). Let
 \[
  w_k=\frac{f(x_{k,n})^2}{n\rho_n(x_{k,n})},\qquad
- \mathcal J_k=\frac{J_k}{2\pi n\rho_n(x_{k,n})},\qquad W=\int f^2>0.
+ \widehat\Delta_k=\frac{\Delta_k}{2\pi n\rho_n(x_{k,n})},\qquad W=\int f^2>0.
 \]
 By \eqref{eq:quadrature},
 \begin{equation}\label{eq:weights}
@@ -499,21 +508,21 @@ On each interval between successive nodes, \(\lambda_n\) equals an interpolant
 with nodal data in \(\{-1,1\}\). Both one-sided derivatives at a node
 therefore satisfy \eqref{eq:derivative-bounds}, so
 \begin{equation}\label{eq:jump-upper}
- 0\le\mathcal J_k\le\Lambda_n+o(1)
+ 0\le\widehat\Delta_k\le\Lambda_n+o(1)
 \end{equation}
 uniformly on the support of \(f\). Lemma~\ref{lem:energy}, \eqref{eq:weights},
 and \eqref{eq:jump-upper} show that
 \begin{equation}\label{eq:weighted-deficit}
- \sum_kw_k(\Lambda_n+1-\mathcal J_k)=O(1),
+ \sum_kw_k(\Lambda_n+1-\widehat\Delta_k)=O(1),
 \end{equation}
 with nonnegative summands for all sufficiently large \(n\). On a node with
-\(\mathcal J_k<c_0\log n-D\), the factor in \eqref{eq:weighted-deficit} is greater
+\(\widehat\Delta_k<c_0\log n-D\), the factor in \eqref{eq:weighted-deficit} is greater
 than \(C+1+D\). Hence, by choosing \(D\) sufficiently large, such nodes
 carry at most \(W/2\) of the weights. Since \eqref{eq:weights} has total
 weight \(W+o(1)\), for all
 sufficiently large \(n\) the nodes in the support of \(f\) satisfying
 \begin{equation}\label{eq:large-jump}
- \mathcal J_k\ge c_0\log n-D
+ \widehat\Delta_k\ge c_0\log n-D
 \end{equation}
 carry at least \(W/4\) of the weights. In particular, there are at least
 \(\kappa n\) such nodes, with \(\kappa>0\) independent of \(n\). Discarding the first and last nodes does not change this conclusion
@@ -546,14 +555,15 @@ with multiplicities, for the points \(y_k\). Hence one can select at least
 Equation \eqref{eq:derivative-bounds}, applied to every polynomial piece, also
 shows that \(\lambda_n\) is \(C_In\log n\)-Lipschitz on a fixed compact
 interior interval containing these points. Choose a fixed sufficiently small
-\(b>0\), and let \(A_n\) be the union of the intervals of radius
+\(b>0\) and \(D_2>D_1+C_Ib\), and let \(A_n\) be the union of the
+intervals of radius
 \[
  r_n=\frac{b}{n\log n}
 \]
 centered at the selected points. For all sufficiently large \(n\), these
 intervals are disjoint, lie in a fixed compact interior interval, and satisfy
 \begin{equation}\label{eq:high-sets}
- \lambda_n(x)\ge c_0\log n-D_2\quad(x\in A_n),\qquad
+ \lambda_n(x)>c_0\log n-D_2\quad(x\in A_n),\qquad
  \frac{c}{\log n}\le |A_n|\le\frac{C_2}{\log n}.
 \end{equation}
 The separation of the centers in the \(m\)-th row implies, for every interval
@@ -609,8 +619,7 @@ a nondegenerate closed subinterval \(I\subset K_0\) on which
 \eqref{eq:local-upper} holds with a fixed \(C\).
 Proposition~\ref{prop:recurrence} contradicts
 \eqref{eq:additive-failure}. Thus every such \(K_0\) contains a good
-point, proving density. Increasing the final additive constant by one
-gives the strict inequality in the statement.
+point, proving density.
 \end{proof}
 
 \section{Positive Cauchy transforms}\label{sec:cauchy}
@@ -869,6 +878,10 @@ Theorem~\ref{thm:main}(ii) along \(S\) gives the same contradiction
 
 The Lean 4 formalization is available at
 \url{https://github.com/FireflySentinel/erdos-1132}.
+Theorem~\ref{thm:main} is \texttt{Erdos1132.theorem1} in
+\path{Erdos1132/Theorems.lean}.
+The two estimates quoted from Tao in Proposition~\ref{prop:tao} are
+also proved directly in Lean, with no additional axioms.
 
 \section*{Declaration of generative AI and AI-assisted technologies in the writing process}
 
