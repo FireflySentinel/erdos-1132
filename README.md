@@ -30,9 +30,9 @@ LEAN_NUM_THREADS=2 lake env leanchecker Erdos1132
 ## Proof correspondence
 
 [`Theorems.lean`](Erdos1132/Theorems.lean) collects the two main theorems and two
-corollaries. The proof modules are grouped into [Additive/](Erdos1132/Additive/)
-(main paper, §§2–4), [AlmostEverywhere/](Erdos1132/AlmostEverywhere/)
-(main paper, §§5–6), and [Counterexample/](Erdos1132/Counterexample/)
+corollaries. The proof modules are grouped into [AlmostEverywhere/](Erdos1132/AlmostEverywhere/)
+(main paper, §§2–3), [Additive/](Erdos1132/Additive/)
+(main paper, §§4–6), and [Counterexample/](Erdos1132/Counterexample/)
 (companion note), with common tools in
 [Shared/](Erdos1132/Shared/) and node definitions in
 [Interpolation.lean](Erdos1132/Interpolation.lean).
@@ -40,13 +40,13 @@ The almost-everywhere proof imports no `Additive/` modules.
 
 | Preprint | Lean source |
 |---|---|
-| Local Riesz formula and near-equality estimate, §2 | [LocalRiesz.lean](Erdos1132/Additive/LocalRiesz.lean) |
-| Local potential and quadrature, §2, proved directly in Lean | [TaoPotential.lean](Erdos1132/Additive/TaoPotential.lean), [QuadratureRate.lean](Erdos1132/Additive/QuadratureRate.lean) |
-| Weighted derivative-jump energy, §3 | [JumpEnergyLower.lean](Erdos1132/Additive/JumpEnergyLower.lean) |
-| High-value sets, second moments, and Baire, §4 | [HighCovers.lean](Erdos1132/Additive/HighCovers.lean), [BaireBounds.lean](Erdos1132/Shared/BaireBounds.lean) |
+| Chebyshev cancellation and boundary harmonic measure, §2 | [Cancellation.lean](Erdos1132/Shared/Cancellation.lean), [BoundaryMeasure.lean](Erdos1132/Shared/BoundaryMeasure.lean) |
+| Positive-measure contradiction, §3 | [UniformLowSet.lean](Erdos1132/AlmostEverywhere/UniformLowSet.lean) |
+| Local Riesz formula and near-equality estimate, §4 | [LocalRiesz.lean](Erdos1132/Additive/LocalRiesz.lean) |
+| Local potential and quadrature, §4, proved directly in Lean | [TaoPotential.lean](Erdos1132/Additive/TaoPotential.lean), [QuadratureRate.lean](Erdos1132/Additive/QuadratureRate.lean) |
+| Weighted derivative-jump energy, §5 | [JumpEnergyLower.lean](Erdos1132/Additive/JumpEnergyLower.lean) |
+| High-value sets, second moments, and Baire, §6 | [HighCovers.lean](Erdos1132/Additive/HighCovers.lean), [BaireBounds.lean](Erdos1132/Shared/BaireBounds.lean) |
 | Theorem 1(i) and (ii) | [Additive/Main.lean](Erdos1132/Additive/Main.lean), [AlmostEverywhere/Main.lean](Erdos1132/AlmostEverywhere/Main.lean) |
-| Chebyshev cancellation and boundary harmonic measure, §5 | [Cancellation.lean](Erdos1132/Shared/Cancellation.lean), [BoundaryMeasure.lean](Erdos1132/Shared/BoundaryMeasure.lean) |
-| Positive-measure contradiction, §6 | [UniformLowSet.lean](Erdos1132/AlmostEverywhere/UniformLowSet.lean) |
 | Cantor geometry and the log-integral bound, companion §§2.1–2.2 | [CantorLogarithmicBound.lean](Erdos1132/Counterexample/CantorLogarithmicBound.lean) |
 | Smooth cutoffs, companion §2.3 | [SmoothCutoffs.lean](Erdos1132/Counterexample/SmoothCutoffs.lean), [CantorSmoothSequence.lean](Erdos1132/Counterexample/CantorSmoothSequence.lean) |
 | Amplitude lemma, companion §3: interior rows and the upper estimate | [AmplitudeLemma.lean](Erdos1132/Counterexample/AmplitudeLemma.lean), `amplitude_lemma` |

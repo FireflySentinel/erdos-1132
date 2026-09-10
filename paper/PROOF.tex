@@ -140,15 +140,16 @@ finite constant depending on the point, on a dense set.
 \subsection{Proof outline}
 
 The proofs of Theorem~\ref{thm:main}(i) and (ii) are independent.
+We begin with the self-contained proof of part~(ii) in
+Sections~\ref{sec:cauchy}--\ref{sec:ae}: cancellation in positive
+Cauchy transforms and a harmonic-measure identity rule out a common
+low set of positive measure.
 For part~(i), Sections~\ref{sec:local}--\ref{sec:fixed} use Tao's local
 estimates \cite[Theorem~4.1(ii)]{Tao}, together with Riesz's
 differentiation formula, to turn large derivative jumps into nearby
 points with a bounded additive loss.
 A Riesz energy bound and a recurrence argument give a positive-measure
 set of such points, and Baire's theorem gives density.
-The proof of part~(ii) in Sections~\ref{sec:cauchy}--\ref{sec:ae} is
-self-contained: cancellation in positive Cauchy transforms and a
-harmonic-measure identity rule out a common low set of positive measure.
 Section~\ref{sec:consequences} gives a positive-measure consequence.
 
 Throughout the paper, all logarithms are natural and \(|E|\) denotes
@@ -157,6 +158,243 @@ when discussing a single row. Constants in local estimates may depend
 on the fixed intervals and test functions, but not on \(n\) or on
 interpolation data bounded by one. The notation \(J\Subset U\) means
 that \(J\) is a compact subset of the open set \(U\).
+
+\section{Positive Cauchy transforms}\label{sec:cauchy}
+
+Suppress the row index and put
+\[
+ S=\sum_k\frac1{|P'(x_k)|},\qquad
+ \nu_k=\frac1{S|P'(x_k)|},\qquad
+ \sigma_k=\operatorname{sgn}P'(x_k).
+\]
+Define
+\begin{equation}\label{eq:transforms}
+ m(z)=\sum_k\frac{\nu_k}{z-x_k},\qquad
+ g(z)=\sum_k\frac{\sigma_k\nu_k}{z-x_k}
+     =\frac1{SP(z)}.
+\end{equation}
+The last identity is the partial fraction formula for \(1/P\), whose expansion
+at infinity gives
+\begin{equation}\label{eq:moments}
+ \sum_k\sigma_k\nu_kx_k^j=0\qquad(0\le j\le n-2).
+\end{equation}
+For \(n\ge2\), both \(m+g\) and \(m-g\) are Cauchy transforms of positive
+probability measures: their masses at \(x_k\) are \((1\pm\sigma_k)\nu_k\).
+
+For real \(x\) away from the nodes, write
+\[
+ H(x)=\sum_k\frac{\nu_k}{|x-x_k|},\qquad
+ \gamma_s(x)=-\Im m(x+is),\qquad
+ p_s(t)=\frac{s}{\pi(t^2+s^2)}.
+\]
+Then
+\begin{equation}\label{eq:lebesgue-transform}
+ \lambda_n(x)=\frac{H(x)}{|g(x)|},\qquad
+ H(x)=\frac2\pi\int_0^\infty\gamma_s(x)\,\frac{ds}{s},
+\end{equation}
+and the Poisson semigroup gives
+\begin{equation}\label{eq:semigroup}
+ \gamma_s=p_{s-h}*\gamma_h\qquad(s>h).
+\end{equation}
+
+\begin{lemma}\label{lem:cancellation}
+For every row with \(n\ge2\), every \(0<h\le1\), and every
+\(x\in[-1,1]\),
+\begin{equation}\label{eq:cancellation-bound}
+ \frac{|g(x+ih)|}{\gamma_h(x)}
+ \le\frac{4+h^2}{h^2\sinh((n-1)h/2)}.
+\end{equation}
+Consequently, if \(0<a<1\) and \(h=n^{-a}\), then
+\begin{equation}\label{eq:cancellation}
+ \sup_{x\in[-1,1]}\frac{|g(x+ih)|}{\gamma_h(x)}\longrightarrow0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set \(z=x+ih\) and \(p=T_{n-1}\), the Chebyshev polynomial of the
+first kind. The polynomial \((p(t)-p(z))/(t-z)\) has degree at most
+\(n-2\), so \eqref{eq:moments} gives
+\[
+ p(z)g(z)=\sum_k\frac{\sigma_k\nu_kp(x_k)}{z-x_k},
+ \qquad |p(z)g(z)|\le\frac1h,
+\]
+using \(|p(x_k)|\le1\) and \(\sum_k\nu_k=1\).
+Write \(z=\cos(u+iv)\), with \(u,v\in\R\). Then
+\(h\le\sinh|v|\), so \(|v|\ge\operatorname{arsinh}h\ge h/2\).
+The identity \(T_{n-1}(\cos w)=\cos((n-1)w)\) yields
+\[
+ |p(z)|^2=\cos^2((n-1)u)+\sinh^2((n-1)v)
+ \ge\sinh^2((n-1)h/2).
+\]
+Finally, since the nodes and \(x\) lie in \([-1,1]\),
+\[
+ \frac{h}{4+h^2}\le
+ \gamma_h(x)=\sum_k\frac{\nu_kh}{(x-x_k)^2+h^2}.
+\]
+Combining these bounds proves \eqref{eq:cancellation-bound}.
+For \(h=n^{-a}\), its right-hand side tends to zero: the hyperbolic
+sine grows exponentially in \(n^{1-a}\), while \(h^{-2}\) grows
+polynomially. This proves \eqref{eq:cancellation}.
+\end{proof}
+
+\begin{lemma}\label{lem:boundary}
+Let \(F\) be the Cauchy transform of a positive probability measure with
+finite support. For every bounded real interval \(S_0\), every \(x\in\R\), and
+every \(h>0\),
+\begin{equation}\label{eq:harmonic-measure}
+ \int_{\mathbb R}p_h(x-y)\,
+            \mathbf1_{\{F(y)\in S_0\}}\,dy
+ =\frac1\pi\int_{S_0}
+       \frac{-\Im F(x+ih)}{(t-\Re F(x+ih))^2+(\Im F(x+ih))^2}\,dt.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For \(\Im w<0\), define
+\[
+ B(w)=\frac1\pi\int_{S_0}
+       \frac{-\Im w}{(t-\Re w)^2+(\Im w)^2}\,dt.
+\]
+The function \(B\) is harmonic and lies between zero and one.
+Since \(F\) maps the upper half-plane into the lower half-plane,
+\(B\circ F\) is bounded and harmonic. Away from the poles of \(F\)
+and the preimages of the endpoints of \(S_0\), its boundary value is
+\(\mathbf1_{\{F(y)\in S_0\}}\). These exceptions form a finite set:
+\(F\) is a nonconstant rational function. The Poisson representation
+of the bounded harmonic function \(B\circ F\) now gives
+\eqref{eq:harmonic-measure}.
+\end{proof}
+
+\section{The almost-everywhere bound}\label{sec:ae}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(ii)]
+The failure set is the union, over rational \(0<c<c_0\) and integers
+\(N\ge2\), of the measurable sets
+\[
+ \{y\in(-1,1):\lambda_n(y)\le c\log n\text{ for every }n\ge N\}.
+\]
+If the assertion fails, one of these sets \(E\) has positive measure.
+For its fixed \(c,N\), we therefore have
+\begin{equation}\label{eq:common-low-set}
+ \lambda_n(y)\le c\log n\qquad(y\in E,\ n\ge N).
+\end{equation}
+Choose constants
+\[
+ K>1,\qquad 0<b<a<1,\qquad \frac{2b}{\pi cK}>1,
+\]
+which is possible because \(c<2/\pi\). Set
+\[
+ h=n^{-a},\qquad\eta=n^{-b},\qquad
+ H^\eta(x)=\frac2\pi\int_\eta^1\gamma_s(x)\,\frac{ds}{s}.
+\]
+By \eqref{eq:lebesgue-transform}, \(H^\eta\le H\). For \(s>0\)
+and real \(x,y,t\), the triangle inequality gives
+\[
+ |y+is-t|\le |x+is-t|+|x-y|
+ \le\left(1+\frac{|x-y|}{s}\right)|x+is-t|.
+\]
+Taking reciprocal squares and summing against the positive masses yields
+\(\gamma_s(x)\le(1+|x-y|/s)^2\gamma_s(y)\). Integrating over
+\(\eta\le s\le1\), we obtain
+\begin{equation}\label{eq:potential-comparison}
+ H^\eta(x)\le\left(1+\frac{|x-y|}{\eta}\right)^2H^\eta(y).
+\end{equation}
+
+Fix \(x\in E\), and write
+\[
+ u=\Re m(x+ih),\qquad\gamma=\gamma_h(x),\qquad
+ S_x=[u-K\gamma,u+K\gamma].
+\]
+By \eqref{eq:cancellation} and \eqref{eq:harmonic-measure}, each of the two events
+\[
+ m(y)+g(y)\in S_x,\qquad m(y)-g(y)\in S_x
+\]
+has probability
+\[
+ p_K+o(1),\qquad p_K=\frac2\pi\arctan K>\frac12,
+\]
+under the Poisson probability \(p_h(x-y)\,dy\). The error is uniform in \(x\in
+E\): for \(F=m\pm g\), \eqref{eq:cancellation} gives
+\(\Re F(x+ih)=u+o(\gamma)\) and
+\(-\Im F(x+ih)=\gamma(1+o(1))\). Substituting \(t=u+\gamma s\)
+in \eqref{eq:harmonic-measure} therefore gives
+\(\pi^{-1}\int_{-K}^K(1+s^2)^{-1}\,ds+o(1)=p_K+o(1)\).
+The two events have intersection probability at least
+\begin{equation}\label{eq:event-intersection}
+ q_K+o(1),\qquad q_K=2p_K-1>0.
+\end{equation}
+Choose \(R\) so that the Poisson mass of \(|y-x|>Rh\) is less than \(q_K/8\),
+and let
+\[
+ E_n=\{x\in E:(p_h*\mathbf1_{\mathbb R\setminus E})(x)<q_K/8\}.
+\]
+The approximate identity theorem gives \(|E\setminus E_n|\to0\). For all
+sufficiently large \(n\), \eqref{eq:event-intersection} is greater than
+\(q_K/2\). For \(x\in E_n\), the two excluded sets
+\(\R\setminus E\) and \(\{|y-x|>Rh\}\) have total Poisson mass
+less than \(q_K/4\). Hence there exists \(y\in E\) with
+\(|y-x|\le Rh\) and both events true. We may take \(y\) away from
+the nodes. Since \(m(y)\pm g(y)\) both lie in an interval of length
+\(2K\gamma_h(x)\),
+\[
+ |g(y)|\le K\gamma_h(x).
+\]
+Equations \eqref{eq:lebesgue-transform} and \eqref{eq:common-low-set} give
+\[
+ H^\eta(y)\le H(y)=\lambda_n(y)|g(y)|
+ \le cK(\log n)\gamma_h(x).
+\]
+Together with \eqref{eq:potential-comparison}, this yields
+\begin{equation}\label{eq:local-comparison}
+ H^\eta(x)\le(1+Rh/\eta)^2H^\eta(y)
+ \le cK(1+Rh/\eta)^2(\log n)\gamma_h(x)
+ \qquad(x\in E_n).
+\end{equation}
+
+Let \(\mathcal K_n\) be convolution with the symmetric probability kernel
+\[
+ k_n(t)=\frac1{b\log n}\int_\eta^1p_{s-h}(t)\,\frac{ds}{s}.
+\]
+Its integral is one, since \(\int_\eta^1 ds/s=b\log n\).
+Equation \eqref{eq:semigroup} then shows that
+\[
+ H^\eta=\frac{2b}{\pi}(\log n)\mathcal K_n\gamma_h.
+\]
+Thus \eqref{eq:local-comparison} becomes
+\begin{equation}\label{eq:kernel-ratio}
+ \frac{\mathcal K_n\gamma_h(x)}{\gamma_h(x)}\le\frac1{A_n}
+ \quad(x\in E_n),\qquad
+ A_n=\frac{2b}{\pi cK}(1+Rh/\eta)^{-2}\longrightarrow A>1.
+\end{equation}
+Integrate \eqref{eq:kernel-ratio} over \(E_n\), discard the contribution from
+\(y\notin E_n\), and symmetrize. Positivity of \(\gamma_h\), symmetry of
+\(k_n\), and \((r+r^{-1})/2\ge1\) give
+\begin{equation}\label{eq:symmetric-energy}
+ \frac{|E_n|}{A_n}
+ \ge\iint_{E_n\times E_n}k_n(x-y)
+                  \frac{\gamma_h(y)}{\gamma_h(x)}\,dy\,dx
+ \ge\iint_{E_n\times E_n}k_n(x-y)\,dy\,dx.
+\end{equation}
+The kernels \(k_n\) form an approximate identity. In fact, for every fixed
+\(\delta>0\),
+\[
+ \int_{|t|>\delta}k_n(t)\,dt
+ \le\frac{C}{b\log n}\int_\eta^1\min(1,s/\delta)\,\frac{ds}{s}
+ \longrightarrow0.
+\]
+It follows that
+\[
+ \iint_{E\times E}k_n(x-y)\,dy\,dx\longrightarrow|E|.
+\]
+Replacing \(E\) by \(E_n\) changes this integral by at most \(2|E\setminus
+E_n|\). Taking limits in \eqref{eq:symmetric-energy} therefore yields
+\[
+ \frac{|E|}{A}\ge|E|,
+\]
+contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
+\end{proof}
+
+
 
 \section{A local differentiation formula}
 \label{sec:local}
@@ -621,243 +859,6 @@ Proposition~\ref{prop:recurrence} contradicts
 \eqref{eq:additive-failure}. Thus every such \(K_0\) contains a good
 point, proving density.
 \end{proof}
-
-\section{Positive Cauchy transforms}\label{sec:cauchy}
-
-Suppress the row index and put
-\[
- S=\sum_k\frac1{|P'(x_k)|},\qquad
- \nu_k=\frac1{S|P'(x_k)|},\qquad
- \sigma_k=\operatorname{sgn}P'(x_k).
-\]
-Define
-\begin{equation}\label{eq:transforms}
- m(z)=\sum_k\frac{\nu_k}{z-x_k},\qquad
- g(z)=\sum_k\frac{\sigma_k\nu_k}{z-x_k}
-     =\frac1{SP(z)}.
-\end{equation}
-The last identity is the partial fraction formula for \(1/P\), whose expansion
-at infinity gives
-\begin{equation}\label{eq:moments}
- \sum_k\sigma_k\nu_kx_k^j=0\qquad(0\le j\le n-2).
-\end{equation}
-For \(n\ge2\), both \(m+g\) and \(m-g\) are Cauchy transforms of positive
-probability measures: their masses at \(x_k\) are \((1\pm\sigma_k)\nu_k\).
-
-For real \(x\) away from the nodes, write
-\[
- H(x)=\sum_k\frac{\nu_k}{|x-x_k|},\qquad
- \gamma_s(x)=-\Im m(x+is),\qquad
- p_s(t)=\frac{s}{\pi(t^2+s^2)}.
-\]
-Then
-\begin{equation}\label{eq:lebesgue-transform}
- \lambda_n(x)=\frac{H(x)}{|g(x)|},\qquad
- H(x)=\frac2\pi\int_0^\infty\gamma_s(x)\,\frac{ds}{s},
-\end{equation}
-and the Poisson semigroup gives
-\begin{equation}\label{eq:semigroup}
- \gamma_s=p_{s-h}*\gamma_h\qquad(s>h).
-\end{equation}
-
-\begin{lemma}\label{lem:cancellation}
-For every row with \(n\ge2\), every \(0<h\le1\), and every
-\(x\in[-1,1]\),
-\begin{equation}\label{eq:cancellation-bound}
- \frac{|g(x+ih)|}{\gamma_h(x)}
- \le\frac{4+h^2}{h^2\sinh((n-1)h/2)}.
-\end{equation}
-Consequently, if \(0<a<1\) and \(h=n^{-a}\), then
-\begin{equation}\label{eq:cancellation}
- \sup_{x\in[-1,1]}\frac{|g(x+ih)|}{\gamma_h(x)}\longrightarrow0.
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-Set \(z=x+ih\) and \(p=T_{n-1}\), the Chebyshev polynomial of the
-first kind. The polynomial \((p(t)-p(z))/(t-z)\) has degree at most
-\(n-2\), so \eqref{eq:moments} gives
-\[
- p(z)g(z)=\sum_k\frac{\sigma_k\nu_kp(x_k)}{z-x_k},
- \qquad |p(z)g(z)|\le\frac1h,
-\]
-using \(|p(x_k)|\le1\) and \(\sum_k\nu_k=1\).
-Write \(z=\cos(u+iv)\), with \(u,v\in\R\). Then
-\(h\le\sinh|v|\), so \(|v|\ge\operatorname{arsinh}h\ge h/2\).
-The identity \(T_{n-1}(\cos w)=\cos((n-1)w)\) yields
-\[
- |p(z)|^2=\cos^2((n-1)u)+\sinh^2((n-1)v)
- \ge\sinh^2((n-1)h/2).
-\]
-Finally, since the nodes and \(x\) lie in \([-1,1]\),
-\[
- \frac{h}{4+h^2}\le
- \gamma_h(x)=\sum_k\frac{\nu_kh}{(x-x_k)^2+h^2}.
-\]
-Combining these bounds proves \eqref{eq:cancellation-bound}.
-For \(h=n^{-a}\), its right-hand side tends to zero: the hyperbolic
-sine grows exponentially in \(n^{1-a}\), while \(h^{-2}\) grows
-polynomially. This proves \eqref{eq:cancellation}.
-\end{proof}
-
-\begin{lemma}\label{lem:boundary}
-Let \(F\) be the Cauchy transform of a positive probability measure with
-finite support. For every bounded real interval \(S_0\), every \(x\in\R\), and
-every \(h>0\),
-\begin{equation}\label{eq:harmonic-measure}
- \int_{\mathbb R}p_h(x-y)\,
-            \mathbf1_{\{F(y)\in S_0\}}\,dy
- =\frac1\pi\int_{S_0}
-       \frac{-\Im F(x+ih)}{(t-\Re F(x+ih))^2+(\Im F(x+ih))^2}\,dt.
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-For \(\Im w<0\), define
-\[
- B(w)=\frac1\pi\int_{S_0}
-       \frac{-\Im w}{(t-\Re w)^2+(\Im w)^2}\,dt.
-\]
-The function \(B\) is harmonic and lies between zero and one.
-Since \(F\) maps the upper half-plane into the lower half-plane,
-\(B\circ F\) is bounded and harmonic. Away from the poles of \(F\)
-and the preimages of the endpoints of \(S_0\), its boundary value is
-\(\mathbf1_{\{F(y)\in S_0\}}\). These exceptions form a finite set:
-\(F\) is a nonconstant rational function. The Poisson representation
-of the bounded harmonic function \(B\circ F\) now gives
-\eqref{eq:harmonic-measure}.
-\end{proof}
-
-\section{The almost-everywhere bound}\label{sec:ae}
-
-\begin{proof}[Proof of Theorem~\ref{thm:main}(ii)]
-The failure set is the union, over rational \(0<c<c_0\) and integers
-\(N\ge2\), of the measurable sets
-\[
- \{y\in(-1,1):\lambda_n(y)\le c\log n\text{ for every }n\ge N\}.
-\]
-If the assertion fails, one of these sets \(E\) has positive measure.
-For its fixed \(c,N\), we therefore have
-\begin{equation}\label{eq:common-low-set}
- \lambda_n(y)\le c\log n\qquad(y\in E,\ n\ge N).
-\end{equation}
-Choose constants
-\[
- K>1,\qquad 0<b<a<1,\qquad \frac{2b}{\pi cK}>1,
-\]
-which is possible because \(c<2/\pi\). Set
-\[
- h=n^{-a},\qquad\eta=n^{-b},\qquad
- H^\eta(x)=\frac2\pi\int_\eta^1\gamma_s(x)\,\frac{ds}{s}.
-\]
-By \eqref{eq:lebesgue-transform}, \(H^\eta\le H\). For \(s>0\)
-and real \(x,y,t\), the triangle inequality gives
-\[
- |y+is-t|\le |x+is-t|+|x-y|
- \le\left(1+\frac{|x-y|}{s}\right)|x+is-t|.
-\]
-Taking reciprocal squares and summing against the positive masses yields
-\(\gamma_s(x)\le(1+|x-y|/s)^2\gamma_s(y)\). Integrating over
-\(\eta\le s\le1\), we obtain
-\begin{equation}\label{eq:potential-comparison}
- H^\eta(x)\le\left(1+\frac{|x-y|}{\eta}\right)^2H^\eta(y).
-\end{equation}
-
-Fix \(x\in E\), and write
-\[
- u=\Re m(x+ih),\qquad\gamma=\gamma_h(x),\qquad
- S_x=[u-K\gamma,u+K\gamma].
-\]
-By \eqref{eq:cancellation} and \eqref{eq:harmonic-measure}, each of the two events
-\[
- m(y)+g(y)\in S_x,\qquad m(y)-g(y)\in S_x
-\]
-has probability
-\[
- p_K+o(1),\qquad p_K=\frac2\pi\arctan K>\frac12,
-\]
-under the Poisson probability \(p_h(x-y)\,dy\). The error is uniform in \(x\in
-E\): for \(F=m\pm g\), \eqref{eq:cancellation} gives
-\(\Re F(x+ih)=u+o(\gamma)\) and
-\(-\Im F(x+ih)=\gamma(1+o(1))\). Substituting \(t=u+\gamma s\)
-in \eqref{eq:harmonic-measure} therefore gives
-\(\pi^{-1}\int_{-K}^K(1+s^2)^{-1}\,ds+o(1)=p_K+o(1)\).
-The two events have intersection probability at least
-\begin{equation}\label{eq:event-intersection}
- q_K+o(1),\qquad q_K=2p_K-1>0.
-\end{equation}
-Choose \(R\) so that the Poisson mass of \(|y-x|>Rh\) is less than \(q_K/8\),
-and let
-\[
- E_n=\{x\in E:(p_h*\mathbf1_{\mathbb R\setminus E})(x)<q_K/8\}.
-\]
-The approximate identity theorem gives \(|E\setminus E_n|\to0\). For all
-sufficiently large \(n\), \eqref{eq:event-intersection} is greater than
-\(q_K/2\). For \(x\in E_n\), the two excluded sets
-\(\R\setminus E\) and \(\{|y-x|>Rh\}\) have total Poisson mass
-less than \(q_K/4\). Hence there exists \(y\in E\) with
-\(|y-x|\le Rh\) and both events true. We may take \(y\) away from
-the nodes. Since \(m(y)\pm g(y)\) both lie in an interval of length
-\(2K\gamma_h(x)\),
-\[
- |g(y)|\le K\gamma_h(x).
-\]
-Equations \eqref{eq:lebesgue-transform} and \eqref{eq:common-low-set} give
-\[
- H^\eta(y)\le H(y)=\lambda_n(y)|g(y)|
- \le cK(\log n)\gamma_h(x).
-\]
-Together with \eqref{eq:potential-comparison}, this yields
-\begin{equation}\label{eq:local-comparison}
- H^\eta(x)\le(1+Rh/\eta)^2H^\eta(y)
- \le cK(1+Rh/\eta)^2(\log n)\gamma_h(x)
- \qquad(x\in E_n).
-\end{equation}
-
-Let \(\mathcal K_n\) be convolution with the symmetric probability kernel
-\[
- k_n(t)=\frac1{b\log n}\int_\eta^1p_{s-h}(t)\,\frac{ds}{s}.
-\]
-Its integral is one, since \(\int_\eta^1 ds/s=b\log n\).
-Equation \eqref{eq:semigroup} then shows that
-\[
- H^\eta=\frac{2b}{\pi}(\log n)\mathcal K_n\gamma_h.
-\]
-Thus \eqref{eq:local-comparison} becomes
-\begin{equation}\label{eq:kernel-ratio}
- \frac{\mathcal K_n\gamma_h(x)}{\gamma_h(x)}\le\frac1{A_n}
- \quad(x\in E_n),\qquad
- A_n=\frac{2b}{\pi cK}(1+Rh/\eta)^{-2}\longrightarrow A>1.
-\end{equation}
-Integrate \eqref{eq:kernel-ratio} over \(E_n\), discard the contribution from
-\(y\notin E_n\), and symmetrize. Positivity of \(\gamma_h\), symmetry of
-\(k_n\), and \((r+r^{-1})/2\ge1\) give
-\begin{equation}\label{eq:symmetric-energy}
- \frac{|E_n|}{A_n}
- \ge\iint_{E_n\times E_n}k_n(x-y)
-                  \frac{\gamma_h(y)}{\gamma_h(x)}\,dy\,dx
- \ge\iint_{E_n\times E_n}k_n(x-y)\,dy\,dx.
-\end{equation}
-The kernels \(k_n\) form an approximate identity. In fact, for every fixed
-\(\delta>0\),
-\[
- \int_{|t|>\delta}k_n(t)\,dt
- \le\frac{C}{b\log n}\int_\eta^1\min(1,s/\delta)\,\frac{ds}{s}
- \longrightarrow0.
-\]
-It follows that
-\[
- \iint_{E\times E}k_n(x-y)\,dy\,dx\longrightarrow|E|.
-\]
-Replacing \(E\) by \(E_n\) changes this integral by at most \(2|E\setminus
-E_n|\). Taking limits in \eqref{eq:symmetric-energy} therefore yields
-\[
- \frac{|E|}{A}\ge|E|,
-\]
-contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
-\end{proof}
-
-
 
 \section{Consequences}
 \label{sec:consequences}
