@@ -13,6 +13,9 @@ array giving a dense set of points. Its counterexample uses arbitrary
 triangular arrays; the uniform-constant question for initial segments of
 a single node sequence remains open.
 
+The manuscripts are [Sharp pointwise bounds for Lebesgue functions](paper/PROOF.pdf)
+and [Nonuniform additive constants for Lebesgue functions](paper/NONUNIFORM.pdf).
+
 ## Build and check
 
 With [Elan](https://github.com/leanprover/elan) installed, run from the repository root:
@@ -27,12 +30,13 @@ LEAN_NUM_THREADS=2 lake env leanchecker Erdos1132
 ## Proof correspondence
 
 [`Theorems.lean`](Erdos1132/Theorems.lean) collects the two main theorems and two
-corollaries. The proof modules are grouped into [Additive/](Erdos1132/Additive/) (§§2–4),
-[AlmostEverywhere/](Erdos1132/AlmostEverywhere/) (§§5–6), and
-[Counterexample/](Erdos1132/Counterexample/) (§7), with common tools in
+corollaries. The proof modules are grouped into [Additive/](Erdos1132/Additive/)
+(main paper, §§2–4), [AlmostEverywhere/](Erdos1132/AlmostEverywhere/)
+(main paper, §§5–6), and [Counterexample/](Erdos1132/Counterexample/)
+(companion note), with common tools in
 [Shared/](Erdos1132/Shared/) and node definitions in
-[Interpolation.lean](Erdos1132/Interpolation.lean). Each module's opening comment
-identifies its paper section. The almost-everywhere proof imports no `Additive/` modules.
+[Interpolation.lean](Erdos1132/Interpolation.lean).
+The almost-everywhere proof imports no `Additive/` modules.
 
 | Preprint | Lean source |
 |---|---|
@@ -43,14 +47,16 @@ identifies its paper section. The almost-everywhere proof imports no `Additive/`
 | Theorem 1(i) and (ii) | [Additive/Main.lean](Erdos1132/Additive/Main.lean), [AlmostEverywhere/Main.lean](Erdos1132/AlmostEverywhere/Main.lean) |
 | Chebyshev cancellation and boundary harmonic measure, §5 | [Cancellation.lean](Erdos1132/Shared/Cancellation.lean), [BoundaryMeasure.lean](Erdos1132/Shared/BoundaryMeasure.lean) |
 | Positive-measure contradiction, §6 | [UniformLowSet.lean](Erdos1132/AlmostEverywhere/UniformLowSet.lean) |
-| Cantor geometry and the log-integral bound, §§7.1–7.2 | [CantorLogarithmicBound.lean](Erdos1132/Counterexample/CantorLogarithmicBound.lean) |
-| Smooth cutoffs, §7.3 | [SmoothCutoffs.lean](Erdos1132/Counterexample/SmoothCutoffs.lean), [CantorSmoothSequence.lean](Erdos1132/Counterexample/CantorSmoothSequence.lean) |
-| Amplitude lemma, §7.4: interior rows and the upper estimate | [AmplitudeLemma.lean](Erdos1132/Counterexample/AmplitudeLemma.lean), `amplitude_lemma` |
-| Theorem 2 | [Theorem2.lean](Erdos1132/Counterexample/Theorem2.lean), `theorem2` |
-| Positive-measure and interval-constant corollaries, §8 | [Theorems.lean](Erdos1132/Theorems.lean) |
+| Cantor geometry and the log-integral bound, companion §§2.1–2.2 | [CantorLogarithmicBound.lean](Erdos1132/Counterexample/CantorLogarithmicBound.lean) |
+| Smooth cutoffs, companion §2.3 | [SmoothCutoffs.lean](Erdos1132/Counterexample/SmoothCutoffs.lean), [CantorSmoothSequence.lean](Erdos1132/Counterexample/CantorSmoothSequence.lean) |
+| Amplitude lemma, companion §3: interior rows and the upper estimate | [AmplitudeLemma.lean](Erdos1132/Counterexample/AmplitudeLemma.lean), `amplitude_lemma` |
+| Companion note, Theorem 1 | [Theorem2.lean](Erdos1132/Counterexample/Theorem2.lean), `theorem2` |
+| Positive-measure and interval-constant corollaries, main §7 and companion §5 | [Theorems.lean](Erdos1132/Theorems.lean) |
 
 In the covering argument for Theorem 1(i) the Lean proof uses bounded overlap where the
 manuscript argues differently; the conclusion is the same.
+The counterexample formalization retains explicit constants and cutoff choices;
+the companion note gives their existence arguments.
 
 The [proof bridge](checks/FormalConjecturesBridge.lean) derives the corresponding
 problem statements and is included in `lake test`.

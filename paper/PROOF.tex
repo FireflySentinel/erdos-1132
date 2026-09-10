@@ -45,17 +45,8 @@ in \([-1,1]\). We prove that the points \(x\in(-1,1)\) for which
 some finite \(C(x)\), form a dense set. We also prove
 \(\limsup_{n\to\infty}\lambda_n(x)/\log n\ge2/\pi\)
 for almost every \(x\in(-1,1)\).
-No absolute additive constant works for all arrays:
-for every \(M>0\), there is an array for which each fixed
-\(x\in(-1,1)\) eventually satisfies
-\(\lambda_n(x)\le(2/\pi)\log n-M\).
-For the same array, no single finite constant gives a dense set of
-points with infinitely many lower-bound occurrences.
-The positive results use derivative-jump energies and positive Cauchy
-transforms. The counterexample combines an explicit logarithmic
-integral estimate on the gaps of a compact set with real-rooted
-polynomials having prescribed amplitudes.
-The proofs are formalized in Lean 4.
+The two proofs use derivative-jump energies and positive Cauchy
+transforms, respectively. Both are formalized in Lean 4.
 \end{abstract}
 
 \section{Introduction}
@@ -91,55 +82,16 @@ for infinitely many \(n\) is dense in \((-1,1)\).
 \end{enumerate}
 \end{theorem}
 
-\begin{theorem}\label{thm:nonuniform}
-For every \(M>0\), there is a triangular array of distinct nodes in
-\((-1,1)\) such that, for every fixed \(x\in(-1,1)\),
-\begin{equation}\label{eq:counter-eventual}
- \lambda_n(x)\le\frac2\pi\log n-M
- \qquad\text{for all sufficiently large }n.
-\end{equation}
-The starting index may depend on \(x\). The array can also be chosen
-so that, for every finite \(C\), the set
-\begin{equation}\label{eq:counter-good-set}
- G_C=\left\{x\in(-1,1):
- \lambda_n(x)>\frac2\pi\log n-C
- \text{ for infinitely many }n\right\}
-\end{equation}
-is not dense in \((-1,1)\).
-\end{theorem}
-
 Erd\H{o}s \cite[p.~68]{Erdos} asked whether every triangular array
 has a point at which the sharp logarithmic lower bound holds
 infinitely often with a bounded additive loss, and whether the
 normalized lower bound \eqref{eq:main-ae} holds almost everywhere.
 Theorem~\ref{thm:main}(i) answers the first question with a constant
 that may depend on the point; part~(ii) answers the second.
-As Tao observes in \cite[Remark~1.12]{Tao}, the original question does
-not specify the allowed dependence of the additive constant.
-Theorem~\ref{thm:nonuniform} rules out two natural uniform
-strengthenings of Theorem~\ref{thm:main}(i).
-
-Write \(G_C(X)\) for the set in \eqref{eq:counter-good-set}
-associated with the array \(X\). Consider the following statements,
-where \(C\in\R\), \(X\) ranges over triangular arrays, and density
-is in \((-1,1)\):
-\[
-\begin{aligned}
-\text{(U1)}&\quad \exists C\ \forall X,\quad G_C(X)\ne\varnothing;\\
-\text{(U2)}&\quad \forall X\ \exists C,\quad G_C(X)\text{ is dense};\\
-\text{(U3)}&\quad \forall X,\quad
- \bigcup_{C\in\R}G_C(X)\text{ is dense}.
-\end{aligned}
-\]
-Theorem~\ref{thm:nonuniform} disproves (U1) and (U2), while
-Theorem~\ref{thm:main}(i) proves (U3).
-
-Theorem~\ref{thm:nonuniform} concerns arbitrary triangular arrays, as in
-\cite[p.~68]{Erdos} and \cite[Corollary~1.11]{Tao}.
-The problem page \cite{Bloom} instead uses the initial segments of a
-single infinite node sequence. Our counterexample does not impose
-this nesting, and the uniform-constant question in that setting
-remains open.
+These questions are recorded as Erd\H{o}s Problem~1132 \cite{Bloom}.
+A stronger uniform interpretation of the additive-constant question
+is false for arbitrary triangular arrays; this is treated separately
+in \cite{GuNonuniform}.
 
 \subsection{Background}
 
@@ -164,41 +116,15 @@ bound holds almost everywhere, and separately whether the logarithmic
 bound holds infinitely often at a point with a bounded additive loss.
 Erd\H{o}s and V\'ertesi \cite{ErdosVertesi} proved
 almost-everywhere divergence of interpolants of a suitable continuous
-function for every array. Their subsequent paper
-\cite[Theorem~2.1]{ErdosVertesi1981} gives a quantitative lower bound
-for the Lebesgue functions: for every \(\varepsilon>0\), there are
-\(\eta(\varepsilon)>0\) and \(n_0(\varepsilon)\) such that, for every
-array and \(n\ge n_0(\varepsilon)\), there is a measurable set
-\(H_n\subset[-1,1]\) satisfying
+function for every array. Their quantitative estimate
+\cite[Theorem~2.1]{ErdosVertesi1981} gives logarithmic growth outside
+a set of arbitrarily small measure, with a positive coefficient
+depending on that measure. In particular,
 \[
- |H_n|\le\varepsilon,\qquad
- \lambda_n(x)>\eta(\varepsilon)\log n
- \quad(x\in[-1,1]\setminus H_n).
+ \limsup_{n\to\infty}\frac{\lambda_n(x)}{\log n}>0
+ \quad\text{for almost every }x.
 \]
-They note that Chebyshev nodes show this order to be optimal.
-The exceptional sets may vary with \(n\); the estimate implies
-\(\limsup_n\lambda_n(x)/\log n>0\) almost everywhere
-(indeed, \(\left|\bigcup_N\bigcap_{n\ge N}H_n\right|\le\varepsilon\),
-so outside a set of measure at most \(\varepsilon\), each point
-leaves \(H_n\) infinitely often; now let \(\varepsilon\downarrow0\)).
-Thus the logarithmic order was already known in 1981.
-Theorem~\ref{thm:main}(ii) supplies the optimal coefficient \(2/\pi\),
-which is the coefficient in Erd\H{o}s's question and in
-\cite[Remark~1.12]{Tao}.
-Erd\H{o}s and V\'ertesi also give the integral version
-\cite[Corollary~2.2]{ErdosVertesi1981}:
-\[
- \int_{S_n}\lambda_n(x)\,dx>
- (|S_n|-\varepsilon)\eta(\varepsilon)\log n
- \qquad(n\ge n_0(\varepsilon))
-\]
-for arbitrary measurable \(S_n\subset[-1,1]\).
-
-Corollary~\ref{cor:positive-measure} gives, in every
-sufficiently large row, a point in each fixed positive-measure set
-with \(\lambda_n(x)>c\log n\), for any \(0<c<2/\pi\).
-Erd\H{o}s--V\'ertesi's theorem instead controls all points outside a
-small exceptional set, with coefficient \(\eta(\varepsilon)\).
+Theorem~\ref{thm:main}(ii) gives the sharp coefficient \(2/\pi\).
 
 Tao \cite[Theorem 1.10(i)]{Tao} proved that every fixed nondegenerate
 interval \(I\subset[-1,1]\) satisfies
@@ -213,31 +139,13 @@ His Corollary 1.11 and Remark 1.12 give, for every prescribed
 \]
 infinitely often. Theorem~\ref{thm:main}(i) replaces \(\omega(n)\) by a
 finite constant depending on the point, on a dense set.
-Corollary~\ref{cor:no-uniform-interval} shows that, for arbitrary
-triangular arrays, the additive constant in the interval lower bound
-cannot in general be chosen independently of the interval;
-see also \cite[Remark~1.12]{Tao}.
 
 \subsection{Organization}
 
-Sections~\ref{sec:local}--\ref{sec:fixed} prove
-Theorem~\ref{thm:main}(i). The local differentiation estimate turns
-large derivative jumps into nearby high values of the Lebesgue
-function. A weighted energy bound supplies enough such jumps, and a
-second-moment argument gives recurrence on a positive-measure set.
-Baire's theorem then gives density.
-
-Sections~\ref{sec:cauchy}--\ref{sec:ae} prove
-Theorem~\ref{thm:main}(ii) by a separate argument using positive
-Cauchy transforms. This proof is independent of
-Sections~\ref{sec:local}--\ref{sec:fixed} and of Tao's estimates.
-Section~\ref{sec:counterexample} proves Theorem~\ref{thm:nonuniform}
-independently of both lower-bound arguments. Its first three
-subsections construct positive functions with large logarithmic
-integral ratios; Lemma~\ref{lem:amplitude} converts them into
-interpolation rows, which are assembled in the final subsection.
-Section~\ref{sec:consequences} gives the positive-measure and
-interval-constant corollaries.
+The proofs of Theorem~\ref{thm:main}(i) and (ii) are independent.
+Sections~\ref{sec:local}--\ref{sec:fixed} prove part~(i), and
+Sections~\ref{sec:cauchy}--\ref{sec:ae} prove part~(ii).
+Section~\ref{sec:consequences} gives a positive-measure consequence.
 
 Throughout the paper, all logarithms are natural and \(|E|\) denotes
 Lebesgue measure. We write \(c_0=2/\pi\), and suppress the row index
@@ -824,9 +732,6 @@ For its fixed \(c,N\), we therefore have
 \begin{equation}\label{eq:common-low-set}
  \lambda_n(y)\le c\log n\qquad(y\in E,\ n\ge N).
 \end{equation}
-The argument below also applies if this bound holds only for \(n\)
-in an infinite set: each estimate uses one row, and the final limit
-can be taken along that set.
 Choose constants
 \[
  K>1,\qquad 0<b<a<1,\qquad \frac{2b}{\pi cK}>1,
@@ -945,450 +850,6 @@ contrary to \(|E|>0\) and \(A>1\). This proves the assertion.
 
 
 
-\section{Failure of uniform additive constants}
-\label{sec:counterexample}
-
-We prove Theorem~\ref{thm:nonuniform}. Smooth on \(I=[-1,1]\)
-will mean extendible to a smooth function on a neighborhood of \(I\).
-
-\subsection{The compact set}\label{subsec:counter-set}
-
-For \(I=[-1,1]\), write
-\[
- Lf(x)=\int_I\frac{f(x)-f(y)}{|x-y|}\,dy.
-\]
-In particular,
-\begin{equation}\label{eq:counter-u3}
-\|Lf\|_\infty\le2\|f'\|_\infty\qquad(f\in C^1(I)).
-\end{equation}
-
-Fix \(A>1\). Choose \(0<\rho<1/16\) sufficiently small, as specified
-in Subsection~\ref{subsec:counter-integral}, and put
-\[
- \delta_k=\rho\,2^{-k},\qquad
- m_k=\left\lceil e^{1/\delta_k}\right\rceil .
-\]
-Starting with \(I\), replace every retained interval of length \(\ell_{k-1}\) at stage \(k\) by \(m_k\) equally long closed intervals, retaining both endpoints of the parent. The children and intervening open gaps have respective lengths
-\[
- \ell_k=\frac{(1-\delta_k)\ell_{k-1}}{m_k},\qquad
- b_k=\frac{\delta_k\ell_{k-1}}{m_k-1},\qquad \ell_0=2.
-\]
-Let \(F\) be the intersection of the retained sets and \(U=I\setminus F\). Thus \(F\) is compact, contains both endpoints, and has empty interior, since \(\ell_k\to0\). The set \(U\) is a dense open union of disjoint gaps, and
-\begin{equation}\label{eq:counter-u4}
-|U|\le2\sum_k\delta_k=2\rho.
-\end{equation}
-
-We need the following two properties:
-\begin{equation}\label{eq:counter-u5}
-|F\cap(x-r,x+r)|\ge\kappa r
- \quad(x\in F,\ 0<r\le1),\qquad \kappa=1/32,
-\end{equation}
-and
-\begin{equation}\label{eq:counter-u6}
-\int_U\frac{dy}{|x-y|}=\infty\qquad(x\in F).
-\end{equation}
-
-For \eqref{eq:counter-u5}, choose the first \(k\) for which \(\ell_k\le r/16\), and let \(J\) be the stage \(k-1\) parent containing \(x\), with \(|J|>r/16\). At least half the length of any retained interval belongs to \(F\), since every subsequent product of retained proportions is at least \(1-\rho>1/2\). If \(|J|\le r\), then \(J\subset[x-r,x+r]\), proving \eqref{eq:counter-u5}. Otherwise \(J\cap[x-r,x+r]\) has length \(s\ge r\). Write \(a=\ell_k\), \(b=b_k\), \(\delta=\delta_k\). Then
-\[
- b\le a,\qquad b/(a+b)\le2\delta.
-\]
-The gaps intersecting an interval of length \(s\) have total length at most \(2\delta s+2b\). The two partially intersected children have total length at most \(2a\). The full children inside this interval therefore have total length at least
-\[
- (1-2\delta)s-2(a+b)\ge r/2.
-\]
-Their intersections with \(F\) have total length at least \(r/4\), as required.
-
-For \eqref{eq:counter-u6}, at least \((m_k-1)/2\) gaps lie on one side
-of \(x\) within its stage \(k-1\) parent interval. Use the first
-\(q=\lfloor m_k/8\rfloor\) on that side. The far endpoint of the
-\(j\)-th such gap is at distance at most \(4j\ell_{k-1}/m_k\) from
-\(x\), and its length is at least \(\delta_k\ell_{k-1}/m_k\).
-These gaps contribute at least
-\[
- \frac{\delta_k}{4}\sum_{j=1}^{q}\frac1j
- \ge\frac{\delta_k}{4}(\log m_k-\log16)\ge\frac18.
-\]
-The gaps used at different stages are disjoint. Summation proves \eqref{eq:counter-u6}.
-
-\subsection{An explicit logarithmic integral estimate}\label{subsec:counter-integral}
-
-On each gap \((b,c)\), define
-\[
- r(x)=\frac{(x-b)(c-x)}{c-b},
-\]
-and put \(r=0\) on \(F\). If \(D(x)=\operatorname{dist}(x,F)\), then
-\begin{equation}\label{eq:counter-u7}
-r(x)\le D(x)\le2r(x)\qquad(x\in U).
-\end{equation}
-The function \(r\) is globally \(1\)-Lipschitz: its derivative has absolute value at most one on each gap, and points in distinct gaps can be compared through a point of \(F\) between them.
-
-Put
-\begin{equation}\label{eq:counter-u8}
-B=e^8,\qquad \alpha=1/256,\qquad
- p(t)=[\log(B/t)]^{-\alpha},\qquad
- u(x)=p(r(x))\ (x\in U),\quad u=0\ (x\in F).
-\end{equation}
-Then \(u\) is continuous on \(I\), bounded, positive and smooth in each gap, and vanishes on \(F\). In particular, \(Lu(x)\) is an absolutely convergent integral for every \(x\in U\).
-
-We prove the quantitative bound
-\begin{equation}\label{eq:counter-u9}
-\frac{Lu(x)}{u(x)}
- \ge \frac1{512}\log\frac1{4r(x)}-32
- \qquad\text{if }\log(B/r(x))\ge16.
-\end{equation}
-All estimates below apply uniformly up to the endpoints of \(I\).
-
-Fix such an \(x\), and write \(s=r(x)\), \(\Theta=\log(B/s)\), \(a_0=4s\).
-For \(t\in[0,2]\), let
-\[
- M_I(t)=|I\cap(x-t,x+t)|,\qquad
- M_U(t)=|U\cap(x-t,x+t)|.
-\]
-Choose \(z\in F\) with \(|x-z|=D(x)\le2s\). If \(4s\le t\le2\), the ball of radius \(t/2\) about \(z\), intersected with \(I\), is contained in the ball of radius \(t\) about \(x\). By \eqref{eq:counter-u5}, the latter contains at least \(\kappa t/2\) of \(F\). Since \(M_I(t)\le2t\),
-\begin{equation}\label{eq:counter-u10}
-M_U(t)\le(1-\eta)M_I(t),\qquad \eta=\kappa/4=1/128
- \quad(4s\le t\le2).
-\end{equation}
-First consider \(|y-x|<4s\). For \(|y-x|<s/2\), Lipschitz continuity of \(r\) gives
-\(r(y)\in[s/2,3s/2]\). On this range \(p'(r(y))\le4p(s)/s\), by the derivative formula for \(p\) and \(\Theta\ge16\). The integral of the absolute difference quotient over this part is thus at most \(4p(s)\). On \(s/2\le|y-x|<4s\), we have \(r(y)\le5s\) and
-\[
- p(5s)/p(s)=\left(\frac{\Theta}{\Theta-\log5}\right)^\alpha\le2.
-\]
-The absolute difference is at most \(3p(s)\), so this part contributes at most \(6\log8\,p(s)<18p(s)\). In particular, the whole near contribution to \(Lu(x)\) is at least \(-24p(s)\).
-
-For the far contribution, set \(l_-=1+x\), \(l_+=1-x\), and
-\[
- \mathcal H=\sum_{\nu\in\{-,+\}}\max\{\log(l_\nu/(4s)),0\}.
-\]
-The positive part is exactly \(p(s)\mathcal H\). For the negative part,
-\(r(y)\le s+|x-y|\le(5/4)|x-y|\), so it is bounded by
-\[
- \int_{a_0}^2 f(t)\,dM_U(t),\qquad
- f(t)=\frac{p(5t/4)}t.
-\]
-The function \(f\) is decreasing. Stieltjes integration by parts, dropping the nonpositive lower-end boundary term and using \eqref{eq:counter-u10}, gives
-\begin{equation}\label{eq:counter-u11}
-\int_{a_0}^2 f(t)\,dM_U(t)
- \le(1-\eta)\left[f(a_0)M_I(a_0)+
-                     \int_{a_0}^2 f(t)\,dM_I(t)\right].
-\end{equation}
-The first term on the right, including its factor, is at most \(4p(s)\).
-
-Since \(dM_I(t)=1_{\{t<l_-\}}dt+1_{\{t<l_+\}}dt\), the remaining term splits into at most two integrals. For a side with \(l_\nu>4s\), put
-\[
- h=\log(l_\nu/(4s)),\qquad \Theta_0=\Theta-\log5.
-\]
-Then \(0\le h<\Theta_0\), since \(\Theta_0-h=\log(4B/(5l_\nu))>0\), and
-\begin{equation}\label{eq:counter-u12}
-\int_{4s}^{l_\nu}\frac{p(5t/4)}t\,dt
- =\int_0^h(\Theta_0-z)^{-\alpha}\,dz
- \le\frac{\Theta_0^{-\alpha}}{1-\alpha}\,h.
-\end{equation}
-The last inequality follows from
-\((1-z)^{1-\alpha}\ge1-z\) for \(0\le z\le1\).
-
-Since \(\alpha=\eta/2\), concavity of the power \(\alpha\),
-\(\log5<2\), and \(\Theta\ge16\) give
-\begin{equation}\label{eq:counter-u13}
-\begin{split}
- \frac{1-\eta}{1-\alpha}\frac{\Theta_0^{-\alpha}}{p(s)}
- &=\frac{1-\eta}{1-\alpha}
-       \left(\frac{\Theta}{\Theta-\log5}\right)^\alpha\\
- &\le\frac{1-\eta}{1-\alpha}\left(1+\frac\alpha7\right)
- \le1-\frac\eta4=1-\frac1{512}.
-\end{split}
-\end{equation}
-Thus the negative far contribution is at most
-\(4p(s)+(1-1/512)p(s)\mathcal H\). Including the near part gives
-\(Lu(x)/u(x)\ge \mathcal H/512-28\ge \mathcal H/512-32\).
-At least one of \(l_-,l_+\) is at least one, so
-\(\mathcal H\ge\log(1/(4s))\). This proves \eqref{eq:counter-u9}.
-
-We now fix \(\rho\) small enough that
-\[
- \log(2B/\rho)\ge16,\qquad
- \frac1{512}\log\frac1{2\rho}-32>A+2.
-\]
-Every gap has length at most \(|U|\le2\rho\), so \(r(x)\le\rho/2\).
-Thus \(\Theta\ge16\), and \eqref{eq:counter-u9} yields
-\begin{equation}\label{eq:counter-u14}
-\frac{Lu(x)}{u(x)}>A+2
- \qquad(x\in U).
-\end{equation}
-It also shows that \(Lu(x)/u(x)\to+\infty\) as \(x\) approaches either endpoint of any fixed gap.
-
-\subsection{Smooth positive functions on the whole interval}\label{subsec:counter-smooth}
-
-Let \(K_N\) be the union of the closed middle halves of all gaps
-removed in the first \(N\) stages. This is a compact subset of \(U\).
-For any smooth \(0\le\chi\le1\), vanishing near \(F\) and equal to
-one on \(K_N\), put
-\[
- A_\chi(x)=\int_U\frac{\chi(y)}{|x-y|}\,dy\qquad(x\in F).
-\]
-The estimate proving \eqref{eq:counter-u6}, restricted to these middle
-halves, gives at least \(1/16\) from each of the first \(N\) stages.
-Consequently,
-\begin{equation}\label{eq:counter-u15}
- A_\chi(x)\ge N/16\qquad(x\in F).
-\end{equation}
-
-Let \(\epsilon_j=1/j\), \(j\ge2\). Since \(p(t)\to0\) as
-\(t\downarrow0\), choose \(0<d_j<1\) with
-\(p(d_j)\le\epsilon_j/2\), and put
-\[
- C_j=2\log(2/d_j).
-\]
-Since \(r\le D\), one has
-\(u(y)\le\epsilon_j/2\) when \(D(y)\le d_j\).
-Using this for \(|x-y|<d_j\), and \(u\le1\) on the remainder, gives
-\begin{equation}\label{eq:counter-u16}
- \int_U\frac{\chi(y)u(y)}{|x-y|}\,dy
- \le\frac{\epsilon_j}{2}A_\chi(x)+C_j
- \qquad(x\in F).
-\end{equation}
-Here the far integral is at most \(C_j\).
-
-Choose an integer \(k_j\ge j\) such that
-\[
- \frac{k_j}{32j}-C_j\ge(A+1)\epsilon_j.
-\]
-Choose a smooth function \(f:\mathbb R\to[0,1]\) with
-\(\{f>0\}=U\), and a nondecreasing smooth
-\(q_0:\mathbb R\to[0,1]\), equal to zero on \((-\infty,1]\)
-and one on \([2,\infty)\). By compactness, choose
-\(0<\tau_j\le1/j\) such that \(2\tau_j\le f\) on \(K_{k_j}\),
-and define
-\[
- \chi_j(x)=q_0(f(x)/\tau_j).
-\]
-Thus \(\chi_j\) is smooth, vanishes on a neighborhood of \(F\),
-and equals one on \(K_{k_j}\). Since \(\tau_j\to0\), at each
-fixed point of \(U\) it is eventually identically one on a
-neighborhood of that point. Equation~\eqref{eq:counter-u15} gives
-\[
- \frac{\epsilon_j}{2}A_{\chi_j}(x)-C_j
- \ge\frac{k_j}{32j}-C_j\ge(A+1)\epsilon_j
- \qquad(x\in F).
-\]
-Define
-\begin{equation}\label{eq:counter-u17}
- v_j=\chi_j u+(1-\chi_j)\epsilon_j.
-\end{equation}
-This function is strictly positive and smooth on a neighborhood of
-\(I\): the function \(u\) is smooth and positive in each gap, and
-\(v_j=\epsilon_j\) near \(F\).
-
-At \(x\in F\), \eqref{eq:counter-u16} gives
-\(Lv_j(x)\ge(A+1)v_j(x)\). At every fixed \(x\in U\), eventually
-\(v_j=u\) on a neighborhood of \(x\). Also \(v_j\to u\) in
-\(L^1(I)\), by bounded convergence. The integrals outside that
-neighborhood then converge, so
-\begin{equation}\label{eq:counter-u18}
- \frac{Lv_j(x)}{v_j(x)}\longrightarrow\frac{Lu(x)}{u(x)}
- >A+2\qquad(x\in U).
-\end{equation}
-We have therefore constructed positive smooth functions such that
-\begin{equation}\label{eq:counter-u19}
- \frac{Lv_j(x)}{v_j(x)}\ge A+1
- \quad\text{eventually for every fixed }x\in I.
-\end{equation}
-This estimate is not uniform in \(x\). Indeed, at a minimum point
-\(\xi_j\) of \(v_j\) on \(I\), one has \(Lv_j(\xi_j)\le0\).
-No fixed point can minimize \(v_j\) for arbitrarily large \(j\).
-
-\subsection{From amplitudes to interpolation nodes}\label{subsec:counter-amplitude}
-
-
-We prove an upper estimate with an absolute additive constant.
-
-\begin{lemma}\label{lem:amplitude} Let \(h(z)=\sum_{r=0}^{d}h_rz^r\) have real coefficients, no zero on the closed unit disk, and \(h(0)>0\). Set
-\[
- v(\cos\theta)=|h(e^{i\theta})|^{-1}.
-\]
-Let \(T_k\) be the Chebyshev polynomial of the first kind, defined by \(T_k(\cos\theta)=\cos(k\theta)\).
-For \(n>d\), define the real polynomial
-\begin{equation}\label{eq:counter-u25}
-P_n(x)=\sum_{r=0}^{d}h_rT_{n-r}(x).
-\end{equation}
-For all sufficiently large \(n\), this polynomial has exactly \(n\) simple roots in \((-1,1)\). The corresponding Lebesgue function satisfies, on any fixed \(K\Subset(-1,1)\),
-\begin{equation}\label{eq:counter-u26}
-\lambda_n(x)\le\frac2\pi\log n+3-\frac{Lv(x)}{\pi v(x)}
- \qquad(x\in K)
-\end{equation}
-for all sufficiently large \(n\), with the threshold allowed to depend on \(h,K\).
-
-\end{lemma}
-
-\begin{proof} The analytic logarithm of \(h\), chosen real at zero, is real on the real diameter. Its imaginary part
-\(\psi(\theta)=\arg h(e^{i\theta})\) thus satisfies \(\psi(0)=\psi(\pi)=0\). We have the exact identity
-\[
- P_n(\cos\theta)=|h(e^{i\theta})|\cos(n\theta-\psi(\theta)).
-\]
-For \(n>\|\psi'\|_\infty\), the phase increases strictly from \(0\) to \(n\pi\). The polynomial has degree exactly \(n\), since its leading term comes from \(h_0T_n\), with \(h_0>0\). This gives the asserted \(n\) simple roots. At their angles \(\theta_k\),
-\begin{equation}\label{eq:counter-u27}
-|P_n'(\cos\theta_k)|
- =|h(e^{i\theta_k})|
-       \frac{n-\psi'(\theta_k)}{\sin\theta_k}.
-\end{equation}
-
-Put \(s=(n\theta-\psi(\theta))/n\), let \(\theta=\Theta_n(s)\) be the inverse, and set \(X_n(s)=\cos\Theta_n(s)\). The roots correspond to
-\(s_k=(k-\tfrac12)\pi/n\). Moreover \(X_n\to\cos\) in \(C^3([0,\pi])\). At a point \(x=X_n(s)\) other than a node, put \(\beta=|\cos(ns)|\). Formula \eqref{eq:counter-u27} gives
-\begin{equation}\label{eq:counter-u28}
-\lambda_n(x)=\frac{\beta}{nv(x)}
-  \sum_{k=1}^n
-  \frac{v(X_n(s_k))|X_n'(s_k)|}{|X_n(s)-X_n(s_k)|}.
-\end{equation}
-
-Subtract the simple singularity by defining
-\[
- R_n(s,t)=
- \frac{v(X_n(t))|X_n'(t)|}{|X_n(s)-X_n(t)|}
- -\frac{v(X_n(s))}{|s-t|}.
-\]
-For \(s\) in a fixed compact subinterval of \((0,\pi)\), this function
-of \(t\) has uniformly bounded variation. Near \(s\), write
-\(X_n(t)-X_n(s)=(t-s)D_n(s,t)\). The function \(D_n\) stays away
-from zero, and
-\[
- A_n(s,t)=\frac{v(X_n(t))|X_n'(t)|}{|D_n(s,t)|}
-\]
-has uniformly bounded \(C^2\) norms, with \(A_n(s,s)=v(X_n(s))\).
-Thus \(R_n(s,t)=\operatorname{sgn}(t-s)
-(A_n(s,t)-A_n(s,s))/(t-s)\) has uniformly bounded \(C^1\) norms
-on each side of \(s\) and a bounded jump there; at \(t=s\), assign
-either one-sided limit. Away from \(s\),
-the denominator stays away from zero. If \(\Delta=\pi/n\), each
-quadrature cell contributes at most \(\Delta\) times the variation
-on that cell. Summing gives
-\[
- \left|\Delta\sum_{k=1}^n R_n(s,s_k)
-       -\int_0^\pi R_n(s,t)\,dt\right|
- \le \Delta\operatorname{Var}_{[0,\pi]}R_n(s,\cdot)=O(1/n).
-\]
-This bound does not depend on the distance from \(s\) to a
-quadrature point.
-
-Changing variables \(y=X_n(t)\) in the integral, and first deleting \((s-\epsilon,s+\epsilon)\), gives
-\begin{equation}\label{eq:counter-u29}
-\begin{split}
- \int_0^\pi R_n(s,t)\,dt
- &=-Lv(x)+v(x)
-   \log\frac{1-x^2}{X_n'(s)^2s(\pi-s)}\\
- &=-Lv(x)+v(x)\left[
-  2\log(1-\psi'(\theta)/n)-\log(s(\pi-s))\right].
-\end{split}
-\end{equation}
-The cancellation follows because the deleted distances in the \(y\) variable are
-\(|X_n'(s)|\epsilon+O(\epsilon^2)\) on both sides.
-
-Write
-\[
- \tau=\frac{ns}{\pi}+\frac12=m+t,\qquad m=\lfloor\tau\rfloor,
- \quad0<t<1.
-\]
-Since \((s-s_k)n/\pi=\tau-k\), midpoint quadrature in \eqref{eq:counter-u28} gives explicitly
-\[
- \lambda_n(x)=\frac \beta\pi\left[
- \sum_{k=1}^n\frac1{|\tau-k|}
- +\frac1{v(x)}\int_0^\pi R_n(s,t')\,dt'\right]+O(1/n).
-\]
-On the compact interval under consideration, \(1\le m\le n-1\) for large \(n\), and \(\beta=\sin(\pi t)\). Splitting the elementary harmonic sum at \(m\) gives
-\[
- \sum_{k=1}^n\frac1{|\tau-k|}
- \le \log(m(n-m))+2+\frac1t+\frac1{1-t}.
-\]
-Also, uniformly in this compact interval,
-\[
- \log(m(n-m))-\log(s(\pi-s))
- =2\log n-2\log\pi+O(1/n).
-\]
-Substituting these estimates and \eqref{eq:counter-u29} into \eqref{eq:counter-u28}, and using
-\(\beta/t\le\pi\), \(\beta/(1-t)\le\pi\), yields
-\[
- \lambda_n(x)\le
- \beta\left[\frac2\pi\log n-\frac{Lv(x)}{\pi v(x)}
-                  +\frac{2-2\log\pi}{\pi}\right]+2+O(1/n).
-\]
-For large \(n\) the bracket is nonnegative, uniformly on \(K\). We may replace \(\beta\le1\) by one. Since
-\(2+(2-2\log\pi)/\pi<3\), this proves \eqref{eq:counter-u26} away from the nodes. At the nodes, \(\lambda_n=1\), and \eqref{eq:counter-u26} follows for large \(n\) as well. \end{proof}
-
-Every positive smooth function \(v\) on \(I\) can be approximated in
-\(C^1(I)\) by amplitudes occurring in this lemma. Approximate \(1/v\)
-by a strictly positive real polynomial \(q\) of degree \(d\), and form
-\[
- J(z)=z^d q\bigl((z+z^{-1})/2\bigr).
-\]
-This is a real polynomial, and \(|J(e^{i\theta})|=q(\cos\theta)>0\).
-In its factorization, replace every factor \(z-r\) with \(|r|<1\)
-by \(1-\overline r z\), retaining the leading scalar. The resulting
-polynomial \(h\) has no zero on the closed disk and the same modulus
-as \(J\) on the unit circle. Conjugate roots are reflected together,
-so its coefficients are real; changing its sign makes \(h(0)>0\).
-Thus
-\[
- |h(e^{i\theta})|=q(\cos\theta),\qquad
- |h(e^{i\theta})|^{-1}=q(\cos\theta)^{-1}.
-\]
-Polynomial approximation in \(C^1\) follows by uniformly approximating
-the derivative and then integrating. Inversion is continuous in \(C^1\)
-on functions with a positive lower bound. Hence \(q^{-1}\) approximates
-\(v\) in \(C^1(I)\), and \eqref{eq:counter-u3} gives arbitrarily accurate
-uniform approximation of \(Lv/v\).
-
-
-\begin{remark}[Dependence on interval length]
-Let \(I_\ell=[-\ell/2,\ell/2]\), where \(0<\ell<1/4\), and choose a
-smooth \(v\) equal to \(1\) on \(I_\ell\) and to
-\(\delta=1/\log(1/\ell)\) outside \([-\ell,\ell]\), with
-\(\delta\le v\le1\) and \(\|v'\|_\infty=O(1/\ell)\).
-Then, uniformly on \(I_\ell\),
-\[
- Lv/v=2\log(1/\ell)+O(1).
-\]
-After amplitude approximation with error at most one in this quotient,
-Lemma~\ref{lem:amplitude} gives
-\[
- \sup_{I_\ell}\lambda_n\le\frac2\pi\log(n\ell)+O(1)
-\]
-for sufficiently large \(n\), with an absolute \(O(1)\) term and a
-starting index depending on \(\ell\). Thus the interval constant can be at least
-\((2/\pi)\log(1/|I_\ell|)-O(1)\) when the array changes with \(\ell\).
-\end{remark}
-
-\subsection{Assembly of the array}\label{subsec:counter-array}
-
-\begin{proof}[Proof of Theorem~\ref{thm:nonuniform}]
-
-Fix \(M>0\), and carry out Subsections~\ref{subsec:counter-set}--\ref{subsec:counter-smooth} with \(A=\pi(M+4)\).
-For each \(j\ge2\), choose an amplitude \(\widetilde v_j=|h_j|^{-1}\) as in Subsection~\ref{subsec:counter-amplitude} so close to \(v_j\) that
-\begin{equation}\label{eq:counter-u30}
-\left\|\frac{L\widetilde v_j}{\widetilde v_j}
-                 -\frac{Lv_j}{v_j}\right\|_\infty<1/2.
-\end{equation}
-Let \(K_j=[-1+1/j,1-1/j]\). Choose a strictly increasing sequence of integers \(N_j\), each larger than \(\deg h_j\) and the threshold in Lemma~\ref{lem:amplitude} for \(h_j,K_j\). For \(N_j\le n<N_{j+1}\), use as row \(n\) the \(n\) roots of \eqref{eq:counter-u25} with \(h=h_j\). Fill the finitely many earlier rows with Chebyshev roots.
-
-Fix \(x\in(-1,1)\). The block index \(j\) tends to infinity with \(n\), and \(x\in K_j\) for all large \(j\). Equations \eqref{eq:counter-u19} and \eqref{eq:counter-u30} give
-\(L\widetilde v_j(x)/\widetilde v_j(x)\ge A+1/2\) eventually. Hence \eqref{eq:counter-u26} gives, for all sufficiently large \(n\),
-\[
- \lambda_n(x)\le\frac2\pi\log n+3-\frac{A+1/2}{\pi}
- <\frac2\pi\log n-M.
-\]
-This proves \eqref{eq:counter-eventual} and the failure of an absolute
-additive constant. The passage from \eqref{eq:counter-u19} to this
-bound is pointwise in \(x\), although \eqref{eq:counter-u26} is uniform
-for each fixed amplitude. An interval supremum can occur at points
-that vary with \(n\).
-
-For the final assertion, \eqref{eq:counter-u18}, \eqref{eq:counter-u26}, and \eqref{eq:counter-u30} give at every fixed \(x\in U\)
-\begin{equation}\label{eq:counter-u31}
-\limsup_{n\to\infty}
- \left(\lambda_n(x)-\frac2\pi\log n\right)
- \le3+\frac1{2\pi}-\frac{Lu(x)}{\pi u(x)}.
-\end{equation}
-Choose a gap \((b,c)\) with both endpoints in \((-1,1)\). By \eqref{eq:counter-u9}, \(Lu(x)/u(x)\to+\infty\) as \(x\downarrow b\). Given any finite \(C\), there is a nonempty interval \((b,b+\sigma)\) on which the right side of \eqref{eq:counter-u31} is strictly less than \(-C-1\). This interval is disjoint from \(G_C\), proving the second assertion. \end{proof}
-
-
 \section{Consequences}
 \label{sec:consequences}
 
@@ -1399,31 +860,9 @@ such that \(\lambda_n(x)>c\log n\).
 \end{corollary}
 \begin{proof}
 Otherwise \(\lambda_n(y)\le c\log n\) for every \(y\in E\) and every
-\(n\) in an infinite set \(S\). The argument in Section~\ref{sec:ae} applies to these
-rows, with all limits taken as \(n\to\infty\) through \(S\), and gives
-the same contradiction \(|E|/A\ge|E|\) with \(A>1\).
-\end{proof}
-
-\begin{corollary}[No uniform interval constant]\label{cor:no-uniform-interval}
-For the array in the second assertion of Theorem~\ref{thm:nonuniform},
-there is no finite \(C\) such that
-\[
- \sup_{x\in I}\lambda_n(x)\ge\frac2\pi\log n-C
-\]
-for every nondegenerate compact interval \(I\subset(-1,1)\) and all sufficiently
-large \(n\), with the threshold allowed to depend on \(I\).
-\end{corollary}
-\begin{proof}
-Suppose that such a \(C\) exists. If \(G_{C+1}\) misses a nondegenerate
-compact interval \(K_0\subset(-1,1)\), the closed sets
-\[
- F_N=\{x\in K_0:\lambda_n(x)\le(2/\pi)\log n-C-1
-                    \text{ for all }n\ge N\}
-\]
-cover \(K_0\). Baire's theorem gives an \(F_N\) containing a
-nondegenerate compact subinterval \(I\). The resulting upper bound on \(I\)
-contradicts the assumed lower bound for large \(n\).
-Thus \(G_{C+1}\) is dense, contrary to Theorem~\ref{thm:nonuniform}.
+\(n\) in an infinite set \(S\). Repeating the proof of
+Theorem~\ref{thm:main}(ii) along \(S\) gives the same contradiction
+\(|E|/A\ge|E|\) with \(A>1\).
 \end{proof}
 
 \section*{Code availability}
@@ -1434,14 +873,14 @@ The Lean 4 formalization is available at
 \section*{Declaration of generative AI and AI-assisted technologies in the writing process}
 
 GPT-6 Astra proposed the derivative-jump and positive Cauchy-transform
-arguments and the counterexample construction, drafted the manuscript,
+arguments, drafted the manuscript,
 and generated the Lean formalization.
 GPT-5.6 Sol and Claude Opus 5 were used to organize earlier research material
 and to review the Lean code.
 The author checked the arguments, completed the final manuscript, and takes
 full responsibility for the content.
 
-\begin{thebibliography}{11}
+\begin{thebibliography}{12}
 
 \bibitem{Bernstein}
 S.~Bernstein,
@@ -1496,6 +935,12 @@ Birkh\"auser, Basel, 1981, 299--309.
 G.~Faber,
 \"Uber die interpolatorische Darstellung stetiger Funktionen,
 \emph{Jahresber. Deutsch. Math.-Verein.} \textbf{23} (1914), 192--210.
+
+\bibitem{GuNonuniform}
+Q.~Gu,
+\emph{Nonuniform additive constants for Lebesgue functions},
+preprint, 2026.
+\url{https://github.com/FireflySentinel/erdos-1132/blob/main/paper/NONUNIFORM.pdf}.
 
 \bibitem{Tao}
 T.~Tao,
